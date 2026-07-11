@@ -1,0 +1,17 @@
+# Ignore large ZIP archives
+*.zip
+
+# Ignore LaTeX build/intermediate files
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.out
+*.toc
+*.lof
+*.lot
+*.run.xml
+*.bcf
