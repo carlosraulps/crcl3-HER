@@ -1,0 +1,15 @@
+# --- INCAR for H2 ---
+ENCUT   = 400
+EDIFF   = 1.0e-06
+EDIFFG  = -0.025
+PREC    = Normal
+ISPIN   = 1
+ISYM    = 0
+LWAVE   = .FALSE.
+LCHARG  = .FALSE.
+NCORE   = 4
+# --- relax ---
+IBRION  = 2
+NSW     = 100
+ISIF    = 2
+ISMEAR  = 0; SIGMA = 0.05

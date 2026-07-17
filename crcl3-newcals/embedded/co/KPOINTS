@@ -1,0 +1,5 @@
+K-Points for Static SCF (2x2 Supercell)
+0
+Gamma                   ! Center at Gamma point (Hexagonal/Monoclinic cells)
+5  5  1                 ! Mesh 
+0  0  0

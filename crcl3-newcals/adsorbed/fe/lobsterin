@@ -1,0 +1,14 @@
+basisSet pbeVASPfit2015
+COHPstartEnergy -15.0
+COHPendEnergy 5.0
+saveProjectionToFile
+
+cohpBetweenAtom 33 and 24
+cohpBetweenAtom 33 and 26
+cohpBetweenAtom 33 and 31
+cohpBetweenAtom 33 and 2
+cohpBetweenAtom 33 and 3
+cohpBetweenAtom 33 and 4
+cohpBetweenAtom 33 and 5
+cohpBetweenAtom 33 and 7
+cohpBetweenAtom 33 and 8
