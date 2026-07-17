@@ -15,3 +15,22 @@
 *.lot
 *.run.xml
 *.bcf
+
+# VASP outputs
+OUTCAR
+WAVECAR
+CHGCAR
+CHG
+EIGENVAL
+DOSCAR
+PCDAT
+IBZKPT
+XDATCAR
+OSZICAR
+CONTCAR
+vasprun.xml
+PROCAR
+REPORT
+*.cube
+*.vesta
+vasp_run.log
