@@ -1,0 +1,9 @@
+==========================================================
+Job Name:    H1x1_S1_yesvdw
+Job ID:      236
+Host:        iskay201
+Directory:   /home/juan/Carlos/crcl3-1x1-h_ads-without-U/yes_vdw/S1
+Start Time:  Tue Sep  8 23:35:43 UTC 2026
+CPUs Alloc:  16
+==========================================================
+Executing VASP 6.5.1 with 16 MPI ranks...

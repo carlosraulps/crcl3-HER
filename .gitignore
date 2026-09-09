@@ -1,0 +1,63 @@
+# ==============================================================================
+# .gitignore for VASP DFT Calculations & HPC Research Workflow
+# ==============================================================================
+# Tracks essential inputs (INCAR, POSCAR, KPOINTS, POTCAR, job.sh, scripts)
+# and essential convergence outputs (CONTCAR, OSZICAR, OUTCAR, IBZKPT, *.out).
+# Ignores heavy wavefunctions, charge densities, volumetric grids, and archives.
+# ==============================================================================
+
+# --- Heavy VASP Wavefunctions & Volumetric Charge Grids ---
+WAVECAR*
+CHGCAR*
+CHG*
+LOCPOT*
+ELFCAR*
+PARCHG*
+TMPCAR*
+
+# --- Heavy Band Structure, DOS, Trajectory & XML Outputs ---
+DOSCAR*
+EIGENVAL*
+PROCAR*
+PROOUT*
+XDATCAR*
+PCDAT
+REPORT
+vasprun.xml
+
+# --- Compressed Archives & Data Bundles ---
+*.zip
+*.tar.gz
+*.tar.bz2
+*.tar
+*.tgz
+*.7z
+*.rar
+
+# --- Watchdog, Snapshots & Daemons ---
+*.ckpt
+*.pid
+watchdog.log
+*.log
+
+# --- Slurm Error Files ---
+*.err
+
+# --- Python & Environment Artifacts ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+.venv
+env/
+venv/
+
+# --- Operating System & Editor Artifacts ---
+.DS_Store
+.directory
+*~
+*.swp
+*.swo
+.vscode/
+.idea/

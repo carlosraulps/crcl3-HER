@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --job-name=vasp
+#SBATCH --nodes=1
+#SBATCH --ntasks=64
+#SBATCH --mem=128gb
+#SBATCH -p normal
+
+module purge
+
+module load spack/1.0.1
+module load openmpi/5.0.8-aocc-5.0.0-linux-rocky10-icelake-wxmifob
+module load vasp/6.5.1-aocc-5.0.0-linux-rocky10-icelake-erkzov4
+
+export OMP_NUM_THREADS=1
+
+mpirun -np $SLURM_NTASKS vasp_std

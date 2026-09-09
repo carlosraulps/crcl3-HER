@@ -1,0 +1,12 @@
+==========================================================
+Job Name:    H1x1_clean_yesvdw
+Job ID:      235
+Host:        iskay201
+Directory:   /home/juan/Carlos/crcl3-1x1-h_ads-without-U/yes_vdw/clean
+Start Time:  Tue Sep  8 23:35:43 UTC 2026
+CPUs Alloc:  16
+==========================================================
+Executing VASP 6.5.1 with 16 MPI ranks...
+==========================================================
+Finished at Wed Sep  9 04:15:53 UTC 2026 with exit code 0
+==========================================================
