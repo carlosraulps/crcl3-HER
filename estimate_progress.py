@@ -99,6 +99,7 @@ def parse_calculation(calc_dir, slurm_info=None):
 
     # Electronic SCF progress
     current_iter = 0
+    total_iters = 0
     init_de = None
     curr_de = None
     curr_energy = None
@@ -109,6 +110,7 @@ def parse_calculation(calc_dir, slurm_info=None):
                 for line in f:
                     line_s = line.strip()
                     if line_s.startswith("DAV:") or line_s.startswith("RMM:"):
+                        total_iters += 1
                         parts = line_s.split()
                         algo = parts[0].replace(":", "")
                         current_iter = int(parts[1])
@@ -189,17 +191,28 @@ def parse_calculation(calc_dir, slurm_info=None):
     eta_step_str = "--"
     eta_total_str = "--"
 
-    if current_iter > 0 and elapsed_sec > 60:
-        sec_per_iter = elapsed_sec / current_iter
-        # Typical first step takes ~18-22 iterations
-        rem_iters = max(1, 20 - current_iter)
+    if total_iters > 0 and elapsed_sec > 60:
+        sec_per_iter = elapsed_sec / total_iters
+        # Step 1 typically takes ~25-35 iters; subsequent steps take ~16-20 iters
+        target_step_iters = 32 if ionic_steps == 0 else 18
+        rem_iters = max(1, target_step_iters - current_iter)
         eta_step_sec = rem_iters * sec_per_iter
         eta_step_str = format_duration(eta_step_sec)
         
-        # Typical relaxation takes ~10-15 ionic steps, where subsequent steps take ~6-8 iters
-        rem_steps = max(1, 10 - ionic_steps)
-        eta_total_sec = eta_step_sec + (rem_steps - 1) * (7 * sec_per_iter)
-        eta_total_str = format_duration(eta_total_sec)
+        # Remaining ionic steps estimate
+        if converged or (max_force is not None and max_force <= ediffg):
+            eta_total_str = "00m"
+        else:
+            if max_force is not None and max_force > ediffg:
+                # Forces decay roughly exponentially towards ediffg
+                rem_steps = max(1, min(7, math.ceil(math.log(max_force / ediffg) / 0.55)))
+            elif ionic_steps > 0:
+                rem_steps = max(1, 6 - ionic_steps)
+            else:
+                rem_steps = 5
+            
+            eta_total_sec = eta_step_sec + (rem_steps - 1) * (16 * sec_per_iter)
+            eta_total_str = format_duration(eta_total_sec)
 
     return {
         "dir": calc_dir,
