@@ -1,0 +1,16 @@
+SYSTEM   = Isolated H2 molecule (PBE pure, U=0)
+PREC     = Accurate
+ENCUT    = 400.0
+ISPIN    = 2
+MAGMOM   = 2*0.0
+ISMEAR   = 0
+SIGMA    = 0.01
+EDIFF    = 1.0E-06
+EDIFFG   = -0.005
+IBRION   = 2
+NSW      = 30
+ISIF     = 2
+LREAL    = .FALSE.
+LWAVE    = .FALSE.
+LCHARG   = .FALSE.
+NCORE    = 4

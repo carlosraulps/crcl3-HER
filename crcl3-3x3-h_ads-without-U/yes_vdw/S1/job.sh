@@ -5,7 +5,7 @@
 #SBATCH --ntasks=32
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=32G
-#SBATCH --time=72:00:00
+#SBATCH --time=7-00:00:00
 #SBATCH --requeue
 #SBATCH -o %x.%j.out
 #SBATCH -e %x.%j.err

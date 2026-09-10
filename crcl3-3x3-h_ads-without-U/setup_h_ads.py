@@ -239,11 +239,11 @@ LCHARG   = .FALSE.     # Do NOT write CHGCAR; optimizes I/O bandwidth during ion
 
 
 def generate_kpoints():
-    """Generate KPOINTS file: 5x5x1 Gamma-centered (Nk*a ~ 54.4 A, commensurate with 5x5x1 for 2x2)."""
-    return """K-Points 5x5x1 Gamma-centered (CrCl3 3x3 Supercell)
+    """Generate KPOINTS file: 3x3x1 Gamma-centered (Nk*a ~ 54.4 A, commensurate with 5x5x1 for 2x2)."""
+    return """K-Points 3x3x1 Gamma-centered (CrCl3 3x3 Supercell)
 0
 Gamma
-  5  5  1
+  3  3  1
   0  0  0
 """
 
@@ -278,7 +278,7 @@ def generate_job_script(job_name, project_dir, scratch_subdir):
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
 #SBATCH --exclusive
-#SBATCH --time=24:00:00
+#SBATCH --time=7-00:00:00
 
 PROJECT_DIR="{project_dir}"
 SCRATCH_DIR="{scratch_dir}"

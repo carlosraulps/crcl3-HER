@@ -263,7 +263,7 @@ def generate_job_script(job_name, project_dir, scratch_subdir):
 #SBATCH --ntasks=16
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=16G
-#SBATCH --time=24:00:00
+#SBATCH --time=7-00:00:00
 #SBATCH -o %x.%j.out
 #SBATCH -e %x.%j.err
 

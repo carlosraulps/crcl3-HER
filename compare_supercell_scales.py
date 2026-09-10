@@ -13,7 +13,6 @@
 """
 
 import math
-import numpy as np
 
 A_1X1 = 6.0462744985246628
 C_VAC = 20.000000000000000

@@ -1,0 +1,9 @@
+==========================================================
+Job Name:    H2x2_S3_yesvdw
+Job ID:      247
+Host:        iskay201
+Directory:   /home/juan/Carlos/crcl3-2x2-h_ads-without-U/yes_vdw/S3
+Start Time:  Wed Sep  9 23:08:39 UTC 2026
+CPUs Alloc:  16
+==========================================================
+Executing VASP 6.5.1 with 16 MPI ranks...
