@@ -1,0 +1,47 @@
+# =========================================================================
+# VASP INCAR: Monolayer CrCl3 1x1 Primitive Cell (DFT-D3 + Hubbard U = 0 eV)
+# Space Group: P-31m (No. 162), 8 atoms (Cr2Cl6), Ferromagnetic Ground State
+# Methodology: Ponytail Minimal Philosophy with Verified Physical Corrections
+# =========================================================================
+
+# --- 1. Electronic Minimization & Plane-Wave Basis ---
+SYSTEM   = CrCl3-1x1 ISIF3 LATTICE_CONSTRAINTS (D3 + U=0eV)
+PREC     = Accurate    # FFT and integration grid density; eliminates grid-aliasing forces in 2D sheets
+ENCUT    = 400.0       # Kinetic energy cutoff (eV); set to ~1.33x max ENMAX (Cl ~300 eV) to eliminate Pulay stress
+ALGO     = Normal      # Blocked-Davidson electronic minimization; numerically stable for magnetic Cr3+ d3 ions
+EDIFF    = 1.0E-06     # Energy convergence threshold for electronic SCF loop (eV); ensures well-converged wavefunctions
+NELM     = 100         # Maximum number of electronic SCF cycles; provides headroom while halting stalled loops
+
+# --- 2. Spin Polarization & Magnetic Moments ---
+ISPIN    = 2           # Spin-polarized calculation; mandatory for open-shell magnetic Cr3+ (3d3) ions
+MAGMOM   = 2*3.0 6*0.0 # Initial magnetic moments (muB); 3.0 muB for high-spin S=3/2 Cr3+, 0.0 for closed-shell Cl-
+
+# --- 3. Brillouin Zone Integration & Smearing ---
+ISMEAR   = 0           # Gaussian smearing; strictly required to guarantee variational ionic forces during relaxation
+SIGMA    = 0.05        # Smearing width (eV); 50 meV minimizes artificial electronic entropy (-TS ~ 0) in semiconductors
+
+# --- 4. van der Waals Dispersion Correction ---
+IVDW     = 11          # Grimme DFT-D3 zero-damping dispersion correction; models essential non-local vdW interactions
+
+# --- 5. Ionic Relaxation & 2D Vacuum Preservation ---
+IBRION   = 2           # Conjugate gradient algorithm; most robust scheme for atomic coordinate relaxation
+NSW      = 100         # Maximum ionic optimization steps
+ISIF     = 3           # Relax ions and in-plane lattice parameters with fixed vacuum constraint
+LATTICE_CONSTRAINTS = .TRUE. .TRUE. .FALSE. # Free a and b (x and y), strictly fix c (z-axis / vacuum preservation)
+EDIFFG   = -0.01       # Force convergence criterion (eV/Angstrom); optimization stops when all forces < 0.01 eV/A
+
+# --- 6. Projected Electronic Structure & Band Gap Resolution ---
+LORBIT   = 11          # Project wavefunctions onto atom-centered spherical harmonics; generates site/orbital DOS & bands
+NEDOS    = 2000        # Number of grid points for Density of States; provides high-resolution sampling for band gap
+LWAVE    = .TRUE.      # Write WAVECAR for restart capability and wavefunction projection analysis
+LCHARG   = .TRUE.      # Write CHGCAR for charge density analysis and fast post-processing
+
+# --- 7. Hardware Parallelization ---
+NCORE    = 4           # Number of CPU cores computing an orbital group simultaneously; optimizes FFT communication
+
+# --- 8. Core d-Electron Correlation & PAW Corrections ---
+LASPH    = .TRUE.      # Non-spherical PAW corrections inside augmentation spheres; essential for directional 3d orbitals
+LMAXMIX  = 4           # Mix charge density up to l=4; strictly required for d-orbital PAW occupancy matrix convergence
+
+# --- 9. Hubbard U Correction ---
+LDAU     = .FALSE.     # Hubbard U disabled (U = 0 eV standard DFT-D3 baseline)
