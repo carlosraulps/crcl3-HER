@@ -24,8 +24,8 @@ if [ -d "$H2_DIR" ] && [ -f "$H2_DIR/job.sh" ]; then
     TOTAL_SUBMITTED=$((TOTAL_SUBMITTED + 1))
 fi
 
-# 2. Supercells 1x1, 2x2, 3x3
-SCALES=("crcl3-1x1-h_ads-without-U" "crcl3-2x2-h_ads-without-U" "crcl3-3x3-h_ads-without-U")
+# 2. Supercells (1x1 and 2x2 only; 3x3 excluded per user request)
+SCALES=("crcl3-1x1-h_ads-without-U" "crcl3-2x2-h_ads-without-U")
 SITES=("clean" "S1" "S2" "S3")
 
 for SCALE in "${SCALES[@]}"; do
