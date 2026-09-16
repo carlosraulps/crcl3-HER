@@ -1,9 +1,14 @@
 # ==============================================================================
 # .gitignore for VASP DFT Calculations & HPC Research Workflow
 # ==============================================================================
-# Tracks essential inputs (INCAR, POSCAR, KPOINTS, POTCAR, job.sh, scripts)
-# and essential convergence outputs (CONTCAR, OSZICAR, OUTCAR, IBZKPT, *.out).
-# Ignores heavy wavefunctions, charge densities, volumetric grids, and archives.
+# Tracks essential inputs:
+#   - INCAR, POSCAR, KPOINTS, POTCAR, job.sh, scripts (*.py, *.sh)
+# Tracks essential outputs:
+#   - CONTCAR, OSZICAR, OUTCAR, IBZKPT, *.out
+# Tracks reports & metadata:
+#   - *.md, *.csv, *.json, *.pdf, *.png
+# Ignores heavy wavefunctions, charge densities, volumetric grids, build/dist,
+# temporary files, core dumps, and compressed archives.
 # ==============================================================================
 
 # --- Heavy VASP Wavefunctions & Volumetric Charge Grids ---
@@ -23,9 +28,24 @@ PROOUT*
 XDATCAR*
 PCDAT
 REPORT
-vasprun.xml
+vasprun*.xml
 
-# --- Compressed Archives & Data Bundles ---
+# --- Python Build, Packaging & Binary Artifacts ---
+build/
+dist/
+bin/
+*.pkg
+*.pyz
+*.toc
+*.spec
+*.egg-info/
+*.egg
+*.so
+*.o
+*.a
+*.exe
+
+# --- Compressed Archives & Large Bundles ---
 *.zip
 *.tar.gz
 *.tar.bz2
@@ -33,6 +53,17 @@ vasprun.xml
 *.tgz
 *.7z
 *.rar
+
+# --- Temporary, Scratch, Backup & Crash Files ---
+*.bak
+*.bak_*
+*.tmp
+*.temp
+scratch/
+*/scratch/
+core
+core.*
+STOPCAR
 
 # --- Watchdog, Snapshots & Daemons ---
 *.ckpt
@@ -47,7 +78,6 @@ watchdog.log
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
 .env
 .venv
 env/
