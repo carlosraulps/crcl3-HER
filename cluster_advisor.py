@@ -49,7 +49,7 @@ CALCS = {
         "cores_per_job": 16, "mem_per_job_gb": 16,
     },
 }
-VARIANTS = ["no_vdw", "yes_vdw"]
+VARIANTS = ["no_vdw", "yes_vdw", "yes_vdw_ivdw12"]
 SITES = ["clean", "S1", "S2", "S3"]
 
 # ─── SLURM Queries ──────────────────────────────────────────────────────────
