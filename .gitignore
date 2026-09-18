@@ -1,5 +1,8 @@
-# Ignore large ZIP archives
+# Ignore large archives
 *.zip
+*.tar.gz
+*.tar.bz2
+*.tar.xz
 
 # Ignore LaTeX build/intermediate files
 *.aux
@@ -15,6 +18,29 @@
 *.lot
 *.run.xml
 *.bcf
+
+# OS metadata
+.DS_Store
+*/.DS_Store
+Thumbs.db
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary and tool output directories
+temp/
+graphify-out/
+media/
+*/media/
+
+# Raw / past calculation run dumps
+past-calculations/
+*/past-calculations/
+crcl3-newcals/crcl3-1x1/quick_test/
+crcl3-newcals/crcl3-1x1/quick_test_k551/
+crcl3-newcals/crcl3-1x1/relax-crcl3-i3-dvw-u/
 
 # VASP outputs
 OUTCAR
