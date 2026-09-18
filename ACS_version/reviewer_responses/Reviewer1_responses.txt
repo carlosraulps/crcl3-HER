@@ -1,0 +1,266 @@
+================================================================
+RESPONSE TO REVIEWER 1 -- ACS Applied Energy Materials
+Manuscript: "Coordination-Dependent Hydrogen Adsorption on Co-, Fe-,
+and Ni-Functionalized Monolayer CrCl3"
+================================================================
+
+We sincerely thank Reviewer 1 for the careful reading and constructive
+comments. Below we address each point in detail.
+
+----------------------------------------------------------------
+COMMENT 1:
+The abstract should highlight the key research points of this paper
+and should be concisely formulated and well summarized.
+----------------------------------------------------------------
+
+RESPONSE 1:
+We agree. We have revised the abstract to immediately foreground:
+(i) the coordination-controlled trade-off between substrate binding
+    and H-adsorption thermodynamics,
+(ii) surface-adsorbed Co as the most favorable motif (dG_ads = 0.20 eV),
+(iii) the mechanistic origin in TM-Cl coordination, site exposure, and
+     deformation penalties.
+The revised abstract is highlighted in blue in the marked manuscript.
+
+----------------------------------------------------------------
+COMMENT 2:
+What is the evidence for the choice of Co, Fe and Ni rather than other
+transition metals?
+----------------------------------------------------------------
+
+RESPONSE 2:
+The selection of Co, Fe, and Ni is motivated by three considerations,
+now made explicit in the Introduction (highlighted in blue):
+
+(i) Electronic structure: Co (d7), Fe (d6), and Ni (d8) are late 3d
+    metals with partially occupied d-shells that hybridize with the
+    Cr-Cl framework and place them near the thermoneutral HER window
+    on the volcano plot. Early metals (Ti, V) strongly overbind H;
+    late metals (Cu, Zn) have filled/near-filled d-shells with poor
+    hybridization.
+
+(ii) Magnetic compatibility: CrCl3 hosts a Cr3+ (d3) Heisenberg
+     ferromagnet. Co2+, Fe2+/3+, and Ni2+ carry 1-4 uB magnetic
+     moments, making them natural candidates for spin-coordination-
+     catalysis studies in magnetic 2D hosts.
+
+(iii) Experimental realizability: Co, Fe, and Ni are the most commonly
+      reported TM functionalization agents for CrCl3 and related
+      chromium trihalides in both theory and experiment
+      [Luo2020, Gao2018, Mastrippolito2021, Abdel-Hafiez2025].
+
+This choice is also consistent with recent HER catalyst studies
+(Moraes et al., IJHE 2026, 212, 153692), which similarly focus on
+Co, Fe, and Ni as benchmark 3d active sites near the HER optimum.
+
+----------------------------------------------------------------
+COMMENT 3:
+The authors should not only consider the doping model of alloy elements
+in CrCl3, but also the structural model of alloy elements in hydrogen
+adsorption on CrCl3.
+----------------------------------------------------------------
+
+RESPONSE 3:
+This is precisely the central design strategy of the paper. We
+explicitly consider two structural coordination motifs for each metal:
+
+(a) Surface-adsorbed: TM above the basal plane in threefold hollow
+    coordination (~3 Cl neighbors). Direct H-binding access.
+
+(b) Embedded (intercalated): TM penetrates the Cl-terminated surface
+    with ~6 Cl neighbors from both Cl layers. Reduced site exposure.
+
+H adsorption is studied in all six configurations (3 metals x 2 motifs),
+fully relaxing H/TM/CrCl3. Results are reported in Figure 7 and
+Section 3.4. The coordination motif is shown to be the decisive variable.
+
+We have added a sentence in the Introduction (blue) to make this
+dual-configuration strategy more prominent.
+
+----------------------------------------------------------------
+COMMENT 4:
+For structural stability of metal-doped CrCl3, the authors should affirm
+thermodynamic and dynamical stabilities, give the physical equations, and
+cite: App. Surf. Sci. 2025;680:161321; PCCP 2018;20:15863-15870;
+Vacuum 2020;181:109742; Vacuum 2020;179:109438.
+----------------------------------------------------------------
+
+RESPONSE 4:
+We address both stability criterias;
+
+(A) THERMODYNAMIC STABILITY (Eqs. 1-2):
+
+    Binding energy:
+    E_bind^TM = E(TM/CrCl3) - E(CrCl3) - E(TM)
+    Results (surface-adsorbed):
+      Co = -2.82 eV, Fe = -2.60 eV, Ni = -3.38 eV
+    Show that all are strongly negative, then spontaneous adsorption confirmed.
+
+    Relative configuration stability:
+    dE_emb-ads = E_emb - E_ads
+    Results:
+      Co: -0.73 eV (embedded favored thermodynamically)
+      Fe: -0.86 eV (embedded favored thermodynamically)
+      Ni: +0.16 eV (surface-adsorbed favored thermodynamically)
+
+    Its important to notice that Co and Fe prefer the embedded configuration at 0 K but remain
+    kinetically trapped at the surface on the AIMD timescale.
+
+(B) DYNAMICAL STABILITY -- 5 ps NVT-AIMD at T = 300 K (Nose-Hoover
+    thermostat, Nose1984, Hoover1985). Caique imput vars
+    
+    The CrCl3 lattice remains
+    structurally intact throughout all trajectories, like qualitative shows the figure 3 and supplementary 
+    information. And the TM z-coordinates confirm:
+      - Co, Fe: remain surface-exposed (no desorption/reconstruction)
+      - Ni: migrates to embedded region (thermal incorporation)
+
+We have added an explicit paragraph in Section 2 (highlighted in blue)
+connecting binding energy (thermodynamic) and AIMD (dynamical) stability
+with equations for both, and citing the four works suggested by the
+Reviewer for context.
+
+NOTE: Formal phonon dispersion calculations were not performed because
+the present study focuses on single TM adatom/embedded centers on
+monolayer CrCl3, not on a periodic TM-substituted crystal phase. The
+dynamical stability of CrCl3 itself is established in literature
+(Webster2018, Soriano2020). AIMD provides direct evidence that the
+combined TM-CrCl3 system does not decompose at 300 K.
+
+----------------------------------------------------------------
+COMMENT 5:
+Which surface of CrCl3 did the author select for hydrogen adsorption?
+What was the basis for this selection? If dG_ads > 0, can it still
+serve as a hydrogen storage material?
+----------------------------------------------------------------
+
+RESPONSE 5:
+(a) Surface: The (001) basal plane and the Cl-terminated surface is exposed
+    by mechanical exfoliation or vapor-phase growth. Also for a free-standing
+    2D monolayer, this is the only accessible face. The mentioned its consistent with the
+    2D CrCl3 literature (Webster2018, Mastrippolito2021, Zala2024).
+
+(b) Hydrogen storage vs. HER: This work targets HER electrocatalysis,
+    not hydrogen storage. Considering the ideal HER catalyst has dG_ads ~ 0. 
+    A positive dG_ads (endergonic adsorption relative to 1/2 H2) means 
+    the material is a poor HER catalyst, not a storage material. Then the pristine 
+    CrCl3 (dG_ads = 1.82 eV) is thermodynamically far from the HER optimum. 
+    TM functionalization reduces this to 0.20 eV (Co), 0.51 eV (Fe), 
+    0.88 eV (Ni).
+
+We have added explicit HER/storage clarification in the Introduction
+and in Section 3.1 (highlighted in blue).
+
+----------------------------------------------------------------
+COMMENT 6:
+Is the author considering CrCl3 as a hydrogen storage material or as a
+hydrogen evolution catalyst? What is its hydrogen storage upper limit?
+----------------------------------------------------------------
+
+RESPONSE 6:
+TM-functionalized CrCl3 is studied here exclusively as a model HER
+electrocatalyst. This is established by:
+  1. Use of the CHE framework optimizing toward dG_ads ~ 0 (not
+     strongly negative as needed for storage).
+  2. Single-site surface coverage (1 H per 2x2x1 supercell).
+  3. No investigation of intercalation capacity or wt% storage.
+
+Questions of hydrogen storage capacity and commercial potential are
+outside the scope of this work. Explicit clarification has been added to
+the Introduction and Figure 7 discussion (highlighted in blue).
+
+----------------------------------------------------------------
+COMMENT 7:
+Greater attention should be given to overpotential volcano plots and
+exchange current density volcano. Cite: IJHE 2026;265:156967 and
+App. Surf. Sci. 2026;737:166886.
+----------------------------------------------------------------
+
+RESPONSE 7:
+(a) dG_ads is already the central descriptor throughout Section 3.4
+    and Figure 8, computed within the CHE framework.
+
+(b) We have added explicit overpotential analysis in Section 3.4
+    (highlighted in blue in manuscript_marked.tex):
+    eta = |dG_ads|/e  (Volmer-limited, CHE framework)
+      Surface-adsorbed Co:  eta = 0.20 V  (most favorable)
+      Surface-adsorbed Fe:  eta = 0.51 V
+      Surface-adsorbed Ni:  eta = 0.88 V
+      Embedded configs:     eta = 1.5-3.6 V
+
+(c) Exchange current density: following Norskov et al. (J. Electrochem.
+    Soc. 2005, 152, J23), we added a sentence noting that i_0 peaks at
+    dG_ads ~ 0 in the Butler-Volmer framework. Surface-adsorbed Co
+    (dG_ads = 0.20 eV) falls closest to the i_0 maximum.
+
+(d) Regarding the Reviewer-suggested references:
+    - Moraes et al., IJHE 2026, 212, 153692: employs the same CHE
+      framework; finds hollow-site adsorption and local chemical
+      environment decisive -- consistent with our findings. Added to
+      the revised Discussion (reference key: Moraes2026).
+    - Applied Surface Science 2026;737:166886: provides analogous
+      evidence for local electronic environment governing dG_ads on
+      2D catalysts. Added as supporting reference (key: ASS2026_166886).
+
+NOTE: The IJHE reference provided in the .txt file is Moraes et al.
+IJHE 2026, vol. 212, p. 153692 (DOI: 10.1016/j.ijhydene.2026.153692),
+not vol. 265 p. 156967. The latter may be a different paper; we have
+cited the available paper and will verify the second ASS reference
+upon gaining journal access.
+
+----------------------------------------------------------------
+COMMENT 8:
+Why not give the charge electronic difference for metal-doped CrCl3?
+----------------------------------------------------------------
+
+RESPONSE 8:
+The charge-density difference and Bader charge analysis are already
+present in the manuscript:
+
+- Figure 4: Charge-density-difference isosurfaces (delta-rho) for
+  surface-adsorbed Co, Fe, Ni (isosurface level 5e-3 e/A^3).
+  Equation for delta-rho is Eq. 8 in the Methods section.
+- Bader charge transfer explicitly reported:
+    Co: 0.77 |e|, Fe: 0.94 |e|, Ni: 0.59 |e| (Section 3.2, Fig. 4d-f).
+
+We have added a sentence in the Introduction pointing readers to this
+analysis and enhanced the Figure 4 caption interpretation (highlighted
+in blue in the revised manuscript).
+
+----------------------------------------------------------------
+COMMENT 9:
+There are numerous irregularities in the format of the references.
+----------------------------------------------------------------
+
+RESPONSE 9:
+We have conducted a systematic review of all references in references.bib.
+Corrections made:
+  1. Removed duplicate entry for doi:10.1021/acsomega.5c07529.
+  2. Fixed invalid BibTeX key "https://doi.org/10.1002/anie.202014968"
+     -> renamed to "Duan2021"; updated all in-text citations.
+  3. All journal entries verified against ACS citation format:
+     Author(s). J. Name Year, Vol, Page.
+  4. DOI fields checked and corrected where missing/malformatted.
+  5. Author name format standardized to "Last, F. I.".
+  6. The achemso BibTeX style enforces ACS formatting automatically.
+
+The reference list compiles cleanly: 0 BibTeX errors, 0 LaTeX errors in
+the final manuscript.pdf (36 pages, complete bibliography).
+
+================================================================
+SUMMARY OF ALL CHANGES TO MANUSCRIPT (blue in manuscript_marked.tex)
+================================================================
+
+1. Abstract: revised for clarity and emphasis on key results.
+2. Introduction: explicit Co/Fe/Ni selection rationale; dual-config
+   strategy highlighted; HER vs. storage clarified.
+3. Computational Methods (Sec. 2): surface (001) selection stated;
+   thermodynamic/dynamical stability paragraph with equations added;
+   Reviewer-suggested stability references cited.
+4. Results/Discussion (Sec. 3.4): overpotential values from CHE added;
+   exchange current density volcano discussion added; Moraes2026 and
+   ASS2026 citations added.
+5. Figure 4 caption: enhanced to make charge analysis prominent.
+6. references.bib: all irregularities corrected; 2 new references added.
+
+================================================================

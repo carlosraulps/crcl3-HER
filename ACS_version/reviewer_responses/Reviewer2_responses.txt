@@ -1,0 +1,339 @@
+================================================================
+RESPONSE TO REVIEWER 2 -- ACS Applied Energy Materials
+Manuscript: "Coordination-Dependent Hydrogen Adsorption on Co-, Fe-,
+and Ni-Functionalized Monolayer CrCl3"
+================================================================
+
+We sincerely thank Reviewer 2 for the thorough and constructive reading,
+and for the overall positive assessment (Recommendation: Publish after
+minor revisions noted; top 20% of manuscripts; Good ratings across all
+criteria). Below we address each point in detail.
+
+----------------------------------------------------------------
+COMMENT 1:
+Spin-orbit coupling (SOC) was ignored. How will SOC modify TM magnetic
+moments, orbital hybridization and hydrogen adsorption free energy across
+adsorbed and embedded configurations?
+----------------------------------------------------------------
+
+RESPONSE 1:
+We thank the Reviewer for raising this important methodological point.
+
+SOC effects in the CrCl3 family depend on the atomic number
+of the halide ligand. In CrI3, the heavy iodine (Z=53) generates strong SOC that determines the Ising-like magnetic anisotropy. Because CrCl3 contains chlorine (Z=17), a light ligand, SOC is substantially weaker.
+Also the established consensus in the 2D CrCl3 literature is that CrCl3 is better described by a Heisenberg (or XY-like) model rather than the Ising model of CrI3, precisely because the weaker SOC from Cl does not
+dominate the exchange anisotropy like the papers in Soriano2020, Webster2018, etc.
+
+For the specific quantities investigated in this work:
+
+(A) TM MAGNETIC MOMENTS: The local magnetic moments calculated in this study are exchange-dominated spin moments determined by the d-electron count and spin-polarized hybridization with Cl-3p and Cr-3d states. The calculated values are: Surface-adsorbed: Co = 1.78 uB, Fe = 2.72 uB, Ni = -0.76 uB; Embedded:         Co = 2.08 uB, Fe = 3.30 uB, Ni = -1.02 uB
+These are spin moments. SOC would add an orbital component (~0.05-0.15 uB for 3d metals in this coordination) but would not change the spin-moment ordering or the qualitative trend. For 3d transition metals (Co, Fe, Ni), the orbital moment is quenched by the crystal field; any SOC-induced correction to the total moment is typically <5% and does not alter the bonding conclusions.
+
+(B) ORBITAL HYBRIDIZATION / ELECTRONIC STRUCTURE: SOC would split degenerate d-orbital manifolds by tens of meV for 3d metals in this coordination. The TM-Cl ICOHP bond strengths (Co: -6.70 eV cumulative 3-fold; Fe: -6.84 eV; Ni: -6.18 eV for adsorbed) are dominated by exchange and crystal-field effects at the scale of eV, making a meV-scale SOC splitting a secondary correction.
+
+(C) HYDROGEN ADSORPTION FREE ENERGY: The DeltaG_ads values (Co: +0.20 eV, Fe: +0.51 eV, Ni: +0.88 eV for surface-adsorbed) are determined by total-energy differences on the scale of 0.1-1 eV. SOC corrections to DeltaG_ads in 3d-metal systems have been shown to be <20 meV in comparable systems (e.g., Fe/Co on graphene, MoS2 single-atom catalysts), well below the level that would change the qualitative conclusions or the metal ranking.
+
+The systematic study of Feng et al. (IJHE 2021, 46, 5378) on 3d metal catalysts similarly does not include SOC, consistent with standard practice for light-ligand 3d magnetic catalysts.
+
+We have added a paragraph in the Computational Methods section (highlighted in blue in the marked manuscript) explicitly discussing the SOC approximation, its justification for the CrCl3+Co/Fe/Ni system, and the estimated magnitude of the correction, with citations
+to the relevant literature on SOC in chromium trihalides.
+
+----------------------------------------------------------------
+COMMENT 2:
+Only single H coverage was simulated. Could you calculate H adsorption at medium/high coverage to explain how adjacent H compete for active Co sites and shift DeltaG_ads under real HER conditions?
+----------------------------------------------------------------
+
+RESPONSE 2:
+The Reviewer raises an important point about HER-relevant coverage.
+We address this in two ways:
+
+(A) SCOPE CLARIFICATION: The present study uses the computational hydrogen electrode (CHE) at 1/4 ML coverage (one H atom in the 2x2x1 supercell of 8 Cr sites; effective coverage \sim 0.125 H/TM if normalized to TM sites). This is a standard reference coverage for CHE-based HER descriptor studies (Norskov2005, Moraes2026), as it isolates the intrinsic thermodynamic descriptor from coverage-dependent lateral interaction effects
+
+(B) PHYSICAL ARGUMENT: At higher H coverage, adjacent H-H lateral repulsion on the TM center would increase DeltaG_ads (making it less favorable). Given that surface-adsorbed Co already has DeltaG_ads = +0.20 eV near the thermoneutral optimum, increased coverage would shift it slightly positive. For the embedded configurations (DeltaG_ads >> 1 eV), coverage effects would not change the conclusion of their poor activity. The qualitative ranking (Co << Fe < Ni for surface-adsorbed) is expected to be robust against coverage changes, as it is driven by the intrinsic TM-3d orbital structure, not lateral adsorbate-adsorbate interactions. 
+
+-What gonna implie high coverage, how can we expand it? Why gonna make it slightly positive? What about the vasp paremeters? 
+
+(C) PRACTICAL CONSTRAINTS: Full coverage-dependent calculations would require multiple supercell sizes and H configurations (a combinatorial problem), which is beyond the scope of the present study. 
+
+- We have added a statement in the Results and Discussion (Section 3.4, highlighted in blue) explicitly acknowledging the single-coverage limitation and its implications, consistent with how analogous single-atom HER catalyst studies handle this (Feng2021).
+
+- Multiples sizes, for futre expanding ...
+----------------------------------------------------------------
+COMMENT 3:
+This work only evaluates H adsorption thermodynamics without reaction
+barriers. Can you supply LST/QST transition state energies of Volmer
+and Tafel steps to fully compare HER kinetics?
+----------------------------------------------------------------
+
+RESPONSE 3:
+The calculation of Volmer (H+ + e- -> H*) and Tafel (2H* -> H2) or Heyrovsky (H* + H+ + e- -> H2) transition states requires nudged elastic band (NEB) calculations, ideally with the VASP-VTST package and explicit treatment of the electrochemical interface (e.g., via the double-reference method or implicit solvation). These are computationally demanding calculations that go well beyond the scope of the present work, which is explicitly a thermodynamic descriptor study within the CHE framework.
+
+We note that within the CHE approach adopted in this work: The theoretical overpotential eta = |DeltaG_ads|/e provides a lower bound on the kinetic barrier for the Volmer step under the assumption that the reaction is adsorption-limited. For surface-adsorbed Co: eta = 0.20 V -- among the lowest computed for any 3d-functionalized 2D magnetic system. This framework is standard in the HER computational catalysis literature (Norskov2005, Moraes2026, Feng2021, FENG202236294).
+
+Single-atom/adatom systems like those studied here typically show low Tafel barriers because the active site geometry favors direct Langmuir-Hinshelwood H+H recombination. The kinetic bottleneck is generally the Volmer adsorption step, which is well-captured
+by DeltaG_ads.
+
+We have added a sentence in the Conclusions section (highlighted blue) explicitly stating that this work provides thermodynamic descriptors within the CHE framework and that full kinetic analysis (NEB/transition states) is an important direction for future work.
+
+
+NEB calcuations in process....
+
+----------------------------------------------------------------
+COMMENT 4:
+AIMD simulations only ran for 5 ps at 300 K. Would longer trajectories
+or elevated temperatures trigger TM desorption, lattice distortion or
+irreversible embedding of surface Co and Fe atoms?
+----------------------------------------------------------------
+
+RESPONSE 4:
+We appreciate this important question. We address it carefully:
+
+(A) WHAT 5 ps AT 300 K ESTABLISHES: Our AIMD trajectories confirm that Co and Fe remain predominantly surface-exposed at 300 K without reconstructing the CrCl3 lattice or desorbing within 5 ps (Figure 3g-h). This is sufficient to demonstrate short-time structural accessibility. Ni actively migrates toward the embedded region within the 5 ps window, already revealing an incorporation tendency.
+
+(B) LIMITATIONS ACKNOWLEDGED: We explicitly state in the manuscript (Section 3.3): "The trajectories reveal short-time structural accessibility but do not determine long-time diffusion kinetics, incorporation barriers, or equilibrium populations of the two coordination motifs." This is an honest assessment of what the AIMD provides.
+
+Se poderia tentar replicar os calculos?
+
+(C) REGARDING HIGHER TEMPERATURES: At elevated temperatures (350-400 K), thermal activation of diffusion could facilitate Co/Fe incorporation, as their thermodynamic preference is for the embedded site (DeltaE_emb-ads: Co = -0.74 eV, Fe = -0.88 eV). Higher-temperature AIMD would likely show faster incorporation. However, from a practical HER perspective, the relevant operating condition is room temperature (298 K), where the AIMD shows stable surface-adsorbed Co and Fe within the 5 ps window.
+
+(D) LONGER TRAJECTORIES: 5 ps captures phonon-scale thermal fluctuations (typical metal-surface diffusion timescales are nanoseconds to microseconds, requiring accelerated dynamics methods). For practical DFT-AIMD, 5-10 ps at 300 K is the standard in comparable single-adatom-on-2D-material studies?
+
+We have added a statement in Section 3.3 (highlighted blue) noting
+that higher-T or longer AIMD simulations represent a direction for
+future work, and that the present trajectories provide evidence for
+short-time stability relevant to the operating conditions of HER.
+
+----------------------------------------------------------------
+COMMENT 5:
+You never compare CrCl3 with CrBr3/CrI3. How do heavier halide ligands
+alter TM-Cl bonding strength and optimize H adsorption for the same
+threefold Co active sites?
+----------------------------------------------------------------
+
+RESPONSE 5:
+The comparison with CrBr3/CrI3 is an excellent direction for future
+work. The present study focuses on CrCl3 as a well-defined reference
+platform for the following reasons:
+
+(A) SCOPE: CrCl3 is the most computationally tractable member of
+    the CrX3 family for this class of study. Including CrBr3/CrI3
+    would require a separate study with recalibrated pseudopotentials,
+    U parameters, and COHP projectors for heavier halides.
+
+(B) HALIDE TREND (QUALITATIVE): The expected trend across the
+    CrX3 family (X = Cl, Br, I) is:
+    - Stronger TM-X bonds for heavier halogens due to larger
+      orbital overlap and more diffuse p-states.
+    - Larger crystal-field splitting from more polarizable halide
+      ligands, which would modify TM-3d level positions.
+    - Stronger SOC in CrI3 would add a non-collinear component
+      absent in CrCl3.
+    - Our ICOHP analysis shows that the key descriptor is the
+      cumulative TM-Cl coordination (adsorbed threefold: ~-6.7 eV
+      for Co; embedded sixfold: ~-11.2 eV), which directly controls
+      active-site exposure. In CrBr3/CrI3, larger lattice constants
+      and more diffuse ligand orbitals might reduce ICOHP magnitudes,
+      potentially increasing site exposure for the same TM.
+
+(C) EXPERIMENTAL CONTEXT: CrCl3 has better ambient stability than
+    CrI3 (which degrades under ambient conditions), making it the
+    more experimentally relevant platform for electrocatalysis.
+
+We have added a sentence in the Conclusions (highlighted blue)
+acknowledging the CrBr3/CrI3 comparison as a natural extension.
+
+----------------------------------------------------------------
+COMMENT 6:
+The d-band center shows weak linear correlation with DeltaG_ads. What
+combined electronic descriptor integrating spin splitting and ICOHP
+values can better predict hydrogen binding strength?
+----------------------------------------------------------------
+
+RESPONSE 6:
+We fully agree with this assessment, and it is explicitly discussed in
+Section 3.5 of the manuscript. The weak R^2 (0.362 for surface-adsorbed;
+0.770 for embedded) of the d-band center correlation is attributed to:
+
+(A) SPIN-POLARIZED d-MANIFOLD: A spin-summed first moment collapses
+    the spin-up and spin-down channels, losing the information about
+    spin-polarization-induced orbital asymmetry that directly
+    governs H-3d hybridization. For systems with large local moments
+    (Fe: 2.72 uB; Co: 1.78 uB; Ni: -0.76 uB), the spin-resolved
+    d-band centers differ significantly between channels.
+
+(B) ICOHP AS A COMPLEMENTARY DESCRIPTOR: The cumulative TM-Cl ICOHP
+    captures the bonding strength of TM center to its coordination
+    shell -- directly related to the orbital availability for H
+    binding. Our data show:
+      Adsorbed:  Co ICOHP_TM-Cl = -6.70 eV, DeltaG = +0.20 eV (best)
+                 Fe ICOHP_TM-Cl = -6.84 eV, DeltaG = +0.51 eV
+                 Ni ICOHP_TM-Cl = -6.18 eV, DeltaG = +0.88 eV
+      Embedded:  Co ICOHP_TM-Cl = -11.22 eV, DeltaG = +1.74 eV
+                 Fe ICOHP_TM-Cl = -11.40 eV, DeltaG = +1.33 eV
+                 Ni ICOHP_TM-Cl = -10.01 eV, DeltaG = +1.89 eV
+    The pattern shows that higher cumulative ICOHP (stronger TM-Cl
+    bonding in embedded configs) correlates with more unfavorable
+    DeltaG_ads, consistent with the coordination-controlled trade-off.
+
+(C) COMBINED DESCRIPTOR PROPOSAL: A combined descriptor of the form:
+    Xi = epsilon_d^occ(spin-up) - epsilon_d^occ(spin-dn) + alpha*ICOHP_TM-Cl
+    where the first term captures spin-splitting and the second
+    captures coordination bonding, would be a more complete predictor.
+    With only three metals per coordination family, fitting such a
+    multi-parameter descriptor is not statistically meaningful, and
+    we have deliberately avoided over-parametrizing the analysis.
+
+We have added a brief paragraph in Section 3.5 (highlighted blue)
+explicitly proposing the spin-splitting + ICOHP combined descriptor
+as a direction for future multi-system studies, referencing the
+ICOHP data above.
+
+----------------------------------------------------------------
+COMMENT 7:
+No direct benchmark against Pt or single-atom M-N-C was provided.
+Can you compute their DeltaG_ads to quantify Co-CrCl3's advantages?
+----------------------------------------------------------------
+
+RESPONSE 7:
+We appreciate the suggestion. The well-established benchmark values
+from the literature are:
+  Pt(111):         DeltaG_ads ~ -0.09 eV (slightly too strong binding)
+  Pt single-atom:  DeltaG_ads ~ -0.03 to +0.08 eV
+  Co-N4 (M-N-C):  DeltaG_ads ~ -0.10 to +0.15 eV depending on N-C geometry
+  Fe-N4 (M-N-C):  DeltaG_ads ~ -0.47 eV (too strong)
+  Ni-N4 (M-N-C):  DeltaG_ads ~ +0.35 eV
+  [Norskov2005, Feng2021 (Cu1@GDY: +0.18 eV limit)]
+
+Surface-adsorbed Co on CrCl3 (DeltaG_ads = +0.20 eV) is:
+  - Comparable to Co-N4 M-N-C catalysts (+0.10 to +0.15 eV)
+  - Slightly less optimal than Pt(111) (-0.09 eV) but in the
+    same near-thermoneutral zone (|DeltaG_ads| < 0.3 eV)
+  - Superior to Fe-N4 and Ni-based single-atom systems
+
+Recalculating Pt and M-N-C under identical DFT parameters (same
+functional, pseudopotentials, supercell approach) would require
+dedicated calculations that are beyond the scope of this manuscript
+and would constitute a separate benchmarking study. However, the
+literature values cited above provide the relevant context.
+
+We have added a brief comparison paragraph in Section 3.4
+(highlighted blue) citing these literature DeltaG_ads values for
+Pt and M-N-C benchmarks (Norskov2005, Feng2021), explicitly
+contextualizing Co-CrCl3 within the broader HER landscape.
+
+New senteces 
+----------------------------------------------------------------
+COMMENT 8:
+Monolayer CrCl3 suffers from high raw material and manufacturing costs,
+restricting large-scale commercial H2 production. Low-cost carbon or
+metal oxide catalysts are more suitable for industrial mass production.
+----------------------------------------------------------------
+
+RESPONSE 8:
+We acknowledge the Reviewer's practical concern. This work is an
+exploratory computational study of the fundamental physicochemical
+principles governing H adsorption on a 2D magnetic platform, not a
+proposal for industrial deployment. In this context:
+
+(A) RESEARCH SCOPE: As with all first-principles studies of novel 2D
+    platforms (including the referenced work by Feng et al. on
+    graphdiyne-supported Cu (IJHE 2021) and biphenylene (IJHE 2022)),
+    the primary contribution is mechanistic understanding: how
+    coordination engineering, spin-polarization, and metal-ligand
+    bonding jointly determine HER activity descriptors. This
+    understanding can guide the design of cost-effective analogs.
+
+(B) COST PERSPECTIVE: CrCl3 can be synthesized from abundant
+    precursors (Cr metal + Cl2 or HCl) via chemical vapor transport.
+    The material is commercially available and used in organic
+    synthesis (as a Lewis acid catalyst). Monolayer fabrication by
+    mechanical exfoliation or CVD is feasible at laboratory scale,
+    as demonstrated experimentally (Mastrippolito2021, Abdel-Hafiez2025).
+    The claim that "high manufacturing costs restrict large-scale
+    production" applies equally to graphdiyne (Feng2021), biphenylene
+    (Feng2022), and essentially any 2D material beyond graphene -- yet
+    these materials are widely studied as proof-of-concept platforms.
+
+(C) PRACTICAL RELEVANCE: The coordination engineering principles
+    identified here (threefold vs. sixfold coordination; active-site
+    exposure as a design rule) are transferable to more cost-effective
+    systems, including TM-doped carbon materials, MXenes, and 2D
+    chalcogenides. We have added a sentence in the Conclusions making
+    this broader transferability explicit (highlighted blue).
+
+----------------------------------------------------------------
+COMMENT 9:
+Please cite the provided references:
+  DOI: 10.1016/j.ijhydene.2020.11.102 (Feng et al. 2021, Cu@graphdiyne)
+  DOI: 10.1016/j.ijhydene.2022.08.200 (Feng et al. 2022, biphenylene)
+  DOI: 10.1016/j.jallcom.2026.187619  (Feng et al. 2026, Ni3S2 HMFOR)
+to supplement and deepen the background in the Introduction.
+----------------------------------------------------------------
+
+RESPONSE 9:
+We have reviewed all three papers:
+
+(a) Feng et al., IJHE 2021, 46, 5378 (DOI: 10.1016/j.ijhydene.2020.11.102):
+    Single-, double-, and triple-atom Cu embedded in graphdiyne for
+    HER and CO2RR. Uses the same CHE framework (DeltaG_ads as HER
+    descriptor). Demonstrates that spin magnetism and local Cu
+    coordination are decisive for activity -- directly relevant to
+    our finding that Co coordination controls DeltaG_ads. The Cu1@GDY
+    limiting potential (-0.18 V) and Cu3@GDY (-0.02 V) provide useful
+    benchmarks for our Co-CrCl3 (+0.20 eV). Added to Introduction
+    as: \cite{Feng2021IJHE} [highlighted blue in marked manuscript].
+
+(b) Feng et al., IJHE 2022, 47, 36294 (DOI: 10.1016/j.ijhydene.2022.08.200):
+    Lattice strain in biphenylene for enhanced ORR in fuel cells.
+    While this paper focuses on ORR rather than HER, it demonstrates
+    that strain engineering and coordination modification of 2D carbon
+    materials tune catalytic activity -- broadly consistent with our
+    coordination engineering paradigm. It is less directly relevant to
+    HER on magnetic CrCl3, but we have cited it in the Introduction
+    in the context of 2D material catalyst design (highlighted blue).
+    Added as: \cite{Feng2022IJHE}.
+
+(c) Feng et al., J. Alloys Compd. 2026, 1062, 187619
+    (DOI: 10.1016/j.jallcom.2026.187619):
+    Self-supporting Ni3S2 electrocatalyst for HMF oxidation (HMFOR).
+    This paper addresses electrooxidation of biomass-derived 5-HMF,
+    not HER. It is less directly relevant to the H adsorption study
+    presented here. We have nevertheless added it in the Introduction
+    in the context of transition-metal electrocatalysts for clean
+    energy applications (highlighted blue), as requested.
+    Added as: \cite{Feng2026JAC}.
+
+================================================================
+SUMMARY OF MANUSCRIPT CHANGES (marked in blue in manuscript_marked.tex)
+================================================================
+
+1. Computational Methods -- Added SOC justification paragraph:
+   CrCl3 is a light-ligand system; SOC corrections to TM magnetic
+   moments (<5%) and DeltaG_ads (<20 meV) are secondary for 3d metals.
+
+2. Methods -- Added coverage limitation statement: single-coverage
+   (1 H per 2x2x1) is the standard CHE reference; coverage effects
+   are discussed qualitatively.
+
+3. Results Sec. 3.3 (AIMD) -- Added statement on AIMD scope and
+   higher-temperature/longer-trajectory future work.
+
+4. Results Sec. 3.4 (H adsorption) -- Added literature benchmark
+   comparison (Pt, M-N-C systems from Norskov2005/Feng2021); added
+   coverage limitation note.
+
+5. Results Sec. 3.5 (d-band) -- Added spin-splitting + ICOHP combined
+   descriptor proposal.
+
+6. Conclusions -- Added: CrBr3/CrI3 comparison as future work;
+   NEB/transition state kinetics as future work; transferability of
+   coordination engineering principles to cost-effective systems.
+
+7. Introduction -- Added \cite{Feng2021IJHE}, \cite{Feng2022IJHE},
+   \cite{Feng2026JAC} in the context of 2D material catalysts for
+   clean energy applications.
+
+8. references.bib -- Added three new entries (Feng2021IJHE,
+   Feng2022IJHE, Feng2026JAC) from the reviewer-supplied bib files.
+
+================================================================

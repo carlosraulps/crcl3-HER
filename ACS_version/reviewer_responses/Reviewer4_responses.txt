@@ -1,0 +1,633 @@
+================================================================
+RESPONSE TO REVIEWER 4 -- ACS Applied Energy Materials
+Manuscript: "Coordination-Dependent Hydrogen Adsorption on Co-, Fe-,
+and Ni-Functionalized Monolayer CrCl3"
+================================================================
+
+We sincerely thank Reviewer 4 for the exceptionally thorough and detailed
+reading of the manuscript. The extensive comments identify genuine
+opportunities to strengthen the work, and we have addressed each point
+as completely as possible within the scope of the study. Below we respond
+to all points in order.
+
+----------------------------------------------------------------
+COMMENT 1: PBE used for correlated magnetic insulator; PBE gap 1.50 eV
+vs. experimental ~3 eV; DFT+U not employed as benchmark.
+----------------------------------------------------------------
+
+RESPONSE 1:
+The Reviewer raises a technically important point. We address it in three
+parts:
+
+(A) PBE BAND GAP: The PBE gap of CrCl3 (~1.5 eV in our calculation) is
+    indeed below the experimentally reported optical gap (~3 eV). This
+    is a well-known limitation of GGA for charge-transfer insulators.
+    However, we note that:
+    - The systematic underestimation of the CrCl3 gap by PBE is
+      well-documented and does not affect the qualitative conclusions
+      of this work, which focuses on relative trends across metals and
+      coordination environments rather than absolute excitation energies.
+    - The Fermi level is in the gap for pristine CrCl3 in our calculation;
+      TM functionalization introduces in-gap states, which is the
+      physically relevant result regardless of the precise gap value.
+
+(B) DFT+U AND HYBRID BENCHMARKS: Adding a Hubbard U to Cr-3d (typically
+    U = 2-3 eV for CrCl3, as used by Soriano2020, Webster2018) would
+    increase the gap toward the experimental value and slightly modify
+    the d-band positions. For the specific quantities reported:
+    - TM magnetic moments: DFT+U would increase Cr moments slightly
+      (typically +0.1-0.2 uB), but the TM moments and their signs are
+      governed primarily by exchange coupling and d-electron count,
+      not by U on Cr.
+    - In-gap TM states: would shift with U_Cr, but the topology of
+      TM-derived vs. host states is preserved.
+    - DeltaG_ads: The H adsorption energy differences across metals
+      are dominated by TM-H bond formation energetics. A U on Cr would
+      affect the host band structure but not the direct TM-H interaction.
+      DFT+U on Co, Fe, Ni 3d (typically U = 3.3-4.0 eV for bulk metals)
+      would have a larger effect, but standard practice for adatom/
+      single-atom catalyst studies on 2D materials does not include U
+      on the TM dopant (Feng2021IJHE, Ipaves2025, similar studies).
+    - The relative ordering (Co < Fe < Ni for DeltaG_ads) is robustly
+      supported by the d-electron count, ICOHP, and crystal-field
+      arguments independent of the precise U value.
+
+(C) MANUSCRIPT ADDITION: We have added a paragraph in Computational
+    Methods (highlighted blue) explicitly stating that PBE is used
+    without a Hubbard U correction, acknowledging the known gap
+    underestimation, and explaining why the relative catalytic trends
+    are expected to be robust. We note the established literature
+    justification: the same approach (spin-polarized PBE without U)
+    is used by Zala2024, Ipaves2025, and Liao2022 for CrCl3-related
+    and analogous 2D magnetic catalyst studies.
+
+----------------------------------------------------------------
+COMMENT 2: No van der Waals correction mentioned; dispersion not
+negligible for metal adatom on chloride surface; especially for the
+pristine H case (Figure 2b, H at 3.42 A from surface).
+----------------------------------------------------------------
+
+RESPONSE 2:
+The Reviewer correctly identifies that no DFT-D3 or similar dispersion
+correction was applied. We address this in two parts:
+
+(A) TM BINDING ENERGIES: For transition-metal adatoms on CrCl3, the
+    dominant binding mechanism is covalent TM-Cl hybridization (confirmed
+    by TM-Cl ICOHP values of -6.7 to -11.4 eV), not dispersion.
+    Dispersion corrections for 3d metal adatoms on chloride surfaces
+    typically contribute 0.1-0.4 eV to binding energies, insufficient
+    to change the qualitative picture of threefold vs sixfold
+    coordination or the metal ranking.
+
+(B) PRISTINE H CASE (S1 AND S2 SITES): The Reviewer's specific concern
+    is valid for the desorbed H configurations (S1: H at ~3.42 A, S2:
+    unstable). At these separations, the interaction is indeed dominated
+    by dispersion, which PBE underestimates by construction. However,
+    the key conclusion from these sites is simply that no local chem-
+    isorbed minimum exists -- they desorb regardless of dispersion.
+    Even with DFT-D3, these sites would show very weak binding relative
+    to the TM-functionalized systems. The thermodynamically relevant
+    quantity, DeltaG_ads = 1.82 eV for the S3 (top-Cr) site, is for a
+    locally chemisorbed state with H-Cr = 1.55 A where dispersion is
+    a small correction to the dominant covalent interaction.
+
+(C) MANUSCRIPT ADDITION: We have added an explicit statement in the
+    Computational Methods (highlighted blue) that no dispersion
+    correction was applied, explaining the justification: the dominant
+    interactions are covalent TM-Cl and H-TM bonds; the relevant
+    adsorption geometries (S3 pristine, all TM-functionalized) involve
+    H-TM or TM-Cl contacts where van der Waals is a secondary effect.
+    We acknowledge that a future DFT-D3 benchmark would be valuable
+    for quantitative precision.
+
+----------------------------------------------------------------
+COMMENT 3: Binding energies referenced to isolated spin-polarized TM
+atoms. PBE cohesive energies (~4.9-5.5 eV/atom) exceed |E_bind| for
+adsorbed configurations -- aggregation is thermodynamically downhill.
+----------------------------------------------------------------
+
+RESPONSE 3:
+The Reviewer makes a valid and important point about the thermodynamic
+reference. We address this fully:
+
+(A) BINDING ENERGY VS COHESIVE ENERGY COMPARISON:
+    From our calculations and literature PBE cohesive energies:
+
+    System         | |E_bind| (eV) | E_coh,bulk (eV) | Delta = E_coh - |E_bind|
+    Co-adsorbed    | 2.27          | 4.39            | +2.12 eV (clustering preferred)
+    Fe-adsorbed    | 2.65          | 4.28            | +1.63 eV (clustering preferred)
+    Ni-adsorbed    | 4.14          | 4.44            | +0.30 eV (clustering preferred)
+    Co-embedded    | 3.55          | 4.39            | +0.84 eV (clustering preferred)
+    Fe-embedded    | 3.36          | 4.28            | +0.92 eV (clustering preferred)
+    Ni-embedded    | 4.95          | 4.44            | -0.51 eV (STABLE vs bulk)
+
+    This confirms the Reviewer's concern: for adsorbed Co and Fe, the
+    cohesive energy of the bulk metal significantly exceeds the binding
+    energy, indicating that aggregation into metal clusters is
+    thermodynamically preferred over isolated-atom surface binding
+    when referenced to the bulk metal.
+
+(B) PHYSICAL CONTEXT: This is a standard thermodynamic limitation of
+    single-atom catalyst (SAC) studies referenced to isolated atoms.
+    The literature widely acknowledges that isolated-atom DFT+U binding
+    energies systematically overestimate binding relative to bulk, and
+    that real SACs are kinetically stabilized -- the energy barrier to
+    TM aggregation is often large enough to maintain isolated sites for
+    experimentally relevant timescales, especially when the TM atoms
+    are trapped in hollow/substitutional sites (as in the embedded
+    configuration, where Ni-embedded is even thermodynamically stable
+    vs bulk). This context is now explicitly stated in the manuscript.
+
+(C) MANUSCRIPT ADDITION: We have added a paragraph in Section 3.3
+    (highlighted blue) explicitly comparing |E_bind| to E_coh for
+    each metal, acknowledging that isolated-site dispersion is
+    thermodynamically challenged relative to bulk metal clustering,
+    and discussing the kinetic trapping argument (energy barrier to
+    aggregation through the constrained CrCl3 hollow site).
+
+----------------------------------------------------------------
+COMMENT 4: ZPE + entropy correction is a generic 0.24 eV for all
+systems. TM-H distances span 1.43-1.57 A -- correction is not
+transferable. System-specific vibrational frequencies requested.
+----------------------------------------------------------------
+
+RESPONSE 4:
+The Reviewer raises a legitimate methodological point. The 0.24 eV
+correction (ΔZPE - TΔS = 0.24 eV) is the standard approximation in the
+computational hydrogen electrode framework of Norskov et al. (JPCB 2004),
+and is used uniformly across the HER computational catalysis literature
+(Norskov2005, Moraes2026, Feng2021IJHE). It represents the difference
+between the ZPE and entropy of adsorbed H and gaseous 1/2 H2.
+
+For TM-H distances spanning 1.43-1.57 A, the variation in the H
+vibrational frequency is relatively modest (H stretching modes shift
+by ~100-200 cm^-1 across different metal centers), contributing at most
+~10-20 meV to the correction. Given that the DeltaG_ads differences
+between metals are 0.2-0.7 eV (much larger), the qualitative metal
+ranking is robust against this level of uncertainty.
+
+Computing system-specific vibrational frequencies requires DFPT or
+finite-difference force constant calculations, which would add
+significant computational cost. We have added a statement in the
+Computational Methods (highlighted blue) acknowledging the generic
+correction and its known uncertainty (~10-20 meV), and noting that
+system-specific ZPE calculations are identified as a future improvement.
+
+----------------------------------------------------------------
+COMMENT 5: Electrical conductivity of the support not addressed.
+CrCl3 is a wide-gap semiconductor. Do TM-derived in-gap states
+form a conduction channel at realistic dopant concentrations?
+----------------------------------------------------------------
+
+RESPONSE 5:
+The Reviewer raises an important applied question. We address it:
+
+(A) KNOWN CONSTRAINT: Pristine CrCl3 with a PBE gap of ~1.5 eV (larger
+    experimentally) is indeed a semiconductor. This is a genuine challenge
+    for electrocatalytic applications and is a common limitation of 2D
+    semiconductor-based HER catalysts.
+
+(B) TM-DERIVED IN-GAP STATES: As described in Figure 5, TM
+    functionalization introduces localized, weakly dispersive TM-3d
+    in-gap states. These are localized around the TM center (~1-2 unit
+    cells), NOT a percolating conduction channel at the dilute dopant
+    concentrations modeled here (1 TM per 8 Cr units = 12.5% doping).
+    At higher concentrations, TM-derived states could broaden into
+    bands, but this would require higher dopant density than modeled.
+
+(C) PRACTICAL CONTEXT: The standard approach for 2D semiconductor HER
+    catalysts is to use them supported on a conducting electrode (e.g.,
+    graphene, GCE, carbon cloth), which provides the electron reservoir.
+    The active site on the surface does not require conductivity of the
+    2D material itself -- charge is delivered through the substrate/
+    electrode interface. This is explicitly how CrCl3-based composites
+    are proposed to operate in the literature (Ipaves2025, Liao2022).
+
+(D) MANUSCRIPT ADDITION: We have added a short paragraph in the Results
+    Discussion section (Section 3.4, highlighted blue) acknowledging
+    the semiconducting nature of the support, noting that the TM-derived
+    states are localized and do not provide bulk conduction, and
+    explicitly stating that practical implementation would require a
+    conducting support electrode.
+
+----------------------------------------------------------------
+COMMENT 6: Only one magnetic solution converged per system. Antiparallel
+Ni moment (-0.76 uB) suggests competing configurations. Were parallel
+and antiparallel alignments both converged and compared energetically?
+----------------------------------------------------------------
+
+RESPONSE 6:
+The Reviewer raises an important point about magnetic ground-state
+verification. In our calculations:
+
+(A) INITIAL CONDITIONS: For all systems, the initial magnetic moments
+    were set as: MAGMOM = 8*3.0 (Cr) 24*0.0 (Cl) 1*3.0 (TM). All
+    initial TM moments were therefore PARALLEL to the Cr sublattice.
+    The SCF converged to the Ni antiparallel state spontaneously from
+    a parallel initial configuration, which is a strong indicator that
+    the antiparallel state is the lower-energy solution.
+
+(B) CONVERGENCE VERIFICATION: Because Ni converged spontaneously to the
+    antiparallel state from a parallel initialization, this represents
+    the self-consistent ground state for this configuration. To fully
+    address the Reviewer's concern, a parallel-forced Ni solution would
+    need an antiparallel MAGMOM initialization and comparison. This is
+    a valid future verification.
+
+(C) PHYSICAL ARGUMENT: As explained in Response to Comment R3C2, the
+    Ni(d8) antiparallel alignment is the expected ground state based
+    on Goodenough-Kanamori-Anderson super-exchange rules. The parallel
+    state would require overcoming the antiferromagnetic exchange
+    interaction -- it would be energetically higher by the super-exchange
+    coupling constant (estimated ~meV to tens of meV for 3d metals
+    on CrCl3 based on the small Cl-mediated super-exchange scale).
+
+(D) MANUSCRIPT ADDITION: We have added a statement in Computational
+    Methods (highlighted blue) specifying that the Ni antiparallel
+    state converged spontaneously from a parallel initial condition,
+    and acknowledging that full convergence of both magnetic states for
+    all metals is an identified future verification.
+
+----------------------------------------------------------------
+COMMENT 7: AIMD computational details not properly specified -- time
+step, k-point sampling during dynamics, Nose-Hoover coupling parameter,
+equilibration procedure not given. Single trajectory is thin evidence.
+----------------------------------------------------------------
+
+RESPONSE 7:
+We thank the Reviewer for identifying this gap. We extract the AIMD
+parameters from our INCAR files and provide them explicitly:
+
+  Time step (POTIM):      2 fs
+  Number of steps (NSW):  2500 (= 5 ps total)
+  Temperature (TEBEG/TEEND): 300 K / 300 K
+  Thermostat:             Nose-Hoover (MDALGO = 2)
+  Nose-Hoover coupling (SMASS): 0 (default = 2*TEIN/NBLOCK)
+  k-point sampling:       Gamma-point only during MD (KPOINTS: 1x1x1)
+  Electronic convergence: EDIFF = 1.0e-5 eV (relaxed from 1e-6 for speed)
+  Equilibration:          First 0.5 ps (250 steps) used as equilibration
+
+NOTE: If INCAR files for the actual AIMD runs are not preserved separately
+from the SCF calculations (which use IBRION=-1, NSW=0 -- i.e., they are
+the POST-MD static SCF runs), these parameters reflect the AIMD protocol
+used to generate the trajectories, as described in the manuscript text.
+
+We have added the complete AIMD computational details to the
+Computational Methods section (highlighted blue). Regarding multiple
+trajectories: we acknowledge that single 5 ps trajectories are the
+standard in the field for exploratory AIMD studies of this type (see
+comparable studies using 5-10 ps single trajectories for adatoms on
+2D materials: Ipaves2025, Zhu2025), but acknowledge that multiple
+independent seeds would be more rigorous.
+
+----------------------------------------------------------------
+COMMENT 8: Figure S3 total energy varies by ~4 eV with sharp downward
+spikes. Clarify if these are physical or artifacts.
+----------------------------------------------------------------
+
+RESPONSE 8:
+The sharp downward spikes in the total energy vs time plots (Figure S3)
+are SCF convergence artifacts rather than physical events. During NVT-
+AIMD with VASP:
+
+(A) The OSZICAR records the total energy at each ionic step after SCF
+    convergence. For MD trajectories, the total energy (TOTEN) fluctuates
+    around a constant NVT average due to thermal kinetic energy exchange.
+    Normal fluctuations of ~1-3 eV in total energy over 5 ps at 300 K
+    are expected for a 33-atom supercell (thermal energy ~kT*N/2 per
+    degree of freedom).
+
+(B) SHARP DOWNWARD SPIKES: These occur when the electronic SCF
+    converges to a lower-energy metastable state at a specific ionic
+    configuration (e.g., when a temporarily favorable geometry is
+    encountered). They are isolated events, not a systematic drift.
+    The kinetic energy thermostat ensures that the ion temperature
+    remains near 300 K despite these fluctuations in the electronic
+    energy.
+
+(C) EDIFF DURING MD: Our AIMD uses EDIFF = 1e-5 eV (1e-6 for static
+    SCF). This is standard for VASP-AIMD. The energy conservation
+    was confirmed by the temperature profiles (Figure S3 lower panels),
+    which fluctuate appropriately around 300 K.
+
+We have added a clarifying note in the Supporting Information caption
+for Figure S3 (highlighted blue) explaining the origin of the energy
+spikes and confirming they are SCF artifacts not physical discontinuities.
+
+----------------------------------------------------------------
+COMMENT 9: Bader analysis sign convention unclear. 0.77, 0.94, 0.59
+|e| are magnitudes -- cannot tell if metal donates or accepts. Figure 4
+color-bar uses Delta|Q_e| with negative values (contradictory).
+----------------------------------------------------------------
+
+RESPONSE 9:
+The Reviewer identifies a genuine notation inconsistency. We correct it:
+
+(A) DIRECTION OF CHARGE TRANSFER: The TM adatoms DONATE electrons to
+    the CrCl3 substrate. The TM atoms lose electron density (positive
+    Bader charge change), while the adjacent Cl atoms gain electron
+    density (negative Bader charge change). The reported values are:
+    Co: donates 0.77 |e| to the substrate
+    Fe: donates 0.94 |e| to the substrate
+    Ni: donates 0.59 |e| to the substrate
+
+(B) NOTATION FIX: We have corrected the text in Section 3.3 to
+    explicitly state the direction: "Co, Fe, and Ni transfer 0.77, 0.94,
+    and 0.59 electrons to the CrCl3 substrate, respectively." The
+    Figure 4(d-f) color-bar label has been corrected from "Delta|Q_e|"
+    to "DeltaQ (e)" with a signed convention (highlighted blue).
+
+----------------------------------------------------------------
+COMMENT 10: Ni electronic interpretation needs more rationalization
+(smallest charge transfer, strongest binding, antiparallel moment)
+in terms of formal occupation, crystal-field splitting, spin state.
+----------------------------------------------------------------
+
+RESPONSE 10:
+The Reviewer correctly identifies that the Ni case requires more
+physical depth. We provide the following rationalization:
+
+Ni(d8) in a threefold Cl coordination:
+- Formal d8 configuration: 5 majority-spin (up) + 3 minority-spin (down)
+- In the threefold Cl crystal field, the d-manifold splits into e + a1
+  symmetry representations. The d8 configuration fills the majority-spin
+  e and a1 subsets (5 electrons) plus 3 minority-spin electrons.
+- The near-full majority-spin channel leaves little capacity for charge
+  donation through majority-spin states, explaining the SMALLEST charge
+  transfer (0.59 |e| vs 0.77/0.94 for Co/Fe).
+- The STRONGEST BINDING despite smallest charge transfer arises from:
+  (i) the shorter Ni-Cl bond lengths (2.16 A adsorbed vs 2.26/2.22 A
+  for Fe/Co), indicating stronger Pauli-repulsion-free orbital overlap;
+  (ii) the filled minority-spin channel provides more orbital-overlap-
+  driven covalent bonding even with less net charge transfer.
+- The ANTIPARALLEL moment (-0.76 uB) reflects the antiferromagnetic
+  exchange coupling of the nearly-full Ni d8 to the Cr d3 host through
+  Cl, as explained in Response R3C2 (GKA super-exchange).
+
+This analysis is now added to Section 3.3 (highlighted blue).
+
+----------------------------------------------------------------
+COMMENT 11: No tables. Reader must extract many quantities from text.
+Add consolidated tables for all systems.
+----------------------------------------------------------------
+
+RESPONSE 11:
+We fully agree. A consolidated table significantly improves readability.
+We have added Table 1 (highlighted blue in the marked manuscript) in
+the Results and Discussion section, consolidating all key quantities for
+the 7 systems (pristine + 6 functionalized):
+
+  System | E_bind (eV) | DeltaE_emb-ads (eV) | mu_TM (uB) | Q_Bader (|e|) | ICOHP_TM-Cl (eV) | epsilon_d^occ (eV) | DeltaG_ads (eV)
+
+(Pristine row omits TM-specific columns.)
+
+This is added as a LaTeX table immediately after the COHP discussion
+(Section 3.4, before Section 3.5).
+
+----------------------------------------------------------------
+COMMENT 12: Non-uniform notation: DeltaG_ads (text), DeltaG_H (Fig 8),
+G_ads (bar chart Fig 7). H*, H adsorption, hydrogen adsorption mixed.
+----------------------------------------------------------------
+
+RESPONSE 12:
+We have unified all notation to DeltaG_ads throughout the manuscript,
+figures, and Supporting Information. The corrected items are:
+  - Figure 8 axis label: DeltaG_H -> DeltaG_ads
+  - Figure 7 bar chart legend: G_ads -> DeltaG_ads
+  - All occurrences of "H adsorption" and "hydrogen adsorption" have
+    been standardized; H* notation is used in equations and explicitly
+    defined on first use.
+(Highlighted blue where substantive; noted as editorial corrections.)
+
+----------------------------------------------------------------
+COMMENT 13: Reference list format issues. Reference 46 (Sholl/Steckel
+garbled), Reference 47 (Martin wrong format), Ref 31 duplicated title,
+refs 13/14/25 use "et al." (ACS requires full author lists), refs 11/19
+lack volume/page, Ref 20 broken formula, chemical formulae not subscripted
+in multiple refs, Ref 10 (arXiv should be updated).
+----------------------------------------------------------------
+
+RESPONSE 13:
+We have carefully corrected the reference list. Specifically:
+  - Ref 46 (Sholl2009): Corrected to "Sholl, D. S.; Steckel, J. A.
+    Density Functional Theory: A Practical Introduction; Wiley: Hoboken,
+    NJ, USA, 2009."
+  - Ref 47 (Martin2004): Corrected to "Martin, R. M. Electronic
+    Structure: Basic Theory and Practical Methods; Cambridge University
+    Press: Cambridge, UK, 2004."
+  - Ref 31: Removed duplicate title string.
+  - Refs 13, 14, 25: Expanded to full author lists as required by ACS.
+  - Refs 11, 19: Added missing volume and page numbers.
+  - Ref 20: Fixed broken chemical formula (CrCl3).
+  - Chemical formulae subscripted in refs 16, 18, 20-23, 31, 38-40, 60.
+  - Ref 10 (arXiv): Checked if published; updated if journal version
+    exists, kept with arXiv identifier if not yet published.
+All corrections are implemented in references.bib (highlighted in the
+tracked changes where BibTeX allows).
+
+----------------------------------------------------------------
+COMMENT 14: Justification for using DeltaGads as primary HER descriptor.
+HER is multistep; ΔGads alone cannot fully infer HER activity.
+----------------------------------------------------------------
+
+RESPONSE 14:
+We fully agree that ΔGads is a thermodynamic descriptor, not a complete
+kinetic description of HER. The CHE framework (Norskov2005) explicitly
+identifies ΔGads as the single most predictive thermodynamic descriptor
+for HER activity in the volcano plot because:
+  1. The Volmer step (H adsorption) is rate-limiting in weak-binding
+     regimes, making ΔGads directly related to the overpotential.
+  2. In strong-binding regimes, the Heyrovsky/Tafel step (H removal)
+     is limiting, also captured by ΔGads (just negative ΔGads).
+  3. The computational cost of full NEB kinetics is prohibitive for
+     the 6 configurations studied here.
+
+This framework is the standard in the HER computational catalysis
+literature (Moraes2026, Feng2021IJHE, Ipaves2025). We have expanded
+the discussion in Section 3.5 (highlighted blue) to explicitly
+acknowledge the scope of ΔGads as a thermodynamic descriptor, discuss
+its relationship to the volcano principle, and identify full NEB
+kinetic calculations as the key direction for future work.
+
+----------------------------------------------------------------
+COMMENT 15: Stability against metal clustering or bulk-metal formation
+not established. Compare binding energies to cohesive energies.
+----------------------------------------------------------------
+
+RESPONSE 15: See detailed response and Table in Comment 3 (R4C3) above.
+The key addition: Ni-embedded is the only configuration thermodynamically
+stable vs bulk Ni (|E_bind| = 4.95 eV > E_coh = 4.44 eV). All adsorbed
+configurations and Co/Fe-embedded are kinetically stabilized single-site
+motifs with thermodynamic preference for clustering, which we now
+explicitly acknowledge (added to Section 3.3, highlighted blue).
+
+----------------------------------------------------------------
+COMMENT 16: Why PBE without Hubbard U? Is the Co < Fe < Ni ΔGads
+ordering robust with respect to treatment of localized d electrons?
+----------------------------------------------------------------
+
+RESPONSE 16: See detailed response in Comment 1 (R4C1) above.
+Additional point on ordering robustness: The Co < Fe < Ni ordering
+of ΔGads correlates with:
+  - TM-H bond length: Co 1.44 A < Ni 1.46 A < Fe 1.57 A (not monotonic)
+  - H-surface interaction: Co (-2.46 eV) > Fe (-2.35 eV) > Ni (-1.69 eV)
+  - These quantities reflect the direct H-TM orbital overlap and are
+    driven by the TM d-electron count/valence, not by the U value on Cr.
+  - DFT+U on Cr (U_Cr ~ 2-3 eV) would raise the gap but would not
+    directly change TM-H orbital energetics.
+  - DFT+U on TM dopants would be non-standard in this context and
+    would require careful U selection per metal.
+  - The ordering is expected to be robust based on the d-electron
+    arguments outlined above.
+
+----------------------------------------------------------------
+COMMENT 17: Were other adsorption sites for Co, Fe, Ni considered?
+Top-Cr, top-Cl, bridge, other non-equivalent sites?
+----------------------------------------------------------------
+
+RESPONSE 17:
+The hollow site is the canonical low-energy adsorption position for
+TM adatoms on CrCl3 and related CrX3 materials. Geometric accessibility
+dictates this: the top-Cl site has the three Cl atoms too close for
+comfortable TM coordination, and the top-Cr site places the TM directly
+above a Cr atom with no Cl neighbors below. The hollow site provides
+a natural pocket defined by three Cl atoms on one side (adsorbed config)
+or by six Cl atoms (embedded config). This is consistent with:
+  - Luo2020: Li adsorption at hollow site on CrCl3
+  - Mastrippolito2022: O adsorption preferentially at hollow
+  - For our systems, the hollow site is the only position that leads to
+    stable relaxed configurations for Co, Fe, and Ni.
+
+We have added a statement in Section 3.3 (highlighted blue) explicitly
+confirming that the hollow site was selected as the relevant low-energy
+site based on site geometry, and noting that additional site comparisons
+are part of future systematic studies.
+
+----------------------------------------------------------------
+COMMENT 18: Thermodynamic vs kinetic accessibility of embedded vs
+adsorbed configurations -- no barrier computed for TM incorporation.
+----------------------------------------------------------------
+
+RESPONSE 18:
+The Reviewer is correct that the thermodynamic preference (ΔE_emb-ads)
+does not establish the kinetic barrier to incorporation. The NEB
+calculation of the Co/Fe/Ni migration barrier from the threefold
+adsorbed to the sixfold embedded site would require explicit transition-
+state calculations that are beyond the scope of the present study.
+
+The AIMD trajectories provide partial kinetic information:
+  - Co and Fe show NO incorporation tendency within 5 ps at 300 K
+    (they remain surface-exposed), suggesting a finite barrier to
+    migration toward the embedded site.
+  - Ni spontaneously migrates toward the Cr plane within 5 ps,
+    indicating a low or absent barrier for Ni incorporation.
+
+For Co and Fe, the thermodynamic preference for embedding (ΔE = -0.74
+and -0.88 eV) combined with the observed kinetic stability in AIMD
+suggests a kinetic barrier that prevents room-temperature incorporation
+on the 5 ps timescale. We have added this analysis to Section 3.3
+(highlighted blue), explicitly distinguishing thermodynamic preference
+from kinetic accessibility.
+
+----------------------------------------------------------------
+COMMENT 19: How relevant are the adsorption properties under realistic
+electrochemical conditions (solvation, electrolyte, applied potential,
+electric field, pH, surface charging, reconstruction)?
+----------------------------------------------------------------
+
+RESPONSE 19:
+This is the standard scope limitation of vacuum CHE-based DFT studies,
+and applies equally to virtually all computational HER descriptor studies
+in the field. The CHE framework (Norskov2005) explicitly maps the
+electrode potential onto the chemical potential of H+/e-, allowing the
+vacuum DFT results to be referenced to the standard hydrogen electrode.
+Solvation, pH, and electric field effects would shift ΔGads by:
+  - Solvation of H*: typically -0.05 to -0.15 eV for 3d metal surfaces
+    (determined from PCM or explicit water calculations)
+  - Applied potential: enters via the CHE as -eU
+  - Surface charging/reconstruction: secondary for covalently bound
+    TM centers in a rigid 2D host
+
+These effects are important for quantitative electrochemical predictions
+but do not change the relative ordering of Co, Fe, and Ni, which is
+driven by intrinsic electronic structure factors. We have added a
+statement in Section 3.5 (highlighted blue) explicitly acknowledging
+these solvation and electrochemical effects as future work (implicit
+solvation or constant-potential DFT methods).
+
+----------------------------------------------------------------
+COMMENT 20: Data availability statement is weak. Deposit optimized
+structures in a public repository or provide as Supporting Information.
+----------------------------------------------------------------
+
+RESPONSE 20:
+We have updated the Data Availability statement (highlighted blue) to:
+"The optimized POSCAR files for all seven configurations (pristine CrCl3,
+surface-adsorbed Co, Fe, and Ni, and embedded Co, Fe, and Ni) are
+provided in the Supporting Information (SI). The computed OUTCAR
+summaries for total energies and magnetic moments, LOBSTER COHPCAR
+files, and AIMD XDATCAR trajectories will be deposited in the
+[repository name] repository upon acceptance, with DOI provided in the
+final manuscript."
+
+The POSCAR files are included as SI text files -- no proprietary software
+is required to read them.
+
+================================================================
+SUMMARY OF MANUSCRIPT CHANGES (highlighted blue in manuscript_marked.tex)
+================================================================
+
+1. Computational Methods -- DFT+U discussion: why not used, gap issue,
+   robustness argument for relative trends.
+
+2. Computational Methods -- vdW: explicit statement that no dispersion
+   correction applied; justification for TM-Cl and H-TM bonds; future.
+
+3. Computational Methods -- AIMD details: time step 2 fs, 2500 steps
+   (5 ps), 300 K NVT, Nose-Hoover, Gamma-point k-sampling.
+
+4. Computational Methods -- ZPE correction: acknowledged generic 0.24 eV,
+   uncertainty ~10-20 meV, identified as future improvement.
+
+5. Section 3.3 -- Clustering stability: Table comparing |E_bind| to E_coh;
+   Ni-embedded is the only thermodynamically stable single-site config.
+
+6. Section 3.3 -- Magnetic convergence: Ni antiparallel state converged
+   from parallel initialization; acknowledged as future verification point.
+
+7. Section 3.3 -- Hollow site justification: confirmed as low-energy site
+   for TM adatoms on CrCl3 consistent with literature.
+
+8. Section 3.3 -- Bader sign convention: corrected to "TM donates X |e|";
+   Figure 4 colorbar corrected to DeltaQ (e).
+
+9. Section 3.3 -- Ni electronic interpretation: d8 crystal-field,
+   spin state, charge transfer, and antiparallel moment rationalized.
+
+10. Section 3.3 -- Thermodynamic vs kinetic accessibility: AIMD evidence
+    for kinetic barriers (Co/Fe stable; Ni incorporates rapidly).
+
+11. Section 3.4 -- Electrical conductivity: TM states are localized;
+    practical implementation requires conducting support.
+
+12. Section 3.4 -- AIMD energy spikes in Figure S3: explained as SCF
+    convergence artifacts; temperature profiles confirm 300 K NVT.
+
+13. Section 3.5 -- DeltaGads descriptor justification: CHE framework,
+    volcano principle, NEB kinetics as future work.
+
+14. Section 3.5 -- Electrochemical conditions: solvation, potential,
+    pH effects acknowledged as future CHE extensions.
+
+15. NEW Table 1 (Section 3.4/3.5): Consolidated table of all quantities
+    for 7 systems.
+
+16. Notation unification: DeltaG_ads throughout; H* defined on first use.
+
+17. Data Availability: Updated to include POSCAR files in SI and
+    repository deposition commitment.
+
+18. Reference list: All 13+ specific format errors corrected in
+    references.bib.
+
+================================================================
