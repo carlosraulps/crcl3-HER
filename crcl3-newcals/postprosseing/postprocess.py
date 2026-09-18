@@ -215,7 +215,7 @@ colors = ['#1f77b4' if x < 0 else '#d62728' for x in e_diffs]
 plt.figure(figsize=(6, 4.5))
 plt.bar(tms, e_diffs, color=colors, edgecolor='black', width=0.5, zorder=3)
 plt.axhline(0, color='black', linewidth=1.2, zorder=2)
-plt.ylabel(r'$\Delta E = E_{\mathrm{embedded}} - E_{\mathrm{adsorbed}}\ \mathrm{[eV]}$', fontsize=11)
+plt.ylabel(r'$\Delta E = E_{\mathrm{embedded}} - E_{\mathrm{adsorbed}}\ (\mathrm{eV})$', fontsize=11)
 plt.xlabel('Transition Metal', fontsize=11)
 plt.title('Relative Stability of Embedded vs Adsorbed Configurations', fontsize=12, fontweight='bold', pad=15)
 plt.ylim(-1.1, 0.3)  # Increased limits to solve overlapping
@@ -224,7 +224,7 @@ plt.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
 for i, val in enumerate(e_diffs):
     va_dir = 'bottom' if val > 0 else 'top'
     offset = 0.02 if val > 0 else -0.02
-    plt.text(i, val + offset, f"{val:+.3f} eV", ha='center', va=va_dir, fontweight='bold', fontsize=10)
+    plt.text(i, val + offset, f"{val:+.2f} eV", ha='center', va=va_dir, fontweight='bold', fontsize=10)
 
 plt.tight_layout()
 plot_stability_path = os.path.join(post_dir, "stability_comparison.png")
@@ -255,7 +255,7 @@ else:
     plt.bar(x + width/2, e_emb, width, label='Embedded', color='#ff7f0e', edgecolor='black', zorder=3)
     
     plt.axhline(0, color='black', linewidth=1.2, zorder=2)
-    plt.ylabel(r'Formation Energy $E_{\mathrm{form}}\ \mathrm{[eV]}$', fontsize=11)
+    plt.ylabel(r'Formation Energy $E_{\mathrm{form}}\ (\mathrm{eV})$', fontsize=11)
     plt.xlabel('Transition Metal', fontsize=11)
     plt.title('Formation Energies: Adsorbed vs Embedded States', fontsize=13, fontweight='bold', pad=15)
     plt.xticks(x, tms, fontsize=11)
@@ -301,15 +301,15 @@ def plot_cohp_panel(systems_list, title, filename):
         energies = data['energies']
         
         if energies is None:
-            ax.text(0.5, 0.5, "No LOBSTER COHP Data", ha='center', va='center')
-            ax.set_title(f"{tms_names[idx]} (Not Run)")
+            ax.text(0.5, 0.5, "No LOBSTER COHP Data", ha='center', va='center', fontsize=12)
+            ax.set_title(f"{tms_names[idx]} (Not Run)", fontsize=13)
             continue
             
         curves = data['cohp_curves']
         
         for bond_name, curve_data in curves.items():
             # Plot -COHP curve
-            line, = ax.plot(-curve_data['tot'], energies, label=format_bond_latex(bond_name), alpha=0.8, linewidth=1.5)
+            line, = ax.plot(-curve_data['tot'], energies, label=format_bond_latex(bond_name), alpha=0.85, linewidth=1.8)
             # Shade the area under the curve up to EF (energy <= 0) to represent the integral
             ax.fill_betweenx(energies, 0, -curve_data['tot'], where=(energies <= 0), alpha=0.15, color=line.get_color())
             
@@ -317,20 +317,16 @@ def plot_cohp_panel(systems_list, title, filename):
         ax.axhline(0, color='black', linestyle='-', linewidth=1.2) # Fermi Level
         
         ax.set_xlim(-1.2, 1.5)
-        ax.set_ylim(-10, 5)
+        ax.set_ylim(-7, 5)
         
-        ax.set_title(f"{tms_names[idx]} System ({sys_name.split('/')[0]})", fontsize=11, fontweight='bold')
-        ax.set_xlabel(r'$-\mathrm{COHP}$', fontsize=10)
-        ax.legend(loc='upper right', frameon=True, edgecolor='black', fancybox=False, fontsize=9)
+        ax.set_title(f"{tms_names[idx]} System ({sys_name.split('/')[0]})", fontsize=13, fontweight='bold')
+        ax.set_xlabel(r'$-\mathrm{COHP}$', fontsize=12, fontweight='bold')
+        ax.legend(loc='upper right', frameon=True, edgecolor='black', fancybox=False, fontsize=11, borderpad=0.6, handlelength=1.5)
+        ax.tick_params(axis='both', labelsize=12)
         ax.grid(linestyle=':', alpha=0.6)
         
-        # Print the average ICOHP value inside the plot
-        ax.text(0.05, 0.05, rf"$\mathrm{{Avg\ ICOHP}} = {data['avg_icohp']:.2f}\ \mathrm{{eV}}$", 
-                transform=ax.transAxes, fontsize=10, fontweight='bold',
-                bbox=dict(facecolor='white', edgecolor='black', alpha=0.8))
-        
-    axes[0].set_ylabel(r'$E - E_{\mathrm{F}}\ \mathrm{[eV]}$', fontsize=11)
-    fig.suptitle(title, fontsize=14, fontweight='bold', y=0.98)
+    axes[0].set_ylabel(r'$E - E_{\mathrm{F}}\ (\mathrm{eV})$', fontsize=13, fontweight='bold')
+    fig.suptitle(title, fontsize=15, fontweight='bold', y=0.98)
     plt.tight_layout()
     
     save_path = os.path.join(post_dir, filename)
@@ -348,29 +344,30 @@ def plot_icohp_panel(systems_list, title, filename):
         energies = data['energies']
         
         if energies is None:
-            ax.text(0.5, 0.5, "No LOBSTER ICOHP Data", ha='center', va='center')
-            ax.set_title(f"{tms_names[idx]} (Not Run)")
+            ax.text(0.5, 0.5, "No LOBSTER ICOHP Data", ha='center', va='center', fontsize=12)
+            ax.set_title(f"{tms_names[idx]} (Not Run)", fontsize=13)
             continue
             
         curves = data['icohp_curves']
         
         for bond_name, curve_data in curves.items():
             # Plot -ICOHP curve (so positive values represent bonding integral)
-            ax.plot(-curve_data['tot'], energies, label=format_bond_latex(bond_name), alpha=0.8, linewidth=1.5)
+            ax.plot(-curve_data['tot'], energies, label=format_bond_latex(bond_name), alpha=0.85, linewidth=1.8)
             
         ax.axvline(0, color='gray', linestyle='--', linewidth=1.0)
         ax.axhline(0, color='black', linestyle='-', linewidth=1.2) # Fermi Level
         
         ax.set_xlim(-0.2, 3.5)  # ICOHP values go up to ~ -2.5 eV, so -ICOHP goes up to +2.5
-        ax.set_ylim(-10, 5)
+        ax.set_ylim(-7, 5)
         
-        ax.set_title(f"{tms_names[idx]} System ({sys_name.split('/')[0]})", fontsize=11, fontweight='bold')
-        ax.set_xlabel(r'$-\mathrm{ICOHP}\ \mathrm{[eV]}$', fontsize=10)
-        ax.legend(loc='lower right', frameon=True, edgecolor='black', fancybox=False, fontsize=9)
+        ax.set_title(f"{tms_names[idx]} System ({sys_name.split('/')[0]})", fontsize=13, fontweight='bold')
+        ax.set_xlabel(r'$-\mathrm{ICOHP}\ (\mathrm{eV})$', fontsize=12, fontweight='bold')
+        ax.legend(loc='lower right', frameon=True, edgecolor='black', fancybox=False, fontsize=11, borderpad=0.6, handlelength=1.5)
+        ax.tick_params(axis='both', labelsize=12)
         ax.grid(linestyle=':', alpha=0.6)
         
-    axes[0].set_ylabel(r'$E - E_{\mathrm{F}}\ \mathrm{[eV]}$', fontsize=11)
-    fig.suptitle(title, fontsize=14, fontweight='bold', y=0.98)
+    axes[0].set_ylabel(r'$E - E_{\mathrm{F}}\ (\mathrm{eV})$', fontsize=13, fontweight='bold')
+    fig.suptitle(title, fontsize=15, fontweight='bold', y=0.98)
     plt.tight_layout()
     
     save_path = os.path.join(post_dir, filename)

@@ -134,13 +134,14 @@ rects1_ads = ax1.bar(x - width/2, avg_ads, width, label='Adsorbed', color=colors
 rects1_emb = ax1.bar(x + width/2, avg_emb, width, label='Embedded', color=colors['embedded'], edgecolor='black', zorder=3)
 
 ax1.axhline(0, color='black', linewidth=1.0, zorder=2)
-ax1.set_ylabel(r'Average $\mathrm{TM-Cl}$ ICOHP [eV/bond]', fontsize=12)
+ax1.set_ylabel(r'Average $\mathrm{TM-Cl}$ ICOHP $(\mathrm{eV/bond})$', fontsize=12, fontweight='bold')
 ax1.set_title('Average Bond Strength (per TM-Cl Bond)', fontsize=13, fontweight='bold', pad=10)
 ax1.set_xticks(x)
-ax1.set_xticklabels(tms, fontsize=11)
+ax1.set_xticklabels(tms, fontsize=12)
 ax1.set_ylim(-2.7, 0.2)
+ax1.tick_params(axis='both', labelsize=12)
 ax1.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
-ax1.legend(loc='lower right', frameon=True, edgecolor='black', fancybox=False)
+ax1.legend(loc='lower right', frameon=True, edgecolor='black', fancybox=False, fontsize=11)
 
 def autolabel(rects, ax):
     for rect in rects:
@@ -149,7 +150,7 @@ def autolabel(rects, ax):
                     xy=(rect.get_x() + rect.get_width() / 2, height),
                     xytext=(0, -15),
                     textcoords="offset points",
-                    ha='center', va='bottom', fontsize=9.5, fontweight='bold')
+                    ha='center', va='bottom', fontsize=10, fontweight='bold')
 
 autolabel(rects1_ads, ax1)
 autolabel(rects1_emb, ax1)
@@ -159,18 +160,19 @@ rects2_ads = ax2.bar(x - width/2, cum_ads, width, label='Adsorbed', color=colors
 rects2_emb = ax2.bar(x + width/2, cum_emb, width, label='Embedded', color=colors['embedded'], edgecolor='black', zorder=3)
 
 ax2.axhline(0, color='black', linewidth=1.0, zorder=2)
-ax2.set_ylabel(r'Cumulative $\mathrm{TM-Cl}$ ICOHP [eV]', fontsize=12)
+ax2.set_ylabel(r'Cumulative $\mathrm{TM-Cl}$ ICOHP $(\mathrm{eV})$', fontsize=12, fontweight='bold')
 ax2.set_title('Total Bonding Interaction Energy', fontsize=13, fontweight='bold', pad=10)
 ax2.set_xticks(x)
-ax2.set_xticklabels(tms, fontsize=11)
+ax2.set_xticklabels(tms, fontsize=12)
 ax2.set_ylim(-13.0, 0.5)
+ax2.tick_params(axis='both', labelsize=12)
 ax2.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
-ax2.legend(loc='lower right', frameon=True, edgecolor='black', fancybox=False)
+ax2.legend(loc='lower right', frameon=True, edgecolor='black', fancybox=False, fontsize=11)
 
 autolabel(rects2_ads, ax2)
 autolabel(rects2_emb, ax2)
 
-plt.suptitle(r'Comparison of LOBSTER ICOHP Bonding Energies at $E_{\mathrm{F}}$', fontsize=14, fontweight='bold', y=0.98)
+plt.suptitle(r'Comparison of LOBSTER ICOHP Bonding Energies at $E_{\mathrm{F}}$', fontsize=15, fontweight='bold', y=0.98)
 plt.tight_layout()
 
 overview_path = os.path.join(post_dir, "icohp_bar_chart.png")
@@ -219,24 +221,35 @@ for idx, tm in enumerate(tms_names):
     bars = ax.barh(y_pos, icohps, align='center', color=colors_list, edgecolor='black', zorder=3)
     
     ax.set_yticks(y_pos)
-    ax.set_yticklabels(labels, fontsize=10.5)
+    ax.set_yticklabels(labels, fontsize=11)
+    ax.tick_params(axis='both', labelsize=12)
     ax.invert_yaxis()  # Keep shortest bonds at the top
-    ax.set_xlabel('ICOHP [eV]', fontsize=12)
+    ax.set_xlabel(r'$\mathrm{ICOHP}\ (\mathrm{eV})$', fontsize=12, fontweight='bold')
     ax.set_title(f'{tm} System Bonds', fontsize=13, fontweight='bold')
     ax.grid(axis='x', linestyle='--', alpha=0.5, zorder=0)
     ax.axvline(0, color='black', linewidth=1.0, zorder=2)
     
-    # X-axis limits to accommodate labels inside/around
-    ax.set_xlim(-2.9, 0.05)
+    # X-axis limits to accommodate labels inside/around cleanly
+    ax.set_xlim(-2.8, 0.05)
     
-    # Add value labels next to the bars
+    # Add value labels next to/inside the bars (2 decimal places)
     for bar in bars:
         width = bar.get_width()
-        ax.annotate(f'{width:.3f} eV',
-                    xy=(width, bar.get_y() + bar.get_height() / 2),
-                    xytext=(-5, 0),
-                    textcoords="offset points",
-                    ha='right', va='center', fontsize=9, fontweight='bold')
+        val_str = f'{width:.2f} eV'
+        if width <= -1.8:
+            # Place label INSIDE the bar near the tip in white text to eliminate overlap with Y-axis
+            ax.annotate(val_str,
+                        xy=(width, bar.get_y() + bar.get_height() / 2),
+                        xytext=(6, 0),
+                        textcoords="offset points",
+                        ha='left', va='center', fontsize=10, fontweight='bold', color='white')
+        else:
+            # Place label to the left of the bar tip in black text
+            ax.annotate(val_str,
+                        xy=(width, bar.get_y() + bar.get_height() / 2),
+                        xytext=(-6, 0),
+                        textcoords="offset points",
+                        ha='right', va='center', fontsize=10, fontweight='bold', color='black')
 
 plt.suptitle(r'Individual $\mathrm{TM-Cl}$ Bond ICOHP values at $E_{\mathrm{F}}$ (Sorted by Bond Length)', fontsize=15, fontweight='bold', y=0.98)
 plt.tight_layout()

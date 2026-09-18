@@ -252,3 +252,109 @@ save_path = os.path.join(post_dir, "coordination_schematics.png")
 plt.savefig(save_path, dpi=300)
 plt.close()
 print(f"Coordination schematics saved to {save_path}")
+
+# =============================================================================
+# MANIM 3D ANIMATION
+# =============================================================================
+# To run this, execute: ~/venvs/manim/bin/python3 plot_coordination.py --animate
+import sys
+
+# Prevent Matplotlib from blocking or re-running if imported by manim
+try:
+    from manim import *
+    HAS_MANIM = True
+except ImportError:
+    HAS_MANIM = False
+
+if HAS_MANIM:
+    class Coordination3DAnimation(ThreeDScene):
+        def construct(self):
+            # Camera orientation setup
+            self.set_camera_orientation(phi=70 * DEGREES, theta=30 * DEGREES)
+            self.begin_ambient_camera_rotation(rate=0.15)
+            
+            # Master Title
+            master_title = Text("3D Coordination Geometries (CrCl3 Monolayer)", font="Times New Roman", weight=BOLD).scale(0.6).to_corner(UL)
+            self.add_fixed_in_frame_mobjects(master_title)
+            
+            # Sequence: Adsorbed Co, Fe, Ni -> Embedded Co, Fe, Ni
+            systems = [
+                ('adsorbed', 'Co', 'Adsorbed Co System'),
+                ('adsorbed', 'Fe', 'Adsorbed Fe System'),
+                ('adsorbed', 'Ni', 'Adsorbed Ni System'),
+                ('embedded', 'Co', 'Embedded Co System'),
+                ('embedded', 'Fe', 'Embedded Fe System'),
+                ('embedded', 'Ni', 'Embedded Ni System'),
+            ]
+            
+            co_idx = 32  # 1-indexed atom 33
+            
+            sub_title = None
+            
+            for state, tm, label in systems:
+                # Update Subtitle
+                new_sub = Text(label, font="Times New Roman", color=colors[tm]).scale(0.55).next_to(master_title, DOWN, aligned_edge=LEFT)
+                self.add_fixed_in_frame_mobjects(new_sub)
+                
+                if sub_title is not None:
+                    self.remove(sub_title)
+                sub_title = new_sub
+                
+                # Load structural data
+                poscar_path = os.path.join(base_dir, f"{state}/{tm.lower()}/POSCAR")
+                atoms = ase.io.read(poscar_path)
+                center_pos, cl_neighbors, cr_neighbors = get_local_cluster(atoms, co_idx, cl_cutoff=3.0, cr_cutoff=4.0)
+                
+                # Colors
+                c_tm = colors[tm]
+                c_cl = colors['Cl']
+                c_cr = '#b2bec3'  # Soft subtle grey/slate for background Cr
+                
+                group = VGroup()
+                
+                # 1. Central TM Sphere
+                tm_sphere = Sphere(radius=0.38, color=c_tm).move_to(ORIGIN)
+                tm_sphere.set_color(c_tm)
+                group.add(tm_sphere)
+                
+                # TM 3D Label
+                tm_lbl = Text(f"{tm}33", font="Times New Roman", weight=BOLD).scale(0.35).move_to(ORIGIN + UP*0.55 + RIGHT*0.1)
+                group.add(tm_lbl)
+                
+                # 2. Cl Neighbor Spheres, Bonds & Labels
+                for idx, pos, d in cl_neighbors:
+                    cl_sp = Sphere(radius=0.28, color=c_cl).move_to(pos)
+                    bond = Line3D(start=ORIGIN, end=pos, color=WHITE, thickness=0.015)
+                    cl_lbl = Text(f"Cl{idx}", font="Times New Roman").scale(0.28).move_to(pos + pos/np.linalg.norm(pos)*0.4)
+                    group.add(cl_sp, bond, cl_lbl)
+                
+                # 3. Soft Background Cr Spheres (Transparent & Soft Grey)
+                for idx, pos, d in cr_neighbors:
+                    cr_sp = Sphere(radius=0.32, color=c_cr).move_to(pos)
+                    cr_sp.set_opacity(0.35)
+                    group.add(cr_sp)
+                
+                # Fade in the current system
+                self.play(FadeIn(group), run_time=1.5)
+                self.wait(2)
+                
+                # Fade out current system before next
+                self.play(FadeOut(group), run_time=1.0)
+            
+            if sub_title is not None:
+                self.remove(sub_title)
+            
+            # Final message
+            final_txt = Text("Coordination Environment Complete", font="Times New Roman").scale(0.6)
+            self.add_fixed_in_frame_mobjects(final_txt)
+            self.play(FadeIn(final_txt))
+            self.wait(2)
+
+if __name__ == "__main__":
+    if "--animate" in sys.argv:
+        import subprocess
+        print("Rendering 3D animation with Manim (Quality: 720p @ 30fps)...")
+        manim_bin = os.path.expanduser("~/venvs/manim/bin/manim")
+        # Run Manim directly on this file (-pqm specifies 720p at 30fps)
+        subprocess.run([manim_bin, "-pqm", __file__, "Coordination3DAnimation"])
+        print("Animation rendered successfully in media/ folder!")
