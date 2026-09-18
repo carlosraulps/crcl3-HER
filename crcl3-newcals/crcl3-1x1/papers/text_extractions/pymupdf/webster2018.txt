@@ -1,0 +1,646 @@
+
+--- [PAGE 1] ---
+PHYSICAL REVIEW B 98, 144411 (2018)
+Strain-tunable magnetic anisotropy in monolayer CrCl3, CrBr3, and CrI3
+Lucas Webster* and Jia-An Yan†
+Department of Physics, Astronomy, and Geosciences, Towson University, 8000 York Road, Towson, Maryland 21252, USA
+(Received 8 June 2018; revised manuscript received 25 August 2018; published 8 October 2018)
+Recent observation of intrinsic ferromagnetism in two-dimensional (2D) CrI3 is associated with the large
+magnetic anisotropy due to strong spin-orbit coupling of I. Magnetic anisotropy energy (MAE) deﬁnes the
+stability of magnetization in a speciﬁc direction with respect to the crystal lattice and is an important parameter
+for nanoscale applications. In this work we apply the density functional theory to study the strain dependence
+of MAE in 2D monolayer chromium trihalides CrX3 (with X = Cl, Br, and I). Detailed calculations of their
+energetics, atomic structures, and electronic structures under the inﬂuence of a biaxial strain ε have been carried
+out. It is found that all three compounds exhibit ferromagnetic ordering at the ground state (with ε = 0), and
+upon applying a compressive strain, phase transition to the antiferromagnetic state occurs. Unlike in CrCl3 and
+CrBr3, the electronic band gap in CrI3 increases when a tensile strain is applied. The MAE also exhibits a
+strain dependence in the chromium trihalides: it increases when a compressive strain is applied in CrI3, while an
+opposite trend is observed in the other two compounds. In particular, the MAE of CrI3 can be increased by 47%
+with a compressive strain of ε = 5%.
+DOI: 10.1103/PhysRevB.98.144411
+I. INTRODUCTION
+One of the latest advances in the ﬁeld of two-dimensional
+(2D) materials is the observation of intrinsic ferromagnetism
+in monolayers of CrGeTe3 [1] and CrI3 [2]. These systems
+provide an exciting platform for studying the interplay be-
+tween various competing electronic and magnetic phenomena
+at the nanoscale when the quantum conﬁnement condition
+is included. These include, for example, the magnetoelectric
+effect [3–6], spin-valley physics [7], and light-matter interac-
+tions under the inﬂuence of magnetic ordering [8].
+Unlike in bulk magnetic materials, the long-range magnetic
+ordering in 2D structures is impossible without magnetic
+anisotropy, which is required for counteracting thermal ﬂuc-
+tuations [9]. Therefore, magnetic anisotropy, which originates
+mainly from spin-orbit coupling (SOC) effects [10], becomes
+an important parameter when it comes to 2D magnets as it
+is qualitatively related to their magnetic stability. Moreover,
+ferromagnetic 2D materials with large magnetic anisotropy
+are of great interest for high-density magnetic memories and
+spintronic applications at the nanoscale, as in spin valves and
+magnetic tunnel junctions [11–13].
+Strain engineering has been shown to be an effective ap-
+proach to tune properties of nanomaterials by using substrate
+lattice mismatching [14–16]. It has been demonstrated that
+external strain can tune the electronic energy band gap in
+single-layer MoS2 [14]. In particular, the way in which strain
+can affect magnetic anisotropy has been the subject of several
+studies involving thin ﬁlms [17,18] and 2D materials from
+density-functional theory (DFT) calculations [19–21].
+*lwebst6@students.towson.edu
+†jiaanyan@gmail.com
+Typically, 2D crystals can sustain larger strains than their
+bulk counterpart [22,23]. Single-layer MoS2 can sustain
+strains as large as 11% [22], and strains as large as 6% can be
+sustained in single-layer FeSe [15,16]. DFT calculations show
+that monolayer chromium trihalides are soft when compared
+with other 2D materials. A 2D Young’s modulus of 24, 29,
+and 34 N/m has been reported for CrI3, CrBr3, and CrCl3
+respectively [24]. This is much smaller than that of graphene
+(340 N/m) [25], monolayer MoS2 (180 N/m) [22], and mono-
+layer FeSe (80 N/m) [26].
+The softness of single-layer chromium trihalides implies
+that strain modulation of their electronic and magnetic prop-
+erties can be realized in these systems. Here, we provide an
+extensive study on structural modiﬁcation at the nanoscale
+resulting from biaxial strain by means of ﬁrst-principles cal-
+culations. We also investigate the electronic structures, mag-
+netism, and magnetic anisotropy of the single-layer chromium
+trihalides under different strains.
+This paper is organized as follows. In Sec. II, the calcu-
+lation details are given. In Sec. III, we discuss our results. A
+brief conclusion will be drawn in Sec. IV.
+II. CALCULATIONAL METHODS
+Our DFT calculations were performed using the projected
+augmented-wave method as implemented in the Vienna Ab
+initio Simulation Package (VASP) [27,28]. In all of these
+calculations we adopted the Perdew-Burke-Ernzerhof (PBE)
+[29] ﬂavor for the generalized gradient exchange-correlation
+functional. The Brillouin zone was sampled by an 8×8×1
+k-point grid mesh [30], and a 500 eV plane-wave cutoff
+energy was used. Moreover, a 15-Å vacuum was applied along
+the z axis to avoid any artiﬁcial interactions between images.
+Relaxations were performed until the Hellmann-Feynman
+force on each atom became smaller than 0.002 eV/Å and
+2469-9950/2018/98(14)/144411(8)
+144411-1
+©2018 American Physical Society
+
+--- [PAGE 2] ---
+LUCAS WEBSTER AND JIA-AN YAN
+PHYSICAL REVIEW B 98, 144411 (2018)
+FIG. 1. Atomic structure of monolayer CrX3 (X = Cl,Br,I). (a)
+Top view and (b) side view of a single layer. (c) Bonding between
+chromium and iodine atoms. The unit cell of CrX3 which includes
+two Cr and six X atoms has been indicated in (a). The bond length l
+between Cr and an X atom, the bond angle θ1 between Cr and two X
+atoms in the same plane, and the axial angle θ2 are also shown in (c).
+(d) The two magnetic orders, namely, Néel antiferromagnetic (AFM)
+and ferromagnetic (FM)
+the total energy was converged to be within 10−8 eV. Spin
+polarization had to be taken into account in order to reproduce
+the semiconducting nature of this system, and the effect of
+introducing SOC on the electrical and mechanical properties
+of these materials will be discussed. In addition, two differ-
+ent magnetic conﬁgurations were considered to evaluate the
+magnetic ground state by comparing their total energies. The
+ferromagnetic (FM) conﬁguration had all magnetic moments
+initialized in the same direction, while in the antiferromag-
+netic (AFM) conﬁguration the magnetic moments were set to
+be antiparallel between nearest neighbors. For both cases, spin
+orientations were initially in the off-plane direction. These
+two typical magnetic orderings are shown in Fig. 1(d).
+Magnetic anisotropy energy (MAE) is deﬁned as the dif-
+ference between energies corresponding to the magnetization
+in the in-plane and off-plane directions (MAE = E∥−E⊥).
+Therefore, a positive (negative) value of MAE indicates the
+off-plane (in-plane) easy axis. To evaluate MAE, one must
+take SOC effects into account. Thus, noncollinear non-self-
+consistent calculations were performed to evaluate the total
+energies E∥and E⊥after the self-consistent ground states
+were achieved.
+In this work, only biaxial strain has been studied. For each
+strain, the lattice constants were changed accordingly and then
+kept ﬁxed, while the atomic positions were fully optimized.
+This procedure was repeated for single-layer CrCl3, CrBr3,
+and CrI3.
+III. RESULTS AND DISCUSSION
+A. Atomic structures
+The bulk chromium trihalides CrX3 (X = Cl, Br, and I)
+are layered van der Waals materials, and the possibility of
+mechanically exfoliating CrI3 to produce 2D monolayers has
+been demonstrated [2]. These systems exhibit rhombohedral
+BiI3 structure (space group R¯3) in cryogenic temperatures at
+which ferromagnetism can be observed. The Curie tempera-
+tures for the bulk systems are 27, 47, and 70 K for CrCl3,
+CrBr3, and CrI3 respectively [31,32]. In the single-layer limit,
+CrI3 retains its ferromagnetism, and the Curie temperature
+of the 2D system is found to be Tc = 45 K [2]. Figure 1(a)
+shows a schematic plot of the single-layer chromium trihalide
+compound. The chromium ions form a honeycomb network
+sandwiched by two atomic planes of halide atoms, as shown in
+Figs. 1(a) and 1(b). The parallelogram in Fig. 1(a) represents
+the unit cell containing two chromium atoms and six halide
+atoms per layer. Moreover, Cr3+ ions are coordinated by
+edge-sharing octahedra, as shown in Fig. 1(c).
+Magnetism in these compounds arises from the partially
+ﬁlled d orbitals, as the Cr3+ ion has an electronic conﬁg-
+uration of 3d3. Despite this fact, these materials are found
+to be electrical insulators, indicating that a Mott-Hubbard
+mechanism is playing a role in the formation of the band gap.
+In the octahedral environment, crystal ﬁeld interaction with
+the halide ligands results in the quenching of orbital moment
+(L = 0) and splitting of the chromium d orbitals into a set of
+triply degenerate t2g orbitals (with lower energy) and doubly
+degenerate eg orbitals (with higher energy). Furthermore, sat-
+uration magnetization measurements give an atomic magnetic
+moment of 3μB per chromium atom [33]. This is consistent
+with Hund’s rule, which predicts that the three electrons will
+occupy the t2g triplet yielding S = 3/2.
+First, we investigate the structure, magnetism, and MAE
+of the unstrained monolayer systems. Our results from non-
+collinear self-consistent calculations show that the ground
+state for the three systems is FM, as indicated in Table I.
+Here, the difference in the total energy of the two magnetic
+phases considered in our study (EFM −EAFM) is less than
+zero for all the chromium trihalides. For this reason, only
+the optimized structural parameters for the FM ground state
+TABLE I. The calculated lattice constants a0, total energy Et, bond lengths l, bond angles θ1, and axial bond angles θ2 for the FM phase
+of the chromium trihalides. The difference in energy between two magnetic phases EFM −EAFM, magnetic anisotropy energy (MAE), and the
+easy magnetization axis are also listed. SOC has been included in all calculations.
+Lattice parameters for 1-Layer
+Magnetic stability for 1-Layer
+a0 (Å)
+Et (eV)
+θ1 (deg)
+θ2 (deg)
+l (Å)
+EFM −EAFM (eV)
+MAE (μeV/Cr)
+Easy axis
+CrCl3
+6.056
+−38.916
+95.8
+173.2
+2.357
+−0.023
+24.68
+c
+CrBr3
+6.438
+−35.334
+95.1
+173.5
+2.518
+−0.032
+159.54
+c
+CrI3
+7.008
+−32.318
+95.2
+173.3
+2.740
+−0.036
+803.65
+c
+144411-2
+
+--- [PAGE 3] ---
+STRAIN-TUNABLE MAGNETIC ANISOTROPY IN …
+PHYSICAL REVIEW B 98, 144411 (2018)
+FIG. 2. Noncollinear spin-polarized electronic band dispersions for monolayer chromium trihalides. The effect of typical compressive and
+tensile strains is also shown for (a) CrCl3, (b) CrBr3, and (c) CrI3. The energy band gaps between the conduction band minimum and valence
+band maximum (VBM) are indicated using red arrows in each case. The VBM has been shifted to zero.
+are shown in Table I. For example, for the case of CrI3,
+the lattice constant a0 and Cr-I bond length l are 7.008
+and 2.740 Å, respectively. These results are consistent with
+previously reported values [24,31]. The Cr-I-Cr bond angle θ1
+is 95.2◦and is represented in Fig. 1(c). This angle accounts
+for the ferromagnetic superexchange interaction according to
+the Goodenough [34] and Kanamori [35] rules. The axial
+angle θ2 is the angle formed between the chromium ion
+and two opposing ligands within the same octahedral [e.g.,
+Fig. 1(c)]. Therefore, our results suggest some deformation
+in the octahedral environment as the axial angle is predicted
+to be slightly smaller than 180◦. Interestingly, these angles
+are nearly independent of the ligands, as they are roughly
+the same for all three systems. In our previous work, we
+found that different magnetic orderings (FM or AFM) yield
+similar results for the structural parameters [36]. Moreover,
+these structural parameters are not sensitive to the SOC [36],
+which is essential for investigating the MAE below.
+The calculated MAE for each compound is listed in Table I.
+The MAE of CrI3 is about 804 μeV/Cr, which is surprisingly
+large when compared to the other compounds in Table I.
+Previous studies reported 980 μeV/Cr [5] and 686 μeV/Cr
+[24], and these discrepancies might result from the differ-
+ent methods adopted. Lado and Fernández-Rossier suggested
+that the large MAE in CrI3 originates from an anisotropic
+exchange interaction through a superexchange mechanism,
+which stems from the strong SOC in the heavier iodine ions
+[10]. In addition, the easy axis for energetically favorable
+spontaneous magnetization is found to be perpendicular to the
+basal plane, i.e., along the c direction.
+B. Electronic structures
+The electronic band structures for CrCl3, CrBr3, and CrI3
+under various biaxial strains are shown in Figs. 2(a), 2(b),
+and 2(c), respectively. In Ref. [36], we already showed that
+the band structure of CrI3 is highly sensitive to the magnetic
+ordering, the exchange-correlation functional, and SOC. Here,
+we focus on the results calculated from PBE for only the FM
+phase. The effect of SOC on the electronic band structure
+can be further elucidated by comparing Fig. 2 with Fig. S1
+in the Supplemental Material [37], which shows the collinear
+144411-3
+
+--- [PAGE 4] ---
+LUCAS WEBSTER AND JIA-AN YAN
+PHYSICAL REVIEW B 98, 144411 (2018)
+TABLE II. The exchange coupling and Curie temperature of
+single-layer chromium trihalides.
+J (meV) Estimated Tc (K)
+Experimental Tc (K)
+CrCl3
+1.7
+29.7
+27 (bulk) [31]
+CrBr3
+2.4
+41.3
+47 (bulk) [31]
+CrI3
+2.7
+46.4
+70 (bulk) [31], 45 (1-Layer) [2]
+results. Unlike CrI3, the band structures of the other com-
+pounds are insensitive to the inclusion of SOC. This provides
+further evidence that MAE in these systems is closely related
+to the SOC in the halide ligands.
+Clearly, the band gaps increase from 0.89 to 1.58 eV from
+iodine to chlorine. Both CrCl3 and CrI3 exhibit a direct band
+gap. The band gap character found for unstrained CrI3 is
+consistent with previous works, which also included SOC
+[5,26]. In addition, from Figs. 2(a) and 2(b), we notice an
+increase (decrease) in the band gap upon compression (tensile
+strain) in these systems. However, according to Fig. 2(c), the
+application of a biaxial strain causes an opposite effect on
+the band gap of CrI3. In the three compounds, the valence
+band maximum remains approximately constant with the ap-
+plication of strain, whereas the conduction band minimum
+is shifted, causing a direct-to-indirect band gap transition in
+both CrCl3 and CrI3. Moreover, a compressive strain will
+decrease the energy of the valence bands near the M and K
+points in CrI3. This effect can also be observed in collinear
+calculations; however, it is more evident when SOC is
+included.
+C. Effect of strain on crystal structure and the magnetic order
+Next, we investigate the dependence of magnetic properties
+under different strains. It is mainly Cr atoms that contribute to
+the magnetic moment, which remains overall constant with
+6μB (two Cr3+ ions per unit cell) per unit cell under strain
+(not shown). Figure 3 shows the energy difference between
+the two magnetic orderings, namely, FM and AFM. A phase
+transition from FM to AFM is observed in all systems, and the
+AFM region is highlighted in red. Here, the strain ε is deﬁned
+as
+ε = (a −a0)
+a0
+,
+(1)
+where a0 is the lattice constant for the unstrained system. The
+energy difference of the two phases is given by (neglecting the
+MAE since it is relatively small) [24]
+EFM/AFM = E0 −(±3J1 + 6J2 ± 3J3)|⃗S|2,
+(2)
+where J1, J2, and J3 are the Heisenberg exchange integrations
+for the ﬁrst-, second-, and third-nearest neighbors, respec-
+tively. Neglecting the second- and third-nearest neighbors and
+taking the energy difference between FM and AFM phases,
+we have
+EFM −EAFM = −6J|⃗S|2.
+(3)
+Here, |⃗S| = 3/2. From the energy difference calculated in
+DFT (as shown in Table I), one can determine the exchange
+FIG. 3. Energy difference between the FM and AFM phases
+for (a) CrCl3, (b) CrBr3, and (c) CrI3. The AFM phase region is
+highlighted in red. The calculated Curie temperature is also shown
+for each case.
+parameter J with Eq. (3). Next, with J available one can
+roughly estimate the Curie temperature from the mean-ﬁeld
+expression:
+Tc = 3J
+2KB
+.
+(4)
+144411-4
+
+--- [PAGE 5] ---
+STRAIN-TUNABLE MAGNETIC ANISOTROPY IN …
+PHYSICAL REVIEW B 98, 144411 (2018)
+FIG. 4. Dependence of structural parameters on biaxial strain ε for the chromium trihalides. (a) Bond length l. (b) Bond angle θ1. (c) Axial
+bond angle θ2.
+A brief derivation is provided in the Supplemental Material
+[37]. The Heisenberg exchange parameter and the estimated
+Curie temperature for the unstrained systems are listed in
+Table II, along with the available experimental values for the
+Curie temperature. The obtained value for J, considering only
+the ﬁrst-nearest neighbors, agrees with previous DFT calcula-
+tions [24]. From Table II, the estimated Curie temperatures
+for single-layer CrCl3 and CrBr3 are approximately equal to
+the experimental values for the bulk systems. Whereas there
+is a difference between the Curie temperatures for the bulk
+CrI3 and monolayer CrI3, our estimation is closer to that of
+monolayer CrI3. This is expected since Eq. (4) is valid for the
+2D system and suggests a relatively large interlayer coupling
+in bulk CrI3.
+In Fig. 3, we show the energy difference EFM −EAFM
+between the two magnetic orderings as a function of ε for
+CrCl3, CrBr3, and CrI3. The evolution of the Curie temper-
+ature calculated based on Eq. (4) is also shown in Fig. 3 (right
+axis). As ε decreases (i.e., the compressive strain increases),
+the energy difference increases. There is a phase transition
+to the AFM phase when the energy difference between FM
+and AFM orderings becomes greater than zero. This phase
+transition occurs at −2.5%, −4.1%, and −5.7% compressive
+strain for CrCl3, CrBr3, and CrI3, respectively. A similar result
+was reported by Zheng et al. for CrI3 under compressive
+strain [26]. According to Fig. 3, there is a point at which
+the Curie temperature is maximum, and this point is close
+to the equilibrium for CrI3. However, as shown in Fig. 3(a),
+this point is slightly shifted from the equilibrium to the region
+with small tensile strain in CrCl3 and CrBr3, suggesting that
+in these cases the Curie temperature can be further increased
+with the introduction of tensile strain. We estimate that a
+tensile strain of 2.4% can increase Tc to 39.0 K in CrCl3, and
+a tensile strain of 2.1% can increase Tc to 44.4 K in CrBr3.
+Beyond this point of local maximum, the Curie temperature
+tends to decrease, and no transition to the AFM phase is
+observed if we further increase tensile strain within the 10%
+range.
+We have also calculated the effect of strain on the structural
+parameters, as depicted in Fig. 4. These calculations were
+repeated for each material with different magnetic orderings
+(FM and AFM). Since results of AFM are similar, we show
+only the results for the FM phase. From Fig. 4, one can clearly
+see that the Cr-X-Cr angle changes linearly with respect to
+strain. In addition, the angle with ε = 0 is roughly the same
+(95◦) for the three halides. Within the 10% range from the
+equilibrium point (ε = 0), the curves display a linear shape
+with the same slope for the three materials. The axial angle
+has a similar behavior but tends to increase upon compression
+until it saturates near 180◦. At this point, with the axial
+angle fully stretched (around −10% of compression for all
+materials), the system achieves a higher degree of symmetry.
+The Cr-X distance displays a weak strain dependency within
+the 10% range.
+D. Effect of strain on the magnetic anisotropy energy
+One can also observe how MAE changes with biaxial
+strain in Fig. 5. In Figs. 5(a)–5(c), the energy was calculated
+as a function of the angle of magnetization with respect to
+the basal plane θM, which is 0◦in plane and 90◦off plane.
+This is illustrated in the inset of Fig. 5(f), where E∥and
+E⊥represent the energies calculated when all the spins are
+parallel and perpendicular to the atomic plane, respectively.
+These calculations were repeated for different values of strain.
+If we neglect the higher-order terms, the dependency of the
+energy per chromium atom with respect to θM is given by [38]
+E(θM) = E0 + λ1 sin2(θM) + λ2 sin4(θM).
+(5)
+Here, E0 is a constant-energy shift, and λ1 and λ2 are, respec-
+tively, the quadratic and quartic contributions to the energy.
+No substantial difference in energy with respect to the dif-
+ferent in-plane directions is observed from DFT calculations;
+therefore, the azimuthal contribution to E(θM) is neglected.
+From Figs. 5(a)–5(c) we note that E(θM) provides a good ﬁt
+for the energies. In addition, it can be seen from Figs. 5(a)–
+5(c) that the easy axis remains off plane for CrI3 and CrBr3
+even when subject to strain, whereas for CrCl3 there exists a
+phase transition to an in-plane easy axis upon compression.
+This can be further veriﬁed by looking at Figs. 5(d)–5(f),
+in which we take the difference between in-plane (E∥) and
+off-plane (E⊥) energies and plot them with respect to strain.
+Here, negative values seen in Fig. 5(d) for CrCl3 represent an
+in-plane preference for magnetization.
+Although bulk CrCl3 is found to possess an in-plane easy
+axis [39], it should be noted from Fig. 5(d) that the MAE
+144411-5
+
+--- [PAGE 6] ---
+LUCAS WEBSTER AND JIA-AN YAN
+PHYSICAL REVIEW B 98, 144411 (2018)
+FIG. 5. The effect of strain on the magnetic anisotropic energy. Change in energy with respect to the magnetization angle θM for (a) CrCl3,
+(b) CrBr3, and (c) CrI3. The lines are the ﬁtted results. Change in MAE with respect to strain in (d) CrCl3, (e) CrBr3, and (f) CrI3. The AFM
+phase region is highlighted in red. (g)–(i) The change in the ﬁtted parameters λ1 and λ2.
+of unstrained monolayer CrCl3 is positive, indicating that the
+spins of Cr atoms align perpendicular to the basal plane, even
+though the MAE is much smaller than that of CrI3. A similar
+result was also reported by Zhang et al. [24]. This result
+suggests a possible transition from an in-plane to an off-plane
+easy axis for CrCl3 upon exfoliation. This is not surprising,
+considering that the MAE of CrCl3 is much smaller than
+that of CrI3. Furthermore, unlike the CrBr3 and CrCl3 com-
+pounds, the CrI3 crystal exhibits much stronger anisotropy
+when compressed and becomes weaker when stretched. More
+speciﬁcally, a −5% compressive strain will increase the MAE
+by 47% in this system.
+Fitting parameters for λ1 and λ2 can be found in Figs. 5(g)–
+5(i). These plots show the strain dependence of these con-
+stants for the three monolayer systems, with the λ2 graph
+being displayed in the inset. We note that for all systems the
+quadratic contribution dominates the MAE, as the change in
+λ1 resembles the MAE curves for each compound. However,
+as tensile strain increases, the quartic contribution becomes
+comparable to the quadratic contribution in magnitude for
+CrBr3 and CrI3.
+Finally, we would like to point out that calculations based
+on the local-density approximation yield similar effects on
+strain on the MAE, although the value is slightly different
+[see Fig. S3(a) in the Supplemental Material]. In addition,
+the MAE is strongly dependent on the on-site parameter of
+Hubbard U for Cr. Our PBE+U calculations show that the
+MAE increases dramatically when the Hubbard U parameter
+is increased. The enhancement in the MAE with respect
+to a 5% compressive strain ranges from 20.7% to 58.1%
+depending on the value of the Hubbard U parameter. All the
+data are included in the Supplemental Material [37].
+IV. CONCLUSIONS
+In summary, we applied density functional theory to in-
+vestigate the magnetic and electronic properties of a recently
+found 2D magnet, monolayer CrI3, and other compounds
+144411-6
+
+--- [PAGE 7] ---
+STRAIN-TUNABLE MAGNETIC ANISOTROPY IN …
+PHYSICAL REVIEW B 98, 144411 (2018)
+from the same family, including CrBr3 and CrCl3. All three
+monolayer systems are found to be ferromagnetic in the
+ground state in accordance with previous work. In addition,
+CrI3 exhibits strong magnetic anisotropy (804 μeV/Cr) with
+an easy axis perpendicular to the basal plane. The MAE
+decreases dramatically as the atomic number of the halide
+decreases, with CrBr3 and CrCl3 having 160 and 25 μeV/Cr,
+respectively. We also estimated the Curie temperature from
+mean-ﬁeld approximation and the calculated energy differ-
+ences between two different magnetic orders, namely, FM and
+AFM. Our results are in good agreement with experimental
+data and suggest a relatively large interlayer coupling in the
+CrI3 system. Interestingly, our mean-ﬁeld estimation predicts
+that the Curie temperature for CrCl3 can increase from 29.7 to
+39 K with 2.4% tensile strain.
+Furthermore, we have studied the effect of biaxial strain
+and have determined the strain dependence of the atomic
+structure and electronic and magnetic properties of the
+chromium trihalides. Strong SOC in the CrI3 results in a
+more evident strain dependence of the electronic and mag-
+netic properties than in CrBr3 and CrCl3. For example, the
+MAE in CrI3 increases when compressed and decreases when
+stretched. A 5% compressive strain will increase MAE by
+47% in this system.
+ACKNOWLEDGMENTS
+This work used the Extreme Science and Engineering Dis-
+covery Environment (XSEDE) Comet at the SDSC through
+allocations TG-DMR160101 and TG-DMR16088. We ac-
+knowledge support from NSF Grant No. DMR 1709781 and
+support from the Fisher General Endowment and SET grants
+from the Jess and Mildred Fisher College of Science and
+Mathematics at Towson University.
+[1] C. Gong, L. Li, Z. Li, H. Ji, A. Stern, Y. Xia, T. Cao, W. Bao, C.
+Wang, Y. Wang et al., Discovery of intrinsic ferromagnetism in
+two-dimensional van der Waals crystals, Nature (London) 546,
+265 (2017).
+[2] B. Huang, G. Clark, E. Navarro-Moratalla, D. R. Klein,
+R. Cheng, K. L. Seyler, D. Zhong, E. Schmidgall, M. A.
+McGuire, D. H. Cobden et al., Layer-dependent ferromag-
+netism in a van der Waals crystal down to the monolayer limit,
+Nature (London) 546, 270 (2017).
+[3] B. Huang, G. Clark, D. R. Klein, D. MacNeill, E. Navarro-
+Moratalla, K. L. Seyler, N. Wilson, M. A. McGuire, D. H.
+Cobden, D. Xiao et al., Electrical control of 2D magnetism in
+bilayer CrI3, Nat. Nanotechnol. 13, 544 (2018).
+[4] S. Jiang, J. Shan, and K. F. Mak, Electric-ﬁeld switching of two-
+dimensional van der Waals magnets, Nat. Mater. 17, 406 (2018).
+[5] P. Jiang, L. Li, Z. Liao, Y. X. Zhao, and Z. Zhong,
+Spin direction-controlled electronic band structure in two-
+dimensional ferromagnetic CrI3, Nano Lett. 18, 3844 (2018).
+[6] S. Jiang, L. Li, Z. Wang, K. F. Mak, and J. Shan, Con-
+trolling magnetism in 2D CrI3 by electrostatic doping, Nat.
+Nanotechnol. 13, 549 (2018).
+[7] D. Zhong, K. L. Seyler, X. Linpeng, R. Cheng, N. Sivadas,
+B. Huang, E. Schmidgall, T. Taniguchi, K. Watanabe, M. A.
+McGuire et al., van der Waals engineering of ferromag-
+netic semiconductor heterostructures for spin and valleytronics,
+Sci. Adv. 3, e1603113 (2017).
+[8] K. L. Seyler, D. Zhong, D. R. Klein, S. Gao, X. Zhang, B.
+Huang, E. Navarro-Moratalla, L. Yang, D. H. Cobden, M. A.
+McGuire et al., Ligand-ﬁeld helical luminescence in a 2D
+ferromagnetic insulator, Nat. Phys. 14, 277 (2018).
+[9] N. D. Mermin and H. Wagner, Absence of Ferromagnetism
+or Antiferromagnetism in One- or Two-Dimensional Isotropic
+Heisenberg Models, Phys. Rev. Lett. 17, 1133 (1966).
+[10] J. L. Lado and J. Fernández-Rossier, On the origin of magnetic
+anisotropy in two dimensional CrI3, 2D Mater. 4, 035002
+(2017).
+[11] B. A. Gurney, M. Carey, C. Tsang, M. Williams, S. S. P.
+Parkin, R. E. Fontana, E. Grochowski, M. Pinarbasi, T. Lin, and
+D. Mauri, Spin valve giant magnetoresistive sensor materials for
+hard disk drives, in Ultrathin Magnetic Structures IV (Springer,
+Berlin, 2005), pp. 149–175.
+[12] M. H. Kryder, Magnetic thin ﬁlms for data storage, Thin Solid
+Films 216, 174 (1992).
+[13] G. A. Prinz, Magnetoelectronics, Science 282, 1660 (1998).
+[14] H. J. Conley, B. Wang, J. I. Ziegler, R. F. Haglund, Jr.,
+S. T. Pantelides, and K. I. Bolotin, Bandgap engineering of
+strained monolayer and bilayer MoS2, Nano Lett. 13, 3626
+(2013).
+[15] P. Zhang, X. L. Peng, T. Qian, P. Richard, X. Shi, J. Z. Ma, B.
+B. Fu, Y. L. Guo, Z. Q. Han, S. C. Wang et al., Observation
+of high-Tc superconductivity in rectangular FeSe/SrTiO3 (110)
+monolayers, Phys. Rev. B 94, 104510 (2016).
+[16] R. Peng, H. C. Xu, S. Y. Tan, H. Y. Cao, M. Xia, X. P. Shen,
+Z. C. Huang, C. H. P. Wen, Q. Song, T. Zhang et al., Tuning
+the band structure and superconductivity in single-layer FeSe
+by interface engineering, Nat. Commun. 5, 5044 (2014).
+[17] J. A. Heuver, A. Scaramucci, Y. Blickenstorfer, S. Matzen,
+N. A. Spaldin, C. Ederer, and B. Noheda, Strain-induced mag-
+netic anisotropy in epitaxial thin ﬁlms of the spinel CoCr2O4,
+Phys. Rev. B 92, 214429 (2015).
+[18] A. Rajapitamahuni, L. Zhang, M. A. Koten, V. R. Singh, J. D.
+Burton, E. Y. Tsymbal, J. E. Shield, and X. Hong, Giant
+Enhancement of Magnetic Anisotropy in Ultrathin Manganite
+Films via Nanoscale 1D Periodic Depth Modulation, Phys. Rev.
+Lett. 116, 187201 (2016).
+[19] W. Zhang, H. T. Guo, J. Jiang, Q. C. Tao, X. J. Song, H. Li,
+and J. Huang, Magnetism and magnetocrystalline anisotropy
+in single-layer PtSe2: Interplay between strain and vacancy,
+J. Appl. Phys. 120, 013904 (2016).
+[20] H. L. Zhuang, P. R. C. Kent, and R. G. Hennig, Strong
+anisotropy and magnetostriction in the two-dimensional stoner
+ferromagnet Fe3GeTe2, Phys. Rev. B 93, 134407 (2016).
+[21] J. Zhang, B. Yang, H. Zheng, X. Han, and Y. Yan, Large mag-
+netic anisotropy and strain induced enhancement of magnetic
+anisotropy in monolayer TaTe2, Phys. Chem. Chem. Phys. 19,
+24341 (2017).
+[22] S. Bertolazzi, J. Brivio, and A. Kis, Stretching and breaking of
+ultrathin MoS2, ACS Nano 5, 9703 (2011).
+144411-7
+
+--- [PAGE 8] ---
+LUCAS WEBSTER AND JIA-AN YAN
+PHYSICAL REVIEW B 98, 144411 (2018)
+[23] K. S. Kim, Y. Zhao, H. Jang, S. Y. Lee, J. M. Kim, K. S. Kim,
+J. H. Ahn, P. Kim, J. Y. Choi, and B. H. Hong, Large-scale
+pattern growth of graphene ﬁlms for stretchable transparent
+electrodes, Nature (London) 457, 706 (2009).
+[24] W. B. Zhang, Q. Qu, P. Zhu, and C. H. Lam, Robust intrin-
+sic ferromagnetism and half semiconductivity in stable two-
+dimensional single-layer chromium trihalides, J. Mater. Chem.
+C 3, 12457 (2015).
+[25] A. Politano and G. Chiarello, Probing the young’s modulus
+and poisson’s ratio in graphene/metal interfaces and graphite:
+A comparative study, Nano Res. 8, 1847 (2015).
+[26] F. Zheng, J. Zhao, Z. Liu, M. Li, M. Zhou, S. Zhang, and P.
+Zhang, Tunable spin states in the two-dimensional magnet CrI3,
+Nanoscale 10, 14298 (2018).
+[27] G. Kresse and D. Joubert, From ultrasoft pseudopotentials to
+the projector augmented-wave method, Phys. Rev. B 59, 1758
+(1999).
+[28] G. Kresse and J. Furthmüller, Efﬁcient iterative schemes for
+ab Initio total-energy calculations using a plane-wave basis set,
+Phys. Rev. B 54, 11169 (1996).
+[29] J. P. Perdew, K. Burke, and M. Ernzerhof, Generalized Gradient
+Approximation Made Simple, Phys. Rev. Lett. 77, 3865 (1996).
+[30] H. J. Monkhorst and J. D. Pack, Special points for brillouin-
+zone integrations, Phys. Rev. B 13, 5188 (1976).
+[31] M. A. McGuire, H. Dixit, V. R. Cooper, and B. C. Sales,
+Coupling of crystal structure and magnetism in the layered,
+ferromagnetic insulator CrI3, Chem. Mater. 27, 612 (2015).
+[32] M. McGuire, Crystal and magnetic structures in layered, transi-
+tion metal dihalides and trihalides, Crystals 7, 121 (2017).
+[33] N. Richter, D. Weber, F. Martin, N. Singh, U. Schwingen-
+schlögl, B. V. Lotsch, and M. Kläui, Temperature-dependent
+magnetic anisotropy in the layered magnetic semiconductors
+CrI3 and CrBr3, Phys. Rev. Mater. 2, 024004 (2018).
+[34] J. B. Goodenough, An interpretation of the magnetic properties
+of the perovskite-type mixed crystals La1−xSrxCoO3−λ, J. Phys.
+Chem. Solids 6, 287 (1958).
+[35] J. Kanamori, Superexchange interaction and symmetry proper-
+ties of electron orbitals, J. Phys. Chem. Solids 10, 87 (1959).
+[36] L. Webster, L. Liang, and J. A. Yan, Distinct spin-lattice
+and spin-phonon interactions in monolayer magnetic CrI3,
+Phys. Chem. Chem. Phys. 20, 23546 (2018).
+[37] See Supplemental Material at http://link.aps.org/supplemental/
+10.1103/PhysRevB.98.144411 for collinear band structure cal-
+culations, a brief derivation of the equation used to estimate the
+Curie temperature, and for MAE versus strain curves generated
+from local-density approximation and PBE+U calculations.
+[38] A. N. Bogdanov and I. E. Dragunov, Metastable states, spin-
+reorientation transitions, and domain structures in planar hexag-
+onal antiferromagnets, Low Temp. Phys. 24, 852 (1998).
+[39] M. A. McGuire, G. Clark, K. C. Santosh, W. M. Chance,
+G. E. Jellison, Jr., V. R. Cooper, X. Xu, and B. C. Sales,
+Magnetic behavior and spin-lattice coupling in cleavable van
+der Waals layered CrCl3 Crystals, Phys. Rev. Mater. 1, 014001
+(2017).
+144411-8
