@@ -1,0 +1,12 @@
+==========================================================
+Job Name:    H3x3_clean_novdw
+Job ID:      158675
+Host:        n02
+Directory:   /home/carlos.primo/crcl3-3x3-h_ads-without-U/no_vdw/clean
+Start Time:  Tue Sep 15 00:47:29 -03 2026
+CPUs Alloc:  64
+==========================================================
+Executing VASP 6.2.0 with 64 MPI ranks (OpenMPI 4.1.4, --bind-to none)...
+==========================================================
+Finished at Tue Sep 15 07:23:28 -03 2026 with exit code 0
+==========================================================
