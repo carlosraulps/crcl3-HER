@@ -1,34 +1,69 @@
 #!/bin/bash
 #SBATCH -J Co_S2_yes_vdw
-#SBATCH --partition=batch
+#SBATCH -o job.%j.out
+#SBATCH -e job.%j.err
+#SBATCH --partition=alto,medio
 #SBATCH --nodes=1
-#SBATCH --ntasks=16
 #SBATCH --exclusive
-#SBATCH --time=24:00:00
+#SBATCH --time=168:00:00
 
-PROJECT_DIR="/home/cr/mnt/google-drive/Proyectos/paper-adaptation/crcl3-newcals/crcl3-2x2-co_ads-without-U/yes_vdw/S2"
-SCRATCH_DIR="/home/cr/scratch_vasp/crcl3-2x2-co_ads-without-U/yes_vdw/S2"
+# ==============================================================================
+# HUK CLUSTER OPTIMIZED SLURM EXECUTION SCRIPT
+# System: CrCl3 2x2 + Adatom (Co_S2_yes_vdw)
+# Target Node: huk120 (alto, 36 cores) or huk123/124 (medio, 28 cores)
+# ==============================================================================
 
-echo "Starting VASP job on $(hostname) at $(date)"
-echo "Scratch directory: $SCRATCH_DIR"
-echo "Project destination: $PROJECT_DIR"
-
-# Clean scratch directory to guarantee fresh execution
-rm -rf "$SCRATCH_DIR"
-mkdir -p "$SCRATCH_DIR"
-cp "$PROJECT_DIR"/INCAR "$PROJECT_DIR"/POSCAR "$PROJECT_DIR"/POTCAR "$PROJECT_DIR"/KPOINTS "$SCRATCH_DIR"/
-cd "$SCRATCH_DIR"
-
+# --- 1. Thread Affinity & Environment Settings ---
 export OMP_NUM_THREADS=1
-export OMPI_MCA_hwloc_base_binding_policy=none
-export PRTE_MCA_rmaps_default_mapping_policy=:oversubscribe
+export MKL_NUM_THREADS=1
+ulimit -s unlimited
 
-# Execute VASP with 16 ranks and 1 OpenMP thread per rank
-run_vasp -np 16 -nt 1 > vasp_run.log 2>&1
+# --- 2. Slurm Job Diagnostics ---
+echo "=========================================================="
+echo "Starting Slurm Job : $SLURM_JOB_NAME ($SLURM_JOB_ID)"
+echo "Executing on Host  : $(hostname)"
+echo "Partition Selected : $SLURM_JOB_PARTITION"
+echo "Allocated Node(s)  : $SLURM_NODELIST"
+echo "Working Directory  : $(pwd)"
+echo "Start Timestamp    : $(date)"
+echo "=========================================================="
 
+# --- 3. Dynamic Parallelization Sizing (Amdahl's Law Tuning) ---
+NPROCS=${SLURM_NPROCS:-$SLURM_NTASKS}
+if [ -z "$NPROCS" ] || [ "$NPROCS" -eq 0 ]; then
+    NPROCS=$(nproc)
+fi
+
+# Determine optimal NCORE divisor based on node topology:
+# - huk120 (alto, 36 cores): NCORE = 6 (6 orbital groups)
+# - huk123/124 (medio, 28 cores): NCORE = 4 (7 orbital groups)
+# - huk126 (normal, 24 cores): NCORE = 4 (6 orbital groups)
+if [ "$NPROCS" -eq 36 ]; then
+    NCORE_OPT=6
+elif [ "$NPROCS" -eq 28 ]; then
+    NCORE_OPT=4
+elif [ "$NPROCS" -eq 24 ]; then
+    NCORE_OPT=4
+else
+    NCORE_OPT=4
+fi
+
+if grep -q "NCORE" INCAR 2>/dev/null; then
+    sed -i "s/.*NCORE.*/NCORE    = $NCORE_OPT           # Dynamically tuned for $NPROCS cores on $(hostname)/" INCAR
+fi
+
+echo "Running VASP with $NPROCS MPI processes (NCORE=$NCORE_OPT)..."
+
+# --- 4. Execute VASP via Intel MPI ---
+mpirun -np $NPROCS vasp_std > run.log 2>&1
 EXIT_CODE=$?
-echo "VASP finished with exit code $EXIT_CODE. Syncing results back to project..."
-cp "$SCRATCH_DIR"/OUTCAR "$SCRATCH_DIR"/CONTCAR "$SCRATCH_DIR"/EIGENVAL "$SCRATCH_DIR"/DOSCAR "$SCRATCH_DIR"/vasprun.xml "$SCRATCH_DIR"/OSZICAR "$SCRATCH_DIR"/vasp_run.log "$PROJECT_DIR"/ 2>/dev/null || true
 
-echo "Completed at $(date) with exit code $EXIT_CODE"
+echo "=========================================================="
+echo "Execution finished at $(date) with exit code: $EXIT_CODE"
+if grep -q "General timing and accounting informations for this job" run.log 2>/dev/null || grep -q "reached required accuracy" run.log 2>/dev/null; then
+    echo ">>> STATUS: VASP CALCULATION CONVERGED SUCCESSFULLY <<<"
+else
+    echo ">>> WARNING: Check run.log for convergence or SCF abort <<<"
+fi
+echo "=========================================================="
 exit $EXIT_CODE
