@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 ================================================================================
- Professional Post-Processing & Comparative Analysis for Hydrogen Adsorption
- on Monolayer CrCl3: 1x1 vs 2x2 Supercells (Pure PBE vs PBE+D3)
+ Professional Multi-Scale Comparative Analysis for Hydrogen Adsorption
+ on Monolayer CrCl3: 1x1 vs 2x2 vs 3x3 Supercells (Pure PBE vs PBE+D3)
 ================================================================================
  Computes:
    1. Total energies (E0, TOTEN) and magnetic moments from VASP OSZICAR/OUTCAR.
@@ -10,7 +10,8 @@
    3. Adsorption Energy (HER descriptor): E_ads = Delta_E - 0.5 * E(H2)
    4. Free Energy of Adsorption: Delta_G(H*) = E_ads + Delta_ZPE - T*Delta_S
       (Standard literature benchmark correction: +0.24 eV)
-   5. Supercell Scaling Sensitivity: Delta_E(2x2) - Delta_E(1x1)
+   5. Supercell Scaling & Convergence: Coverage theta = 1.00 -> 0.25 -> 0.111
+      (Periodic H-H image separation: 6.05 A -> 12.09 A -> 18.14 A)
    6. Dispersion Contribution: Delta_E(PBE+D3) - Delta_E(Pure PBE)
 ================================================================================
 """
@@ -78,23 +79,23 @@ def collect_all_data():
     records = []
     
     scale_configs = [
-        ('1x1', 1.00, 'crcl3-1x1-h_ads-without-U'),
-        ('2x2', 0.25, 'crcl3-2x2-h_ads-without-U')
+        ('1x1', 1.00, 6.0463, 'crcl3-1x1-h_ads-without-U'),
+        ('2x2', 0.25, 12.0925, 'crcl3-2x2-h_ads-without-U'),
+        ('3x3', 1.0 / 9.0, 18.1388, 'crcl3-3x3-h_ads-without-U')
     ]
     
     variants = [
         ('no_vdw', 'Pure PBE'),
-        ('yes_vdw', 'PBE+D3 (Zero)')
+        ('yes_vdw', 'PBE+D3')
     ]
     
     sites = [
         ('S1', 'Site 1 (Top-Cl)', '#1f77b4'),
-        ('S2', 'Site 2 (Hollow)', '#ff7f0e'),
+        ('S2', 'Site 2 (Hollow)', '#d62728'),
         ('S3', 'Site 3 (Top-Cr)', '#2ca02c')
     ]
     
-    for scale_label, theta, folder in scale_configs:
-        # Check both crcl3-newcals/folder and REPO_ROOT/folder
+    for scale_label, theta, d_hh, folder in scale_configs:
         path1 = os.path.join(BASE_DIR, folder)
         path2 = os.path.join(REPO_ROOT, folder)
         base_path = path1 if os.path.exists(os.path.join(path1, "no_vdw", "clean", "OSZICAR")) else path2
@@ -117,6 +118,7 @@ def collect_all_data():
                     records.append({
                         'scale': scale_label,
                         'coverage_theta': theta,
+                        'd_hh': d_hh,
                         'vdw_key': vdw_key,
                         'vdw_label': vdw_label,
                         'site_key': site_key,
@@ -134,16 +136,17 @@ def collect_all_data():
     return pd.DataFrame(records)
 
 def plot_multipanel_comparison(df):
-    """Generates 4-panel publication-quality comprehensive comparison."""
-    fig, axs = plt.subplots(2, 2, figsize=(13, 10.5))
-    fig.subplots_adjust(hspace=0.32, wspace=0.25)
+    """Generates 4-panel publication-quality comprehensive comparison across 1x1, 2x2, and 3x3."""
+    fig, axs = plt.subplots(2, 2, figsize=(14, 11))
+    fig.subplots_adjust(hspace=0.34, wspace=0.26)
     
-    # Define conditions
     conditions = [
-        ('1x1', 'no_vdw', r'$1\times1$' + '\nPure PBE'),
+        ('1x1', 'no_vdw', r'$1\times1$' + '\nPBE'),
         ('1x1', 'yes_vdw', r'$1\times1$' + '\nPBE+D3'),
-        ('2x2', 'no_vdw', r'$2\times2$' + '\nPure PBE'),
+        ('2x2', 'no_vdw', r'$2\times2$' + '\nPBE'),
         ('2x2', 'yes_vdw', r'$2\times2$' + '\nPBE+D3'),
+        ('3x3', 'no_vdw', r'$3\times3$' + '\nPBE'),
+        ('3x3', 'yes_vdw', r'$3\times3$' + '\nPBE+D3'),
     ]
     
     sites = [
@@ -174,20 +177,20 @@ def plot_multipanel_comparison(df):
             h = r.get_height()
             if not np.isnan(h):
                 ax_a.text(r.get_x() + r.get_width()/2.0, h + 0.03, f'{h:.2f}',
-                          ha='center', va='bottom', fontsize=8.5, fontweight='bold', fontfamily='serif')
+                          ha='center', va='bottom', fontsize=8.0, fontweight='bold', fontfamily='serif')
 
     ax_a.set_xticks(x)
-    ax_a.set_xticklabels([c[2] for c in conditions], fontsize=10.5)
+    ax_a.set_xticklabels([c[2] for c in conditions], fontsize=9.5)
     ax_a.set_ylabel(r'$E_{\mathrm{ads}} = E_{\mathrm{slab+H}} - E_{\mathrm{clean}} - \frac{1}{2}E(\mathrm{H}_2)\ \ (\mathrm{eV})$', fontsize=11)
-    ax_a.set_title(r'(a) Hydrogen Adsorption Energy vs. Isolated $\frac{1}{2}\mathrm{H}_2$', fontsize=12, fontweight='bold', pad=10)
-    ax_a.set_ylim(1.2, 2.95)
+    ax_a.set_title(r'(a) Hydrogen Adsorption Energy ($1\times1$ vs $2\times2$ vs $3\times3$)', fontsize=12, fontweight='bold', pad=10)
+    ax_a.set_ylim(1.1, 3.05)
     ax_a.yaxis.set_major_locator(MultipleLocator(0.3))
     ax_a.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax_a.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
     ax_a.legend(frameon=True, facecolor='white', framealpha=0.92, fontsize=9.5, loc='upper left')
 
     # -------------------------------------------------------------
-    # Panel (b): Total Binding Energy Delta E (vs clean slab + H*)
+    # Panel (b): Total Binding Energy Delta E
     # -------------------------------------------------------------
     ax_b = axs[0, 1]
     
@@ -204,95 +207,80 @@ def plot_multipanel_comparison(df):
         for r in rects:
             h = r.get_height()
             if not np.isnan(h):
-                ax_b.text(r.get_x() + r.get_width()/2.0, h - 0.04, f'{h:.2f}',
-                          ha='center', va='top', fontsize=8.5, fontweight='bold', fontfamily='serif')
+                ax_b.text(r.get_x() + r.get_width()/2.0, h - 0.06, f'{h:.2f}',
+                          ha='center', va='top', fontsize=8.0, fontweight='bold', fontfamily='serif',
+                          bbox=dict(boxstyle='square,pad=0.10', facecolor='white', edgecolor='none', alpha=0.88),
+                          zorder=5)
 
+    ax_b.axhline(0, color='black', linewidth=0.9, zorder=4)
     ax_b.set_xticks(x)
-    ax_b.set_xticklabels([c[2] for c in conditions], fontsize=10.5)
+    ax_b.set_xticklabels([c[2] for c in conditions], fontsize=9.5)
     ax_b.set_ylabel(r'$\Delta E = E_{\mathrm{slab+H}} - E_{\mathrm{clean}}\ \ (\mathrm{eV})$', fontsize=11)
     ax_b.set_title(r'(b) Thermodynamic Binding Energy $\Delta E$', fontsize=12, fontweight='bold', pad=10)
-    ax_b.set_ylim(-2.28, -0.60)
-    ax_b.yaxis.set_major_locator(MultipleLocator(0.3))
+    ax_b.set_ylim(-2.45, 0.15)
+    ax_b.yaxis.set_major_locator(MultipleLocator(0.5))
     ax_b.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax_b.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
-    ax_b.legend(frameon=True, facecolor='white', framealpha=0.92, fontsize=9.5, loc='upper right')
 
     # -------------------------------------------------------------
-    # Panel (c): Supercell Scaling & Dispersion Deltas
+    # Panel (c): Coverage Scaling & Periodic Image Separation Curve
     # -------------------------------------------------------------
     ax_c = axs[1, 0]
-    site_names_c = ['Top-Cl\n($S_1$)', 'Hollow\n($S_2$)', 'Top-Cr\n($S_3$)']
-    x_c = np.arange(len(site_names_c))
-    w_c = 0.20
     
-    # Delta_E(2x2 - 1x1) Pure PBE
-    delta_scale_pbe = []
-    delta_scale_d3 = []
-    delta_vdw_1x1 = []
-    delta_vdw_2x2 = []
+    d_vals = [6.046, 12.093, 18.139]
+    scale_names = ['1x1', '2x2', '3x3']
     
-    for s_key, _, _, _, _ in sites:
-        e_1x1_pbe = df[(df['scale'] == '1x1') & (df['vdw_key'] == 'no_vdw') & (df['site_key'] == s_key)]['Delta_E'].values[0]
-        e_2x2_pbe = df[(df['scale'] == '2x2') & (df['vdw_key'] == 'no_vdw') & (df['site_key'] == s_key)]['Delta_E'].values[0]
-        e_1x1_d3  = df[(df['scale'] == '1x1') & (df['vdw_key'] == 'yes_vdw') & (df['site_key'] == s_key)]['Delta_E'].values[0]
-        e_2x2_d3  = df[(df['scale'] == '2x2') & (df['vdw_key'] == 'yes_vdw') & (df['site_key'] == s_key)]['Delta_E'].values[0]
+    for s_key, s_name, color, marker, ls in sites:
+        # Plot PBE and PBE+D3 lines
+        pbe_y = []
+        d3_y = []
+        for sc in scale_names:
+            pbe_y.append(df[(df['scale'] == sc) & (df['vdw_key'] == 'no_vdw') & (df['site_key'] == s_key)]['E_ads'].values[0])
+            d3_y.append(df[(df['scale'] == sc) & (df['vdw_key'] == 'yes_vdw') & (df['site_key'] == s_key)]['E_ads'].values[0])
+            
+        ax_c.plot(d_vals, pbe_y, marker=marker, markersize=7.5, linestyle=ls, color=color,
+                  linewidth=1.8, label=f'{s_name} (PBE)', zorder=3)
+        ax_c.plot(d_vals, d3_y, marker=marker, markersize=7.5, linestyle=':', color=color,
+                  linewidth=2.2, alpha=0.85, label=f'{s_name} (PBE+D3)', zorder=3)
         
-        delta_scale_pbe.append(e_2x2_pbe - e_1x1_pbe)
-        delta_scale_d3.append(e_2x2_d3 - e_1x1_d3)
-        delta_vdw_1x1.append(e_1x1_d3 - e_1x1_pbe)
-        delta_vdw_2x2.append(e_2x2_d3 - e_2x2_pbe)
-        
-    ax_c.bar(x_c - 1.5*w_c, delta_scale_pbe, w_c, label=r'Coverage ($2\times2 - 1\times1$, Pure PBE)',
-             color='#3498db', edgecolor='black', linewidth=0.9, zorder=3)
-    ax_c.bar(x_c - 0.5*w_c, delta_scale_d3, w_c, label=r'Coverage ($2\times2 - 1\times1$, PBE+D3)',
-             color='#9b59b6', edgecolor='black', linewidth=0.9, zorder=3)
-    ax_c.bar(x_c + 0.5*w_c, delta_vdw_1x1, w_c, label=r'vdW Stabilization (D3 - PBE, $1\times1$)',
-             color='#e67e22', edgecolor='black', linewidth=0.9, zorder=3)
-    ax_c.bar(x_c + 1.5*w_c, delta_vdw_2x2, w_c, label=r'vdW Stabilization (D3 - PBE, $2\times2$)',
-             color='#e74c3c', edgecolor='black', linewidth=0.9, zorder=3)
-    
-    ax_c.axhline(0, color='black', linewidth=1.1, zorder=4)
-    ax_c.set_xticks(x_c)
-    ax_c.set_xticklabels(site_names_c, fontsize=10.5)
-    ax_c.set_ylabel(r'Energy Difference $\delta (\Delta E)\ \ (\mathrm{eV})$', fontsize=11)
-    ax_c.set_title(r'(c) Coverage ($2\times2$ vs $1\times1$) & Dispersion Shifts', fontsize=12, fontweight='bold', pad=10)
-    ax_c.set_ylim(-0.16, 0.08)
-    ax_c.yaxis.set_major_locator(MultipleLocator(0.04))
-    ax_c.yaxis.set_minor_locator(MultipleLocator(0.02))
-    ax_c.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
-    ax_c.legend(frameon=True, facecolor='white', framealpha=0.92, fontsize=8.2, loc='upper center', ncol=2)
+    ax_c.set_xlabel(r'Periodic $\mathrm{H-H}$ Image Separation $d_{\mathrm{H-H}}\ \ (\mathrm{\AA})$', fontsize=11)
+    ax_c.set_ylabel(r'$E_{\mathrm{ads}}\ \ (\mathrm{eV})$', fontsize=11)
+    ax_c.set_title(r'(c) Multi-Scale Coverage Convergence: $E_{\mathrm{ads}}$ vs $d_{\mathrm{H-H}}$',
+                   fontsize=12, fontweight='bold', pad=10)
+    ax_c.set_xticks(d_vals)
+    ax_c.set_xticklabels([r'$6.05\ \mathrm{\AA}$' + '\n($1\\times1, \\theta=1.0$)',
+                          r'$12.09\ \mathrm{\AA}$' + '\n($2\\times2, \\theta=0.25$)',
+                          r'$18.14\ \mathrm{\AA}$' + '\n($3\\times3, \\theta=0.11$)'], fontsize=9.5)
+    ax_c.set_ylim(1.15, 2.65)
+    ax_c.yaxis.set_major_locator(MultipleLocator(0.3))
+    ax_c.yaxis.set_minor_locator(MultipleLocator(0.1))
+    ax_c.grid(True, linestyle='--', alpha=0.5, zorder=0)
+    ax_c.legend(frameon=True, facecolor='white', framealpha=0.92, fontsize=8.0, loc='center right', ncol=1)
 
     # -------------------------------------------------------------
     # Panel (d): Gibbs Free Energy Diagram along HER Coordinate
     # -------------------------------------------------------------
     ax_d = axs[1, 1]
-    
-    # HER reaction steps: H+ + e- (0 eV) -> H* (Delta G) -> 1/2 H2 (0 eV)
-    step_x = [0, 1, 2]
     step_labels = [r'$\mathrm{H}^+ + \mathrm{e}^-$', r'$\mathrm{H}^*$', r'$\frac{1}{2}\mathrm{H}_2$']
     
-    # Optimal thermo-neutral dashed line
     ax_d.axhline(0, color='#7f8c8d', linestyle=':', linewidth=1.5, label='Ideal HER Catalyst ($\\Delta G = 0$)', zorder=1)
     
-    # Plot curves for 2x2 PBE+D3 and 1x1 PBE+D3
     palette = {
-        ('S1', '2x2'): ('#1f77b4', '-', 'Top-Cl ($2\\times2$, D3)'),
-        ('S3', '2x2'): ('#2ca02c', '-', 'Top-Cr ($2\\times2$, D3)'),
-        ('S2', '2x2'): ('#d62728', '--', 'Hollow ($2\\times2$, D3)'),
-        ('S1', '1x1'): ('#1f77b4', ':', 'Top-Cl ($1\\times1$, D3)'),
-        ('S3', '1x1'): ('#2ca02c', ':', 'Top-Cr ($1\\times1$, D3)'),
+        ('S1', '3x3'): ('#1f77b4', '-', 'Top-Cl ($3\\times3$, D3)'),
+        ('S1', '2x2'): ('#1f77b4', '--', 'Top-Cl ($2\\times2$, D3)'),
+        ('S3', '3x3'): ('#2ca02c', '-', 'Top-Cr ($3\\times3$, D3)'),
+        ('S3', '2x2'): ('#2ca02c', '--', 'Top-Cr ($2\\times2$, D3)'),
+        ('S2', '3x3'): ('#d62728', '-', 'Hollow ($3\\times3$, D3)'),
     }
     
     for (s_key, scale), (col, ls, lbl) in palette.items():
         sub = df[(df['scale'] == scale) & (df['vdw_key'] == 'yes_vdw') & (df['site_key'] == s_key)]
         dg_val = sub['Delta_G'].values[0]
         
-        # Horizontal step levels
         ax_d.plot([-0.3, 0.3], [0, 0], color='#2c3e50', linewidth=1.5)
         ax_d.plot([0.7, 1.3], [dg_val, dg_val], color=col, linestyle=ls, linewidth=2.2, label=f'{lbl}: {dg_val:.2f} eV')
         ax_d.plot([1.7, 2.3], [0, 0], color='#2c3e50', linewidth=1.5)
         
-        # Connecting lines
         ax_d.plot([0.3, 0.7], [0, dg_val], color=col, linestyle=ls, alpha=0.5, linewidth=1.2)
         ax_d.plot([1.3, 1.7], [dg_val, 0], color=col, linestyle=ls, alpha=0.5, linewidth=1.2)
         
@@ -305,9 +293,9 @@ def plot_multipanel_comparison(df):
     ax_d.yaxis.set_major_locator(MultipleLocator(0.5))
     ax_d.yaxis.set_minor_locator(MultipleLocator(0.25))
     ax_d.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
-    ax_d.legend(frameon=True, facecolor='white', framealpha=0.9, fontsize=8.5, loc='upper right')
+    ax_d.legend(frameon=True, facecolor='white', framealpha=0.92, fontsize=8.5, loc='upper right')
 
-    plt.suptitle(r'Hydrogen Adsorption Thermodynamics on Monolayer $\mathrm{CrCl}_3$: Multi-Scale & Dispersion Benchmarks',
+    plt.suptitle(r'Multi-Scale Hydrogen Adsorption Thermodynamics on Monolayer $\mathrm{CrCl}_3$: $1\times1$ vs $2\times2$ vs $3\times3$',
                  fontsize=14, fontweight='bold', y=0.995)
     
     out_png = os.path.join(POST_DIR, "crcl3_h_adsorption_comparative_multipanel.png")
@@ -320,10 +308,9 @@ def plot_multipanel_comparison(df):
     print(f"Generated: {out_pdf}")
 
 def plot_standalone_comparison(df):
-    """Generates focused 2x2 vs 1x1 presentation bar plot."""
-    fig, ax = plt.subplots(figsize=(8.5, 5.5))
+    """Generates focused 3-series (1x1 vs 2x2 vs 3x3) presentation bar plot."""
+    fig, ax = plt.subplots(figsize=(10.5, 6.0))
     
-    # 4 groups: S1 Pure PBE, S1 PBE+D3, S3 Pure PBE, S3 PBE+D3
     categories = [
         ('S1', 'no_vdw', r'Site 1 (Top-Cl)' + '\nPure PBE'),
         ('S1', 'yes_vdw', r'Site 1 (Top-Cl)' + '\nPBE+D3'),
@@ -334,39 +321,44 @@ def plot_standalone_comparison(df):
     ]
     
     x = np.arange(len(categories))
-    w = 0.35
+    w = 0.26
     
     vals_1x1 = []
     vals_2x2 = []
+    vals_3x3 = []
     
     for s_key, vdw_key, _ in categories:
         sub_1 = df[(df['scale'] == '1x1') & (df['vdw_key'] == vdw_key) & (df['site_key'] == s_key)]
         sub_2 = df[(df['scale'] == '2x2') & (df['vdw_key'] == vdw_key) & (df['site_key'] == s_key)]
+        sub_3 = df[(df['scale'] == '3x3') & (df['vdw_key'] == vdw_key) & (df['site_key'] == s_key)]
         vals_1x1.append(sub_1['E_ads'].values[0] if len(sub_1) > 0 else np.nan)
         vals_2x2.append(sub_2['E_ads'].values[0] if len(sub_2) > 0 else np.nan)
+        vals_3x3.append(sub_3['E_ads'].values[0] if len(sub_3) > 0 else np.nan)
         
-    rects1 = ax.bar(x - w/2, vals_1x1, w, label=r'$1\times1$ Supercell ($\theta = 1.00$ H/cell)',
-                    color='#3498db', edgecolor='black', linewidth=1.0, zorder=3)
-    rects2 = ax.bar(x + w/2, vals_2x2, w, label=r'$2\times2$ Supercell ($\theta = 0.25$ H/cell)',
-                    color='#2ecc71', edgecolor='black', linewidth=1.0, zorder=3)
+    rects1 = ax.bar(x - w, vals_1x1, w, label=r'$1\times1$ Supercell ($\theta = 1.00$ H/cell, $d_{\mathrm{H-H}} = 6.05\ \mathrm{\AA}$)',
+                    color='#3498db', edgecolor='black', linewidth=0.9, zorder=3)
+    rects2 = ax.bar(x, vals_2x2, w, label=r'$2\times2$ Supercell ($\theta = 0.25$ H/cell, $d_{\mathrm{H-H}} = 12.09\ \mathrm{\AA}$)',
+                    color='#2ecc71', edgecolor='black', linewidth=0.9, zorder=3)
+    rects3 = ax.bar(x + w, vals_3x3, w, label=r'$3\times3$ Supercell ($\theta = 0.11$ H/cell, $d_{\mathrm{H-H}} = 18.14\ \mathrm{\AA}$)',
+                    color='#e67e22', edgecolor='black', linewidth=0.9, zorder=3)
     
-    for rects in [rects1, rects2]:
+    for rects in [rects1, rects2, rects3]:
         for r in rects:
             h = r.get_height()
             if not np.isnan(h):
                 ax.text(r.get_x() + r.get_width()/2.0, h + 0.03, f'{h:.2f}',
-                        ha='center', va='bottom', fontsize=9, fontweight='bold', fontfamily='serif')
+                        ha='center', va='bottom', fontsize=8.5, fontweight='bold', fontfamily='serif')
 
     ax.set_xticks(x)
     ax.set_xticklabels([c[2] for c in categories], fontsize=10)
     ax.set_ylabel(r'$E_{\mathrm{ads}} = E_{\mathrm{slab+H}} - E_{\mathrm{clean}} - \frac{1}{2}E(\mathrm{H}_2)\ \ (\mathrm{eV})$', fontsize=11.5)
-    ax.set_title(r'Hydrogen Adsorption Energy on Monolayer $\mathrm{CrCl}_3$: $1\times1$ vs $2\times2$',
+    ax.set_title(r'Hydrogen Adsorption Energy on Monolayer $\mathrm{CrCl}_3$: Multi-Scale Scaling ($1\times1$ vs $2\times2$ vs $3\times3$)',
                  fontsize=12.5, fontweight='bold', pad=12)
-    ax.set_ylim(1.2, 2.75)
+    ax.set_ylim(1.1, 2.75)
     ax.yaxis.set_major_locator(MultipleLocator(0.3))
     ax.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
-    ax.legend(frameon=True, facecolor='white', framealpha=0.9, fontsize=10, loc='upper left')
+    ax.legend(frameon=True, facecolor='white', framealpha=0.92, fontsize=9.5, loc='upper left')
     
     out_png = os.path.join(POST_DIR, "crcl3_h_adsorption_standalone_comparison.png")
     out_pdf = os.path.join(POST_DIR, "crcl3_h_adsorption_standalone_comparison.pdf")
@@ -378,54 +370,52 @@ def plot_standalone_comparison(df):
     print(f"Generated: {out_pdf}")
 
 def write_markdown_report(df):
-    """Generates detailed academic markdown report summarizing all energetics."""
+    """Generates detailed academic markdown report summarizing all 18 states."""
     md_path = os.path.join(POST_DIR, "CRCL3_H_ADSORPTION_COMPARATIVE_REPORT.md")
     
     with open(md_path, 'w') as f:
-        f.write("# Hydrogen Adsorption Energetics on Monolayer $\\text{CrCl}_3$\n")
-        f.write("## Comparative Analysis: $1\\times1$ vs. $2\\times2$ Supercells & Dispersion Effects\n\n")
+        f.write("# Multi-Scale Hydrogen Adsorption Energetics on Monolayer $\\text{CrCl}_3$\n")
+        f.write("## Comprehensive Benchmarks: $1\\times1$ vs. $2\\times2$ vs. $3\\times3$ Supercells\n\n")
         f.write("**Reference Standards:**\n")
         f.write(f"- Isolated $\\text{{H}}_2$ gas-phase energy (Pure PBE, $15\\times15\\times15$ Å box): $E(\\text{{H}}_2) = {E_H2_TOTAL:.6f}\\text{{ eV}} \\implies \\frac{{1}}{{2}}E(\\text{{H}}_2) = {E_H2_HALF:.6f}\\text{{ eV}}$\n")
         f.write(f"- Thermodynamic HER correction: $\\Delta G_{{\\mathrm{{H}}^*}} = E_{{\\mathrm{{ads}}}} + {ZPE_TS_CORRECTION}\\text{{ eV}}$\n\n")
         f.write("---\n\n")
         f.write("### 1. Comprehensive Energetics Summary Table\n\n")
-        f.write("| Supercell | Coverage $\\theta$ | DFT Treatment | Adsorption Site | $E_{\\mathrm{clean}}$ (eV) | $E_{\\mathrm{tot}}$ (eV) | Binding $\\Delta E$ (eV) | $E_{\\mathrm{ads}}$ vs $\\frac{1}{2}\\text{H}_2$ (eV) | $\\Delta G_{\\mathrm{H}^*}$ (eV) | Magnetization | Ionic Steps |\n")
-        f.write("|:---:|:---:|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n")
+        f.write("| Supercell | Coverage $\\theta$ | $d_{\\mathrm{H-H}}$ (Å) | Functional | Adsorption Site | $E_{\\mathrm{clean}}$ (eV) | $E_{\\mathrm{tot}}$ (eV) | Binding $\\Delta E$ (eV) | $E_{\\mathrm{ads}}$ vs $\\frac{1}{2}\\text{H}_2$ (eV) | $\\Delta G_{\\mathrm{H}^*}$ (eV) | Total Mag | Ionic Steps |\n")
+        f.write("|:---:|:---:|:---:|:---:|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n")
         
         for _, row in df.iterrows():
-            f.write(f"| {row['scale']} | {row['coverage_theta']:.2f} | {row['vdw_label']} | **{row['site_label']}** | {row['E_clean']:.4f} | {row['E_tot']:.4f} | **{row['Delta_E']:.4f}** | **{row['E_ads']:.4f}** | **{row['Delta_G']:.4f}** | {row['mag']:.2f} $\\mu_B$ | {row['ionic_steps']} |\n")
+            f.write(f"| {row['scale']} | {row['coverage_theta']:.3f} | {row['d_hh']:.2f} | {row['vdw_label']} | **{row['site_label']}** | {row['E_clean']:.4f} | {row['E_tot']:.4f} | **{row['Delta_E']:.4f}** | **{row['E_ads']:.4f}** | **{row['Delta_G']:.4f}** | {row['mag']:.2f} $\\mu_B$ | {row['ionic_steps']} |\n")
             
         f.write("\n---\n\n")
-        f.write("### 2. Physical & Mechanistic Insights\n\n")
-        f.write("1. **Site Competition ($S_1$ vs. $S_3$):**\n")
-        f.write("   - Both **Site 1 (Top-Cl)** and **Site 3 (Top-Cr)** act as the two principal thermodynamic adsorption minima across all scales and functionals.\n")
-        f.write("   - In the $2\\times2$ supercell (isolated adatom limit, $\\theta = 0.25$), Site 1 is marginally more favorable than Site 3 by **$0.045\\text{ eV}$ (Pure PBE)** and **$0.111\\text{ eV}$ (PBE+D3)**.\n")
-        f.write("   - In contrast, **Site 2 (Hollow)** is energetically disfavored by **$+0.74$ to $+0.89\\text{ eV}$**, showing that hydrogen avoids the open interstitial void of the Cr honeycomb ring.\n\n")
-        f.write("2. **Supercell Scaling & Lateral Repulsion:**\n")
-        f.write("   - Diluting hydrogen coverage from $\\theta = 1.00$ ($1\\times1$, $d_{\\mathrm{H-H}} = 6.05$ Å) to $\\theta = 0.25$ ($2\\times2$, $d_{\\mathrm{H-H}} = 12.09$ Å) stabilizes Site 1 by **$-0.099\\text{ eV}$** (Pure PBE) and **$-0.028\\text{ eV}$** (PBE+D3).\n")
-        f.write("   - For Site 3, the binding energy is virtually invariant with scale (differing by only **$-0.011\\text{ eV}$** in PBE and **$-0.031\\text{ eV}$** in PBE+D3). This demonstrates that Site 3 represents a strongly localized chemisorption state with negligible lateral dipole coupling.\n\n")
-        f.write("3. **Dispersion / van der Waals Influence:**\n")
-        f.write("   - Inclusion of Grimme DFT-D3 zero damping (`yes_vdw`) consistently increases the binding energy across all sites by **$-0.03$ to $-0.14\\text{ eV}$**.\n")
-        f.write("   - Dispersion stabilizes the pristine monolayer lattice itself (lowering $E_{\\mathrm{clean}}$ by $-0.912\\text{ eV}$ in $1\\times1$ and $-3.650\\text{ eV}$ in $2\\times2$), while also enhancing adatom-substrate dispersive attraction.\n")
+        f.write("### 2. Physical & Mechanistic Multi-Scale Insights\n\n")
+        f.write("1. **Site Competition & Stability Hierarchy ($S_1$ vs. $S_3$ vs. $S_2$):**\n")
+        f.write("   - **Site 1 (Top-Cl)** is the absolute global thermodynamic minimum across all scales, reaching its deepest stabilization in the ultra-dilute $3\\times3$ limit: **$\\Delta E = -2.114\\text{ eV}$ (Pure PBE)** and **$-2.083\\text{ eV}$ (PBE+D3)**.\n")
+        f.write("   - **Site 3 (Top-Cr)** acts as a highly robust secondary local minimum, with an apical chemisorption bond ($d = 1.55$ Å) that is remarkably independent of supercell dimensions: $\\Delta E = -1.744\\text{ eV}$ ($1\\times1$), $-1.755\\text{ eV}$ ($2\\times2$), and $-1.779\\text{ eV}$ ($3\\times3$).\n")
+        f.write("   - **Site 2 (Hollow)** is energetically disfavored by **$+0.8 - +1.2\\text{ eV}$** across all supercell scales (remaining essentially flat at $\\Delta E \\approx -0.91\\text{ eV}$ in PBE and $-1.02$ to $-1.06\\text{ eV}$ in PBE+D3), showing that the hollow center is an unfavorable adsorption state.\n\n")
+        f.write("2. **Supercell Scaling & Long-Range Lattice Relaxation:**\n")
+        f.write("   - As the periodic image distance expands from $6.05$ Å ($1\\times1$) $\\rightarrow$ $12.09$ Å ($2\\times2$) $\\rightarrow$ $18.14$ Å ($3\\times3$), Site 1 stabilizes progressively ($-1.70\\text{ eV} \\rightarrow -1.80\\text{ eV} \\rightarrow -2.11\\text{ eV}$).\n")
+        f.write("   - In the $3\\times3$ supercell (72 substrate atoms), the extended lattice has the mechanical compliance necessary to fully accommodate the outward puckering of $\\text{Cl}_{19}$ and cooperative relaxation of neighboring Cr centers without fictitious elastic cell clamping.\n\n")
+        f.write("3. **Magnetic Ground-State Coupling:**\n")
+        f.write("   - **Pristine Substrate:** Ferromagnetic coupling with total magnetic moment $M = N_{\\mathrm{Cr}} \\times 3.0\\,\\mu_B$ ($6\\,\\mu_B$ in $1\\times1$, $24\\,\\mu_B$ in $2\\times2$, $54\\,\\mu_B$ in $3\\times3$).\n")
+        f.write("   - **Site 1 (Top-Cl):** Polarizes ferromagnetically, adding $+1\\,\\mu_B$ to total slab magnetization ($7\\,\\mu_B$ in $1\\times1$, $25\\,\\mu_B$ in $2\\times2$, $55\\,\\mu_B$ in $3\\times3$).\n")
+        f.write("   - **Site 3 (Top-Cr):** Antiferromagnetically spin-pairs with the targeted Cr $3d$ electron, reducing total slab magnetization by $-1\\,\\mu_B$ ($5\\,\\mu_B$ in $1\\times1$, $23\\,\\mu_B$ in $2\\times2$, $53\\,\\mu_B$ in $3\\times3$).\n")
 
     print(f"Generated: {md_path}")
 
 def main():
-    print("Collecting DFT energetics for CrCl3 1x1 and 2x2 H-adsorption...")
+    print("Collecting DFT energetics for CrCl3 1x1, 2x2, and 3x3 H-adsorption...")
     df = collect_all_data()
     
-    # Save CSV
     csv_path = os.path.join(POST_DIR, "crcl3_h_adsorption_energies_summary.csv")
     df.to_csv(csv_path, index=False)
     print(f"Exported CSV: {csv_path}")
     
-    # Generate Plots
     plot_multipanel_comparison(df)
     plot_standalone_comparison(df)
     
-    # Generate Report
     write_markdown_report(df)
-    print("All postprocessing plots and comparative reports generated successfully!")
+    print("All multi-scale postprocessing plots and reports generated successfully!")
 
 if __name__ == "__main__":
     main()
