@@ -5,7 +5,7 @@
 # Hardware: Huk Cluster (alto: huk120, medio: huk123/124, normal: huk126)
 # ==============================================================================
 
-set -e
+# set -e disabled to prevent unexpected termination on arithmetic or non-fatal checks
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
@@ -45,7 +45,7 @@ for elem in "${ELEMENTS[@]}"; do
         CLEAN_DIR="$ELEM_DIR/$vdw/clean"
         if [ -f "$CLEAN_DIR/OUTCAR" ] && grep -q "General timing and accounting" "$CLEAN_DIR/OUTCAR" 2>/dev/null; then
             echo "  [CLEAN] $elem/$vdw/clean already converged. Skipping re-run."
-            ((SKIPPED_CLEAN++))
+            SKIPPED_CLEAN=$((SKIPPED_CLEAN + 1))
         fi
 
         for site in "${SITES[@]}"; do
@@ -63,19 +63,24 @@ for elem in "${ELEMENTS[@]}"; do
             fi
             
             # Check required VASP inputs
+            MISSING_INPUT=0
             for req in INCAR POSCAR POTCAR KPOINTS job.sh; do
                 if [ ! -f "$TARGET_DIR/$req" ]; then
                     echo "  [ERROR] Missing $req in $TARGET_DIR! Cannot submit."
-                    continue 2
+                    MISSING_INPUT=1
+                    break
                 fi
             done
+            if [ "$MISSING_INPUT" -eq 1 ]; then
+                continue
+            fi
             
             # Submit job from within target directory
             cd "$TARGET_DIR"
             JOB_OUT=$(sbatch job.sh)
             JOB_ID=$(echo "$JOB_OUT" | awk '{print $NF}')
             echo "  [SUBMITTED] $elem | $vdw | $site -> Job ID: $JOB_ID (Partition: alto,medio)"
-            ((TOTAL_SUBMITTED++))
+            TOTAL_SUBMITTED=$((TOTAL_SUBMITTED + 1))
             cd "$SCRIPT_DIR"
         done
     done

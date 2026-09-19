@@ -24,13 +24,14 @@ echo "Starting Slurm Job : $SLURM_JOB_NAME ($SLURM_JOB_ID)"
 echo "Executing on Host  : $(hostname)"
 echo "Partition Selected : $SLURM_JOB_PARTITION"
 echo "Allocated Node(s)  : $SLURM_NODELIST"
+echo "Allocated CPUs     : $SLURM_CPUS_ON_NODE"
 echo "Working Directory  : $(pwd)"
 echo "Start Timestamp    : $(date)"
 echo "=========================================================="
 
 # --- 3. Dynamic Parallelization Sizing (Amdahl's Law Tuning) ---
-NPROCS=${SLURM_NPROCS:-$SLURM_NTASKS}
-if [ -z "$NPROCS" ] || [ "$NPROCS" -eq 0 ]; then
+NPROCS=${SLURM_CPUS_ON_NODE:-$(nproc)}
+if [ -z "$NPROCS" ] || [ "$NPROCS" -le 1 ]; then
     NPROCS=$(nproc)
 fi
 
