@@ -1,0 +1,25 @@
+{
+  "cluster_id": "carbono",
+  "name": "Carbono HPC Cluster (UFABC)",
+  "hostname": "carbono.ufabc.edu.br",
+  "organization": "Universidade Federal do ABC (UFABC, Brazil)",
+  "timezone": "America/Sao_Paulo (UTC-3)",
+  "user": "carlos.primo",
+  "os": "Red Hat Enterprise Linux / CentOS 8",
+  "module_system": "Lmod / Environment Modules",
+  "network": {
+    "has_internet": true,
+    "access": "SSH Bastion / Direct"
+  },
+  "modules": [
+    "module load python",
+    "module load vasp/6.x",
+    "module load intel/2023",
+    "module load openmpi"
+  ],
+  "best_practices": {
+    "login_node_usage": "Never run compute intensive tasks on head node; submit via sbatch",
+    "storage": "Use $SCRATCH for scratch I/O, $HOME for code/scripts",
+    "vasp_command": "srun vasp_std"
+  }
+}

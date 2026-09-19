@@ -1,0 +1,67 @@
+{
+  "cluster_id": "huk",
+  "name": "Huk Internal Research Cluster",
+  "ip": "192.168.16.100",
+  "os": "Red Hat Enterprise Linux / Rocky Linux 9.6",
+  "kernel": "Linux 5.14.0-570.18.1.el9_6.x86_64",
+  "slurm_version": "24.11.5",
+  "head_node": {
+    "hostname": "huk",
+    "cpu": "Intel(R) Xeon(R) Gold 5118 @ 2.30GHz",
+    "ram_gb": 32,
+    "internet_access": false,
+    "ssh_access": "Direct LAN via OpenSSH ControlMaster (ssh huk)"
+  },
+  "partitions": {
+    "hram": {
+      "nodes": ["huk119"],
+      "total_nodes": 1,
+      "cores_per_node": 40,
+      "ram_total_gb": 504.0,
+      "max_walltime": "7-00:00:00",
+      "best_for": "Memory-intensive DFT, HSE06 hybrid functionals, 3x3 CrCl3 supercells, phonon calculations"
+    },
+    "alto": {
+      "nodes": ["huk120", "huk121"],
+      "total_nodes": 2,
+      "cores_per_node": 36,
+      "ram_total_gb": 126.0,
+      "max_walltime": "7-00:00:00",
+      "best_for": "High-priority quick turnaround runs (1x1 and 2x2 supercell relaxations)"
+    },
+    "medio": {
+      "nodes": ["huk122", "huk123", "huk124"],
+      "total_nodes": 3,
+      "cores_per_node": 28,
+      "ram_total_gb": 126.0,
+      "max_walltime": "30-00:00:00",
+      "best_for": "Standard ionic relaxations up to 30 days"
+    },
+    "normal": {
+      "is_default": true,
+      "nodes": ["huk125", "huk126", "huk127", "huk128"],
+      "total_nodes": 4,
+      "cores_per_node": 24,
+      "ram_total_gb": 126.0,
+      "max_walltime": "90-00:00:00",
+      "best_for": "Ultra-long runs up to 90 days, molecular dynamics (AIMD)"
+    }
+  },
+  "compute_nodes": [
+    {"name": "huk119", "partition": "hram", "cpus": 40, "ram_gb": 504.0, "status": "active"},
+    {"name": "huk120", "partition": "alto", "cpus": 36, "ram_gb": 126.0, "status": "active"},
+    {"name": "huk121", "partition": "alto", "cpus": 36, "ram_gb": 126.0, "status": "down_not_responding"},
+    {"name": "huk122", "partition": "medio", "cpus": 28, "ram_gb": 112.0, "status": "active"},
+    {"name": "huk123", "partition": "medio", "cpus": 28, "ram_gb": 126.0, "status": "active"},
+    {"name": "huk124", "partition": "medio", "cpus": 28, "ram_gb": 126.0, "status": "active"},
+    {"name": "huk125", "partition": "normal", "cpus": 28, "ram_gb": 126.0, "status": "active"},
+    {"name": "huk126", "partition": "normal", "cpus": 24, "ram_gb": 126.0, "status": "active"},
+    {"name": "huk127", "partition": "normal", "cpus": 24, "ram_gb": 126.0, "status": "active"},
+    {"name": "huk128", "partition": "normal", "cpus": 24, "ram_gb": 126.0, "status": "active"}
+  ],
+  "storage_paths": {
+    "home": "/home/juan",
+    "scratch": "/tmp",
+    "nfs_exports": "/home and /opt on 10.10.1.0/24"
+  }
+}

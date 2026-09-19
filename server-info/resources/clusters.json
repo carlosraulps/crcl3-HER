@@ -1,0 +1,180 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "2.0.0",
+  "last_updated": "2026-09-18",
+  "description": "Master HPC Cluster and Compute Node Registry",
+  "clusters": {
+    "iskay": {
+      "name": "Iskay",
+      "slug": "iskay",
+      "type": "hpc_cluster",
+      "role": "Head node / Gateway cluster with internet access",
+      "location": "LAN",
+      "network": {
+        "ip": "192.168.16.200",
+        "hostname": "iskay",
+        "has_internet": true,
+        "access_method": "local_or_ssh"
+      },
+      "slurm": {
+        "version": "Slurm 24.x",
+        "mode": "local",
+        "default_partition": "normal",
+        "partitions": ["normal"]
+      },
+      "hardware_summary": {
+        "nodes_count": 2,
+        "node_prefix": "iskay",
+        "nodes": ["iskay201", "iskay202"],
+        "cores_per_node": 256,
+        "total_cores": 512,
+        "sockets_per_node": 2,
+        "cores_per_socket": 128,
+        "threads_per_core": 1,
+        "ram_per_node_gb": 742,
+        "total_ram_gb": 1484,
+        "cpu_model": "Intel/AMD High Core Density",
+        "gpu": null
+      },
+      "storage": {
+        "home": "/home/juan",
+        "carlos_project": "/home/juan/Carlos",
+        "scratch": "/tmp"
+      },
+      "recommended_workloads": [
+        "Massive parallel DFT (VASP 2x2 and 3x3 supercells)",
+        "High-core MPI calculations",
+        "SIESTA large orbital basis relaxations",
+        "Throughput parameter sweeps"
+      ]
+    },
+    "huk": {
+      "name": "Huk",
+      "slug": "huk",
+      "type": "hpc_cluster",
+      "role": "Internal compute cluster (isolated, zero-internet)",
+      "location": "LAN",
+      "network": {
+        "ip": "192.168.16.100",
+        "hostname": "huk",
+        "has_internet": false,
+        "access_method": "ssh_via_lan_socket"
+      },
+      "slurm": {
+        "version": "Slurm 24.11.5",
+        "mode": "remote_lan",
+        "default_partition": "normal",
+        "partitions": ["hram", "alto", "medio", "normal"]
+      },
+      "hardware_summary": {
+        "nodes_count": 10,
+        "node_prefix": "huk",
+        "nodes": ["huk119", "huk120", "huk121", "huk122", "huk123", "huk124", "huk125", "huk126", "huk127", "huk128"],
+        "cores_per_node": "24 to 40",
+        "total_cores": 296,
+        "ram_per_node_gb": "112 to 504",
+        "total_ram_gb": 1642,
+        "cpu_model": "Intel(R) Xeon(R) Gold 5118 @ 2.30GHz",
+        "gpu": null
+      },
+      "partitions_detail": {
+        "hram": {
+          "nodes": ["huk119"],
+          "cores_per_node": 40,
+          "ram_gb": 504,
+          "max_walltime_days": 7,
+          "best_for": "Large memory footprint calculations, hybrid functionals (HSE06), huge supercells"
+        },
+        "alto": {
+          "nodes": ["huk120", "huk121"],
+          "cores_per_node": 36,
+          "ram_gb": 126,
+          "max_walltime_days": 7,
+          "best_for": "High-priority calculations, fast turnarounds (1x1 and 2x2 VASP)"
+        },
+        "medio": {
+          "nodes": ["huk122", "huk123", "huk124"],
+          "cores_per_node": 28,
+          "ram_gb": 126,
+          "max_walltime_days": 30,
+          "best_for": "Medium duration runs, standard ionic relaxations"
+        },
+        "normal": {
+          "nodes": ["huk125", "huk126", "huk127", "huk128"],
+          "cores_per_node": "24-28",
+          "ram_gb": 126,
+          "max_walltime_days": 90,
+          "best_for": "Long walltime jobs (up to 90 days), molecular dynamics, slow convergence runs"
+        }
+      },
+      "storage": {
+        "home": "/home/juan",
+        "scratch": "/tmp"
+      },
+      "recommended_workloads": [
+        "Memory-heavy runs on huk119 (hram)",
+        "Standard VASP ionic relaxations on medio/normal",
+        "Long-running DFT jobs up to 90 days"
+      ]
+    },
+    "carbono": {
+      "name": "Carbono",
+      "slug": "carbono",
+      "type": "hpc_cluster",
+      "role": "UFABC Academic Supercomputer",
+      "location": "UFABC Brazil (Remote WAN)",
+      "network": {
+        "hostname": "carbono.ufabc.edu.br",
+        "has_internet": true,
+        "access_method": "ssh_remote"
+      },
+      "slurm": {
+        "version": "Slurm Enterprise",
+        "mode": "remote",
+        "environment_system": "Lmod / Environment Modules"
+      },
+      "hardware_summary": {
+        "cores_per_node": "32 to 64",
+        "architecture": "x86_64 Enterprise Linux",
+        "cpu_model": "Intel Xeon / AMD EPYC",
+        "gpu": "NVIDIA compute nodes available in specific partitions"
+      },
+      "environment": {
+        "modules_cmd": "module load python; module load vasp",
+        "timezone": "America/Sao_Paulo (UTC-3)"
+      },
+      "recommended_workloads": [
+        "Production academic calculations",
+        "GPU accelerated calculations",
+        "Large-scale multi-node MPI scaling"
+      ]
+    },
+    "arch": {
+      "name": "Arch Workstation",
+      "slug": "arch",
+      "type": "workstation",
+      "role": "Local development, post-processing, visualization & testing machine",
+      "location": "Local",
+      "network": {
+        "hostname": "archlocal",
+        "has_internet": true,
+        "access_method": "local"
+      },
+      "slurm": {
+        "version": "Local tests / Client only",
+        "mode": "local_client"
+      },
+      "features": [
+        "Desktop notifications (Dunst / notify-send)",
+        "Qtile widgets & Gridgets telemetry integration",
+        "VASP structure post-processing (analyze_lattice_and_forces.py)",
+        "Matplotlib visual plots & report generation"
+      ],
+      "recommended_workloads": [
+        "Data extraction & band structure plotting",
+        "Calculation convergence verification",
+        "Script prototyping & dry runs"
+      ]
+    }
+  }
+}

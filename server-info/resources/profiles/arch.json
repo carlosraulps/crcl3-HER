@@ -1,0 +1,25 @@
+{
+  "cluster_id": "arch",
+  "name": "Arch Linux Local Workstation",
+  "hostname": "archlocal",
+  "role": "Workstation, Analysis, Prototyping & Notification Hub",
+  "os": "Arch Linux (Rolling Release)",
+  "desktop_environment": "Qtile / X11 or Wayland",
+  "tools_available": [
+    "dunst (desktop notifications via notify-send)",
+    "python 3.12+",
+    "matplotlib, pandas, numpy, scipy",
+    "git, openssh, rsync"
+  ],
+  "capabilities": {
+    "post_processing": true,
+    "slurm_job_generation": true,
+    "heavy_dft_compute": false
+  },
+  "recommended_workflow": [
+    "Prototype inputs locally",
+    "Submit via sbatch to Iskay or Huk",
+    "Monitor via Discord bot SQ#6816",
+    "Download OUTCAR/CONTCAR for post-processing and bandstructure plotting on Arch"
+  ]
+}

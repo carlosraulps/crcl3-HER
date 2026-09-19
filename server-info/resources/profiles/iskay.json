@@ -1,0 +1,57 @@
+{
+  "cluster_id": "iskay",
+  "name": "Iskay HPC Cluster",
+  "ip": "192.168.16.200",
+  "gateway": "192.168.16.1",
+  "os": "Rocky Linux 10.1 (Red Quartz)",
+  "kernel": "Linux 6.x",
+  "slurm_version": "24.x",
+  "login_node": {
+    "hostname": "iskay",
+    "cpu": "Intel(R) Xeon(R) Silver 4410Y (12 cores, 2 NUMA nodes)",
+    "ram_gb": 32,
+    "internet_access": true
+  },
+  "compute_nodes": [
+    {
+      "name": "iskay201",
+      "sockets": 2,
+      "cores_per_socket": 128,
+      "total_cpus": 256,
+      "threads_per_core": 1,
+      "ram_total_mb": 760000,
+      "ram_total_gb": 742.2,
+      "partitions": ["normal"]
+    },
+    {
+      "name": "iskay202",
+      "sockets": 2,
+      "cores_per_socket": 128,
+      "total_cpus": 256,
+      "threads_per_core": 1,
+      "ram_total_mb": 760000,
+      "ram_total_gb": 742.2,
+      "partitions": ["normal"]
+    }
+  ],
+  "partitions": {
+    "normal": {
+      "default": true,
+      "nodes": ["iskay201", "iskay202"],
+      "max_nodes_per_job": 2,
+      "max_cpus_per_job": 512,
+      "max_mem_per_node_gb": 720
+    }
+  },
+  "storage_paths": {
+    "home": "/home/juan",
+    "carlos_scratch": "/home/juan/Carlos",
+    "filesystem": "xfs/ext4 on local LVM (rl-home, 7.7 TB)"
+  },
+  "mpi_tuning": {
+    "launcher": "srun or mpirun",
+    "recommended_binding": "--cpu-bind=cores",
+    "vasp_ncore_recommendation": 8,
+    "vasp_kpar_recommendation": "divisor of kpoints (e.g. 4 or 8)"
+  }
+}
