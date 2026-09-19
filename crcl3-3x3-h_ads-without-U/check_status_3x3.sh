@@ -32,21 +32,25 @@ for V in "${VARIANTS[@]}"; do
         fi
 
         MAX_FORCE="N/A"
-        STATUS="Pending"
+        if [ "$SLURM_STATE" == "RUNNING" ]; then
+            STATUS="RUNNING"
+        elif [ "$SLURM_STATE" == "PENDING" ]; then
+            STATUS="QUEUED"
+        else
+            STATUS="NOT_SUBMITTED"
+        fi
+
         if [ -f "$CALC_DIR/OUTCAR" ]; then
             if grep -q "reached required accuracy" "$CALC_DIR/OUTCAR" 2>/dev/null; then
                 STATUS="CONVERGED"
-            elif [ "$SLURM_STATE" == "RUNNING" ]; then
-                STATUS="RUNNING"
-            elif [ "$SLURM_STATE" == "PENDING" ]; then
-                STATUS="QUEUED"
-            else
+            elif [ "$SLURM_STATE" == "NONE" ]; then
                 STATUS="STOPPED"
             fi
             
-            LAST_FORCE=$(grep -A 2 "TOTAL-FORCE" "$CALC_DIR/OUTCAR" 2>/dev/null | tail -n 1 | awk '{print $4}' 2>/dev/null)
+            # Compute true maximum residual force magnitude across all atoms in the last step
+            LAST_FORCE=$(awk '/TOTAL-FORCE/{flag=1; count=0; maxf=0; next} /---/{if(flag) count++; if(count==2){flag=0; print maxf}; next} flag{f=sqrt($4*$4+$5*$5+$6*$6); if(f>maxf) maxf=f}' "$CALC_DIR/OUTCAR" 2>/dev/null | tail -n 1)
             if [ -n "$LAST_FORCE" ]; then
-                MAX_FORCE="$LAST_FORCE"
+                printf -v MAX_FORCE "%.4f" "$LAST_FORCE" 2>/dev/null || MAX_FORCE="$LAST_FORCE"
             fi
         fi
 

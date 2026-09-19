@@ -2,7 +2,7 @@
 # SYSTEM: CrCl3 3x3 + H (S2 hollow) (D3, U=0eV)
 # Cell: CrCl3 3x3 Monolayer Supercell (18 Cr, 54 Cl, 1 H)
 # Vacuum: c = 20.0000 Angstroms (Fixed vacuum layer, slab centered at z = 0.5)
-# Method: PBE + Grimme DFT-D3 (zero-damping), U = 0 eV
+# Method: PBE + Grimme DFT-D3 (BJ-damping), U = 0 eV
 # Equilibrium In-Plane Cell Parameter: a_3x3 = 18.1388 Angstroms (from ISIF=3 1x1 zero-stress)
 # =========================================================================
 
@@ -23,16 +23,16 @@ ISMEAR   = 0           # Gaussian smearing; required for 2D semiconductor slab t
 SIGMA    = 0.05        # Smearing width (eV); 50 meV minimizes artificial electronic entropy (-TS ~ 0) in semiconductors
 
 # --- 4. Parallelization & Computational Performance ---
-NCORE    = 4           # Number of CPU cores per orbital group; optimizes FFT communication on 16-core nodes
+NCORE    = 8           # Number of CPU cores per orbital group; matches 8-core AMD EPYC Zen3 CCD L3 cache for 64 MPI ranks
 LREAL    = Auto        # Projection operators evaluated in real space; essential for 72/73-atom 3x3 supercells
 
 # --- 5. van der Waals Dispersion Correction ---
-IVDW     = 11          # Grimme DFT-D3 zero-damping dispersion correction; models non-local vdW interactions
+IVDW     = 12          # Grimme DFT-D3 Becke-Johnson (BJ) damping dispersion correction; models non-local vdW interactions
 
 # --- 6. Ionic Relaxation & Convergence Criteria ---
 IBRION   = 2           # Conjugate-gradient algorithm; most robust scheme for atomic coordinate relaxation
 NSW      = 100         # Maximum number of ionic optimization steps; provides headroom for hydrogen relaxation
-ISIF     = 2           # Relax atomic positions only; cell vectors and vacuum thickness (c=20.0 A) strictly fixed
+ISIF     = 2           # Relax atomic positions only; cell vectors and vacuum thickness (c: 20.0 A) strictly fixed
 EDIFFG   = -0.025      # Force convergence criterion (eV/Angstrom); optimization stops when all forces < 0.025 eV/A (paper standard)
 
 # --- 7. PAW Density Mixing & Aspherical Gradients ---

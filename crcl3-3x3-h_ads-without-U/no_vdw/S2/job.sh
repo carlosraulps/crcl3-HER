@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH -J H3x3_S2_novdw
-#SBATCH -p normal
+#SBATCH -p fulereno
 #SBATCH --nodes=1
-#SBATCH --ntasks=32
+#SBATCH --ntasks=64
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=32G
-#SBATCH --time=7-00:00:00
+#SBATCH --mem=64G
+#SBATCH --time=5-00:00:00
 #SBATCH --requeue
 #SBATCH -o %x.%j.out
 #SBATCH -e %x.%j.err
@@ -19,10 +19,14 @@ echo "Start Time:  $(date)"
 echo "CPUs Alloc:  $SLURM_NTASKS"
 echo "=========================================================="
 
-# 1. Fault Tolerance: Intercept shutdown/preemption signals for graceful VASP exit
+# 1. System Limits & OpenMP Environment
+ulimit -s unlimited 2>/dev/null || true
+export OMP_NUM_THREADS=1
+
+# 2. Fault Tolerance: Intercept termination/preemption signals for graceful VASP exit
 trap 'echo "LABORT = .TRUE." > STOPCAR; echo "[$(date)] Intercepted termination signal! Flushed STOPCAR for clean exit."; wait' SIGTERM SIGINT SIGHUP
 
-# 2. Resumption Logic: Check if valid CONTCAR exists from previous step/interruption
+# 3. Resumption Logic: Check if valid CONTCAR exists from previous step/interruption
 if [ -f CONTCAR ] && [ -s CONTCAR ]; then
     NLINES=$(wc -l < CONTCAR)
     if [ "$NLINES" -ge 8 ]; then
@@ -32,17 +36,13 @@ if [ -f CONTCAR ] && [ -s CONTCAR ]; then
     fi
 fi
 
-# 3. Environment Preparation
+# 4. Environment Preparation (Carbono OpenHPC Stack)
 module purge
-module load spack/1.0.1
-module load openmpi/5.0.8-aocc-5.0.0-linux-rocky10-icelake-wxmifob
-module load vasp/6.5.1-aocc-5.0.0-linux-rocky10-icelake-erkzov4
+module load vasp/6.2.0
 
-export OMP_NUM_THREADS=1
-
-# 4. In-Situ VASP Execution
-echo "Executing VASP 6.5.1 with $SLURM_NTASKS MPI ranks..."
-mpirun -np $SLURM_NTASKS vasp_std > vasp.out 2>&1
+# 5. In-Situ VASP Execution
+echo "Executing VASP 6.2.0 with $SLURM_NTASKS MPI ranks (OpenMPI 4.1.4, --bind-to none)..."
+mpirun --bind-to none -np $SLURM_NTASKS vasp_std > vasp.out 2>&1
 EXIT_CODE=$?
 
 # Remove STOPCAR if present after clean termination

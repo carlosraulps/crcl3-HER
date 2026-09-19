@@ -63,10 +63,14 @@ def min_image_dist(c1, c2, lattice):
 def verify_structure(poscar_path, contcar_1x1_path, has_h, site_name):
     print("\n  --- Verifying: {} ---".format(os.path.relpath(poscar_path, SCRIPT_DIR)))
     lat, species, counts, coords = parse_poscar(poscar_path)
-    lat_ref, _, _, crd_ref = parse_poscar(contcar_1x1_path)
+    if os.path.exists(contcar_1x1_path):
+        lat_ref, _, _, crd_ref = parse_poscar(contcar_1x1_path)
+        a_ref = 3.0 * np.linalg.norm(lat_ref[0])
+    else:
+        # Fallback to analytical 1x1 reference: a_1x1 = 6.0462745 A
+        a_ref = 18.1388235
 
     a_calc = np.linalg.norm(lat[0])
-    a_ref = 3.0 * np.linalg.norm(lat_ref[0])
     c_calc = np.linalg.norm(lat[2])
 
     check(abs(a_calc - a_ref) < 0.001,
@@ -138,7 +142,7 @@ def verify_incar(incar_path, vdw_expected, has_h):
 
     ivdw_match = re.search(r"IVDW\s*=\s*(\d+)", content)
     if vdw_expected:
-        check(ivdw_match and ivdw_match.group(1) == "11", "IVDW = 11 (DFT-D3)", "IVDW != 11")
+        check(ivdw_match and ivdw_match.group(1) == "12", "IVDW = 12 (DFT-D3 BJ)", "IVDW != 12")
     else:
         check(ivdw_match is None, "No IVDW tag (Pure PBE)", "Unexpected IVDW")
 
