@@ -1,0 +1,39 @@
+# --- SYSTEM & ELECTRONIC ---
+SYSTEM  = CrCl3 Monolayer + TM Adatom (Static SCF)
+ENCUT   = 400          # Cutoff energy (Same as relax)
+EDIFF   = 1.0e-06      # High electronic precision for SCF
+PREC    = Normal       # Precision mode
+ISPIN   = 2            # Spin polarized calculation
+MAGMOM  = 8*3.0 24*0.0 1*3.0   # Magnetic moments (Cr=3, Cl=0, TM=3)
+
+# --- SLAB CORRECTIONS ---
+LDIPOL  = .TRUE.       # Dipole correction on
+IDIPOL  = 3            # Correction along Z-axis (Crucial for slabs)
+
+# --- PARALLELIZATION ---
+NCORE   = 2            # Number of cores per band (Keep consistent with your cluster)
+
+# --- STATIC CALCULATION (Modifications) ---
+ISIF    = 2            # Calculate stress/force, but do not change cell
+
+# --- OUTPUTS (Crucial for next steps) ---
+LCHARG  = .TRUE.       # Write CHGCAR (Needed for DOS, Bader, Bands)
+
+# --- CONVERGENCE FIX
+LREAL = Auto
+NELM    = 100          # Allow more steps (Don't quit at 60!)
+
+# --- SMEARING ---
+ISMEAR  = 0            # Gaussian smearing (Safe for semiconductors/metals)
+SIGMA   = 0.05         # Small broadening width
+
+
+# --- LOBSTER SPECIFIC SETTINGS ---
+LWAVE = .TRUE.
+ISYM = -1
+NSW = 0
+IBRION = -1
+LORBIT = 11
+NEDOS = 2000
+ALGO = Normal
+NBANDS = 304

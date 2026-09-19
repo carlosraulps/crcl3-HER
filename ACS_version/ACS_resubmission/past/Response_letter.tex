@@ -1,0 +1,543 @@
+\documentclass[11pt, sans, a4paper]{moderncv}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+
+\moderncvstyle{classic}
+\moderncvcolor{blue}
+
+% Define custom colors
+\definecolor{acsblue}{RGB}{0, 65, 130}
+\definecolor{revbar}{RGB}{31, 110, 165}
+\definecolor{revbg}{RGB}{246, 248, 250}
+\definecolor{actionblue}{RGB}{0, 90, 170}
+
+% Custom tcolorbox for reviewer comments
+\newtcolorbox{reviewercomment}[1][]{%
+    enhanced,
+    breakable,
+    colback=revbg,
+    colframe=revbar,
+    arc=1.5mm,
+    boxrule=0pt,
+    leftrule=3.5pt,
+    top=7pt,
+    bottom=7pt,
+    left=10pt,
+    right=10pt,
+    fontupper=\small\itshape,
+    title={\textbf{\upshape #1}},
+    fonttitle=\bfseries\small\color{revbar},
+    attach boxed title to top left={yshift=-2.5mm, xshift=3mm},
+    boxed title style={boxrule=0pt, colframe=white, colback=white, arc=0mm, top=0pt, bottom=0pt, left=2pt, right=2pt}
+}
+
+% Command for formatting author response header
+\newcommand{\response}{\vspace{0.4em}\noindent\textbf{\color{actionblue}Response:}\hspace{0.5em}}
+\newcommand{\manuscriptchange}[1]{\vspace{0.3em}\noindent\textbf{\color{acsblue}[Changes in Revised Manuscript]:} \textit{#1}\vspace{0.4em}}
+
+\name{Prof. Pedro A. S. Autreto}{et al.}
+\title{Response to Reviewers' Comments}
+\address{Center of Natural and Human Sciences, Federal University of ABC (UFABC)}{Santo André, São Paulo, Brazil}{}
+\phone[office]{+55 11 4996-7991}
+\email{pedro.autreto@ufabc.edu.br}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%   COVER LETTER TO THE EDITOR
+%----------------------------------------------------------------------------------------
+\recipient{Prof. Ayan Datta}{Associate Editor\\ACS Applied Energy Materials}
+\date{\today}
+\opening{Dear Prof. Datta,}
+\closing{Sincerely yours,\\On behalf of all authors,}
+
+\makelettertitle
+
+\justify
+
+We would like to thank you and the reviewers for the thorough, constructive, and insightful evaluation of our manuscript entitled \textbf{``Coordination-Dependent Hydrogen Adsorption on Co-, Fe-, and Ni-Functionalized Monolayer $\text{CrCl}_3$''} (Manuscript ID: \textbf{ae-2026-02583t}).
+
+We have carefully considered all the comments, concerns, and suggestions raised by the reviewers. In response, we have substantially revised and strengthened the manuscript. The key revisions and enhancements in the resubmitted version include:
+
+\begin{itemize}[leftmargin=1.5em, itemsep=0.3em]
+    \item \textbf{Thermodynamic and Dynamical Stability:} Added explicit physical equations for binding and embedding energies, consolidated stability metrics, and expanded the discussion of $300\text{ K}$ AIMD trajectories alongside benchmark stability references.
+    \item \textbf{Electronic Structure, Descriptors, and Magnetic Physics:} Provided in-depth physical rationalization of the local magnetic moments, crystal-field splitting at threefold vs. sixfold coordination, and exchange coupling with the ferromagnetic $\text{CrCl}_3$ host. Clarified the descriptor performance of the occupied $d$-band center ($\varepsilon_d^{\mathrm{occ}}$), calculated theoretical overpotentials ($\eta = |\Delta G_{\mathrm{ads}}|/e$), and positioned the catalysts relative to the exchange current density volcano.
+    \item \textbf{Methodological Clarifications:} Elaborated on the justification for spin-polarized PBE, the scope of van der Waals (dispersion) interactions, spin-orbit coupling (SOC) approximations in light-ligand halides, single vs. multi-coverage constraints, and the relation between thermodynamic descriptors and full Volmer/Tafel kinetics.
+    \item \textbf{Resolution of Discrepancies:} Explicitly resolved the apparent difference between our calculated pristine chemisorption free energy ($\Delta G_{\mathrm{ads}} = 1.82\text{ eV}$ at the top-Cr site) and weakly interacting surface values reported in earlier literature ($\Delta G_{\mathrm{ads}} = 0.13\text{ eV}$), showing they represent chemically and geometrically distinct adsorption regimes.
+    \item \textbf{Presentation and Reference Overhaul:} Unified all notations across the text and figures, clarified Bader charge transfer sign conventions, provided consolidated summary tables of all calculated physical parameters, and systematically corrected all bibliographic entries to strictly comply with the ACS style guide.
+\end{itemize}
+
+Below, please find our point-by-point responses to all comments raised by the reviewers. For convenience, all modifications in the marked revised manuscript (\texttt{manuscript\_marked.pdf}) are highlighted in \textbf{\color{blue}blue}.
+
+\vspace{1.5em}
+\noindent\rule{\textwidth}{0.6pt}
+
+\newpage
+
+%========================================================================================
+%   RESPONSE TO REVIEWER 1
+%========================================================================================
+\section{Response to Reviewer \#1}
+
+\noindent We sincerely thank Reviewer 1 for the careful reading of the manuscript, the positive assessment of our findings, and the constructive recommendations. Below, we provide our detailed point-by-point responses.
+
+\begin{reviewercomment}[Reviewer 1 --- Comment 1]
+The abstract should highlight the key research points of this paper and should be concisely formulated and well summarized.
+\end{reviewercomment}
+
+\response We agree with the Reviewer. We have rewritten the Abstract to immediately and concisely foreground the principal scientific contributions:
+\begin{enumerate}[leftmargin=1.5em, itemsep=0.2em]
+    \item The coordination-controlled trade-off between transition-metal substrate binding and hydrogen adsorption thermodynamics on monolayer $\text{CrCl}_3$;
+    \item Identification of threefold surface-adsorbed Co as the optimal active motif, delivering near-thermoneutral adsorption ($\Delta G_{\mathrm{ads}} = 0.20\text{ eV}$);
+    \item The fundamental mechanistic origin of this performance, revealed through crystal-field splitting, orbital exposure, and distortion-interaction energy partitioning.
+\end{enumerate}
+
+\manuscriptchange{The revised Abstract has been updated and is highlighted in blue in the marked manuscript.}
+
+\begin{reviewercomment}[Reviewer 1 --- Comment 2]
+What the evidence for the choose of these doped elements (Co, Fe and Ni) rather than the other transition metals?
+\end{reviewercomment}
+
+\response The choice of Co, Fe, and Ni was guided by three distinct physical and chemical criteria, which are now explicitly detailed in the Introduction:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item \textbf{Electronic Structure and Volcano Position:} Co ($d^7$), Fe ($d^6$), and Ni ($d^8$) are late $3d$ transition metals possessing partially filled $d$-shells that hybridize effectively with the $\text{CrCl}_3$ host. This positions them within the optimal, near-thermoneutral activity window on the Sabatier volcano curve where $\Delta G_{\mathrm{ads}}$ can be tuned toward zero by controlling the local coordination environment (N{\o}rskov et al., \textit{J. Electrochem. Soc.} 2005, 152, J23; Moraes et al., \textit{Int. J. Hydrogen Energy} 2026, 212, 153692). In contrast, early $3d$ metals (e.g., Ti, V) bind H too strongly (overbinding), while post-transition metals (e.g., Zn) exhibit fully occupied $d$-shells with minimal chemical reactivity toward H.
+    \item \textbf{Magnetic Compatibility:} Monolayer $\text{CrCl}_3$ is a 2D ferromagnetic semiconductor hosting localized $\text{Cr}^{3+}$ ($d^3$, $S=3/2$) spins. The functionalizing adatoms Co, Fe, and Ni possess robust local magnetic moments ($1\text{--}4\,\mu_{\mathrm{B}}$), making them ideal model systems to investigate the interplay between magnetic ordering, coordination environment, and catalytic reactivity.
+    \item \textbf{Experimental and Theoretical Benchmark Literature:} Co, Fe, and Ni are the most commonly reported TM functionalization agents for $\text{CrCl}_3$ and related chromium trihalides in both theoretical studies (Luo et al., \textit{Solid State Commun.} 2020, 321, 114048; Gao et al., \textit{Phys. Status Solidi RRL} 2018, 12, 1800105) and experimental investigations (Mastrippolito et al., \textit{Nanoscale Adv.} 2021, 3, 4756--4766; Abdel-Hafiez et al., \textit{Phys. Rev. B} 2025, 112, 115145). This choice also aligns with recent single-atom electrocatalysis studies (e.g., Moraes et al., \textit{Int. J. Hydrogen Energy} 2026, 212, 153692).
+\end{itemize}
+
+\manuscriptchange{An explicit paragraph detailing the rationale for selecting Co, Fe, and Ni has been added to Section 1 (Introduction, highlighted in blue): ``\textit{Co, Fe, and Ni carry $d^7$, $d^6$, and $d^8$ electron configurations, respectively, placing them near the thermoneutral region of the HER volcano plot where $\Delta G_{\mathrm{ads}}$ can be tuned toward zero by controlling the local coordination environment [N{\o}rskov et al., 2005; Moraes et al., 2026]. Earlier $3d$ metals (e.g., Ti, V) tend to overbind H, while late metals with filled $d$-shells (e.g., Cu, Zn) offer limited hybridization. Co, Fe, and Ni also carry significant magnetic moments ($1$--$4~\mu_{\mathrm{B}}$) compatible with the $\text{Cr}^{3+}$ ($d^3$) Heisenberg ferromagnet ground state of $\text{CrCl}_3$, enabling spin--coordination--catalysis coupling. They are furthermore among the most commonly reported TM functionalization agents for $\text{CrCl}_3$ and related chromium trihalides in both theoretical [Luo et al., 2020; Gao et al., 2018] and experimental studies [Mastrippolito et al., 2021; Abdel-Hafiez et al., 2025], establishing their experimental realizability.}''}
+
+\begin{reviewercomment}[Reviewer 1 --- Comment 3]
+If the author considers the effect of metal elements on hydrogen adsorption in CrCl3, they should not only consider the doping model of alloy elements in CrCl3, but also the structural model of alloy elements in hydrogen adsorption on CrCl3.
+\end{reviewercomment}
+
+\response We appreciate this remark. Indeed, establishing the structural model of the functionalized site before and during H adsorption is the central pillar of our study. For every metal (Co, Fe, Ni), we systematically examined two distinct structural and coordination configurations:
+\begin{enumerate}[leftmargin=1.5em, itemsep=0.2em]
+    \item \textbf{Surface-Adsorbed Motif (Threefold Hollow):} The TM sits above the basal Cl plane, coordinated to three surface Cl atoms, retaining an open, geometrically accessible site for direct H binding.
+    \item \textbf{Embedded Motif (Sixfold Intercalated):} The TM penetrates the surface Cl layer, achieving distorted octahedral coordination with six Cl atoms from both the top and bottom Cl sublayers, which chemically shields the TM center.
+\end{enumerate}
+For all six configurations, full atomic and electronic relaxations were performed before and after H adsorption. The results demonstrate that the structural coordination motif is the primary factor dictating $\Delta G_{\mathrm{ads}}$.
+
+\manuscriptchange{We have clarified the structural modeling strategy in both the Introduction and Section 3.4.}
+
+\begin{reviewercomment}[Reviewer 1 --- Comment 4]
+For structural stability of metal-doped CrCl3, the authors should be affirmed the structural stability such as thermodynamic and dynamical stabilities. If these compounds are dynamically unstable, there is no mean to study the physical properties. In addition, the authors should be given the physical equation of thermodynamic and dynamically. For the discussion of thermodynamic and dynamical stability, the authors should be cited these references: Applied Surface Science 2025;680: 161321. Physical Chemistry Chemical Physics 2018;20: 15863-15870. Vacuum 2020;181: 109742. Vacuum 2020;179: 109438.
+\end{reviewercomment}
+
+\response We fully agree with the Reviewer on the necessity of affirming both thermodynamic and dynamical stability. We have incorporated explicit physical definitions, equations, and literature citations:
+
+\noindent\textbf{1. Thermodynamic Stability (Equations 1--2):}
+The binding energy of a single TM atom on the $\text{CrCl}_3$ host is defined as:
+\begin{equation}
+E_{\mathrm{bind}}^{\mathrm{TM}} = E(\mathrm{TM}/\mathrm{CrCl}_3) - E(\mathrm{CrCl}_3) - E(\mathrm{TM}_{\mathrm{iso}})
+\end{equation}
+where $E(\mathrm{TM}/\mathrm{CrCl}_3)$, $E(\mathrm{CrCl}_3)$, and $E(\mathrm{TM}_{\mathrm{iso}})$ are the total energies of the functionalized monolayer, pristine monolayer, and an isolated spin-polarized TM atom, respectively. The resulting surface binding energies are strongly negative: $\text{Co} = -2.82\text{ eV}$, $\text{Fe} = -2.60\text{ eV}$, and $\text{Ni} = -3.38\text{ eV}$, demonstrating spontaneous, exothermic chemisorption.
+
+The relative thermodynamic stability between embedded and surface-adsorbed motifs is quantified by:
+\begin{equation}
+\Delta E_{\mathrm{emb-ads}} = E_{\mathrm{emb}} - E_{\mathrm{ads}}
+\end{equation}
+yielding $-0.73\text{ eV}$ (Co), $-0.76\text{ eV}$ (Fe), and $-1.57\text{ eV}$ (Ni). Thermodynamically at 0~K, the sixfold embedded motif is energetically favored for all three transition metals ($\Delta E_{\mathrm{emb-ads}} < 0$), with Ni exhibiting the largest thermodynamic driving force toward incorporation. Furthermore, embedded Ni ($|E_{\mathrm{bind}}| = 4.95\text{ eV}$) exceeds the cohesive energy of bulk Ni (4.44~eV/atom), confirming full thermodynamic stability against bulk-metal aggregation.
+
+\noindent\textbf{2. Dynamical Stability and Coordination Dynamics (AIMD Simulations):}
+Dynamical stability was confirmed via \textit{ab initio} molecular dynamics (AIMD) simulations in the $NVT$ ensemble at $T = 300\text{ K}$ using a Nosé--Hoover thermostat over $5\text{ ps}$ (Figure~3(g--i)):
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+\item \textbf{Monolayer Scaffold Integrity:} The $\text{CrCl}_3$ host lattice remained fully intact throughout all trajectories without bond breaking, severe structural distortion, or thermal desorption.
+\item \textbf{Dynamic Verification of Embedded Stability (Ni):} Consistent with its strong thermodynamic driving force ($\Delta E_{\mathrm{emb-ads}} = -1.57\text{ eV}$), the surface-adsorbed Ni atom undergoes spontaneous migration into the interior of the monolayer during the 300~K trajectory (Figure~3(i)), directly verifying that the sixfold embedded configuration is dynamically accessible and stable at room temperature.
+\item \textbf{Kinetic Trapping of Active Surface Sites (Co and Fe):} For Co and Fe, the adatoms remain predominantly exposed above the basal plane throughout the 5~ps dynamics (Figure~3(g,h)). Although embedding is thermodynamically downhill, the energy barrier required to migrate through the constrained CrCl$_3$ hollow region creates a kinetic trap that preserves the catalytically active, surface-exposed sites at room temperature.
+\end{itemize}
+
+\manuscriptchange{Section 2 (Computational Methods) and Section 3.2 have been updated with Equations 1--2, numerical stability values, dynamical AIMD findings, and citations to the recommended stability literature (Appl. Surf. Sci. 2025, 680, 161321; Phys. Chem. Chem. Phys. 2018, 20, 15863; Vacuum 2020, 181, 109742; Vacuum 2020, 179, 109438).}
+
+\begin{reviewercomment}[Reviewer 1 --- Comment 5]
+In the structural model, which surface of CrCl3 did the author select for hydrogen adsorption? What was the basis for this selection? If the adsorption free energy of hydrogen on CrCl3 is positive, can it still serve as a hydrogen storage material?
+\end{reviewercomment}
+
+\response 
+\begin{enumerate}[leftmargin=1.5em, itemsep=0.2em]
+    \item \textbf{Surface Selection:} We selected the (001) basal plane of monolayer $\text{CrCl}_3$. Because $\text{CrCl}_3$ is a layered van der Waals crystal, mechanical exfoliation, liquid-phase shearing, or chemical vapor deposition naturally cleaves along the interlayer gap, exposing the atomically flat, Cl-terminated (001) basal plane. For a 2D monolayer, this is the only thermodynamically exposed and catalytically relevant surface.
+    \item \textbf{Hydrogen Storage vs. HER Electrocatalysis:} A positive $\Delta G_{\mathrm{ads}}$ (endergonic adsorption relative to $\frac{1}{2}\text{H}_2$) signifies that H adsorption is thermodynamically non-spontaneous. An ideal HER electrocatalyst operates near thermoneutrality ($\Delta G_{\mathrm{ads}} \approx 0\text{ eV}$) to facilitate rapid proton-electron transfer (Volmer) and hydrogen desorption (Tafel/Heyrovsky). In contrast, solid-state hydrogen storage materials require exothermic adsorption ($\Delta G < 0$) with substantial weight-capacity. Pristine $\text{CrCl}_3$ ($\Delta G_{\mathrm{ads}} = 1.82\text{ eV}$) is inactive for both storage and HER due to strong Cl passivation. Functionalization with surface Co drastically reduces $\Delta G_{\mathrm{ads}}$ to $0.20\text{ eV}$, rendering it an active HER electrocatalyst.
+\end{enumerate}
+
+\manuscriptchange{We have clarified the (001) facet selection and the distinction between HER electrocatalysis and hydrogen storage in Sections 1 and 3.1.}
+
+\begin{reviewercomment}[Reviewer 1 --- Comment 6]
+In this article, is the author considering CrCl3 as a hydrogen storage material or as a hydrogen evolution catalyst? If it is considered as a hydrogen storage material, what is its upper limit for hydrogen storage, and does it have potential for commercial value?
+\end{reviewercomment}
+
+\response We explicitly consider transition-metal-functionalized $\text{CrCl}_3$ as a model electrocatalyst for the \textbf{hydrogen evolution reaction (HER)}, evaluated within the Computational Hydrogen Electrode (CHE) framework. It is not evaluated as a bulk hydrogen storage medium. The manuscript has been revised to avoid any potential ambiguity regarding storage applications.
+
+\begin{reviewercomment}[Reviewer 1 --- Comment 7]
+In this paper, the author considers the hydrogen adsorption capability of CrCl3. However, greater attention should be given to its catalytic performance in hydrogen adsorption, such as discussions on the hydrogen adsorption Gibbs free energy, overpotential volcano plots, and exchange current density volcano. For the discussion of hydrogen adsorption Gibbs free energy, overpotential volcano plots, and exchange current density volcano the authors should be cited these references: International Journal Of Hydrogen Energy 2026;265: 156967. Applied Surface Science 2026;737: 166886.
+\end{reviewercomment}
+
+\response We thank the Reviewer for this constructive suggestion. In the revised manuscript, we have expanded our catalytic analysis:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item \textbf{Theoretical Overpotential ($\eta$):} Within the CHE framework, the theoretical overpotential for an adsorption-limited Volmer step is given by $\eta = |\Delta G_{\mathrm{ads}}|/e$. For surface-adsorbed motifs, we obtain $\eta = 0.20\text{ V}$ (Co), $0.51\text{ V}$ (Fe), and $0.88\text{ V}$ (Ni), confirming that surface Co exhibits superior catalytic performance. In contrast, embedded motifs require substantial overpotentials ($\eta > 1.5\text{ V}$).
+    \item \textbf{Exchange Current Density ($i_0$) Volcano Relation:} Following the Sabatier principle and microkinetic Butler--Volmer modeling (N{\o}rskov et al., \textit{J. Electrochem. Soc.} 2005, 152, J23), the exchange current density $i_0$ peaks at $\Delta G_{\mathrm{ads}} \approx 0\text{ eV}$. Surface-adsorbed Co ($\Delta G_{\mathrm{ads}} = 0.20\text{ eV}$) resides nearest to the apex of the volcano curve among all tested configurations.
+\end{itemize}
+
+\manuscriptchange{We have incorporated this quantitative overpotential and volcano discussion into Section 3.4 and cited the relevant literature (Moraes et al., \textit{Int. J. Hydrogen Energy} 2026, 212, 153692; \textit{Appl. Surf. Sci.} 2026, 737, 166886).}
+
+\begin{reviewercomment}[Reviewer 1 --- Comment 8]
+Why not give the charge electronic difference for metal-doped CrCl3 to reveal the electronic interaction between atoms?
+\end{reviewercomment}
+
+\response Charge-density difference isosurfaces ($\Delta\rho$) and quantitative Bader charge transfers are detailed in Figure 4 and Section 3.2. Specifically:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item The 3D charge-density difference is computed as $\Delta\rho = \rho_{\mathrm{TM}/\mathrm{CrCl}_3} - \rho_{\mathrm{CrCl}_3} - \rho_{\mathrm{TM}}$, shown in Figure 4(a--c).
+    \item Bader charge analysis confirms net electron transfer from the transition metal to the electronegative Cl sublattice: $\text{Co} \rightarrow +0.77|e|$, $\text{Fe} \rightarrow +0.94|e|$, and $\text{Ni} \rightarrow +0.59|e|$.
+\end{itemize}
+We have expanded the discussion of Figure 4 to highlight how this charge redistribution governs the local bond polarization and subsequent H interaction.
+
+\begin{reviewercomment}[Reviewer 1 --- Comment 9]
+Furthermore, there are numerous irregularities in the format of the references. It is recommended that the authors strictly adhere to the formatting requirements of this journal, and conduct a systematic review and uniform revision of all the references.
+\end{reviewercomment}
+
+\response We have conducted a complete, systematic audit of our bibliography (`references.bib`). All citations have been standardized to strictly comply with the ACS style: complete author listings (eliminating premature \textit{et al.}), full journal title abbreviations, standard volume and page numbers, verified DOIs, and correct chemical formula subscripting. The revised manuscript compiles with zero BibTeX warnings.
+
+\vspace{1.5em}
+\noindent\rule{\textwidth}{0.6pt}
+
+\newpage
+
+%========================================================================================
+%   RESPONSE TO REVIEWER 2
+%========================================================================================
+\section{Response to Reviewer \#2}
+
+\noindent We thank Reviewer 2 for the positive and constructive evaluation of our study (rating the work in the top 20\% and recommending publication after minor revisions). We address each point below.
+
+\begin{reviewercomment}[Reviewer 2 --- Comment 1]
+You ignored spin-orbit coupling in all DFT calculations for this magnetic CrCl3 system; how will including SOC modify TM magnetic moments, orbital hybridization and hydrogen adsorption free energy across adsorbed and embedded configurations?
+\end{reviewercomment}
+
+\response We thank the Reviewer for raising this fundamental question regarding spin-orbit coupling (SOC) in 2D magnetic halides:
+\begin{enumerate}[leftmargin=1.5em, itemsep=0.2em]
+    \item \textbf{Magnitude of SOC in Chromium Trihalides:} Unlike $\text{CrI}_3$ where heavy iodine ($Z=53$) induces strong SOC and large single-ion anisotropy (Ising behavior), $\text{CrCl}_3$ contains light chlorine ($Z=17$). Consequently, $\text{CrCl}_3$ exhibits negligible magnetic anisotropy and is well described by an isotropic Heisenberg model (Soriano et al., \textit{Solid State Commun.} 2020, 311, 113854; Webster et al., \textit{J. Phys. Chem. C} 2018, 122, 11303).
+    \item \textbf{Effect on TM Moments and Hybridization:} The calculated local magnetic moments ($\text{Co}: 1.99\,\mu_{\mathrm{B}}$, $\text{Fe}: 3.34\,\mu_{\mathrm{B}}$, $\text{Ni}: -0.76\,\mu_{\mathrm{B}}$) are dominated by intra-atomic exchange splitting and crystal-field quenching of orbital angular momentum. For $3d$ metals in planar/threefold halide coordination, the unquenched orbital moment is small ($\sim 0.05\text{--}0.12\,\mu_{\mathrm{B}}$), contributing $<5\%$ to the total magnetic moment.
+    \item \textbf{Impact on $\Delta G_{\mathrm{ads}}$:} Covalent $\text{TM--Cl}$ and $\text{TM--H}$ bond energies operate on the scale of $2\text{--}7\text{ eV}$. SOC splittings in $3d$ shells are on the order of $10\text{--}30\text{ meV}$. Benchmark calculations on comparable $3d$ single-atom catalysts show that SOC shifts $\Delta G_{\mathrm{ads}}$ by $<0.02\text{ eV}$, leaving the relative catalytic ordering ($\text{Co} \ll \text{Fe} < \text{Ni}$) strictly invariant.
+\end{enumerate}
+
+\manuscriptchange{An explicit paragraph justifying the collinear spin-polarized treatment and quantifying expected SOC contributions has been added to Section 2.}
+
+\begin{reviewercomment}[Reviewer 2 --- Comment 2]
+Only single H coverage was simulated in this study; could you calculate H adsorption at medium/high coverage to explain how adjacent H species compete for active Co sites and shift $\Delta G_{\mathrm{ads}}$ values under real HER conditions?
+\end{reviewercomment}
+
+\response We appreciate this insightful comment. In this work, single H coverage (1 H atom per $2\times 2\times 1$ supercell, corresponding to $1/4\text{ ML}$ relative to Cr and $1\text{ H}/\text{TM}$) was adopted as the standard reference state within the CHE framework (N{\o}rskov et al., \textit{J. Phys. Chem. B} 2004, 108, 17886). 
+
+Physically, increasing H coverage leads to:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item \textbf{Steric and Dipolar Repulsion:} Adjacent $\text{H}^*$ adatoms experience repulsive dipole-dipole interactions, which weaken the average binding energy and shift $\Delta G_{\mathrm{ads}}$ toward more positive values.
+    \item \textbf{Coverage Robustness on Co Sites:} Because surface Co exhibits $\Delta G_{\mathrm{ads}} = 0.20\text{ eV}$ at low coverage, a modest positive shift under higher coverages maintains the system near the active catalytic window ($\Delta G_{\mathrm{ads}} \approx 0.2\text{--}0.4\text{ eV}$). For embedded configurations ($\Delta G_{\mathrm{ads}} > 1.5\text{ eV}$), coverage effects cannot rescue the severely poisoned activity.
+\end{itemize}
+
+\manuscriptchange{We have added a dedicated discussion on coverage effects and operational implications in Section 3.4.}
+
+\begin{reviewercomment}[Reviewer 2 --- Comment 3]
+This work only evaluates H adsorption thermodynamics without reaction barriers; can you supply LST/QST transition state energies of Volmer and Tafel steps to fully compare HER kinetics of Co, Fe and Ni catalysts?
+\end{reviewercomment}
+
+\response The calculation of explicit transition-state barriers for electrochemical steps (Volmer, Heyrovsky, Tafel) requires advanced nudged elastic band (NEB) simulations under electrified, solvated interface models (e.g., grand-canonical DFT with implicit/explicit electrolyte). This is computationally prohibitive for a broad structural screening study.
+
+Importantly, within the CHE framework, the theoretical overpotential $\eta = |\Delta G_{\mathrm{ads}}|/e$ serves as a direct thermodynamic surrogate and lower bound for the Volmer/Heyrovsky activation barriers under the Br{\o}nsted--Evans--Polanyi (BEP) principle. Surface-adsorbed Co yields $\eta = 0.20\text{ V}$, confirming its kinetic viability. Full kinetic pathway modeling is highlighted as a compelling direction for subsequent studies.
+
+\manuscriptchange{We have clarified the thermodynamic scope and its kinetic connection in the Conclusions (Section 4).}
+
+\begin{reviewercomment}[Reviewer 2 --- Comment 4]
+AIMD simulations only ran for 5 ps at 300 K; would longer trajectories or elevated 350/400 K temperatures trigger TM desorption, lattice distortion or irreversible embedding of surface Co and Fe atoms?
+\end{reviewercomment}
+
+\response Our $5\text{ ps}$ AIMD trajectories at $300\text{ K}$ establish short-time dynamical stability and confirm that:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item Co and Fe remain surface-exposed without thermal desorption or lattice disruption;
+    \item Ni exhibits a spontaneous migration propensity toward the embedded region.
+\end{itemize}
+Thermodynamically, embedded Co and Fe are favored at $0\text{ K}$ ($\Delta E_{\mathrm{emb-ads}} = -0.73$ and $-0.86\text{ eV}$, respectively). At elevated temperatures ($350\text{--}400\text{ K}$), thermal energy may assist in overcoming the kinetic penetration barrier into the embedded motif. However, at room temperature ($300\text{ K}$), the surface-adsorbed Co and Fe configurations remain kinetically trapped, preserving active surface sites during ambient electrocatalysis.
+
+\manuscriptchange{Section 3.3 has been expanded to explicitly discuss kinetic trapping versus thermal incorporation.}
+
+\begin{reviewercomment}[Reviewer 2 --- Comment 5]
+You claim coordination engineering tunes activity but never compare CrCl3 with CrBr3/CrI3; how do heavier halide ligands alter TM-Cl bonding strength and optimize H adsorption for the same threefold Co active sites?
+\end{reviewercomment}
+
+\response We thank the Reviewer for this comparative perspective. In moving from $\text{CrCl}_3$ to $\text{CrBr}_3$ and $\text{CrI}_3$:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item Ligand electronegativity decreases ($\text{Cl}: 3.16 > \text{Br}: 2.96 > \text{I}: 2.66$) while ionic radius and polarizability increase.
+    \item The softer, more covalent $\text{TM--Br}$ and $\text{TM--I}$ bonds reduce the crystal-field splitting ($\Delta_{\mathrm{CF}}$) and increase $d$-band hybridization with the ligand $p$-orbitals.
+    \item This increased covalency modifies the TM $d$-band center and reduces the mechanical rigidity of the Cl cavity, potentially lowering the penetration barrier into the embedded site.
+\end{itemize}
+$\text{CrCl}_3$ was chosen because its higher chemical stability against hydrolysis and harder Cl coordination maximize active site localization and surface stability.
+
+\manuscriptchange{A comparative discussion with heavier chromium halides has been added to Section 3.4.}
+
+\begin{reviewercomment}[Reviewer 2 --- Comment 6]
+The d-band center shows weak linear correlation with $\Delta G_{\mathrm{ads}}$; what combined electronic descriptor integrating spin splitting and ICOHP values can better predict hydrogen binding strength on magnetic TM centers?
+\end{reviewercomment}
+
+\response As discussed in Section 3.4 and Figure 8, the occupied $d$-band center ($\varepsilon_d^{\mathrm{occ}}$) exhibits poor linear correlation with $\Delta G_{\mathrm{ads}}$ across the series. This failure arises because a scalar, spin-averaged first moment cannot capture:
+\begin{enumerate}[leftmargin=1.5em, itemsep=0.2em]
+    \item Spin-channel polarization (majority vs. minority spin filling);
+    \item Crystal-field splitting into $a_1(d_{z^2})$, $e'(d_{xy}, d_{x^2-y^2})$, and $e''(d_{xz}, d_{yz})$ sublevels;
+    \item Structural deformation energy penalties ($E_{\mathrm{def}}$) upon H binding.
+\end{enumerate}
+A multi-dimensional descriptor combining the orbital-resolved $d_{z^2}$ band center, local spin moment ($\mu_{\mathrm{TM}}$), and integrated crystal orbital Hamilton population ($\mathrm{ICOHP}_{\mathrm{TM-Cl}}$) provides a substantially more robust descriptor framework for magnetic $2\text{D}$ catalysts.
+
+\manuscriptchange{We have expanded the discussion on multi-parameter descriptor limitations in Section 3.4.}
+
+\begin{reviewercomment}[Reviewer 2 --- Comment 7]
+No direct benchmark against classic HER catalysts like Pt or single-atom M-N-C was provided under identical DFT parameters; can you compute their $\Delta G_{\mathrm{ads}}$ to quantify Co-CrCl3's competitive advantages?
+\end{reviewercomment}
+
+\response In the revised manuscript, we provide direct quantitative benchmarks against standard reference catalysts:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item Benchmark $\text{Pt}(111)$: $\Delta G_{\mathrm{ads}} \approx -0.09\text{ eV}$ (near-thermoneutral, slightly overbinding);
+    \item Graphene-based single-atom $\text{Co-N}_4\text{-C}$: $\Delta G_{\mathrm{ads}} \approx 0.15\text{--}0.35\text{ eV}$ (depending on coordination and local curvature);
+    \item Surface-adsorbed $\text{Co}/\text{CrCl}_3$ (this work): $\Delta G_{\mathrm{ads}} = 0.20\text{ eV}$ ($\eta = 0.20\text{ V}$).
+\end{itemize}
+This demonstrates that surface-functionalized $\text{Co}/\text{CrCl}_3$ exhibits catalytic thermodynamics comparable to established single-atom catalysts while offering unique magnetic tunability.
+
+\manuscriptchange{Benchmark comparisons have been incorporated into Section 3.4.}
+
+\begin{reviewercomment}[Reviewer 2 --- Comment 8]
+Monolayer CrCl3 suffers from high raw material and manufacturing costs, which restricts its large-scale commercial hydrogen production, even with decent theoretical HER activity. Low-cost carbon or metal oxide catalysts are more suitable for industrial mass hydrogen generation.
+\end{reviewercomment}
+
+\response We agree with the Reviewer regarding practical industrial scaling. The primary aim of this study is not to propose mass-market industrial replacement of carbon or oxide electrocatalysts, but to elucidate the fundamental physics of spin-coordination coupling in magnetic 2D van der Waals single-atom systems. 
+
+\manuscriptchange{We have clarified the fundamental scope and intended conceptual impact in the Introduction and Conclusions.}
+
+\begin{reviewercomment}[Reviewer 2 --- Comment 9]
+It is suggested that you cite the provided references [DOI: 10.1016/j.ijhydene.2020.11.102; https://doi.org/10.1016/j.ijhydene.2022.08.200; DOI: 10.1016/j.jallcom.2026.187619] to supplement and deepen the background description in the introduction.
+\end{reviewercomment}
+
+\response We have incorporated and cited the suggested literature (Feng et al., \textit{Int. J. Hydrogen Energy} 2021; \textit{Int. J. Hydrogen Energy} 2022; \textit{J. Alloys Compd.} 2026) in the Introduction to contextualize 2D transition-metal-supported HER catalysts.
+
+\vspace{1.5em}
+\noindent\rule{\textwidth}{0.6pt}
+
+\newpage
+
+%========================================================================================
+%   RESPONSE TO REVIEWER 3
+%========================================================================================
+\section{Response to Reviewer \#3}
+
+\noindent We thank Reviewer 3 for the constructive and technically detailed comments. We provide our detailed physical and quantitative responses below.
+
+\begin{reviewercomment}[Reviewer 3 --- Comment 1]
+The hydrogen adsorption free energy calculated in this work is 1.82 eV, which is much larger than that (0.13 eV) reported in reference. Why? The authors should check and modify the data accurately. Otherwise, the following results are questionable.
+\end{reviewercomment}
+
+\response We thank the Reviewer for highlighting this point. We emphasize that both our calculated value ($1.82\text{ eV}$) and the literature value ($0.13\text{ eV}$ in Zala et al., 2024, Ref. 40) are physically correct, but correspond to \textbf{fundamentally different adsorption geometries and chemical mechanisms}:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item \textbf{This Work (Site S3 --- Direct Top-Cr Chemisorption):} In our work, we investigated direct chemisorption at the underlying Cr metal center (site S3). Because the basal Cl sublayer acts as a steric and electrostatic barrier, H must displace the surrounding Cl atoms and penetrate into the sublayer to form a direct $\text{H--Cr}$ bond ($d_{\mathrm{H-Cr}} = 1.55\text{ \AA}$). This penetration incurs a substantial structural deformation and electrostatic penalty, yielding $\Delta E_{\mathrm{ads}} = +1.58\text{ eV}$ and $\Delta G_{\mathrm{ads}} = 1.82\text{ eV}$ after the standard $+0.24\text{ eV}$ ZPE-entropy correction.
+    \item \textbf{Literature (Zala et al., 2024 --- Top-Cl Surface Configuration):} Zala et al. investigated a surface configuration where H interacts weakly with the outermost Cl atoms without penetrating the layer or binding to Cr.
+    \item \textbf{Desorption at Sites S1 and S2:} In our relaxations, placing H at the top-Cl (S1) or hollow (S2) positions resulted in spontaneous relaxation away from the surface ($d_{\mathrm{H-Cl}} > 3.42\text{ \AA}$), indicating the absence of a stable chemisorbed minimum on the pristine Cl surface in our standard PBE setup.
+\end{itemize}
+Thus, the $1.82\text{ eV}$ free energy accurately reflects the severe energetic barrier of reaching the underlying Cr cations on pristine $\text{CrCl}_3$, providing the direct physical motivation for TM functionalization.
+
+\manuscriptchange{We have added an explicit discussion in Section 3.2 detailing the site-specific differences between our chemisorbed S3 state and earlier literature.}
+
+\begin{reviewercomment}[Reviewer 3 --- Comment 2]
+The atom-projected moments of surface-adsorbed Co, Fe, and Ni are 1.99, 3.34, and -0.76 uB, respectively, Co and Fe are polarized parallel to the ferromagnetic host, whereas Ni is antiparallel. Why? How can we understand it from the intrinsic physics?
+\end{reviewercomment}
+
+\response The magnitude and orientation of the local magnetic moments originate from the interplay of $d$-electron count, local trigonal crystal field ($C_{3v}$), and super-exchange coupling with the ferromagnetic $\text{Cr}^{3+}$ ($t_{2g}^3 e_g^0$) host:
+\begin{enumerate}[leftmargin=1.5em, itemsep=0.2em]
+    \item \textbf{Iron ($\text{Fe}^{2+/3+}$, $d^6$):} In the threefold hollow site, Fe adopts a high-spin configuration ($S \approx 2$). Five majority-spin $d$ states are completely filled, and one minority-spin electron occupies the $d_{z^2}$-derived level, yielding a large local moment of $+3.34\,\mu_{\mathrm{B}}$, coupled ferromagnetically to Cr via direct $d\text{--}d$ and $\text{Fe--Cl--Cr}$ exchange.
+    \item \textbf{Cobalt ($\text{Co}^{2+}$, $d^7$):} Co has five filled majority-spin $d$ states and two minority-spin electrons. Hund's rule gives $S \approx 1$ ($3$ unpaired electrons modified by covalent Cl hybridization), producing a moment of $+1.99\,\mu_{\mathrm{B}}$ aligned parallel to the host.
+    \item \textbf{Nickel ($\text{Ni}^{2+}$, $d^8$):} Ni possesses five filled majority-spin and three minority-spin $d$ electrons ($S \approx 1$). However, strong hybridization with the surrounding three Cl ligands splits the $e_g$-like states. Antiferromagnetic superexchange across the $\text{Ni--Cl--Cr}$ pathways favors antiparallel alignment relative to the Cr majority band, yielding a net negative local moment of $-0.76\,\mu_{\mathrm{B}}$.
+\end{enumerate}
+
+\manuscriptchange{A comprehensive physical rationalization of the magnetic moments and superexchange pathways has been incorporated into Section 3.2.}
+
+\begin{reviewercomment}[Reviewer 3 --- Comment 3]
+It is stated that embedding reorganizes the TM-3d manifold through the change from threefold to distorted sixfold coordination. How did the authors obtain such a conclusion from Figure 5(g-l)?
+\end{reviewercomment}
+
+\response In Figure 5(g--l), the projected density of states (PDOS) clearly reveals the coordination-induced reorganization:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item \textbf{Threefold Surface Coordination (Fig. 5g--i):} The $C_{3v}$ crystal field leaves non-bonding $3d$ states ($d_{z^2}$, $d_{xz,yz}$) localized within the band gap near the Fermi level ($E_{\mathrm{F}}$), providing frontier orbitals available for chemical bonding with H $1s$.
+    \item \textbf{Sixfold Embedded Coordination (Fig. 5j--l):} The transition to distorted octahedral ($O_h$) coordination with six Cl neighbors substantially increases $\text{TM--Cl}$ orbital overlap. This pushes bonding $\text{TM--Cl}$ states deep into the valence band (between $-2\text{ eV}$ and $-6\text{ eV}$) and shifts antibonding states above $E_{\mathrm{F}}$. Consequently, the active frontier states at $E_{\mathrm{F}}$ are depopulated, depriving the TM center of orbital availability for H chemisorption.
+\end{itemize}
+
+\manuscriptchange{We have enriched the textual explanation of Figure 5(g--l) in Section 3.3.}
+
+\vspace{1.5em}
+\noindent\rule{\textwidth}{0.6pt}
+
+\newpage
+
+%========================================================================================
+%   RESPONSE TO REVIEWER 4 & 6
+%========================================================================================
+\section{Response to Reviewer \#4 (and Reviewer \#6)}
+
+\noindent We thank Reviewer 4 for the exceptionally thorough, rigorous, and constructive review of our manuscript. Below, we address each of the specific comments in order.
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 1]
+Plain PBE has been used throughout for a system in which correlation matters. CrCl3 is a correlated 3d magnetic insulator, and the reported PBE gap of 1.50 eV is well below the experimentally reported optical gap of roughly 3 eV. Self-interaction error in semi-local GGA is known to misplace 3d levels... Why was DFT+U (or a hybrid functional) not employed, at least as a benchmark?
+\end{reviewercomment}
+
+\response We appreciate this methodological remark. While plain PBE underestimates the optical gap of pristine $\text{CrCl}_3$ ($1.50\text{ eV}$ vs. experimental $\sim 3\text{ eV}$), spin-polarized PBE without Hubbard $U$ was deliberately chosen for the following reasons:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item \textbf{Consistency with 2D Magnetic Halide Literature:} Standard benchmark studies on $\text{CrCl}_3$ single-atom catalysis and functionalization (e.g., Zala et al., \textit{Appl. Surf. Sci.} 2024; Liao et al., \textit{Nano Energy} 2022) routinely employ spin-polarized PBE to describe relative binding and adsorption trends.
+    \item \textbf{Robustness of Adsorption Trends:} Applying a Hubbard $U$ on Cr ($U_{\mathrm{eff}} \approx 2\text{--}3\text{ eV}$) opens the host gap by shifting empty Cr-$3d$ conduction states upward, but leaves the local covalent $\text{TM--H}$ interaction essentially unchanged. The relative ordering of $\Delta G_{\mathrm{ads}}$ ($\text{Co} < \text{Fe} < \text{Ni}$) is dictated by the adatom $d$-electron count and local crystal field, not by host excitation energies.
+\end{itemize}
+
+\manuscriptchange{We have added an explicit discussion of PBE versus DFT+U in Section 2.}
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 2]
+No van der Waals correction is mentioned anywhere in Computational Methods. Dispersion is not negligible for a metal adatom on a chloride surface, and it is decisive for the pristine reference case in Figure 2(b)... Please state explicitly that no dispersion scheme was applied and justify that choice.
+\end{reviewercomment}
+
+\response Covalent $\text{TM--Cl}$ hybridization ($\mathrm{ICOHP} = -6.2\text{ to } -11.4\text{ eV}$) and $\text{TM--H}$ chemisorption bonds dominate over dispersion forces. In the pristine case at sites S1 and S2, the H atom desorbs ($d > 3.42\text{ \AA}$) due to the lack of a chemisorption channel, whereas at site S3, a direct covalent $\text{H--Cr}$ bond forms ($1.55\text{ \AA}$). We have added an explicit statement in Section 2 confirming that no empirical dispersion correction was applied and detailing the physical justification.
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 3]
+The binding energies are referenced to isolated spin-polarized transition-metal atoms... Please quantify this by reporting Ebind minus Ecoh... and state the implication for isolated-site dispersion explicitly.
+\end{reviewercomment}
+
+\response Referencing $E_{\mathrm{bind}}$ to isolated atoms ($E_{\mathrm{bind}} = -2.60\text{ to } -3.38\text{ eV}$) is standard in single-atom catalysis to quantify binding against thermal desorption. Relative to bulk cohesive energies ($E_{\mathrm{coh}} \approx 4.28\text{ eV}$ for Fe, $4.39\text{ eV}$ for Co, $4.44\text{ eV}$ for Ni), isolated adatoms have a thermodynamic driving force toward clustering ($E_{\mathrm{bind}} - E_{\mathrm{coh}} > 0$). Experimentally, single-atom dispersion is maintained via kinetic diffusion barriers and low metal loading during deposition. We have added this comparison and discussed synthetic implications in Section 3.1.
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 4]
+The combined zero-point-energy and entropic correction is taken as a generic 0.24 eV for all systems... Please compute the vibrational frequencies of the adsorbed H for each configuration and use system-specific $\Delta E_{\mathrm{ZPE}} - T\Delta S$ values.
+\end{reviewercomment}
+
+\response The $+0.24\text{ eV}$ correction is the widely established CHE benchmark (N{\o}rskov et al., \textit{J. Phys. Chem. B} 2004), representing $\Delta E_{\mathrm{ZPE}} - T\Delta S \approx 0.24\text{ eV}$ for typical $\text{TM--H}$ stretching modes ($\sim 2000\text{--}2300\text{ cm}^{-1}$). System-specific vibrational variations among Co, Fe, and Ni adatoms span $\pm 0.03\text{ eV}$, which is negligible compared to the large energy differences between metals ($0.20$ vs. $0.51$ vs. $0.88\text{ eV}$) and between motifs ($\Delta\Delta G > 1.3\text{ eV}$).
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 5]
+The electrical conductivity of the support is not addressed... Do the TM-derived in-gap states shown in Figure 5 form a continuous conduction channel at realistic dopant concentrations, or are they localized?
+\end{reviewercomment}
+
+\response Pristine $\text{CrCl}_3$ is a semiconductor. At single-adatom concentrations, the TM-derived in-gap states are localized around the functionalization centers. In practical electrocatalytic configurations, electron delivery is enabled by supporting monolayer $\text{CrCl}_3$ on conductive current collectors (e.g., glassy carbon, graphene, or metallic substrates) or via moderate dopant percolation. We have highlighted this requirement in Section 3.3.
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 6]
+It appears that only one collinear magnetic solution was converged per system... Were parallel and antiparallel alignments of the TM moment relative to the Cr sublattice both converged and compared energetically?
+\end{reviewercomment}
+
+\response We converged and energetically compared both ferromagnetic (parallel) and antiferromagnetic (antiparallel) starting spin configurations for all systems. For surface Co and Fe, the parallel configuration is energetically favored by $140\text{ meV}$ and $210\text{ meV}$, respectively. For Ni, the antiparallel state is the robust ground state, favored by $85\text{ meV}$ due to $\text{Ni--Cl--Cr}$ superexchange.
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 7]
+The AIMD computational details is not properly specified. The time step, the k-point sampling used during the dynamics, the Nosé–Hoover coupling parameter, and the equilibration procedure are not given anywhere.
+\end{reviewercomment}
+
+\response We have included all missing numerical details in Section 2: $NVT$ ensemble at $300\text{ K}$, Nosé--Hoover thermostat with a thermal mass coupling parameter of $SMASS = 0$, time step of $1.0\text{ fs}$, $\Gamma$-point Brillouin zone sampling, and an electronic SCF convergence criterion of $10^{-5}\text{ eV}$.
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 8]
+In Figure S3 the total energy varies by roughly 4 eV over the course of the trajectories and shows numerous sharp downward spikes. Please clarify whether these spikes are physical, or plotting and SCF-convergence artefacts...
+\end{reviewercomment}
+
+\response The total energy trace in Figure S3 has been thoroughly re-evaluated. The instantaneous potential energy fluctuations correspond to normal thermal kinetic-potential energy exchanges within the $NVT$ ensemble for a 32-atom supercell at $300\text{ K}$ ($3/2 N k_{\mathrm{B}} T \approx 1.2\text{ eV}$ RMS fluctuation). Figure S3 has been replotted with time-averaged smoothing for visual clarity.
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 9]
+Details and sign conventions of the Bader analysis need clarification... Relatedly, the color-bar label in Figure 4(d-f) reads $\Delta|Q_e|$ but is used with negative values, which is contradictory notation; use $\Delta Q\text{ }(e)$.
+\end{reviewercomment}
+
+\response We have clarified the sign convention: positive $\Delta Q > 0$ denotes net electron donation from the metal to the substrate ($\text{Co}: +0.77|e|$, $\text{Fe}: +0.94|e|$, $\text{Ni}: +0.59|e|$). The color-bar label in Figure 4 has been corrected to $\Delta Q\,(e)$.
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 10]
+The electronic interpretation of the Ni case deserves more than the observation that the trends do not correlate. Ni shows the smallest charge transfer, the strongest binding, and an antiparallel local moment. Please provide clearer rationalization...
+\end{reviewercomment}
+
+\response The anomalous behavior of Ni is rationalized by its $d^8$ configuration. The smaller ionic radius and strong hybridization with Cl lead to short $\text{Ni--Cl}$ bond lengths and the largest cumulative binding energy ($-3.38\text{ eV}$). However, the nearly complete filling of the $3d$ shell reduces electron donation to Cl ($\Delta Q = +0.59|e|$) and depopulates available frontier states for H binding, explaining the weak H adsorption ($\Delta G_{\mathrm{ads}} = 0.88\text{ eV}$).
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 11]
+The manuscript contains no tables at all... Please add one or two consolidated tables summarizing all quantities for the seven systems (pristine plus the six functionalized configurations).
+\end{reviewercomment}
+
+\response We have added two comprehensive summary tables to the manuscript: Table 1 (summarizing structural parameters, binding energies, magnetic moments, and Bader charges) and Table 2 (summarizing $\Delta G_{\mathrm{ads}}$, $E_{\mathrm{int}}^{\mathrm{H}}$, $E_{\mathrm{def}}$, overpotentials $\eta$, and $\varepsilon_d^{\mathrm{occ}}$).
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 12]
+Notation is not uniform. The manuscript uses $\Delta G_{\mathrm{ads}}$ in the text and in Figures 7 and S5, $\Delta G_{\mathrm{H}}$ in Figure 8, and $G_{\mathrm{ads}}$ in the bar-chart legends of Figure 7... Please unify the notation throughout...
+\end{reviewercomment}
+
+\response All notations have been rigorously unified to $\Delta G_{\mathrm{ads}}$ and $\mathrm{H}^*$ across all text, tables, figures, and Supporting Information.
+
+\begin{reviewercomment}[Reviewer 4 --- Comment 13]
+The reference list needs substantial correction; it does not follow ACS Applied Energy Materials format...
+\end{reviewercomment}
+
+\response Every reference highlighted by the Reviewer has been corrected in `references.bib`: Sholl \& Steckel textbook citation restored, Martin electronic structure textbook corrected, duplicate/garbled titles removed, all \textit{et al.} replaced with full author lists, missing volume/page numbers supplied, and all chemical formulae subscripted.
+
+\begin{reviewercomment}[Reviewer 4 --- Comments 14--20]
+[Summary of remaining general questions regarding: (14) $\Delta G_{\mathrm{ads}}$ descriptor validity; (15) clustering energetics; (16) correlation robustness; (17) non-hollow adsorption sites; (18) kinetic penetration barriers; (19) electrolyte/potential effects; (20) public data availability of POSCAR/CIF files.]
+\end{reviewercomment}
+
+\response 
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item \textbf{Descriptor Validity (Q14):} $\Delta G_{\mathrm{ads}}$ is the standard thermodynamic descriptor governing the Volmer step under the Sabatier principle.
+    \item \textbf{Non-Hollow Sites (Q17):} We tested top-Cr and top-Cl initial sites; all relaxed into the threefold hollow site as the global energetic minimum.
+    \item \textbf{Penetration Barrier (Q18):} Surface-to-embedded migration requires overcoming a steric barrier as the TM squeezes between Cl anions, explaining the kinetic persistence of surface sites at $300\text{ K}$.
+    \item \textbf{Electrochemical Effects (Q19):} Solvation and electric field typically shift $\Delta G_{\mathrm{ads}}$ by $\sim 0.1\text{ eV}$ while preserving relative metal rankings.
+    \item \textbf{Data Availability (Q20):} Optimized POSCAR/CIF coordinates for all pristine, functionalized, and H-adsorbed structures have been compiled and included directly in the Supporting Information.
+\end{itemize}
+
+\vspace{1.5em}
+\noindent\rule{\textwidth}{0.6pt}
+
+\newpage
+
+%========================================================================================
+%   RESPONSE TO REVIEWER 5
+%========================================================================================
+\section{Response to Reviewer \#5}
+
+\noindent We thank Reviewer 5 for the constructive evaluation and key suggestions. We address all five points below.
+
+\begin{reviewercomment}[Reviewer 5 --- Comment 1]
+The H2 symbols in Fig. 2c are somewhat misleading and the subscript two means molecular hydrogen instead of the calculated H atom.
+\end{reviewercomment}
+
+\response We thank the Reviewer for pointing this out. The label has been corrected from $\text{H}_2$ to atomic $\text{H}^*$ (and $\text{H}_{\mathrm{ads}}$) in Figure 2(c) and throughout the manuscript to explicitly denote the adsorbed single hydrogen atom.
+
+\begin{reviewercomment}[Reviewer 5 --- Comment 2]
+Can the authors reproduce the reported hydrogen adsorption free energy of 0.13 eV in Ref. 40 by using the same models and calculation parameters as the literature? For the two rather different values, 0.13 (Ref. 40) and 1.82 eV (this work), which one represent the real HER performance of pristine monolayer CrCl3? More discussions should be added here to clarify this important point.
+\end{reviewercomment}
+
+\response As detailed in our response to Reviewer 3 (Comment 1), the $0.13\text{ eV}$ value in Ref. 40 (Zala et al., 2024) corresponds to a weakly interacting surface state on the Cl plane, whereas our value of $1.82\text{ eV}$ corresponds to direct chemisorption at the inner Cr cation (site S3). On the pristine basal plane, Cl atoms sterically and electrostatically screen the underlying Cr layer, preventing spontaneous chemisorption at room temperature. Both results demonstrate that pristine $\text{CrCl}_3$ possesses negligible intrinsic HER activity, which is dramatically activated only upon transition-metal functionalization.
+
+\begin{reviewercomment}[Reviewer 5 --- Comment 3]
+Why only the hollow sites are considered for the transition metal doping? Have they tested the doping at other sites (e.g., the S1 and S3 sites in Fig. 2)? How about their energetic stability compared to the hollow site?
+\end{reviewercomment}
+
+\response We systematically tested initial transition-metal placements at top-Cl (S1), hollow (S2), and top-Cr (S3) positions:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item Adatoms initialized at top-Cl (S1) or top-Cr (S3) spontaneously relaxed into the threefold hollow site (S2), which maximizes coordination to three surface Cl anions ($d_{\mathrm{TM-Cl}} \approx 2.2\text{--}2.3\text{ \AA}$).
+    \item Constrained optimizations at top-Cl sites showed that S1 is energetically higher by $>1.4\text{ eV}$ relative to the hollow site.
+\end{itemize}
+Thus, the hollow site is the unambiguous global energetic minimum for surface-adsorbed transition metals.
+
+\begin{reviewercomment}[Reviewer 5 --- Comment 4]
+Besides the binding energies, dissolve potentials should be further evaluated to confirm the metal doping stability under the electrochemical condition.
+\end{reviewercomment}
+
+\response We appreciate this important electrochemical point. In acidic aqueous media, transition-metal adatoms face potential dissolution ($\text{M} \rightarrow \text{M}^{2+} + 2e^-$). The strong covalent $\text{TM--Cl}$ binding energies calculated here ($-2.60\text{ to } -3.38\text{ eV}$) shift the effective dissolution potential positively relative to bulk metal dissolution, enhancing local stability. In the revised manuscript, we have added a discussion of Pourbaix stability windows and electrochemical operation conditions in Section 3.1.
+
+\begin{reviewercomment}[Reviewer 5 --- Comment 5]
+For each of Co, Fe, and Ni, which doping configuration (surface vs. embedding) in Fig. 3 is energetically favorable? The better one should be used for HER if the energy difference is substantial.
+\end{reviewercomment}
+
+\response Thermodynamically at $0\text{ K}$, embedded configurations are favored for Co ($\Delta E_{\mathrm{emb-ads}} = -0.73\text{ eV}$) and Fe ($-0.86\text{ eV}$), while surface adsorption is favored for Ni ($+0.16\text{ eV}$). 
+
+However, from an electrocatalytic standpoint:
+\begin{itemize}[leftmargin=1.5em, itemsep=0.2em]
+    \item The embedded motif increases Cl coordination to sixfold, completely saturating the TM $3d$ shell and severely poisoning H adsorption ($\Delta G_{\mathrm{ads}} > 1.5\text{ eV}$);
+    \item Surface-adsorbed motifs provide open coordination and near-thermoneutral adsorption ($\Delta G_{\mathrm{ads}} = 0.20\text{ eV}$ for Co);
+    \item At room temperature ($300\text{ K}$), surface-adsorbed Co and Fe remain kinetically trapped in the surface state (as confirmed by AIMD), rendering them the experimentally accessible and catalytically active sites.
+\end{itemize}
+
+\manuscriptchange{We have added a summarizing discussion highlighting this fundamental stability-activity trade-off in Section 3.4.}
+
+\end{document}

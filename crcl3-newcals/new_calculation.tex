@@ -1,0 +1,101 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\title{Documentation of New Calculations for Manuscript Revision}
+\author{Antigravity}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Overview}
+This document records the methodology, parameters, directory organization, and computational rationale for the supplementary calculations performed to address the reviewers' comments for the manuscript ``Coordination-Dependent Hydrogen Adsorption on Co-, Fe-, and Ni-Functionalized Monolayer $\text{CrCl}_3$.
+
+The calculations are organized in the \texttt{crcl3-newcals} directory. Three complementary suites are established:
+\begin{enumerate}
+    \item \textbf{DFT-D3 (van der Waals) Dispersion Corrections} (\texttt{DFT\_D3/})
+    \item \textbf{DFT+U Hubbard Benchmarks} (\texttt{DFT\_U/})
+    \item \textbf{Vibrational Frequency Analysis} (\texttt{Freq/})
+\end{enumerate}
+
+\section{Methodology and Computational Details}
+
+\subsection{1. Extraction of Adsorption Energy ($\Delta E_{\mathrm{ads}}$) and Clean Substrates}
+To rigorously extract the hydrogen adsorption energy:
+\begin{equation}
+    \Delta E_{\mathrm{ads}} = E(\text{doped-CrCl}_3 + \text{H}) - E(\text{doped-CrCl}_3) - \frac{1}{2} E(\text{H}_2)
+\end{equation}
+both the hydrogenated slab ($E(\text{doped-CrCl}_3 + \text{H})$) and the corresponding clean substrate ($E(\text{doped-CrCl}_3)$) must be evaluated at the exact same level of theory. Therefore, for both \textbf{DFT-D3} and \textbf{DFT+U}, separate calculations are staged for:
+\begin{itemize}
+    \item The 6 hydrogenated systems: \texttt{adsorbed/\{Co, Fe, NI\}} and \texttt{embeded/\{Co, Fe, NI\}}.
+    \item The 6 clean substrates without H: \texttt{clean/adsorbed/\{Co, Fe, NI\}} and \texttt{clean/embeded/\{Co, Fe, NI\}}.
+\end{itemize}
+This guarantees consistency, preventing spurious energetic offsets that would arise from mixing plain PBE and corrected total energies.
+
+\subsection{2. DFT-D3 (van der Waals) Setup}
+\textbf{Goal:} Address Reviewer 4 (Comment 2) by confirming that long-range dispersion does not alter the relative adsorption trends ($\text{Co} < \text{Fe} < \text{Ni}$) or structural coordination stability.
+\begin{itemize}
+    \item \textbf{Method:} Grimme D3 zero-damping scheme (\texttt{IVDW = 11}).
+    \item \textbf{Ionic Relaxation:} Full relaxation with \texttt{IBRION = 2}, \texttt{NSW = 500}, \texttt{ISIF = 2}, \texttt{EDIFFG = -0.025~eV/\AA}.
+    \item \textbf{Spin Polarization:} \texttt{ISPIN = 2} with dopant-specific initial magnetic moments ($3.0\,\mu_{\mathrm{B}}$ for Co, $4.0\,\mu_{\mathrm{B}}$ for Fe, $2.0\,\mu_{\mathrm{B}}$ for Ni, $3.0\,\mu_{\mathrm{B}}$ for Cr).
+\end{itemize}
+
+\subsection{3. DFT+U Hubbard Benchmarks}
+\textbf{Goal:} Address Reviewer 4 (Comments 1 \& 16) by verifying that the $3d$ electron correlation on Cr does not affect the catalytic ordering governed by TM orbital hybridization.
+\begin{itemize}
+    \item \textbf{Method:} Rotationally invariant formulation by Dudarev et al. (\texttt{LDAUTYPE = 2}) with $U_{\mathrm{eff}} = 4.0\text{ eV}$ applied exclusively to Cr $3d$ states.
+    \item \textbf{INCAR Specifications:}
+    \begin{verbatim}
+LDAU      = .TRUE.
+LDAUTYPE  = 2
+LDAUL     = 2 -1 -1 -1   # (2 -1 -1 for clean substrates)
+LDAUU     = 4.0 0 0 0    # (4.0 0 0 for clean substrates)
+LDAUJ     = 0 0 0 0      # (0 0 0 for clean substrates)
+LMAXMIX   = 4            # Mandatory for d-state PAW charge density mixing
+    \end{verbatim}
+    \item \textbf{Critical Verification:} \texttt{LMAXMIX = 4} is explicitly included to avoid charge mixing truncation at $l=2$.
+\end{itemize}
+
+\subsection{4. Vibrational Frequency Calculations}
+\textbf{Goal:} Address Reviewer 4 (Comment 4) by obtaining explicit zero-point energy ($\Delta E_{\text{ZPE}}$) and entropic ($-T\Delta S$) corrections for the adsorbed hydrogen.
+\begin{itemize}
+    \item \textbf{Method:} Finite difference of forces (\texttt{IBRION = 5}, \texttt{NFREE = 2}, displacement \texttt{POTIM = 0.015~\AA}).
+    \item \textbf{Precision:} Tight electronic convergence \texttt{EDIFF = 1.0e-07} to eliminate force noise.
+    \item \textbf{Constraints:} Selective dynamics in \texttt{POSCAR}. Substrate atoms 1--33 (Cr, Cl, TM) are fixed (\texttt{F F F}), while the adsorbed H atom (atom 34) is allowed to vibrate (\texttt{T T T}). Starting coordinates are initialized directly from fully converged \texttt{CONTCAR} geometries.
+\end{itemize}
+
+\section{Summary of Staged Calculations}
+A total of \textbf{30 distinct calculations} are staged and ready for cluster execution:
+\begin{table}[ht]
+\centering
+\begin{tabular}{llcc}
+\toprule
+\textbf{Suite} & \textbf{Configuration} & \textbf{Systems} & \textbf{Total Jobs} \\
+\midrule
+\texttt{DFT\_D3} & Hydrogenated (adsorbed + embedded) & Co, Fe, Ni & 6 \\
+\texttt{DFT\_D3} & Clean Substrates (adsorbed + embedded) & Co, Fe, Ni & 6 \\
+\texttt{DFT\_U}  & Hydrogenated (adsorbed + embedded) & Co, Fe, Ni & 6 \\
+\texttt{DFT\_U}  & Clean Substrates (adsorbed + embedded) & Co, Fe, Ni & 6 \\
+\texttt{Freq}    & Hydrogenated Selective Dynamics & Co, Fe, Ni & 6 \\
+\midrule
+\textbf{Total}   & & & \textbf{30} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Cluster Deployment and Automation}
+Execution on the HPC cluster is automated through:
+\begin{itemize}
+    \item \texttt{DFT\_D3/run\_monitor\_vasp.sh}
+    \item \texttt{DFT\_U/run\_monitor\_vasp.sh}
+    \item \texttt{Freq/run\_monitor\_vasp.sh}
+    \item \texttt{run\_all\_new\_calculations.sh} (root master orchestrator)
+\end{itemize}
+These scripts check file completeness, track active SLURM jobs to avoid duplication, and assign unique job identifiers (e.g., \texttt{D3\_ads\_Co}, \texttt{U\_cln\_emb\_Fe}, \texttt{Freq\_ads\_Ni}).
+
+\end{document}

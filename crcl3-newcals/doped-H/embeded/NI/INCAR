@@ -1,0 +1,19 @@
+# --- INCAR (relax) --- gerado por mk_doped_dirs.py
+ENCUT   = 400     # eV; teste de convergência recomendado
+EDIFF   = 1.0e-06    # critério eletrônico
+EDIFFG  = -0.025      # critério força ionic
+PREC    = Normal
+ISPIN   = 2                    # spin polarizado
+MAGMOM  = 8*3.0 24*0.0 1*2.0 1*0.5  # sementes μB
+ISYM    = 0            # desativa simetria (dopante)
+LDIPOL  = .TRUE.
+IDIPOL  = 3       # correção z
+LWAVE   = .TRUE.
+LCHARG  = .TRUE.
+NCORE   = 8
+# --- relax ---
+IBRION  = 1             # CG
+NSW     = 500           # passos máx
+ISIF    = 2             # relaxa íons, célula fixa 2D
+ISMEAR  = 0; SIGMA = 0.05
+ISTART  = 0  ICHARG = 1 # superposição atômica

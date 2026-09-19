@@ -1,0 +1,11 @@
+Highlights:
+- Cobalt adsorption on chromium trichloride improves hydrogen evolution.
+- Adsorbed cobalt provides the best energy for hydrogen binding.
+- Transition metals activate the electronic structure of the host sheet.
+- Embedding metals into the surface reduces catalytic performance.
+- Cobalt outperforms iron and nickel for hydrogen activation.
+
+Note for the Author:
+- Each bullet is under 85 characters.
+- Acronyms (HER, DFT, CrCl3) have been expanded to full words.
+- This text should be copied into an editable Word (.docx) file for submission.

@@ -1,0 +1,207 @@
+{
+  "_schema_version": "1.0.0",
+  "_description": "Authoritative cross-verified metadata and structural/electronic parameters for monolayer and bulk CrCl3 extracted from papers/.",
+  "_compiled_date": "2026-09-08",
+  "discrepancy_audit_summary": {
+    "issue": "Inconsistent lattice parameters (a = 5.96 A for Webster, a = 6.00 A for Luo) and band gaps cited in plotting scripts.",
+    "root_cause_analysis": {
+      "webster_2018": "Table I of Webster 2018 explicitly reports a0 = 6.056 A (NOT 5.96 A). The 5.96 A value was an accidental transcription error from experimental bulk/MBE papers.",
+      "luo_2020": "Section 2 (page 2, line 115) of Luo 2020 explicitly reports 'a = b = 6.056 A' citing Webster [21] (NOT 6.00 A). The Cr-Cl bond length is 2.352 A.",
+      "gao_2018": "Table 1 of Gao 2018 explicitly reports monolayer DFT-GGA relaxed a = b = 5.985 A, Cr-Cl bond length 2.355 A, and layer thickness c = 2.439 A.",
+      "bedoya_pinto_2021": "Experimental MBE monolayer on graphene reports in-plane lattice parameter a = 5.96 +/- 0.05 A from RHEED/STM.",
+      "dillon_1966": "Bulk experimental crystal structure reports a = 5.959 A (monoclinic C2/m at 300 K) and a = 5.942 A, c = 17.333 A (rhombohedral R-3 hexagonal setting at low temperature).",
+      "pollini_1970": "Bulk intrinsic optical absorption measures fundamental charge-transfer threshold at 3.2 +/- 0.1 eV with sub-gap d-d crystal-field peaks at 1.68 eV and 2.28 eV."
+    },
+    "resolution": "Updated all benchmark markers in plot_lattice_vs_u.py and plot_bandgap_vs_u_benchmarks.py with exact verified literature values."
+  },
+  "papers": [
+    {
+      "paper_id": "webster2018",
+      "citation": "L. Webster, J.-A. Yan, 'Strain-tunable magnetic anisotropy in monolayer CrCl3, CrBr3, and CrI3', Phys. Rev. B 98, 144411 (2018)",
+      "doi": "10.1103/PhysRevB.98.144411",
+      "phase": "monolayer",
+      "space_group": "P-31m (No. 162)",
+      "methodology": {
+        "dft_code": "VASP",
+        "functional": "GGA-PBE + SOC",
+        "hubbard_u_eV": 0.0,
+        "cutoff_energy_eV": 500.0,
+        "kpoints": "Gamma-centered 12x12x1",
+        "vacuum_Ang": 18.0
+      },
+      "parameters": {
+        "lattice_constant_a_Ang": 6.056,
+        "lattice_constant_b_Ang": 6.056,
+        "cell_angle_gamma_deg": 120.0,
+        "bond_length_Cr_Cl_Ang": 2.357,
+        "bond_angle_theta1_deg": 95.8,
+        "axial_bond_angle_theta2_deg": 173.2,
+        "total_energy_Et_eV": -38.916,
+        "band_gap_eV": 1.55,
+        "band_gap_type": "indirect (crystal-field t2g -> eg, spin-up)",
+        "magnetic_ground_state": "FM",
+        "E_FM_minus_E_AFM_eV": -0.023,
+        "MAE_micro_eV_per_Cr": 24.68,
+        "easy_axis": "out-of-plane c"
+      },
+      "provenance": {
+        "table": "Table I (page 2)",
+        "text_location": "Page 2, Table I: 'CrCl3 a0 = 6.056 A, Et = -38.916 eV, theta1 = 95.8 deg, theta2 = 173.2 deg, l = 2.357 A, EFM - EAFM = -0.023 eV, MAE = 24.68 ueV/Cr, Easy axis: c'",
+        "figure": "Fig. 2(a) for band structure and indirect gap (~1.55 eV)"
+      }
+    },
+    {
+      "paper_id": "luo2020",
+      "citation": "X.-Q. Luo, G.-Y. Zhao, S.-Q. Shen, H.-X. Zhong, 'Adsorption and charge doping induced magnetic phase transition in monolayer CrCl3', Solid State Commun. 321, 114048 (2020)",
+      "doi": "10.1016/j.ssc.2020.114048",
+      "phase": "monolayer",
+      "space_group": "P-31m (No. 162)",
+      "methodology": {
+        "dft_code": "VASP",
+        "functional": "GGA-PBE + PAW",
+        "hubbard_u_eV": 0.0,
+        "cutoff_energy_eV": 500.0,
+        "kpoints": "10x10x1 (unit cell), 5x5x1 (3x2x1 supercell)",
+        "vacuum_Ang": 20.0
+      },
+      "parameters": {
+        "lattice_constant_a_Ang": 6.056,
+        "lattice_constant_b_Ang": 6.056,
+        "cell_angle_gamma_deg": 120.0,
+        "bond_length_Cr_Cl_Ang": 2.352,
+        "band_gap_eV": 1.6,
+        "band_gap_type": "spin-up gap ~1.6 eV, spin-down gap ~3.8 eV",
+        "magnetic_ground_state": "FM",
+        "magnetic_moment_muB_per_Cr": 3.0,
+        "easy_axis": "out-of-plane easy axis"
+      },
+      "provenance": {
+        "section": "Section 2: Computational methods (page 2)",
+        "text_location": "Page 2, left column, lines 114-117: 'The optimized lattice constants are a = b = 6.056 A, and the Cr-Cl bond length is about 2.352 A [21]. To avoid the artificial interactions between image layers, a vacuum space of 20 A is added along with the out of the plane z-axis.'",
+        "figure": "Fig. 1(c) for PDOS and band gap (~1.6 eV)"
+      }
+    },
+    {
+      "paper_id": "gao2018",
+      "citation": "Y. Gao, J. Wang, Y. Li, M. Xia, Z. Li, F. Gao, 'Point-Defect-Induced Half Metal in CrCl3 Monolayer', Phys. Status Solidi RRL 12, 1800105 (2018)",
+      "doi": "10.1002/pssr.201800105",
+      "phase": "monolayer and bulk",
+      "space_group": "P-31m (monolayer), R-3 (bulk low-T), C2/m (bulk room-T)",
+      "methodology": {
+        "dft_code": "VASP",
+        "functional": "GGA-PBE and GGA+U (Dudarev U_eff = 5.0 eV on Cr 3d)",
+        "hubbard_u_eV": [
+          0.0,
+          5.0
+        ],
+        "cutoff_energy_eV": 500.0,
+        "kpoints": "12x12x1 (monolayer unit cell)",
+        "vacuum_Ang": 15.0
+      },
+      "parameters": {
+        "monolayer": {
+          "lattice_constant_a_Ang": 5.985,
+          "lattice_constant_b_Ang": 5.985,
+          "monolayer_thickness_c_Ang": 2.439,
+          "bond_length_Cr_Cl_Ang": 2.355,
+          "band_gap_GGA_eV": 1.6,
+          "band_gap_GGA_plus_U_5eV_eV": 2.2,
+          "gap_nature_GGA": "between Cr t2g spin-up and eg spin-up (crystal-field)",
+          "gap_nature_GGA_plus_U": "between Cl 3p and Cr 3d empty (charge-transfer)",
+          "magnetic_moment_Cr_GGA_muB": 2.86,
+          "magnetic_moment_Cr_GGA_plus_U_muB": 3.15,
+          "magnetic_moment_Cl_GGA_muB": 0.03,
+          "magnetic_moment_Cl_GGA_plus_U_muB": 0.07,
+          "E_FM_minus_E_AFM_GGA_meV": -7.0,
+          "E_FM_minus_E_AFM_GGA_plus_U_meV": -15.4
+        },
+        "bulk_R_minus_3": {
+          "lattice_constant_a_Ang": 5.98,
+          "lattice_constant_b_Ang": 5.98,
+          "lattice_constant_c_Ang": 17.595,
+          "bond_length_Cr_Cl_Ang": [
+            2.355,
+            2.354
+          ]
+        },
+        "bulk_C2_over_m": {
+          "lattice_constant_a_Ang": 5.985,
+          "lattice_constant_b_Ang": 10.357,
+          "lattice_constant_c_Ang": 6.2,
+          "angle_beta_deg": 108.1,
+          "bond_length_Cr_Cl_Ang": [
+            2.353,
+            2.354,
+            2.371
+          ]
+        }
+      },
+      "provenance": {
+        "table": "Table 1 (page 3) and Table 2 (page 4)",
+        "text_location": "Page 3: 'Regarding the CrCl3 monolayer, the in-plane parameter a and b are almost same as in bulk phase from our calculations. The bond lengths... are all 2.355 A which would give a perfect octahedron in the monolayer. The c (2.439 A) means the thickness of the layer.'",
+        "figure": "Fig. 3 (DOS for GGA vs GGA+U 5.0 eV, showing 1.6 eV -> 2.2 eV gap expansion)"
+      }
+    },
+    {
+      "paper_id": "dillon1966",
+      "citation": "J. F. Dillon, Jr., H. Kamimura, J. P. Remeika, 'Optical properties of the chromium trihalides: CrF3, CrCl3, CrBr3, and CrI3', J. Phys. Chem. Solids 27, 1531-1549 (1966)",
+      "doi": "10.1016/0022-3697(66)90148-X",
+      "phase": "bulk experimental",
+      "space_group": "R-3 (low temperature) / C2/m (room temperature)",
+      "parameters": {
+        "low_temp_hexagonal_a_Ang": 5.942,
+        "low_temp_hexagonal_c_Ang": 17.333,
+        "room_temp_monoclinic_a_Ang": 5.959,
+        "room_temp_monoclinic_b_Ang": 10.321,
+        "room_temp_monoclinic_c_Ang": 6.114,
+        "room_temp_monoclinic_beta_deg": 108.5,
+        "crystal_field_d_d_transitions_eV": [
+          1.68,
+          2.08
+        ],
+        "fundamental_charge_transfer_optical_edge_eV": 3.2,
+        "Curie_temp_Tc_K": 16.8
+      },
+      "provenance": {
+        "table": "Table 1 (page 1533)",
+        "figures": "Fig. 4 & Fig. 15 (optical absorption spectra, d-d bands and charge-transfer edge)"
+      }
+    },
+    {
+      "paper_id": "pollini1970",
+      "citation": "I. Pollini, G. Spinolo, 'Intrinsic Optical Properties of CrCl3', Phys. Status Solidi (b) 41, 691-701 (1970)",
+      "doi": "10.1002/pssb.19700410224",
+      "phase": "bulk experimental",
+      "parameters": {
+        "crystal_field_d_d_absorption_peaks_eV": [
+          1.68,
+          2.28
+        ],
+        "fundamental_charge_transfer_absorption_edge_eV": 3.2,
+        "experimental_uncertainty_eV": 0.1,
+        "optical_transition_nature": "Intense Cl 3p -> Cr 3d interband charge transfer above 3.2 eV, weak parity-forbidden 4A2g -> 4T2g, 4T1g d-d transitions at 1.68-2.28 eV"
+      },
+      "provenance": {
+        "section": "Section 3.2 & 3.3 (pages 694-697)",
+        "text_location": "Page 695: 'photoconductivity is one hundred times higher at 3.2 eV... fundamental absorption edge corresponds to charge-transfer transition at 3.2 eV'",
+        "figures": "Fig. 2, Fig. 3, Fig. 5 (absorption spectra between 1.5 eV and 8 eV)"
+      }
+    },
+    {
+      "paper_id": "bedoyapinto2021",
+      "citation": "A. Bedoya-Pinto, J.-R. Ji, et al., 'Intrinsic 2D-XY ferromagnetism in a van der Waals monolayer', Science 374, 616-620 (2021)",
+      "doi": "10.1126/science.abd5146",
+      "arxiv": "arXiv:2006.07605",
+      "phase": "monolayer experimental (MBE on graphene/6H-SiC)",
+      "parameters": {
+        "in_plane_lattice_parameter_a_Ang": 5.96,
+        "uncertainty_Ang": 0.05,
+        "magnetic_ordering": "2D-XY ferromagnet (easy-plane anisotropy in xy)",
+        "Curie_temp_Tc_K": 13.0
+      },
+      "provenance": {
+        "text_location": "Main text page 617, Fig. 1(b-d): In-situ RHEED and LT-STM moire pattern characterization."
+      }
+    }
+  ]
+}

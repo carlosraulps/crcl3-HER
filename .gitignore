@@ -1,14 +1,5 @@
 # ==============================================================================
-# .gitignore for VASP DFT Calculations & HPC Research Workflow
-# ==============================================================================
-# Tracks essential inputs:
-#   - INCAR, POSCAR, KPOINTS, POTCAR, job.sh, scripts (*.py, *.sh)
-# Tracks essential outputs:
-#   - CONTCAR, OSZICAR, OUTCAR, IBZKPT, *.out
-# Tracks reports & metadata:
-#   - *.md, *.csv, *.json, *.pdf, *.png
-# Ignores heavy wavefunctions, charge densities, volumetric grids, build/dist,
-# temporary files, core dumps, and compressed archives.
+# .gitignore for VASP DFT Calculations, HPC Research & Manuscript Preparation
 # ==============================================================================
 
 # --- Heavy VASP Wavefunctions & Volumetric Charge Grids ---
@@ -20,30 +11,20 @@ ELFCAR*
 PARCHG*
 TMPCAR*
 
-# --- Heavy Band Structure, DOS, Trajectory & XML Outputs ---
+# --- VASP Intermediate & Heavy Outputs ---
 DOSCAR*
 EIGENVAL*
 PROCAR*
 PROOUT*
 XDATCAR*
-PCDAT
-REPORT
 vasprun*.xml
-
-# --- Python Build, Packaging & Binary Artifacts ---
-build/
-dist/
-bin/
-*.pkg
-*.pyz
-*.toc
-*.spec
-*.egg-info/
-*.egg
-*.so
-*.o
-*.a
-*.exe
+*.cube
+*.vesta
+vasp_run.log
+OUTCAR*
+CONTCAR*
+OSZICAR*
+IBZKPT*
 
 # --- Compressed Archives & Large Bundles ---
 *.zip
@@ -54,25 +35,32 @@ bin/
 *.7z
 *.rar
 
-# --- Temporary, Scratch, Backup & Crash Files ---
-*.bak
-*.bak_*
-*.tmp
-*.temp
-scratch/
-*/scratch/
-core
-core.*
-STOPCAR
-
-# --- Watchdog, Snapshots & Daemons ---
-*.ckpt
-*.pid
-watchdog.log
+# --- LaTeX Intermediate / Build Files ---
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
 *.log
+*.out
+*.toc
+*.lof
+*.lot
+*.run.xml
+*.bcf
 
-# --- Slurm Error Files ---
-*.err
+# --- Python Build, Packaging & Binary Artifacts ---
+build/
+dist/
+*.pkg
+*.pyz
+*.egg-info/
+*.egg
+*.so
+*.o
+*.a
+*.exe
 
 # --- Python & Environment Artifacts ---
 __pycache__/
@@ -83,8 +71,38 @@ __pycache__/
 env/
 venv/
 
-# --- Operating System & Editor Artifacts ---
+# --- Temporary, Scratch, Backup & Crash Files ---
+temp/
+graphify-out/
+media/
+*/media/
+*.bak
+*.bak_*
+*.tmp
+*.temp
+scratch/
+*/scratch/
+core
+core.*
+STOPCAR
+
+# --- Slurm Error & Watchdog Files ---
+*.err
+*.ckpt
+*.pid
+watchdog.log
+
+# --- Raw / Past Calculation Run Dumps ---
+past-calculations/
+*/past-calculations/
+crcl3-newcals/crcl3-1x1/quick_test/
+crcl3-newcals/crcl3-1x1/quick_test_k551/
+crcl3-newcals/crcl3-1x1/relax-crcl3-i3-dvw-u/
+
+# --- OS Metadata & Editor Artifacts ---
 .DS_Store
+*/.DS_Store
+Thumbs.db
 .directory
 *~
 *.swp

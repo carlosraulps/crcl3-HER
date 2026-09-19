@@ -1,0 +1,1106 @@
+J. Phys.  Chem.  Solids.  Pergamon  Press  1966.  Vol. 27,  pp. 1531-1549.  Printed  in Great  Britain.
+| MAGNETO-OPTICAL  |     |                 |                  |                | PROPERTIES              |             |         | OF  FERROMAGNETIC  |     |     |     |
+| ---------------- | --- | --------------- | ---------------- | -------------- | ----------------------- | ----------- | ------- | ------------------ | --- | --- | --- |
+|                  |     |                 | CHROMIUM         |                |                         | TRIHALIDES  |         |                    |     |     |     |
+|                  |     |                 | J.  F.  DILLON,  |                | JR.,  H.  KAMIMURA*     |             | and     | J.  P.  REMEIKA    |     |     |     |
+|                  |     | Bell Telephone  |                  | Laboratories,  | Incorporated,           |             | Murray  | Hill,  New Jersey  |     |     |     |
+|                  |     |                 |                  |                | (Received  31 December  |             | 1965)   |                    |     |     |     |
+Abstract-Very  large  rotations  of the axis of linear polarization  may be observed  in visible light
+passing  through  ferromagnetic  chromium  trihalides.  The  greatest  effects  are apparently  associated
+with  an absorption  band  edge which,  for  CrBrs,  is located  in the green.  This  paper  presents  the
+spectral  variation  of that  rotation  and of the corresponding  absorption  band  edge.  We  consider  a
+model  consisting  of  a Crs+  ion in an octahedron  of Br-  ions, subjected  to a molecular  field. It is
+shown  that the absorption  band edge in CrBrs  corresponds  to charge  transfer  transitions  in which
+an electron  in a bromine  orbital  is promoted  into an obital localized  on the central  chromium  ion.
+The  rotation  arises as a consequence  of the splitting  of the excited  energy  levels by the spin-orbit
+| coupling  | and the trigonal  |               |     | crystal  | field.  |       |     |             |     |      |           |
+| --------- | ----------------- | ------------- | --- | -------- | ------- | ----- | --- | ----------- | --- | ---- | --------- |
+|           |                   | INTRODUCTION  |     |          |         | PART  | I:  | PROPERTIES  | OF  | THE  | CHROMIUM  |
+THE  optical  properties  of the  ferromagnetic  chro-  TRIHALIDES
+mium  trihalides  enable  us to study  and to under-  Crystdl  structure
+1.
+stand  many  of  the  important  excited  energy  A  recent  paper  by  MORISIN  and  NARATH@)
+levels(lI2)  of these  crystals.  This  ability  arises from  has  shown  that,  at low  temperatures,  the  crystal
+the  fact  that  CrBra  and  CrCls  are  moderately  structures  of  CrCla  and  CrBrs  are  identical.  At
+transparent  over  a wide  spectral  range  and  there  about  240°K  CrCls  undergoes  a first  order  tran-
+is a good deal of structure  in the absorption  within  sition  to  a related  structure  of  lower  symmetry
+| this  range.  | In  | addition,  | we  | have  | the  valuable  |       |        |            |               |             |      |
+| ------------- | --- | ---------- | --- | ----- | -------------- | ----- | ------ | ---------- | ------------- | ----------- | ---- |
+|               |     |            |     |       |                | with  | which  | we  shall  | not  concern  | ourselves.  | The  |
+added  data  of  the  magneto-optical  rotations.  dominant  feature@)  of  the  CrBrs  structure  is  a
+Spectral  measurements  of these  rotations  provide  covalently  bonded  “sandwich”  in  which  a  hex-
+additional  tests  of  any  theoretical  interpretation.  agonal  net  of  Crs+  ions  lies  between  two  close
+On  an experimental  plane,  they  enable  us to dis-  packed  layers  of halogen  ions.  While  the  bonding
+| tinguish  | transitions  | which  | have  | a splitting  | asso-  |         |      |           |                    |     |            |
+| --------- | ------------ | ------ | ----- | ------------ | ------ | ------- | ---- | --------- | ------------------ | --- | ---------- |
+|           |              |        |       |              |        | within  | the  | sandwich  | is  predominantly  |     | covalent,  |
+ciated  with  the  magnetization  in  the  presence  of  successive  sandwiches  are  held  together  only  by
+stronger  transitions  which  are not so split.  In Part I  weak van  der Waals  bonds.  The  halogen  ions  are
+of  this  paper  we  will  describe  the  magnetic  and  very  nearly  h.c.p.  Until  the  Morisin  and  Narath
+optical  properties  of  CrCla,  and  CrBra  and CrIs  paper  it  was  thought  that  the  chloride  and  the
+with  special  attention  to  the  large  rotations  near  iodide  had  a  different  structure  in  which  the
+| the  absorption  |     | band  | edge.  | In  Part  | II  we  will  |           |     |                    |          |     |                 |
+| ---------------- | --- | ----- | ------ | --------- | ------------- | --------- | --- | ------------------ | -------- | --- | --------------- |
+|                  |     |       |        |           |               | halogens  |     | are  cubic  close  | packed.  | In  | light  of  the  |
+present  the  theory  of  these  absorptions  and  Morisin  and  Narath  paper,  it  seems  very  likely
+rotations.  that the iodide also has that same structure.  Figure
+|     |     |     |     |     |     | 16)  | illustrates  | the  bromide+hloride  |     |     | structure.  In  |
+| --- | --- | --- | --- | --- | --- | ---- | ------------ | --------------------- | --- | --- | --------------- |
+* Present address:  it, the chromium  ion is surrounded  by a very nearly
+|     |     | Dept. of Physics,  |     | Faculty  | of Science,  |     |     |     |     |     |     |
+| --- | --- | ------------------ | --- | -------- | ------------ | --- | --- | --- | --- | --- | --- |
+University  of Tokyo,  Tokyo,  Japan.  regular  octahedron  of  halogen  ions.  The  point
+| 6   |     |     |     |     |     | 1531  |     |     |     |     |     |
+| --- | --- | --- | --- | --- | --- | ----- | --- | --- | --- | --- | --- |
+
+1532  J.  I?.  DILLON,  JR.,  H.  KAMIMURA  and  J.  P.  REMEIKA
+|     |     |     |     |     |     | Table  | 1   |     |     |
+| --- | --- | --- | --- | --- | --- | ------ | --- | --- | --- |
+-
+|     |     | Compound  |     |     | CrCI3  |     |     | &Bra  | CrI3  |
+| --- | --- | --------- | --- | --- | ------ | --- | --- | ----- | ----- |
+Space  group  Cat2 below  --23&%(a)  C3ti2 below  4°K  Probably  C3g2
+Halogen  packing
+h.c.p.  for C’s12
+Cr site point symmetry
+|     |                 |           |     |     |            | c-3     |     | c3           |                |
+| --- | --------------- | --------- | --- | --- | ---------- | ------- | --- | ------------ | -------------- |
+|     | Hexagonal       | cell a0   |     |     | 5.942      | Ace)    |     | 6.26  A(b)   | 6.:;  A        |
+|     |                 |           |     |     | 17.333     | A(C)    |     | 18.20  A(“)  | 19.88  a       |
+|     | z-ray           | density   |     |     | 2.95       | g/cm3   |     | 4.75  g/cma  | 5.36  gjcma    |
+|     | TC              |           |     |     | 16,8”K(d)  |         |     | 32,5”K(ef    | 68”K(‘)        |
+|     | 4%+&l           |           |     |     | 3880       | (est.)  |     | 3390@)       | 2690(f)        |
+|     | 2fc;fiW at 0°K  |           |     |     | ~0         | Oe@)    |     | 6500  Oe(l)  | 28,600  Oetf)  |
+|     | Cr3+            | ions/cm3  |     |     | 1.12       | x 1022  |     | 1.0 x 1022   | 0.75  x 1022   |
+-z.---4
+|     | (0) NARATHA  |     | . and DAVIS H.  |     | L.,  Phys.  | Reo. 137,  | Al63  | (1965).  |     |
+| --- | ------------ | --- | --------------- | --- | ----------- | ---------- | ----- | -------- | --- |
+K.  Norske Vidensk. Se&k. Forh. 5, No. 11 (1932).
+(bf BRAEKKENH .,
+|     | (e) MORISIN B. and NARATHA  |     |                        |                  | ..  J. Chem. Pkys. &I,1958  |                         |                         | (1964).              |     |
+| --- | --------------------------- | --- | ---------------------- | ---------------- | --------------------------- | ----------------------- | ----------------------- | -------------------- | --- |
+|     | cd) HANSEN                  |     | W.  N.                 | and GRIFFEL M.,  |                             | J. Chem. Phys. 20, 902  |                         | (19.58).             |     |
+|     | @f JENNINGS L.              |     | D. and HANSEN W.       |                  |                             | N.,  P&s.               | Reu.                    | 139, Al694  (1965).  |     |
+|     | (f) DXLLON J.               |     | F.,  JR. and OLSEN C.  |                  |                             | E.,  J.  Appl.          | Whys. 36, 1259 (1965).  |                      |     |
+|     | (8) TSU~OKAWAI .,           |     |                        | Phys. Sot.       | Japan 15,1664               |                         | (1960).                 |                      |     |
+J.
+(h) DILLON J.  F.,  JR. and REMEIKAJ . P.,  Proceedings of the XZtk Colloque Ampere, Eind-
+|     |       | haven, 2-7 July,  |            | 1962,                 | pp. 480187.  |         |       |          |     |
+| --- | ----- | ----------------- | ---------- | --------------------- | ------------ | ------- | ----- | -------- | --- |
+|     | f*)D  | ILLON J.          | F.,  JR.,  | _J. Appl. P,%ys. 33,  |              | Suppl.  | 1191  | (1962).  |     |
+symmetry  for  the  Crs+  site  is  Cs.  But  it is clear  CrBra.  Thus  they  could  be  used  as  hosts  for
+that  the leading  term  in the expansion  of the crystal  chromium  at  low  concentrations.  Such  crystals
+field  will  be  cubic,  and  that  this  is followed  by  a  would  be valuable  for optical  and resonance  studies
+trigonal  term.  Table  1 gives  detailed  information  of single  ions  and  pairs  of ions.
+| on the space group,  |          | cell dimensions,  |           |           | and  magnetic  |       |     |     |     |
+| -------------------- | -------- | ----------------- | --------- | --------- | -------------- | ----- | --- | --- | --- |
+| constants            | of  the  | three             | magnetic  | chromium  |                | tri-  |     |     |     |
+halides.
+Chromium  tribromide(a**f  and  chromium  tri-  Our  experimental  work  on  CrBra  has  been
+odide(‘)  are  true  ferromagnets.  Below  T,  a  circumscribed  by  the  physical  properties  of  the
+spontaneous  magnetization  exists  which  is broken  crystal,  particularly  its room temperature  mechani-
+up  into  domains  in  the  absence  of  an  applied  cal  properties.  Let us describe  these  qualitatively.
+field.  Chromium  trichloride,@)  on  the  other  hand  The  thin  sheet  samples  used  in  both  the  optica
+is a met~agnet.  Below  T,,  in  the  absence  of an  and  microwave  experiments  bend  exceedingly
+applied  field,  the  spins  are  arranged  antiferro-  easily,  and  there  is only  a small  elastic  range.  The
+magnetically.  In  a  relatively  small  field,  a  few  ease  with  which  a  permanent  deformation  is
+thousand  oersteds,  they  become  ferromagnetically  effected  presumably  represents  the  ease  of  slip
+arrayed.  Thus,  if our  experiments  are  done  in  a  between  the  covalently  bonded  sandwiches
+saturating  field,  CrCls,  CrBra  and  CrIa  are  mentioned  above.  In  fact,  if  a  relatively  thick
+ferromagnets.  crystal  is subjected  to a shear by putting  it between
+The  occurrence  of  interesting  magneto-optical  two glass slides,  the  crystal  shears  like a new  deck
+properties  in  these  magnetic  chromium  trihalides  of  cards.  The  mechanical  properties  of  CrBra
+suggests  that  other  compounds  with  similar  are  quite  similar  to  those  of crystalline  graphite.
+structures  might  also  display  such  properties.  CrCla  is somewhat  better  mechanically  at room
+Extrapolations  to  such  metamagnetic  layer  struc-  temperature  where  it  has  a  different  structure.
+ture  crystals  as Feels,  CoCIs and NiCla  are promis-  The  yield  point  for bending  is not  so low as in the
+ing.  In  addition,  we note  that  BiIa,  SbIs  and  AsIa  bromide.  Altogether  thecrystal  is not as”slippery”.
+|         |               |     |            |      |        |      | However  | the chloride  | crystals  we have encountered  |
+| ------- | ------------- | --- | ---------- | ---- | ------ | ---- | -------- | ------------- | ------------------------------ |
+| rovide  | non-magnetic  |     | isomorphs  | for  | CrCla  | and  |          |               |                                |
+
+MAGNETO-OPTICAL  PROPERTIES  OF  FERROMAGNETIC  CHROMIUM  TRIHALIDES  1533
+|     |     |     |     | The  solid                                       | lines                    | in  Fig.             | 2                  | show  the     | absorption    |          |
+| --- | --- | --- | --- | ------------------------------------------------ | ------------------------ | -------------------- | ------------------ | ------------- | ------------- | -------- |
+|     |     |     |     | coefficient                                      | for  the                 | three                | trihalides         |               | as  measured  |          |
+|     |     |     |     | at  l*S”K.                                       | As will                  | be  seen             | below,             | the           | positions     | of       |
+|     |     |     |     | the  bands                                       | and  lines               | are                  | largely            | accounted     |               | for  by  |
+|     |     |     |     | crystal  field                                   | theory.                  | Therefore            |                    | the           | crystal       | field    |
+|     |     |     |     | assignment                                       | for the levels involved  |                      |                    | has been      |               | placed   |
+|     |     |     |     | on the  drawing                                  | next                     | to each              |                    | peak.  In     | addition      | to       |
+|     |     |     |     | these  crystal                                   | field                    | transitions          |                    | the  high     | energy        | end      |
+|     |     |     |     | of each absorption                               |                          | curve is determined  |                    |               | by a strong   |          |
+|     |     |     |     | absorption                                       | band                     | edge.                | In  the            | case          | of  CrCls     | the      |
+|     |     |     |     | edge is very close to the limit of the spectral  |                          |                      |                    |               |               | region   |
+|     |     |     |     | which  we were                                   | able to examine,         |                      |                    | so we cannot  |               | say      |
+|     |     |     |     | aching                                           | about  the course        |                      | of the absorption  |               |               | above    |
+this  edge.
+|     |     |     |     | In  the            | case  of the   | bromide,      |                | we know          | from        | the   |
+| --- | --- | --- | --- | ------------------ | -------------- | ------------- | -------------- | ---------------- | ----------- | ----- |
+|     |     |     |     | recent  work       | of             | JUNG(g)       | that           | the  absorption  |             | co-   |
+|     |     |     |     | efficient          | in  the        | band  arises  |                | from  two        | bands.      | At    |
+|     |     |     |     | room  temperature  |                | these         | are at 24,310  |                  | and 29,580  |       |
+|     |     |     |     | cm-l.  In          | transmission,  |               | even           | the  thinnest    | samples     |       |
+|     |     |     |     | with  which        | we have been   |               | able to work   |                  | (about      | 1,~)  |
+|     |     |     |     | are opaque         | from just      | below         | 22,000         | cm-1             | to above    |       |
+25,000  cm-l.
+|     |           |         |      | The  magnetic  |                     | state  | of  the  | specimen    | must     | be       |
+| --- | --------- | ------- | ---- | -------------- | ------------------- | ------ | -------- | ----------- | -------- | -------- |
+|     |           |         |      | considered     | in the measurement  |        |          | of optical  |          | absorp-  |
+|     |           |         |      | tion.  For     | the  tribromide,    |        | and      | the         | iodide,  | both     |
+|     | Cr3+i ON  | 0  Br-  | ION  |                |                     |        |          |             |          |          |
+.
+|     |     |     |     | ferromagnets,  | it is necessary  |     | first that the specimen  |     |     |     |
+| --- | --- | --- | --- | -------------- | ---------------- | --- | ------------------------ | --- | --- | --- |
+Ct- Br,  be magnetically  saturated  in order to avoid diffrac-
+|                        |                                |               |                    | tion  of light  | by the               | domain       | structure.        |               | Absorption  |           |
+| ---------------------- | ------------------------------ | ------------- | ------------------ | --------------- | -------------------- | ------------ | ----------------- | ------------- | ----------- | --------- |
+| FIG. 1. The structure  | of CrBrs,                      | of CrCls      | at low tempera-    |                 |                      |              |                   |               |             |           |
+|                        |                                |               |                    | coefficients    | measured             |              | on  demagnetized  |               | samples     |           |
+| tures,  and probably   | of CrIs.                       | The  drawing  | is made from       |                 |                      |              |                   |               |             |           |
+|                        |                                |               |                    | show  spurious  | structure            |              | arising           | from          | this        | diffrac-  |
+| that  given            | by  TSUBOKAWA.(5)              | The           | basic  structural  |                 |                      |              |                   |               |             |           |
+|                        |                                |               |                    | tion.  The      | topic  is discussed  |              | in Ref.           |               | 10.         |           |
+| element  is            | the  halogen-chromium-halogen  |               | sandwich.          |                 |                      |              |                   |               |             |           |
+|                        |                                |               |                    | Aside           | from  the            | diffraction  |                   | and ordinary  |             | optical   |
+all seemed  to consist  of much  thinner  layers  than  anisotropy  we find  that  the  details  of the  absorp-
+those  of the  bromide.  tion  spectrum  vary slightly  with the  crystal  orien-
+The  CrIs  crystals*  were  less  conspicuously  tation  of the magnetization.  In the case of a sample
+layer-like  than  CrBrs  crystals.  Some  of  the  magnetized  along the c-axis which  is along the line
+| material  is granular,  | and  some  | consists  | of rounded  |             |                  |     |            |               |     |      |
+| ----------------------- | ---------- | --------- | ----------- | ----------- | ---------------- | --- | ---------- | ------------- | --- | ---- |
+|                         |            |           |             | of  sight,  | the  absorption  |     | structure  | is different  |     | for  |
+flakes, From  the mechanical  properties  of the three  the  two  senses  of  circular  polarization.  For  the
+magnetic  trihalides  it  appears  that  the  bonding  magnetization  normal  to  the  c-axis  and  the  line
+between  layers  increases  markedly  as we go to the  of sight, the absorption  must be measured  separately
+heavier  halogens.  for  the  light  polarized  parallel  and  perpendicular
+|                    |                                 |               |            | to the  magnetic  |                 | field.    |                 |                    |              |        |
+| ------------------ | ------------------------------- | ------------- | ---------- | ----------------- | --------------- | --------- | --------------- | ------------------ | ------------ | ------ |
+| 3.  Optical        | absorption                      |               |            |                   |                 |           |                 |                    |              |        |
+|                    |                                 |               |            | When              | the absorption  |           | with            | Mjlc  is measured  |              | for    |
+| The  optical       | absorption                      | coefficients  | of  these  |                   |                 |           |                 |                    |              |        |
+|                    |                                 |               |            | the  two          | senses  of      | circular  | polarization    |                    | significant  |        |
+| chromiumtrih~ides  | show a good deal of structure.  |               |            |                   |                 |           |                 |                    |              |        |
+|                    |                                 |               |            | differences       | are found.      |           | The  structure  |                    | of the       | doub-  |
+Many  of  the  lower  lying  sharp  lines  and  broad  lets  is distinctly  different.  More  important  for our
+bands  typica  of the  Crs+  ion  in a crystai  environ-  purposes  in this paper,  the position  of the absorp-
+| ment  with  | octahedral  symmetry  |     | are observed.  |                         |     |     |            |                     |     |     |
+| ----------- | --------------------- | --- | -------------- | ----------------------- | --- | --- | ---------- | ------------------- | --- | --- |
+|             |                       |     |                | tion  edge is somewhat  |     |     | different  | for the two senses  |     |     |
+crystals  were  grown  by  C.  E.  Olsen,  Los  of circular  polarization.  It  is the  associated  differ-
+* CrI3
+Alamos  Scientific  Laboratories.  ence  in  the  dispersion  for  the  two  senses  which
+
+1.534  J.  F.  DILLON,  JR.,  H.  KAMIMURA  and  J.  P.  REMEIKA
+|                 |                        |            | 6             | 2  10                           | 12  I4      | 16  18          | 20  22           | 24  26       |     |     |     |
+| --------------- | ---------------------- | ---------- | ------------- | ------------------------------- | ----------- | --------------- | ---------------- | ------------ | --- | --- | --- |
+|                 |                        |            |               |                                 | PHOTON      | ENERGY          | (CM-‘)           |              |     |     |     |
+|                 |                        |            | FIG.  2.      | The  optical                    | absorption  | coefficient     | a(1              | =  1ae-at)   |     |     |     |
+|                 |                        |            | (solid        | curves)                         | and  the    | specific        | magnetic         | rotation  p  |     |     |     |
+|                 |                        |            | (R  =         | tp(X)MT.I/jMj)                  | (dashed     | curves)         | of  CrC13,       | CrBrs,       |     |     |     |
+|                 |                        |            | and  CrIs.    | Measurements                    |             | were            | made  at  1.5”K  | with  a      |     |     |     |
+|                 |                        |            | saturating    | field along                     | the         | line of sight.  | In  the          | chloride     |     |     |     |
+|                 |                        |            | and  bromide  | slightly                        | different   |                 | absorption       | curves  are  |     |     |     |
+|                 |                        |            | measured      | for the two senses of circular  |             |                 | polarization.    |              |     |     |     |
+| accounts        | for the magnetic       |            | rotations     | to be discussed                 |             |                 |                  |              |     |     |     |
+| below.  Figure  | 3 shows schematically  |            |               | for CrBrs                       | this        |                 |                  |              |     |     |     |
+| difference      | in  absorption         |            | coefficient   | for                             | right  and  |                 |                  |              |     |     | I   |
+| left handed     | circularly             | polarized  |               | light.  It also shows           |             |                 |                  |              |     |     |     |
+that the 27’s line appears only in the sense for which
+| the  edge         | is  apparently  |                  | higher           | in  energy.  | We        |     |          |         |     |        |     |
+| ----------------- | --------------- | ---------------- | ---------------- | ------------ | --------- | --- | -------- | ------- | --- | ------ | --- |
+| measure           | differences     | between          | the              | position     | of  the   |     |          |         |     |        |     |
+| edge  for         | the  two        | senses           | of  -0           | for  CrCls,  | -200      |     |          |         |     |        |     |
+| cm-1  for CrBrs   | and             | -90              | cm-1  for CrIs.  |              |           |     |          |         |     |        |     |
+| Anisotropic       | behavior        |                  | in  the          | strength     | and       |     |          |         |     |        |     |
+| position          | of  lines       | and  bands       | is obviously     |              | valuable  |     |          |         |     |        |     |
+| in  constructing  |                 | and  evaluating  |                  | a  theory    | of  the   |     |          |         |     |        |     |
+| energy  levels    | in these        | compounds.       |                  |              |           |     |          | I  I    |     | I  I   |     |
+|                   |                 |                  |                  |              |           |     | 01       |         | I   |        |     |
+|                   |                 |                  |                  |              |           |     | 1 6  17  | 18  19  | 20  | .  21  | 22  |
+XlOJ
+| 4.  Magnetic         | rotation  |            |             |          |             |                                 |                | PHOTON  ENERGY  | IN                      | CM-’            |     |
+| -------------------- | --------- | ---------- | ----------- | -------- | ----------- | ------------------------------- | -------------- | --------------- | ----------------------- | --------------- | --- |
+| Just                 | because   | the  real  | part        | of  the  | refractive  |                                 |                |                 |                         |                 |     |
+|                      |           |            |             |          |             | FIG. 3. For axiaIly magnetized  |                | CrBrs           | at 1 ,.S”K the absorp-  |                 |     |
+| index  is different  |           | for the    | two senses  | of       | circularly  |                                 |                |                 |                         |                 |     |
+|                      |           |            |             |          |             | tion band                       | edge is about  | 200  cm-r       | higher                  | for  one sense  |     |
+| polarized            | light,    | linearly   | polarized   | light    | passing     |                                 |                |                 |                         |                 |     |
+|                      |           |            |             |          |             | of circular                     | polarization   | than  for       | the other.              | It  is higher   |     |
+through  a magnetic  crystal  undergoes  a rotation  for  that  sense  in which  the  2Ts  peak  occurs.
+
+MAGNETO-OPTICAL PROPERTIES OF FERROMAGNETIC CHROMIUM TRIHALIDES 1535
+of its axis of polarization. This magnetic rotation Table 2. Crystal $eZd parameters of
+is bound up with the magnetization, and we CrCla and CrBra as giwen by Wood
+may describe it by the equation et aZ.(ll)
+R = tp(X)M.Z/IMj. (1) CrC13 CrBrs
+In this, R is the rotation observed, t is the thickness Dq, cm-l 1370 1340
+B, cm-l 550 370
+of the sample, p (a function of wavelength h) is the
+C, cm-l 3400 3700
+rotation per unit thickness observed when the
+C/B 6.3 10.0
+magnetization is parallel to the line of sight. The Cr-ligand 2.38 2.54
+fraction Ma Z/lMl re p resents the fractional pro- dist., A
+jection of the magnetization on the line of sight.
+Reversing the magnetization reverses the sense of Spin-orbit coupling parameter taken as
+the rotation. If M is perpendicular to I there is 5 = 170 cm-l
+no rotation. Aside from determining the direction
+of the magnetization, moderate magnetic fields
+Coulomb interaction between d electron param-
+do not affect the rotation. Huge fields would
+eters. The substance of Ref. 11 is the presenta-
+presumably have an effect on the rotation.
+tion of such parameters for a number of crystals,
+The rotation data given in Fig. 2 were taken with
+and a discussion of their significance. In the case
+a saturating field applied perpendicular to the major
+of CrCla and CrBra the parameters are chosen in
+planes of our thin sheet samples. For the tribromide
+such a way as to fit the position of the 4T1, 4T2,
+they show a dispersion-like structure associated
+and sE levels. The sTr level then computed from
+with the two quartet absorption peaks and some
+these parameters corresponds to an experimental
+added variation at the position of the sTs absorp-
+peak, but for both compounds the observed sTs
+tion. By far the largest values of specific rotation
+peak is depressed very considerably below its
+are measured near the absorption band edge
+theoretical position. This disparity may arise from
+itself. Here we have measured specific rotations
+interaction with the absorption band edge.
+of over half a million degrees per centimeter. But
+there are very large rotations in regions where the
+absorption is low. In the green at 20,000 cm-r, a PART II. ORIGIN OF THE LARGE MAGNETIC
+minimum in the absorption, the specific rotation ROTATION OF THE CHROMIUM TRIHALIDES
+is 130,00O”/cm. The trichloride rotation shown in 1. Preliminary remarks
+Fig. 2 shows a dispersion at the 4Tl position. Although attempts to explain the large rotation
+Narrower peaks corresponding to the various of the polarized light observed in ferromagnetic
+doublet transitions are much more prominent metals in terms of microscopic theory were made
+here than in the tribromide. The specific rotation at the beginning of this century, HuLME(~~) first
+rises toward the band edge, but it never seems to pointed out that the spin-orbit interaction in the
+approach the values seen in CrBrs. excited states played an essential role in producing
+such large rotation. Based on the Heitler-London
+model for ferromagnetics, he showed that the
+5. Interpretation of the spectrum difference between the indices of refraction of
+The fit of crystal field theory to the spectra of the right and left hand circularly polarized light
+chromium trichloride and tribromide was ex- arose from the splitting of the excited state by the
+plored in a paper by WOOD et aZ.(ll) Table 2 spin-orbit interaction. After that, ARGYRES(13)
+presents an extract from that paper. The crystal developed a more refined theory, using the band
+field parameters Dq, B and C, and C/B were theory.
+evaluated according to a specific procedure which Recently in considering yttrium iron garnet,
+gave emphasis to the positions of the lower lying CLOGSTON(14y15) showed that the rotation associated
+levels. The parameter Dq is a measure of the cubic with its absorption band edge was due to the spin-
+crystal field; B and C are the parameters for orbit interaction.
+
+1536  J.  F.  DILLON,  JR.,  H.  KAMIMURA  and  J.  P.  REMEIKA
+The  purpose  of Part  II  is to elucidate  the  origin  ion  and  its  six  surrounding  halogen  ions,  it  is
+of  the  anomalously  large  magnetic  rotation  of  convenient  to  consider  the  assignment  of  the
+chromium  trihalides,  by  determining  the  structure  absorption  band  edge  in  terms  of  the  molecular
+at  the  absorption  band  edge.  Since  these  com-  orbitals  in which  3d, 4s and  4p orbitals  of the  Crsf
+| pounds               | are  insulators,  |        | it  is  | reasonable  | to             | adopt     |           |          |         |               |            |        |
+| -------------------- | ----------------- | ------ | ------- | ----------- | -------------- | --------- | --------- | -------- | ------- | ------------- | ---------- | ------ |
+|                      |                   |        |         |             |                | ion  are  | combined  | with     | linear  | combinations  |            | of  p  |
+| the  Heitler-London  |                   | modeI  |         | for         | the  unpaired  |           |           |          |         |               |            |        |
+|                      |                   |        |         |             |                | orbitals  | of  the   | halogen  | ions.   | Such          | molecular  |        |
+spins  of  the  Craf  ions.  And  further,  for  the  orbitals  are  classified  into  o orbitals  of  T1,,  E,  and
+exchange  interaction  between  them  we  adopt  Al,  symmetry  and  n  orbitals  of  Ts,  symmetry.
+the  molecular  field  approximation.(l7)  On  these  Besides  these  bonding  and  antibonding  orbitals,
+| assumptions,        | first  | we       | specify  | the            | energy  | levels                |       |       |               |            |       |           |
+| ------------------- | ------ | -------- | -------- | -------------- | ------- | --------------------- | ----- | ----- | ------------- | ---------- | ----- | --------- |
+|                     |        |          |          |                |         | linear  combinations  |       |       | of  p,  wave  | functions  |       | of  the   |
+| of  the  localized  |        | excited  | states,  | corresponding  |         | to                    |       |       |               |            |       |           |
+|                     |        |          |          |                |         | six  halogen          | ions  | lead  | to  orbitals  | of         | Tl,,  | Tz,  and  |
+the  absorption  band  edge,  in  terms  of  molecular  Tl,  symmetry  which  do  not  combine  with  the
+orbitals.  Second,  we  discuss  the  effect  of  the  orbitals  of the  Crs+  ion  (we  call  them  nonbonding
+spin-orbit  interaction  on  these  states  and  derive  7~  orbitals).*  Expressions  for  some  of  these
+the  relation  between  the  specific  rotation  and  the  orbitals  are  given  in  Table  1 of  Appendix  III.
+| energy  splitting  |     | due  to  | the  | spin-orbit.  | interaction  |                   |     |         |          |     |            |     |
+| ------------------ | --- | -------- | ---- | ------------ | ------------ | ----------------- | --- | ------- | -------- | --- | ---------- | --- |
+|                    |     |          |      |              |              | Their  schematic  |     | energy  | diagram  |     | is  shown  | in  |
+and  the  trigonal  field.  Third,  we  explore  the  Fig.  4. The  ordering  of the  orbital  energy  has  been
+electron  configurations  corresponding  to  the  determined  by  considering  the  nodal  pattern  of
+absorption  band  edge.  For  these  configurations,  each  molecular  orbital.@)  In  the  present  case  all
+the  spin-orbit  coupling  constant  of  the  electron  orbitals  up  to  the  tlg  nonbonding  state  are  com-
+transfer  state  is computed  and  compared  with  the  t&n)
+|     |     |     |     |     |     | pletely  | occupied,  | and  | further,  | the  |     | anti-  |
+| --- | --- | --- | --- | --- | --- | -------- | ---------- | ---- | --------- | ---- | --- | ------ |
+experimental  results.  bonding  orbital  is  occupied  by  three  electrons
+|     |     |     |     |     |     | which  have  | parallel  | spins.  | Thus  | we  | can  make  | the  |
+| --- | --- | --- | --- | --- | --- | ------------ | --------- | ------- | ----- | --- | ---------- | ---- |
+2.  The  MO  model for  the localized  excitation  following  three  assignments  for  the  absorption
+The  overall  character  of the  absorption  spectrum  band  edge,  the  transition  of  an  electron  (1)  from
+|             |             |       |       |      |                | a tzg antibonding  |     | to  | a tlu  antibonding  |     | orbital  | (an  |
+| ----------- | ----------- | ----- | ----- | ---- | -------------- | ------------------ | --- | --- | ------------------- | --- | -------- | ---- |
+| below  the  | absorption  | band  | edge  | can  | be  accounted  |                    |     |     |                     |     |          |      |
+for  by  considering  a cubic  crystal  field  acting  on  a  “internal”  process);  (2)  from  a  21,  bonding  to  a
+single  Crsf  ion.  For  dealing  with  the  band  edge,  tsg or e, antibonding  orbital  (“0  process”);  (3) from
+our  model  consists  of  a single  Craf  ion  subjected  a  tlu  or  tzu nonbonding  to  tzg or  eg  orbital  (“rr
+to  a molecular  field  and  surrounded  by  a  nearly  process”).  The  first  one  corresponds  to  the  intra-
+|             |              |     |     |               |        | atomic  | transition  | and  | the  last  | two  to  | the  so-called  |     |
+| ----------- | ------------ | --- | --- | ------------- | ------ | ------- | ----------- | ---- | ---------- | -------- | --------------- | --- |
+| octahedral  | arrangement  |     | of  | six  halogen  | ions.  | As      |             |      |            |          |                 |     |
+noted  in  the  section  on  crystal  structure  the  electron  transfer  transitions.  These  assignments
+chromium  site  is not  at  an  inversion  center.  Thus  are  indicated  in  Fig.  4.
+our  model  neglects  the  lack  of inversion  symmetry.  No  matter  what  assignments  may  be  chosen
+It  will  be  shown  that  this  simple  model  can  among  these  three,  it  should  be  noticed  that  only
+|               |           |             |                  |       |              | the  states       | of  | 4Tzu. symmetry  |               | are  accessible  |               | from  |
+| ------------- | --------- | ----------- | ---------------- | ----- | ------------ | ----------------- | --- | --------------- | ------------- | ---------------- | ------------- | ----- |
+| account       | for  the  | optical     | characteristics  |       |              | of  the           |     |                 |               |                  |               |       |
+|               |           |             |                  |       |              | the  4As8 ground  |     | state           | by  electric  | dipole           | transitions.  |       |
+| edge.  Since  | the       | absorption  | band             | edge  | has  a much  |                   |     |                 |               |                  |               |       |
+stronger  intensity  than  that  of  the  absorption  We  will  show  later  which  assignment  actually
+spectrum  below  the  edge,  the  transitions  corres-  corresponds  to  the  absorption  band  edge.
+| ponding     | to  the  | edge  must  | be           | allowed  | ones.  | This                                           |     |     |     |             |     |        |
+| ----------- | -------- | ----------- | ------------ | -------- | ------ | ---------------------------------------------- | --- | --- | --- | ----------- | --- | ------ |
+| means  the  | parity   | of          | the  states  | before   | and    | after                                          |     |     |     |             |     |        |
+|             |          |             |              |          |        | 3.Eff  ec t of  sp i n -o r b’at  interaction  |     |     |     | on the 4Ts  |     | state  |
+transitions  must  be  different,  because  we  assume  and the magnetic  rotation
+Oh  site  symmetry  for  a  Craf  ion  surrounded  by  In  this  section  we  will  consider  the  effect  of
+six  neighboring  halogen  ions.  For  such  transitions  the  spin-orbit  interaction  on  the  4Ts state  and  will
+| there  are         | two  | main  assignments:  |           | (1)            | intra-atomic  |                |       |              |          |            |               |     |
+| ------------------ | ---- | ------------------- | --------- | -------------- | ------------- | -------------- | ----- | ------------ | -------- | ---------- | ------------- | --- |
+|                    |      |                     |           |                |               | show  that     | this  | leads        | to  the  | magnetic   | rotation      | of  |
+| type  transitions  |      | from  a 3d state    |           | to a 4~ state  |               | of the         |       |              |          |            |               |     |
+|                    |      |                     |           |                |               | the  chromium  |       | trihalides.  | The      | Ts  state  | is orbitally  |     |
+| Crsf  ion;         | and  | (2)  electron       | transfer  |                | transitions   | in             |       |              |          |            |               |     |
+which  an  electron  from  a halogen  ion  is  removed  * Because  of  their  small  overlap,  we  neglect  the
+to  the  Crs+  ion,  Since  we  assume  that  the  excita-  combination  between  4p orbitals  of a Cr3+ ion and halo-
+tion  is  localized  in  the  region  of  a particular  Cr3+  gen prr orbitals  of Tl,  symmetry.
+
+MAGNETO-OPTICAL PROPERTIES OF FERROMAGNETIC CHROMIUM TRIHALIDES 1537
+t:”
+MOLECULAR
+ORBITALS MADE
+cr3+ ION MOLECULAR UP FROM 4Pq
+ORWTALS IN oRBITALS IN AND 4pa
+A CUBIC FIELD cl-et.3 OREITALS OF
+SIX Br- IONS
+FIG. 4. Schematic energy diagram of CrBrs. All orbitals
+up to tcss(7F> which have mainly the character of Br-
+orbitals are completely occupied. The orbitals having
+the character of the Br-e and n orbitals are indicated
+by (0) and (r). The orbitals with an asterisk are all
+antibonding ones, and they have mainly metallic
+character. The tse* orbitals are occupied by three elec-
+trons, and the remaining anti-bonding orbitals are
+vacant.
+triply degenerate. Therefore, the spin-orbit inter- have adopted the molecular field approximation.
+action acts to lift the degeneracy of 4Ta state. The z-axis is taken along the direction of the
+Since the Crs+ ions reside in trigonally distorted molecular field Hez which is experimentally
+sites, they are subjected to an electrostatic field directed along the c-axis by the applied field. In
+with trigonal components in addition to the large solving (2), we adopt a representation in which
+cubic field. Thus we will consider the combined L, and S, are diagonal.
+effect of the spin-orbit interaction and the trigonal Assuming \h\ and /A/ $ &!&, we will solve
+fdd on the 4Ta state. first the Hamiltonian (2) in the absence of the
+Let us solve the effective Hamiltonian for the exchange field. In this case, the 6 x 6 matrix for
+4T2 state. IJsing the orbital angular momentum Heit breaks up mto
+operator L(L(L+ 1) = 2), this may be written (m=+ *I
++$A -VGP 0
+Herr = A( 1 - Lz2) - h(a4 Tz)L S +gj.mS,H,, (2) 1
+l
+-v’W A - %@)A
+where A indicates the trigonal splitting of the Ta
+state, ya*Ts) is the spin-orbit coupling constant 0 - VVP -ii?+
+of the state4Ts with a particular electron configura-
+tion cc and the last term represents the exchange
+interaction between the Cr spins, As was men-
+tioned before, for the exchange interaction we (-9) (m= -t$)
+
+1538  J.  F.  DILLON,  JR.,  H.  KAMIMURA  and  J.  P.  REMEIKA
+Since  the  Hamiltonian  commutes  with  L,+  S,,  doublet  is split,  the  ground  state  4A2 is also split.
+each  Kramers  doublet  is specified  by  m =  + l/2,  This  splitting  is given  by  Jx,$  where  we adopted
+k 3j2,  &5/2  where  m  is  the  eigenvalue  of  the  the  form  J&S*,!&  for  the  original  ferromagnetic
+operator  L, + S,.  The  eigenfun~tions  corres-  nearest  neighbor  interactions.  The  quantity  z
+ponding  to the states  m,  =  t_ 112, i  312 and  & 512  is the  number  of nearest  neighbors  and  .!? is the
+are  average  value  of a single  Cr spin  along  the magneti-
+|     |     |     |     |     |     | zation.  In                | the       | case  of CrBrs,  |          | if we take     |             | only  the  |
+| --- | --- | --- | --- | --- | --- | -------------------------- | --------- | ---------------- | -------- | -------------- | ----------- | ---------- |
+|     |     |     |     |     |     | interactions               | between   |                  | the      | Cr  spins      | in          | the  same  |
+|     |     |     |     |     |     | layer  into                | account,  |                  | J.s  is  | 17  cm-1       | at          | the  zero  |
+|     |     |     |     |     |     | temperature,               | where     | we used          |          | 3.8  cm-1      | determined  |            |
+|     |     |     |     |     |     | by  GOSSARDe t a!.(‘@ for  |           |                  | J        | the  exchange  |             | integral   |
+|     |     |     |     |     |     | and  z  =                  | 3. Thus   | at 1*5”K, the    |          | temperature    |             | of the     |
+|     |     |     |     |     |     | measurement,               |           | only  the        | lowest   | component      |             | of  the    |
+jrn =  + #)  =  aJLZ =  0,  ground  state  S,  =  3/2  will  be  populated.  The
+|     |        |             |     |        |             | quantity     | S,  does  | not          | change  | in  an  | electric  | dipole      |
+| --- | ------ | ----------- | --- | ------ | ----------- | ------------ | --------- | ------------ | ------- | ------- | --------- | ----------- |
+|     | s,  =  | +g>-t-pjLz  | =   | i: I,  | s,  =  +s>  |              |           |              |         |         |           |             |
+|     |        |             |     |        |             | transition.  | Thus,     | transitions  |         | from    | the       | S,  =  312  |
+and  (3b)  component  of the ground  state  to the m =  l/2  and
+|        |          |              |     |               |      | 512 components  |       | of         | the  upper  | state     | are            | allowed  |
+| ------ | -------- | ------------ | --- | ------------- | ---- | --------------- | ----- | ---------- | ----------- | --------- | -------------- | -------- |
+| Irn =  | _t*)  =  | [Lz =  t-1,  |     | S,  =  _+f>.  | (34  |                 |       |            |             |           |                |          |
+|        |          |              |     |               |      | for  right      | (E+)  | and  left  | (E_)        | circular  | polarizations  |          |
+The  energy  variation  of the  six Kramers  doublets  respectively,  where  &  =  E,  + il?,,  I%, and  l?,
+|                |                |           |                |          |               | being  x and y             |                  | components                  |                  | of the            | external    | electric     |
+| -------------- | -------------- | --------- | -------------- | -------- | ------------- | -------------------------- | ---------------- | --------------------------- | ---------------- | ----------------- | ----------- | ------------ |
+| as a function  | of A#[         | is shown  |                | in Fig.  | 5.            |                            |                  |                             |                  |                   |             |              |
+|                |                |           |                |          |               | field.  The                | intensity        |                             | of the           | transition        | to          | m =  l/2     |
+| In             | the  presence  | of        | the  exchange  |          | field,  each  |                            |                  |                             |                  |                   |             |              |
+|                |                |           |                |          |               | is  proportions            |                  | to  u2, which               |                  | deviates          | from        | unity        |
+|                |                |           |                |          |               | by  means                  | of the           | spin-orbit                  |                  | interaction.      |             | As can  be   |
+|                |                |           |                |          |               | seen  in the               | table            | of Appendix                 |                  | I, u2 is large    |             | for the      |
+|                |                |           |                |          |               | state  Al                  | when             | A/j;ll                      | is positive      | and               | large       | and  for     |
+|                |                |           |                |          |               | the  state                 | AZ               | when                        | A//h/            | is  negative      | and         | large.       |
+|                |                |           |                |          |               | In  the                    | case  where      | a2 is                       | negligibly       |                   | small       | for  the     |
+|                |                |           |                |          |               | state As, we may consider  |                  |                             | that the energy  |                   |             | difference   |
+|                |                |           |                |          |               | Al  and                    | C (AZ and        | C) gives the difference     |                  |                   |             | between      |
+|                |                |           |                |          |               | the absorption             |                  | band  edges for two senses  |                  |                   |             | of circular  |
+|                |                |           |                |          |               | polarization               | in               | the                         | case             | of  positive      |             | (negative)   |
+|                |                |           |                |          |               | trigonal                   | field.  As seen  |                             | in  Fig.         | 5, the            | energy      | differ-      |
+|                |                |           |                |          |               | ence  between              | A1 and           |                             | C (AZ and        | C) is determined  |             |              |
+|                |                |           |                |          |               | by  the  value             | of h, which      |                             | depends          |                   | critically  | on the       |
+|                |                |           |                |          |               | con~guration               | a of the         |                             | excited          | state,            | as will     | be seen      |
+later.
+|     |     |     |     |     |     | The  | specific  | rotation  | p(w)  | in  | equation  | (1)  is  |
+| --- | --- | --- | --- | --- | --- | ---- | --------- | --------- | ----- | --- | --------- | -------- |
+defined  as
+$?e(n!.-n-),
+p(w) =
+|                |              |                |           |                     |                 | where           | n+  and        | n_    | are  the            | complex              |                 | refractive  |
+| -------------- | ------------ | -------------- | --------- | ------------------- | --------------- | --------------- | -------------- | ----- | ------------------- | -------------------- | --------------- | ----------- |
+|                |              |                |           |                     |                 | indices         | for the right  |       | and  left circular  |                      | polarizations,  |             |
+|                |              |                |           |                     |                 | respectively,   | and            | Re    | means               | the                  | real  part      | of  the     |
+| FIG. 5. The    | energy       | ievel curves   |           | of the *Ts          | state  in the   |                 |                |       |                     |                      |                 |             |
+|                |              |                |           |                     |                 | expression.     | As             | will  | be  derived         | in                   | Appendix        | II,         |
+| spin-orbit     | interaction  | and            | trigonal  | field.              | The  positions  |                 |                |       |                     |                      |                 |             |
+|                |              |                |           |                     |                 | the difference  | s+ -n_         |       | is related          | to the xy component  |                 |             |
+| of the energy  | levels on    | the ordinates  |           | give the splitting  |                 |                 |                |       |                     |                      |                 |             |
+of the  *7’s state  by the  spin-orbit  interaction.  of  the  polarizability  tensor  ccsy.  The  quantity
+
+MAGNETO-OPTICAL PROPERTIES OF FERROMAGNETIC CHROMIUM TRIHALIDES 1539
+(n+ - n_) is given by Table 3. The number of the states having Tz
+symmetry in each assignment
+47rN
+?l+-n- = -
+nfi
+Assignment The number
+(1) tag* --f t1s* 1
+- c w2(00 ( (2 2b a ) ) t f l l u u + + eg* t zg* 1 1
+(3a) tlon + tzs* 1
+WA,Ldg2-w 2+r,2)+2iwr, (3b) tlun -+ eg* 1
+=1,2,3
+(3c) tzun + tzg* 1
+where n = 1/2(n++n_), p,s is the average dipole (3d) tsun + eg* 1
+moment for the transition from the ground state
+4As to the excited state 4Ts with a particular electron
+configuration a, &A,(~)~ = EA,(~)~--~, fiwccajg = the number of the states having Ts symmetry in
+ECU-- Q, N is the number of chromium ions/ the three types of assignment. Such a number
+unit vol. and ra is a damping factor. The quantities can easily be calculated by reducing the product
+EA$ 9 EC(~) and Eg are the energies of the sub- of the irreducible representations into the ir-
+states At and C of the 4T2 excited state with a reducible representations of the Oh group. For
+particular configuration a and of the ground state example, in the assignment (l), the final states
+4A2. I;, is the summation taken over the electron of the transition are constructed by coupling a t2
+configuration from which the 4Ts state arises. hole to a tl electron. Since Tl x T2 = Az+E+
+Equation (5) is valid only at very low tempera- Tl+ T2, the number of the TZ states in this
+ture in which the S, = # component is over- assignment is one.
+whelmingly populated. If we do not take the spin- Thus the strong absorption band consists of
+orbit interaction into account in the 4Tz state, transitions to these Ts states. Energetically, we
+EC = CA,, aAz2 = 1 and aA 2 = aA 2 = 0 (or expect the states arising from the transitions (3)
+EC = EA,, aAt = 1 and (1AZ22 aA, 2 0) in the to appear at the lower frequency side of the
+case of negative (or positive) trigonal field. Thus absorption band. Using the parameters given in
+the rotation vanishes. Therefore, we can con- Table 2, we can show that among the transitions
+clude that the spin-orbit interaction in the 4Ta (3), the state arising from the transition tlun
+state plays an essential role in producing the (or tzun) 3 e g* has a lower energy than that arising
+magnetic rotation in CrBrs. Note particularly from the transition to tzg*. Namely, although the
+that in the low temperature region of this analysis former has a higher orbital energy by 10 .Dq than
+and of our experiments the specific rotation does the latter, the intra-atomic exchange energy in the
+not depend on the applied magnetic field or even former overcomes the above gain in orbital energy
+on the exchange field. This is the characteristic to lower the total energy by 6B + 5 C - 10 Dq below
+inwhich the rotations discussed here differ from the that of the latter state. Thus the transitions (3b)
+usual Faraday effect in which the level splitting or (3d) occur at lower frequencies than (3~) or
+is determined by an applied field. Obviously, (3c)*
+just below the Curie point (whose value reflects In the case of the electron transfer transitions,
+the exchange field), the specific rotation does the average dipole moment p is approximately
+depend on the magnetization and thus on the proportional to the product of the lattice constant
+applied field. and the overlap between the d orbital of the metal
+and the p orbital of the halogen.
+4. Assignment of an electron conjiguration to the Roughly speaking jl&eg,ll&,ldT - O-1 and
+absorption band edge SAl Wl
+lXP#~ N 0.01, where +dceg), xpc and X,,
+In this section we will determine electron are the chromium 3d(e,) and the halogen p and
+configurations corresponding to the absorption p, orbitals, respectively. Thus the intensit&s of
+band edge from among the three possible assign- the transition (2b) are 10 or 102 times smaller than
+ments given in Section 2. In Table 3 we tabulate those of the intra-atomic transition (l), while
+
+1540  J.  F.  DILLON,  JR.,  H.  KAMIMURA  and  J.  P.  REMEIKA
+the  intensities  of  the  transition  (3b)  or  (3d)  are  in  the  case  of  positive  (negative)  trigonal  field.
+103 or 104 times smaller  than those of the transition  Thus,  first of all we have to know values of X and A.
+(1).  Therefore,  the  intensities  of  the  transition  In  Appendix  III  we  derive  expressions  for  h
+(3b) or (3d) are nearly  equal to those  of the absorp-  for  each  electron  configuration.  The  results  for
+tion  bands  below  the  edge,  and  thus,  could  be  the  assignments  (l),  (2b)  and  (3b)  or  (3d)  are
+observed  if  not  masked  by  stronger  absorption.  shown  in Table  4, where  t2,  [sd and  I&  are spin-
+The  intensities  of  the  transitions  (2a),  (3~)  and  orbit  coupling  constants  of  the  single  p  electron
+(3~)  are  weaker  than  those  of  (26),  (3b)  and  in  the  halogen  atom  X,  of  the  single  3d  and  4p
+(3d),  respectively.  We  conclude  that  the  lowest  electrons  in  the  chromium  ion,  respectively.
+lying electron  transfer  state corresponds  to the con-  S,  is  the  overlap  integral  between  the pg and p,
+figuration  t~,se~*tl~(~~d su)n5. About  six thousand  orbitals  on the  neighboring  halogen  ions.
+wave numbers  above this thereare  states  belonging  As  seen  in  this  table,  the  spin-orbit  coupling
+to  the  configuration  tsg4trutand sujn5.  Several  constants  for  the  electron  transfer  states  are
+thousand  wave  numbers  above  these  there  will  expressed  in terms  of that of the single  p  electron
+presumably  be  the  states  of  the  configurations  in the  halogen  atom.  This  is easily  seen  from  the
+t2,ser,*tlu5  and tsg4trus.  The  intensity  of the tran-  fact  that  the  orbital  angular  momentum  in  the
+state 4Tz with the configuration
+| sition  to        | this  may  well        | be  100              | times         | greater  |     |     |     |
+| ----------------- | ---------------------- | -------------------- | ------------- | -------- | --- | --- | --- |
+| than  that        | of  the  transition    | between              | the           | ground   |     |     |     |
+| state  and        | either  of the other   | two configurations.  |               |          |     |     |     |
+| However,          | this  conclusion       | has been             | drawn         | with-    | or  |     |     |
+| out  considering  | the  line              | shape  of the        | peak corres-  |          |     |     |     |
+| ponding           | to  each  transition.  | In                   | fact,  there  | is       | a   |     |     |
+possibility  that a stronger  peak at higher  frequency  must  arise  within  the  tlucor zti)n  or  tl,  hole
+might  mask  a  weaker  peak  at  lower  frequency.  orbital  and thus  the  spin-orbit  interaction  arises
+Whether  or not  such  a possibility  occurs  depends  from  the  iteration  of  the  p  hole  among  the
+| on the relative  | magnitudes       | of the line width of each  |          |      | halogen  ions.  |                        |                 |
+| ---------------- | ---------------- | -------------------------- | -------- | ---- | --------------- | ---------------------- | --------------- |
+| peak  and        | of  the  energy  | difference                 | between  | the  |                 |                        |                 |
+|                  |                  |                            |          |      | According       | to  the  spectroscopy  | for  the  free  |
+peak  positions.  Therefore,  from  the  above  dis-  chromium  ion, Cl, Brand  I atoms,  &d, &,,  [cl,  &jr
+cussion  only on peak positions  we can not definitely  and [r are 290 cm-l,  50 cm-l,  590 cm-l,  2460  cm-l
+say  which  transition  corresponds  to  the  actual  and  5070  cm-l,  respectively.  (20)  Using  these
+absorption  band edge.  Thus  the magnetic  rotation  values,  the  spin-orbit  coupling  constants  for  the
+at  the  edge  plays  an  important  role  as  one  of  assignments  (I),  (2b) and (3b) or (3d)  are calculated
+valuable  extra  evidence  in  finding  an  electron  for  CrCls,  CrBrs  and  CrIs  and  their  numerical
+configuration  belonging  to the  edge.  results  are also shown  in Table  4.
+|     |     |     |     |     | On  the  | other  hand,  we have  | no definite  knowl-  |
+| --- | --- | --- | --- | --- | -------- | ---------------------- | -------------------- |
+5.  Comparison  with experiments  and discussions  edge  of the sign or the magnitude  of A. However,
+Rather  than  calculate  the  magnetic  rotation  at  we can estimate  the order  of magnitude  for A from
+|                     |          |                  |       |           | the  following  | consideration  | of  the  anisotropy  |
+| ------------------- | -------- | ---------------- | ----- | --------- | --------------- | -------------- | -------------------- |
+| the  absorption     | band     | edge,  we        | will  | evaluate  |                 |                |                      |
+| energy  difference  | between  | the  absorption  |       | of  two   | energy.         |                |                      |
+senses  of circular  polarization.  Take  the anisotropy  energy  to be Kr coss8 where
+As  we  have  seen  in  Fig.  5  with  the  help  of  0 is the  angle  between  the  magnetization  and the
+Appendix  I,  this  difference  depends  critically  on  c-axis.  Following  WOLF,@~)  we  see  that  Kl  is
+a value  of the  ratio  A/l/\l.N  amely,  in a region  of  composed  of  two  parts,  one  arising  from  the
+|                |                       |                      |     |     | dipole  interaction,  | and the  | other  from  the  crystal  |
+| -------------- | --------------------- | -------------------- | --- | --- | --------------------- | -------- | -------------------------- |
+| small  values  | of this  ratio where  | ass is not so small  |     |     |                       |          |                            |
+compared  with  us2 or  ~2,  the  energy  difference  field  splitting  of  the  Crs+  ion  ground  state.  We
+| for  two senses                              | of circular  | polarization        | is given  | by        | write  |     |     |
+| -------------------------------------------- | ------------ | ------------------- | --------- | --------- | ------ | --- | --- |
+| that  between                                | C and As,    | while  in a region  |           | of large  |        |     |     |
+| values of the ratio where us2 is negligibly  |              |                     | small,    | the       |        |     |     |
+energy  difference  between  Ai  and  C  (As  and  C)  In this Kdip  is the  dipole  contribution,  D is the
+|              |                   |               |               |     | coefficient  | of  S,s  in  the  usual  | spin  Hamiltonian  |
+| ------------ | ----------------- | ------------- | ------------- | --- | ------------ | ------------------------ | ------------------ |
+| gives  that  | for  two  senses  | of  circular  | polarization  |     |              |                          |                    |
+
+MAGNETO-OPTICAL PROPERTIES OF FERROMAGNETIC CHROMIUM TRIHALIDES 1541
+Table 4. The spin-orbit coupling constants for various electron con$gurations
+_~_. -
+Numerical values (cm-l)
+Final electron ~-
+Assignment configuration S.O. constant CrC13 CrBr3 CrIa
+(1) 4 (14P - 53d) -120 -120 -120
+(2b) -%szL -+5 -+30 --+60
+(3b) or (3d) t2&*73 eg*tlukJr2sL)n5 -%L -120 -480 -1010
+and y = exp( -gpBH,,). The function p(y) is a take this value of Ad too seriously, since second
+polynomial in y, whose value has been computed order perturbation theory sometimes gives un-
+as a function of magnetization by Wolf. GOSSARD reliable results.
+et aZ.(22) have calculated Kdin to be (2420 Oe) x M/2 By the same procedure, we can also estimate
+= 3.3 x 105 erg/cma. On the other hand DILLON Ad for CrCls. As for CrIs, a value of 10 Dq has
+observed Kr for CrBra to be -9.3 x 105 ergs/ems. not been determined. Since the absorption band
+Since p(y) at the lowest temperature is 3/2 and edge appears at 10000 cm-r in CrIs, we expect a
+N = 0.970 x 1022/ems, ND is -8.4 x 105 ergs/cm3 value of 10 Dq less than 10000 cm-r. Assuming
+and D is 0.43 cm-l. 7000 cm-l for 10 Dq in CrIs, we can estimate
+In the case of the electron transfer transitions, Ad for CrIa. The values of D semiempirically
+A is related to the trigonal splitting of the single determined from the anisotropy and the estimated
+tlu or tlun electron which has halogen character. values of Ad for CrCla, CrBrs and CrIa are shown
+Therefore, it is very difficult to calculate A in in Table 5, together with the observed values of
+these cases. However, we can estimate the order K, where the values of &in have been taken to
+of magnitude of A from the following conjecture. be the same as those of CrBra. The other con-
+In ZnO, DIETZ et aZ.QJ) recently determined the stants are derived from Table 1.
+trigonal splitting of the single d electron, Ad,
+from the analyses of Zeeman spectrum and Table 5. The values of A, D and K for chromium
+electron spin resonance for Cu2+ in ZnO. On the trihalides
+other hand, from the analysis of exciton spectra,
+THOMAS determined the trigonal splitting of
+CrC13 CrBra CrIa
+the valence band of ZnO, AP, which is related to
+the trigonal splitting of the single p electron of &rgs,cm3) 0 -9.3 x 105 -3.1 x 106
+oxygen. According to their results, Ad = -170 &m-l) -0.10 -0.43 -1.54
+cm-r and AP = -330 cm-r. Though we have no A (cm-l) - 580 - 2400 -2300
+information on the correlation between Ad and
+AP for crystals other than ZnO, we are led to
+assume that AP has the same order of magnitude Based on the values of X and A obtained above,
+as Ad in ionic crystals such as chromium trihalides. we will proceed to determine an electron con-
+By means of second order perturbation theory, figuration corresponding to the absorption band
+we can estimate Ad from D for chromium trihalides, edge. Take CrBra as an example. From Tables 4
+as follows : and 5, the values of the ratio A/lx1 are about
+-20, -80 and -5 for the assignments (l), (2b)
+A =(1W2 D and (3b) or (3d), respectively. For these values of
+d
+4x2' A/PI, as2 is negligibly small compared with
+az2. Thus the difference between the absorption
+Since, in CrBra, 10 Dq = 13400 cm-1 and h = band edges of two senses of circular polarization
+90 cm-l, Ad is -2300 cm-l. Of course, we do not is given by the energy difference between As and C
+
+1542  J.  F.  DILLON,  JR.,  H.  KAMIMURA  and  J.  P.  REMEIKA
+for  these  values  of  A///ll. They  are  360  cm-l,  and  further,  it  is  expected  that  these  transitions
+100  cm-r  and  600  cm-l  for  the  assignments  (l),  will  occur  at  lower  energies.  We  thus  conclude
+(2b)  and  (3b)  or  (3d)  respectively.  Similarly,  for  that  the  magnetic  rotation  just  below  the  absorp-
+CrCls  and  CrIs  we  can  calculate  the  energy  tion band  edge in the chromium  trihalides  corres-
+difference  between  the  absorption  band  edges  of  ponds  to  the  electron  transfer  state  with  the
+tzun5 in which
+two senses  of circular  polarization  for each assign-  configuration  t2,*3(4A2,)e,tlun5  or
+ment.  The  calculated  results  are  also  shown  in  an  electron  is  removed  from  the  nonbonding
+Table  6,  together  with  the  observed  values  for  tlun  or  tZun orbital  to  the  antibonding  eg*  (the
+| CrCls,  CrBrs  | and  CrIs.  |     |     |     |     | assignment        | (3b)     | or (3d)).     |                  |           |      |
+| -------------- | ----------- | --- | --- | --- | --- | ----------------- | -------- | ------------- | ---------------- | --------- | ---- |
+|                |             |     |     |     |     | Another           | set  of  | experimental  | results          | supports  |      |
+|                |             |     |     |     |     | this  conclusion  | for      | the           | case  of CrBrs.  |           | has  |
+Table  6.  The  calculated  and observed energy  differ-  JUNG@)
+ences  between  the  absorption  band  edges  of  two  recently  succeeded  in  observing  the  structure  of
+senses of circular  polarization  (cm-l)  the  electron  transfer  states  in  the  absorption
+~____  __~.  band  edge  by  measurements  of the  Kerr  rotation
+|              |        |     |        |     |       | and of the optical constants.  |      |             | Ellipsometer     | measure-  |        |
+| ------------ | ------ | --- | ------ | --- | ----- | ------------------------------ | ---- | ----------- | ---------------- | --------- | ------ |
+| Assignments  | CrC13  |     | CrBrs  |     | CrI3  |                                |      |             |                  |           |        |
+|              |        |     |        |     |       | ments  show                    | the  | absorption  | bands  at about  |           | 24500  |
+---
+(1)  320  360  -360  and 29500  cm-l  which  he attributes  to  the  tran-
+(2b)  20  -100  -150  -180  sitions  (Zb) and  (1)  respectively.  In  the measure-
+320
+(3b) or (3d)  600  -2500  ments  of the Kerr  rotation  he observed  a maximum
+| Observed  | small            |     | 200           |       | 90        |                      |          |                              |                  |         |       |
+| --------- | ---------------- | --- | ------------- | ----- | --------- | -------------------- | -------- | ---------------------------- | ---------------- | ------- | ----- |
+|           |                  |     |               |       |           | rotation             | with  a  | positive                     | sign  at  23500  | cm-l,   | a     |
+|           |                  |     |               |       |           | relatively           | sharp    | negative                     | peak  at 26700   | cm-1    | and,  |
+|           |                  |     |               |       |           | further  a reversal  |          | in the sign of the rotation  |                  | beyond  |       |
+| Though    | the  calculated  |     | results  for  | CrIa  | are  not  | 27500  cm-r.         |          |                              |                  |         |       |
+definite,  the results  for the assignment  (2b) explain  Since  the  Kerr  rotation  is  determined  by  the
+the  observed  variation  of  the  energy  splittings  in  imaginary  part  of  n+---_(g)  the  sign  of  the
+transmission  measurements  among  the  chromium  rotation  is due  to  that  of  the  spin-orbit  coupling
+|             |               |        |              |       |     | constant  | for  each  | assignment  | and  | its  magnitude  |     |
+| ----------- | ------------- | ------ | ------------ | ----- | --- | --------- | ---------- | ----------- | ---- | --------------- | --- |
+| trihalides  | as  well  as  | their  | magnitudes.  | Thus  | we  |           |            |             |      |                 |     |
+can  conclude  that  in  chromium  trihalides  the  depends  on  the  energy  splitting  due  to  the  spin-
+absorption  band  edges  observed  in  transmission  orbit  coupling  as  well  as  the  oscillator  strength
+measurements  correspond  to  the  electron  con-  for  each  transition,  as in the  case of the  magnetic
+figuration  tzs*3(4Azs)eg*tlu5  (the  assignment  (2b)).  rotation  described  above.  Looking  at  the  results
+|           |             |             |       |                |     | of  CrBrs  | for  each  | assignment  | in  Tables  | 4 and  | 6,  |
+| --------- | ----------- | ----------- | ----- | -------------- | --- | ---------- | ---------- | ----------- | ----------- | ------ | --- |
+| However,  | this  does  | not  imply  | that  | the  magnetic  |     |            |            |             |             |        |     |
+rotation  near  the band  edge arises  from  the  tran-  we  can  see  that  the  above-mentioned  observed
+sition  (2b).  Examination  of  equations  (4)  and  (5)  variation  in  the  magnitudes  and  the  sign  of  the
+shows  that  the  rotation  depends  on  the  energy  Kerr  rotation  as a function  of the wave number  is
+splitting  as well as on the oscillator  strength  of the  consistent  with  our  results  if we assume  that  the
+transition.  Thus,  given  a large splitting,  it is quite  transitions  (3b)  or  (3d),  (2b)  and  (1)  correspond
+|           |                       |     |           |                |     | to  the  | peaks  at  | 23500,  | 26700  cm-1  | and  | higher  |
+| --------- | --------------------- | --- | --------- | -------------- | --- | -------- | ---------- | ------- | ------------ | ---- | ------- |
+| possible  | for a large magnetic  |     | rotation  | to arise from  |     |          |            |         |              |      |         |
+a  transition  so  weak  as  to  be  difficult  to  detect  energy  (29500  cm-l  in the reflection  measurement)
+in  the  presence  of  a strong  transition  with  little  respectively.  Thus  we can conclude  that  both  the
+or no associated  splitting.  magnetic  and  Kerr  rotations  near  the  absorption
+As  seen  in  Table  4,  the  energy  differences  band  edge arise from  the transition  (3b) or (3d).
+| between         | the  absorption  | band    | edges            | of two senses  |           |                 |     |     |     |     |     |
+| --------------- | ---------------- | ------- | ---------------- | -------------- | --------- | --------------- | --- | --- | --- | --- | --- |
+| of circular     | polarization     | for     | the  assignment  |                | (3b)  or  |                 |     |     |     |     |     |
+| (3d)  is about  | ten  times       | larger  | than             | those          | for  the  | 6.  Conclusion  |     |     |     |     |     |
+assignment  (2b).  Therefore,  even  though  the  In  the  experimental  part  of this  paper  we have
+oscillator  strength  for  the  transition  (3b)  or  (3d)  shown  the  very  large  specific  magnetic  rotations
+is ten times  smaller  than that for (2b), the rotations  associated  with  the  absorption  band  edges  of
+|                |                  |     |                |      |         | CrBrs  | and  CrCls.  | A   | general  expression  |     | for  the  |
+| -------------- | ---------------- | --- | -------------- | ---- | ------- | ------ | ------------ | --- | -------------------- | --- | --------- |
+| arising  from  | the  transition  |     | (36)  or (3d)  | are  | of the  |        |              |     |                      |     |           |
+same  order  of  magnitude  as  those  from  (2b),  complex  magnetic  rotation  has  been  derived,
+
+MAGNETO-OPTICAL  PROPERTIES  OF  FERROMAGNETIC  CHROMIUM  TRIHALIDES  1543
+|                   |             |                                          |         |        |                | WELLS A.          | F.,     | Structural  |            | Inorganic     | Chemistry,  | pp.      |
+| ----------------- | ----------- | ---------------------------------------- | ------- | ------ | -------------- | ----------------- | ------- | ----------- | ---------- | ------------- | ----------- | -------- |
+| based  on         | the         | Heitler-London                           |         | model  | for  the  un-  |                   |         |             |            |               |             |          |
+|                   |             |                                          |         |        |                | 116,278.          | Oxford  |             | (1950).    |               |             |          |
+| paired  spins     | of          | the  chromium                            |         | ions.  | The  energy    |                   |         |             |            |               |             |          |
+|                   |             |                                          |         |        |                | TSUBOKAWAI ., J.  |         | Phys.       | Sot.       | Japan  &I664  |             | (1960).  |
+| level splittings  |             | which  give rise to the large rotations  |         |        |                |                   |         |             |            |               |             |          |
+|                   |             |                                          |         |        |                | DILLON J.         | F.,     | JR.,        | J.  Phys.  | Sot.  Japan   | 19, 1662    |          |
+| are not           | due to the  | applied                                  | field,  | they   | are not  due   |                   |         |             |            |               |             |          |
+(1964).
+even to the  exchange  field.  They  do, in fact,  arise  HANSENW  .  H. and GRIFFEL M.,  J.  Chem.  Phys.  30,
+|            |             |              |                  |          |                | 913               | (1959);     | HANSEN W.     |                 | H.,  J.  Appl.       | Phys.  | 30,  |
+| ---------- | ----------- | ------------ | ---------------- | -------- | -------------- | ----------------- | ----------- | ------------- | --------------- | -------------------- | ------ | ---- |
+| from  the  | spin-orbit  | interaction  |                  | of  the  | final  state.  |                   |             |               |                 |                      |        |      |
+|            |             |              |                  |          |                | 304               | s  (1959).  |               |                 |                      |        |      |
+| We  have   | calculated  |              | the  spin-orbit  |          | coupling       |                   |             |               |                 |                      |        |      |
+|            |             |              |                  |          |                | S.  CABLE J. W.,  |             | WILKINSON M.  |                 | K. and WOLLAN E. 0.  |        |      |
+| constants  | of          | the  final   | state  for       | several  | electron       |                   |             |               |                 |                      |        |      |
+|            |             |              |                  |          |                | J.  Phys.         | Chem.       | Solids        | 19, 29 (1961).  |                      |        |      |
+configurations.  We  have  estimated  the  magnitude  9.  JUNG W.,  J. Appl.  Phys.  36,2422  (1965).
+of the  trigonal  splitting  of the  final state  from  the  10.  DILLON J.  F.,  JR. and REMEIKAJ . P.,  J. Appl.  Phys.
+anisotropy  energy  and  this  has  enabled  us  to  34,  637  (1963).
+|            |            |                  |     |          |          | Il.  WOOD D. i.,  |                | F~RGIJSONJ .,  |        | KNOX K.            | and  DILLON  |     |
+| ---------- | ---------- | ---------------- | --- | -------- | -------- | ----------------- | -------------- | -------------- | ------ | ------------------ | ------------ | --- |
+| calculate  | in detail  | the  difference  |     | between  | absorp-  |                   |                |                |        |                    |              |     |
+|            |            |                  |     |          |          | J. F.,            | JR., J. Chem.  |                | Phys.  | 39,  890  (1963).  |              |     |
+tion band edges for two senses  of circular  polariza-  HULME H.  R.,  Proc.  R.  Sot.  A135,  237  (1932).
+12.
+tion.  Comparing  theoretical  results  with  the  ob-  13.  ARCYRES P. N.,  Phys.  Rev.  97,  334 (1955).
+served difference,  we attribute  the absorption  band  14.  CLOGSTONA  .  M.,  J.  Phys.  Radium  Paris  20,  151
+| edge  itself  | to the   | electron  | transfer       | transition  | from  | (1959).           |     |                |     |                |      |         |
+| ------------- | -------- | --------- | -------------- | ----------- | ----- | ----------------- | --- | -------------- | --- | -------------- | ---- | ------- |
+|               |          |           |                |             |       | 15.  CLOGSTONA .  |     | M.,  J. Appl.  |     | Phys.  Suppl.  | 31,  | 198  S  |
+| a  tl,(o)     | orbital  | to  an    | es*  orbital.  | However,    | the   | (1960).           |     |                |     |                |      |         |
+magnetic  rotation  at  the  foot  of  the  edge  would  16.  HEISENBERCW  .,  Z. Phys.  49,  619 (1928).
+seem  to arise from  the  splitting  of a much  weaker  17.  e.g.  KITTEL C.,  Introduction  to Solid  State  Physics.
+electron  transfer  transition  from  a  51Un(5-) or  Chapter  15. John  Wiley,  N.Y.  (1961).  _
+tzu*(~)  orbital  to an eg* orbital.  The  large splitting  18.  MCCLURE D. S.. Solid  State  Phvsics  (editors SEITZ F.
+|           |             |          |          |             |         | and TURNBULL D.) Vol. 9, p. 399. Academic  |     |     |     |     |     | Press  |
+| --------- | ----------- | -------- | -------- | ----------- | ------- | ------------------------------------------ | --- | --- | --- | --- | --- | ------ |
+| of  this  | transition  | is  due  | to  the  | spin-orbit  | inter-  |                                            |     |     |     |     |     |        |
+(1959).
+action  which  arises  from  the  iteration  of  the  p,  19.  GOSSARDA .  C.,  JACCARINOV .  and  REMEIKA J.  P.
+hole  among  the  halogen  ions.  Phys.  Rev.  Lett.  7, 122 (1961).
+In  the  present  paper  we  have  considered  the  20.  These  values  were  calculated  from  the  multiplet
+rotations  at temperatures  low enough  so that  only  splitting  given  in  the  tables of  Moore.  [MOORE
+|              |         |        |           |     |                | C.      | E..  Atomic  |                   | Enewv  | Levels  [U.S.  | National  |          |
+| ------------ | ------- | ------ | --------- | --- | -------------- | ------- | ------------ | ----------------- | ------ | -------------- | --------- | -------- |
+| the  lowest  | ground  | state  | sublevel  | is  | significantly  |         |              |                   |        |                |           |          |
+|              |         |        |           |     |                | Burea;  | of           | Standards--Circ.  |        | 467‘Vol.       | I         | (1948),  |
+populated.  The  actual  spectrum  of  magnetic  Vol.  II (1952)  and Vol.  III  (1958)].
+rotations  will  depend  on  the  width  of  the  initial  21.  WOLF W.  P.,  Phys.  Rev.  108,1152  (1957).
+|     |     |     |     |     |     | GOSSARDA .  |     | C.,  JACCARINOV .  |     | and  |     | J.  P.,  |
+| --- | --- | --- | --- | --- | --- | ----------- | --- | ------------------ | --- | ---- | --- | -------- |
+and  final  levels  and  on  the  thermal  population  22.  F~EMEIKA
+|                     |     |                      |                          |     |     | J. Appl.            | Phys.    | Suppl.         | 33,    | No.  3, 1187             | (1962).  |          |
+| ------------------- | --- | -------------------- | ------------------------ | --- | --- | ------------------- | -------- | -------------- | ------ | ------------------------ | -------- | -------- |
+| of the ground       |     | state sublevels      | as well as on the spin-  |     |     |                     |          |                |        |                          |          |          |
+|                     |     |                      |                          |     |     | 23.  DILLON J. F.,  |          | JR., J. Appl.  |        | Phys.  33, Supp. to No.  |          | 3,       |
+| orbit  interaction  |     | of the final state.  |                          |     |     |                     |          |                |        |                          |          |          |
+|                     |     |                      |                          |     |     | 1191                | (1962).  |                |        |                          |          |          |
+|                     |     |                      |                          |     |     | 24.  DIETZ R.       | E.,      | KAMIMURA H.,   |        | STURGE M.                | D.       | and      |
+|                     |     |                      |                          |     |     | YARIV A.,           |          | Phys.  Rev.    | 132,   | 1559  (1963).            |          |          |
+|                     |     |                      |                          |     |     | 25.  THOMASD        | .        | G.,  J. Phys.  | Chem.  | Solids                   | 15,86    | (1960).  |
+REFERENCES
+1.  DILLON J. F.,  JR., KAMIMURAH . and REMEIKAJ . P.,  26.  SHEN Y.  R.,  Phys.  Rev.  133,  A511  (1964).
+Whys. Rev.  Lett.  9, 161 (1962).  27.  TANABE Y.  and KAMIMURAH .,  J. Phys.  Sot.  Japan
+2.  DILLON J. F.,  JR., KAMIM~RAH  . and F~EMEIKA  J. P.,  13,  394 (1958).
+|     |     |     |     |     |     | e.g.  |     |     |     | Irreducible  | Tensorial  |     |
+| --- | --- | --- | --- | --- | --- | ----- | --- | --- | --- | ------------ | ---------- | --- |
+J.  Appl.  Phys.  34,  1240  (1963).  28.  FANO V.  and  RACAH G.,
+|                             |     |     |              |     | Phys.  40,195s  | Sets.       | Academic   | Press  | (1959).  |              |     |     |
+| --------------------------- | --- | --- | ------------ | --- | --------------- | ----------- | ---------- | ------ | -------- | ------------ | --- | --- |
+| 3.  MORISIN B. and NARATHA  |     |     | ., J. Chen.  |     |                 |             |            |        |          |              |     |     |
+| (1964).                     |     |     |              |     |                 | 29.  RACAH  | G., Phys.  | Rev.   | 63,      | 367 (1943).  |     |     |
+
+1544 J. F. DILLON, JR., H. KAMIMURA and J. P. REMEIKA
+APPENDIX I where J is the average current density and k is
+EIGENFUNCTIONS OF m = + STATES the unit vector along the z axis. In equation (A3),
+In Table Al below we give values for the co-
+the change of the average magnetization with
+efficients a, b and c of the eigenfunctions of the
+respect to time is assumed to be zero.
+m = 4 states for various values of A/[/l/. This
+In the present case the current J is the polariza-
+refers back to equation (3~). Among the three
+tion current which arises from the time variation
+states Al, As, As that designated Ar has the
+of the dipole moment P induced by the optical
+lowest energy, and As, the highest.
+Table Al. Eigenfunctions of m = 4 states
+Al A2 A3
+All4 bl bz .%o b3
+-6.0 0.24 - 0,901 O.c2188 - ?894 -0.304 0 - 292 -0.389 - Oc;72
+-4.5 0.399 -0,855 0.332 -0.863 -0.221 0.454 -0,319 -0.472 -0,822
+-3.0 0.492 -0.781 0.375 - 0.789 -0.244 0.551 -0.337 - 0.562 -0-753
+-1.5 0.597 -0.694 0,403 -0.723 -0.256 0.641 -0,340 -0.680 -0.653
+0 0,705 -0.578 0.405 -0.619 -0.258 0.742 -0.318 -0.775 -0~550
+1.5 0,802 -0.461 0.382 -0.575 -0.253 0.777 -0.280 - 0.847 - 0.449
+3.0 0,857 -0.377 0.347 - 0.442 - 0.228 0.868 -0.250 - 0.893 -0.366
+4.5 0.910 -0.290 0.293 -0,412 -0.219 0.884 -0.213 -0.926 -0.306
+6.0 0.921 -0.271 0.282 - 0.320 -0.188 0.949 -0.190 -0.952 -0.257
+-.___ _____
+APPENDIX II transition.
+THE RELATION OF ROTATION TO LEVEL
+SPLITTING
+J=E
+(A7)
+In this Appendix we will derive a relation
+between the specific magnetic rotation p(h)
+defined by (1) and the energy splitting due to the Using the polarizability tensor a, the induced
+spin-orbit interaction. First, we assume the wave dipole moment P is expressed by
+to be monochromatic with frequency W, and to
+P = Na.El,,, (A@
+propagate along the c axis (Z axis):
+where Eroc is the effective electric field acting on
+E = &)eGO(t-nt/c),
+(Al) the Cr ions and N is the number of chromium
+H = &ez&nz/c’, (A2) ions per unit volume.
+The ~LV matrix element of the polarizability
+where Eo and HO are constant vectors and n is
+tensor a is given by
+the index of refraction.
+Substituting (Al) and (A2) into the Maxwell
+equations
+1 6H
+rotE = --- (A31
+c St
+16E 4~
+rot H = -- 644)
+c at +-J C s
+we obtain with Ww, = Q--Q, where lg) and lee> are
+eigenfunctions of the S, = 3/2 component of
+n(Exk) = H, (As)
+the ground state and of the i-th component of
+one of the excited 4Tz states. lg and Eei are the
+n(H x k) = E+zJ,
+energies of the respective states. In this expression
+ZW
+
+MAGNETO-OPTICAL PROPERTIES OF FERROMAGNETIC CHROMIUM TRIHALIDES 1545
+we have introduced a damping factor P which -A-
+(m = $x/g) =
+depends on each excited state e, by taking the
+42
+effects of absorption into account.
+In the case where the sample is magnetized
+along the c axis (z axis), the system has trigonal
+symmetry, and therefore, from the symmetry
+consideration for the tensor, we can show that u
+where the common factor has been dropped, and
+has the following form:
+a is the coefficient of component IL, = T 1,
+S, = f 8) in eigenfunction (3a).
+From (A9) and (AlO)
++;: iL 11 (AlO)
+For the sake of simplicity, we assume that the
+local field is approximately equivalent to the
+external electric field. In such instance, from
+equations (A5), (A6), (A7) and (AlO) we obtain (~--iF.)a~$
+-
+(?.r”-- 1 - 47rNa,)& - 47rNa’JQ = 0, I= c 1,2,3 (W-Q2- ~2+r2)+ 2if.Z I
+4?rNu’E, + (G- 1 - 4rrNtiJE, = 0. t-416)
+In order to get nontrivial solutions for E, and E, where jiwcg = E~-Q, ?iiwdg = EA- Ed and ps
+we must have is the average dipole moment for the transition
+ns = 1 +4-7rN(tiL f id). (All) from the ground state to excited 4Ts state. In
+equation (A16) we have considered only one
+For the solution of Eli = iEZ, excited 4T2 state. Since in chromium trihalides
+n+2 = 1 +bN(til+ id’), W2) more than one electron configuration has Ts
+symmetry, actually we have to sum the expression
+while for E, = -iE,, of (A16) over the all electron configurations having
+n-2 = 1 +hN(a,-5’). 6413) Ts symmetry. The expression (A16) has an
+essentially equivalent form to that derived by Shen
+The complex specific rotation p”(w) is defined by for the Faraday rotation of rare-earth ions.@@
+If we take S, = - 312 as a lowest component of
+w
+p”(w) = -(rz+-n-) (Al4) the ground state for reversing the direction of
+2c the magnetization, it is easily shown that an X-
+component of the electric dipole moment changes
+Using (A12), (A13) and the mean index of
+its sign while a y-component does not for the
+refraction n = (n++n_)/2,
+reversal of the magnetization. Thus, we have
+2i& Onsager’s relation:
+p”(w) = -Na’ @Is)
+nc
+czz~(W = a&-M), (A17)
+By using eigenfunctions (3~) and (3~) of Part II,
+Section 3, we have computed the matrix element
+where cc’ = az,(M).
+of dipole moment
+By substituting (A16) into (A15) we obtain the
+dispersion formula for the magnetic rotation
+<m = ZH+> = 5 p”(w). Since we have considered the effect of
+absorption, the refracted beam becomes ellipti-
+cally polarized. Experimentally, however, we could
+<m = *IrIg> = iT2 not detect the ellipticity. Therefore, here we omit
+an expression for the ellipticity.
+
+1546  J.  F.  DILLON,  JR., H.  KAMIMURA  nnd  J.  P.  REMEIKA
+|                          |           | APPENDIX                         |           | III       |         |           |          |             |         |             |     |           |
+| ------------------------ | --------- | -------------------------------- | --------- | --------- | ------- | --------- | -------- | ----------- | ------- | ----------- | --- | --------- |
+|                          |           |                                  |           |           |         | From      | (B1)     | and  (I%),  | the     | spin-orbit  |     | coupling  |
+| THE SPIN-ORBZT COUPLING  |           |                                  |           | CONSTANT  | IN THE  |           |          |             |         |             |     |           |
+|                          |           |                                  |           |           |         | constant  | for the  | state       | 2sflI’  | is defined  | by  |           |
+|                          | ELECTRON  |                                  | TRANSFER  | STATES    |         |           |          |             |         |             |     |           |
+| As was shown             |           | by TANABEa nd UMIMURA, (27)t he  |           |           |         |           |          |             |         |             |     |           |
+matrix  element  of a component  (g,?)  of the  spin-  x(&+rr)  =  -(srilv,,iisr)l(stislls)(rliLllr)
+| orbit  | interaction             | V,,  | between  | two          | states  2s*lI’  |          |            |       |                |         |     |         |
+| ------ | ----------------------- | ---- | -------- | ------------ | --------------- | -------- | ---------- | ----- | -------------- | ------- | --- | ------- |
+| and    | 2S’+W  can be factored  |      |          | as foIIows:  |                 |          |            |       |                |         |     | (B3)    |
+|        |                         |      |          |              |                 | It  can  | be shown   | that  |                |         |     |         |
+|        |                         |      |          |              |                 |          | (SllSllS)  | =     | 1/  [S(SC      | l)(ZS+  |     | 1)](2@  |
+|        |                         |      |          |              |                 |          | (T2@jJT2)  | =     | -  +/‘(6)827)  |         |     |         |
+034)
+|     |     |     |     |     |     | Thus  it is necessary  |     | to calculate  |     | only  | the  | reduced  |
+| --- | --- | --- | --- | --- | --- | ---------------------- | --- | ------------- | --- | ----- | ---- | -------- |
+where  (I’,/I”y’T~~)  and  (SM,~S’MS’lg)  are  the  matrix  of the spin-orbit  interaction  V,,  to  obtain  A.
+Clebsch-Gordon  coefficients  and  the  reduced  In the present  case, theelectron  transferstatehasthe
+matrix  (ST1 1V ’,,j IST’)  is  independent  of  y,  y’,  electron  configuration  t2s*3eg*tlu5(or  t2,*3e,*t2,5).
+| $Ya nd  | MS,  nips’, p. We have   |     | specified  |     | a ~onlponent    |           |                |              |             |                 |      |            |
+| ------- | ------------------------ | --- | ---------- | --- | --------------- | --------- | -------------- | ------------ | ----------- | --------------- | ---- | ---------- |
+|         |                          |     |            |     |                 | In  this  | configuration  |              | the  three  | tzg* electrons  |      | have       |
+| of the  | state  2s+rI’ by a wave  |     | function   |     | Y(S,f,llil,y),  |           |                |              |             |                 |      |            |
+|         |                          |     |            |     |                 | parallel  | spins,         | and  couple  |             | with  the       | es*  | electron,  |
+where  n/rs( -8,  -S+  1, . . . ,S)  is  a  z  component  also with  parallel  spin  to form  a 5.Ee state.  These
+of the spin  angular  momentum  S and  y is a com-  electrons  couple  with  the  five tlpG electrons,  two
+ponent  of I’ degenerate  orbital  states.  with  parallel,  three  with  antiparallel  spins,  so that
+On  the other  hand,  in the  ef%ctive  ~amiltonian  is 4T2.
+|             |                      |     |          |             |                | the  total       | state       | of the            | whole          | con~guration       |                |             |
+| ----------- | -------------------- | --- | -------- | ----------- | -------------- | ---------------- | ----------- | ----------------- | -------------- | ------------------ | -------------- | ----------- |
+| (2)         | we  have  expressed  |     | the      | spin-orbit  | interaction    |                  |             |                   |                |                    |                |             |
+|             |                      |     |          |             |                | We specify       | this        | ~on~~rati~n       |                | by                 |                |             |
+| V,,         | for  the  4Tz state  |     | in  the  | form        | --X(&!‘~)L*J%  |                  |             |                   |                |                    |                |             |
+| Therefore,  | we have              |     |          |             |                |                  |             |                   |                |                    |                |             |
+|             |                      |     |          |             |                | neglecting       | asterisks.  | In                | this           | configuration      |                | we have     |
+|             |                      |     |          |             |                | neglected        | the         | 3&  intermediate  |                | state              | in which       | the         |
+|             |                      |     |          |             |                | eg* electron     | has         | an  ~tiparaliel   |                | spin               | to             | the  three  |
+|             |                      |     |          |             |                | ~2~* electrons,  |             | because           | the            | s.&  intermediate  |                | state       |
+|             |                      |     |          |             |                | has  higher      | energy      | than              | the            | 5Eg state,         |                | However,    |
+|             |                      |     |          |             |                | even  though     | we take     |                   | into  account  |                    | the sEg state  | as          |
+x (Snn,lSrr/r,‘lg)  (B2)  well  as the  5Es state,  we  can  show  that  the  final
+|          |                   |          |          |            |                  | formulae    | for the spin-orbit  |            | constants  |           | are essentialiy  |         |
+| -------- | ----------------- | -------- | -------- | ---------- | ---------------- | ----------- | ------------------- | ---------- | ---------- | --------- | ---------------- | ------- |
+|          |                   |          |          |            |                  | the  same   | except              | numerical  |            | factors.  | Thus             | it  is  |
+| In       | (B1)  and  (IQ),  | we have  |          | used  the  | fact  that  the  |             |                     |            |            |           |                  |         |
+|          |                   |          |          |            |                  | sufficient  | in the present      |            | treatment  |           | to consider      | only    |
+| orbitaf  | and  spin         | angular  | momenta  |            | L  and  S  are   |             |                     |            |            |           |                  |         |
+the  operators  of the  types  Tr,  and  S  =  1, respec-  the  5.Q intermediate  state.
+| tively.  |     |     |     |     |     | By equation  |     | (Bl)  we must  |     | compute  |     |     |
+| -------- | --- | --- | --- | --- | --- | ------------ | --- | -------------- | --- | -------- | --- | --- |
+
+MAGNETO-OPTICAL  PROPERTIES  OF  FERROMAGNETIC  CHROMIUM  TRIHALIDES  1547
+As was mentioned  in  (BS), the wave function  Y is  Using  the  orthonormal  relation  of  Clebsch-
+formed  by coupling  a normalized  antisymmetrized  Gordon  coefficients  the following  relation  is derived
+| state            |     |                  |     |        |     | from  (B6)  | and  (BlO):  |     |     |
+| ---------------- | --- | ---------------- | --- | ------ | --- | ----------- | ------------ | --- | --- |
+| to a normalized  |     | antisvmmetrized  |     | state  |     |             |              |     |     |
+_I
+X(T~,Tl,(~l,)~~~2,~~1,,~1~~,(~2U~~2U~
+|       | +(tlu5 2T&3'ms')(or  |     |     | +(tzu5 2T2~a'm~')).  |     |                     |                              |                          |        |
+| ----- | -------------------- | --- | --- | -------------------- | --- | ------------------- | ---------------------------- | ------------------------ | ------ |
+| Thus  |                      |     |     |                      |     | x (*l&)2$1 Q2($)$)  |                              |                          | 0311)  |
+|       |                      |     |     |                      |     | where  we           | have  used  the              | Racah’s  transformation  |        |
+|       |                      |     |     |                      |     | matrices            | defined  in  the  following  | :(ss)                    |        |
+(Tl,Tl,(Tl,)E,T2ulTls,Tl,ES(Tzu)T2u)
+|     |                                |     |     |     |       | =              | 2  (Tl,S'ITl,s'TlA)(T2uylTl,s'~~‘,6)  |     |     |
+| --- | ------------------------------ | --- | --- | --- | ----- | -------------- | ------------------------------------- | --- | --- |
+|     | x(2m,~m,'l~M,)(E,ST1,6'1T2uy)  |     |     |     | (B7)  | 6’,6’,8’,y’.y  |                                       |     |     |
+where  Y is antisymmetrized  and  normalized.  x( ~l,~'E,S1~2uS')(~zuy'~l,gl~zuy)  (Bli)
+We  assume  that  the  spin-orbit  interaction  VsO  (+1(+)2;11,&2(~)$)
+| is  expressed  |         | by  the  sum      | of               | the  spin-orbit  | inter-  | ’   |     |     |     |
+| -------------- | ------- | ----------------- | ---------------- | ---------------- | ------- | --- | --- | --- | --- |
+| action         | of the  | single  electron  | vsO as follows;  |                  |         |     |     |     |     |
+=
+(Bg)
+|        |          |     | i=l  |     |     | (3ms’2m,]~M,‘)(~M,‘lpl~M,).  |     |     |         |
+| ------ | -------- | --- | ---- | --- | --- | ---------------------------- | --- | --- | ------- |
+| Thus,  | we have  |     |      |     |     |                              |     |     | (3313)  |
+(47-2yMslVso14T2y'W')  =  2  (tlu52TluS'tns'[Vsoltlu5 2Tl,S'ms')(T2,~[TluS'Ess)
+m,'m,'m
+|     |     |     | 8""  | x (Tl,S’E,S\                                               | T2&)($M,(  | ~m,‘2ms)(tm8’mslgM,‘)  |     |     |     |
+| --- | --- | --- | ---- | ---------------------------------------------------------- | ---------- | ---------------------- | --- | --- | --- |
+|     |     |     | +    | 2  (t2s3(4A2~>es(2Eg)5Egemsl V,,]t2,3(4Az,)e,(2E,)5EsSms)  |            |                        |     |     |     |
+msm,m;
+888'
+|     |     |     |     | x (T24  | TluS'EgS)(T~d'E$I  |     | Tzuy’)(tM~lBms’2ms)(gms’2m,~~~~‘).  |     |     |
+| --- | --- | --- | --- | ------- | ------------------ | --- | ----------------------------------- | --- | --- |
+039)
+| Since  |     |     |     |     |     | We  have  | computed  |     |     |
+| ------ | --- | --- | --- | --- | --- | --------- | --------- | --- | --- |
+(t2s3(4A2s)es(2Es)5Esstnslvsolt2s3(4A28)e,(2E,)5  (Tl,Tl,(Tl,)E,T2~lTl,,Tl,E,(Tzu>Tzu) = Q
+|     | x E,Sm,)  |     | =  0,  |     |     |     |     |     |     |
+| --- | --------- | --- | ------ | --- | --- | --- | --- | --- | --- |
+and
+| the  second  | term             | of (B9) vanishes.           |     | Thus  |     |        |                     |        |     |
+| ------------ | ---------------- | --------------------------- | --- | ----- | --- | ------ | ------------------- | ------ | --- |
+| (4T2~Msl     | ~s”so14T2y’Ms’)  |                             |     |       |     |        | (+1(&)2$11,$2(;)$)  | =  5.  |     |
+| =            | -k               | hu5 2T~ull~tmllhu 5 2 TI,)  |     |       |     | Since  |                     |        |     |
+c
+tnJm;m8d2e3
+x (Td’I  TdTl,y)  (hi5 2T~~II~a4h52T lu)=‘-(~1~2TlullVsoII~1u2Tlu),
+8'8'8
+x(T2u~lT~,~'E~~)(Tl,S'E,~~~2uy')(~m,'(~m,'lq)  we obtain  from  (B3)
+x (3M,lsms’2ms)(gms’2m,I~M~‘).
+WO)
+
+1548  J.  F.  DILLON,  JR.,  H.  KAMIMURA  and  J.  P.  REMEIKA
+where  vsO is  the  single  electron  operator  of  the  For  the  bonding  tlu  orbital  which  has  mainly
+spin-orbit  interaction.  halogen  character  (p & l),  (Qt1&‘1  &st]&n&3’)
+Similarly,  =  0,  as far  as we  neglect  the  overlap  between
+|     |     |     |     |     |     |     | orbitals  | on the  | adjacent  | halogen  ions.  |     |
+| --- | --- | --- | --- | --- | --- | --- | --------- | ------- | --------- | --------------- | --- |
+p,
+| ~(4rz(t2,3@2,5))  |     | =   | -~~~(~tzui/21sol!b22uf.  |     |     | W5)  |     |     |     |     |     |
+| ----------------- | --- | --- | ------------------------ | --- | --- | ---- | --- | --- | --- | --- | --- |
+Nonbonding  tlzbn and  tsu”  orbitals  and  bonding  ‘FC AXlS
+| tlu  molecular      |             | orbitals      | are              | shown             | in  Table        | Bl.      |     |     |     |     |     |
+| ------------------- | ----------- | ------------- | ---------------- | ----------------- | ---------------- | -------- | --- | --- | --- | --- | --- |
+| In each ket vector  |             | of the table  |                  | the first letter  |                  | denotes  |     |     |     |     |     |
+| the  type           | of  orbit,  | the           | second           | letter            | the              | angular  |     |     |     |     |     |
+| dependence,         |             | and  the      | number           |                   | the  particular  |          |     |     |     |     |     |
+| halogen             | ion  on     | which         | it is centered.  |                   | As shown         | in       |     |     |     |     |     |
+Fig.  6,  the  halogen  ions  1, 2  and  3  lie  on  the  Cr3’ ION
+| positive  | X,  Y and  | 2   | axes,  | and  4, 5 and  | 6 on  | the  |     |     |     |     |     |
+| --------- | ---------- | --- | ------ | -------------- | ----- | ---- | --- | --- | --- | --- | --- |
+negative  X,  Y and  2  axes.  The  symbols  (6~‘s  are  llfALOGEN  ION
+| the  4P           | wave  functions  |          | of          | a  Crs+  ion,  | p           | gives  | a   |     |     |     |     |
+| ----------------- | ---------------- | -------- | ----------- | -------------- | ----------- | ------ | --- | --- | --- | --- | --- |
+| measure           | of the amount    |          | of halogen  | p orbit&       |             | and N  |     |     |     |     |     |
+| is a normalizing  |                  | factor.  | Since       | (&&I           | [lZszl&&J)  |        |     |     |     |     |     |
+=  -~($~u/~vso~~~tru),  for  the  nonbonding  tlu*  FIG. 6.  Our model  for CrBrs.  The  Cr  ions are between
+orbitals  ($tr,]  ~~~~/~@  lu)  = lS_i{z.Here{zis  the spin-  equally  spaced  planes  of  Br  ions.  Each  Cr  ion is  in
+|                  |     |           |     |              |     |           | octahedral  | bromine    | coordination,          | but the octahedron  | is    |
+| ---------------- | --- | --------- | --- | ------------ | --- | --------- | ----------- | ---------- | ---------------------- | ------------------- | ----- |
+| orbit  coupling  |     | constant  | of  | the  single  | p   | electron  |             |            |                        |                     |       |
+|                  |     |           |     |              |     |           | severely    | distorted  | along the c axis with  | the  point          | sym-  |
+of  the  halogen  atom  X.  Similarly,  for  the  non-  metry  at the Cr sites being  C3.
+| bonding  | ts,G  orbitals  |     | we obtain  | .   |     |     |     |     |     |     |     |
+| -------- | --------------- | --- | ---------- | --- | --- | --- | --- | --- | --- | --- | --- |
+(+$2ul!%o!f~2zJ  =  -  gxz.  Taking  the  effect  of this  overlap  into  account,
+|              |           |           |         |                 |         |         | we have  | approximately  |     |     |     |
+| ------------ | --------- | --------- | ------- | --------------- | ------- | ------- | -------- | -------------- | --- | --- | --- |
+| Thus         | for  the  | electron  |         | transfer        | states  | from    | a        |                |     |     |     |
+| non-bonding  | tr.&or    |           | tQ)     | to an e, state  |         |         |          |                |     |     |     |
+|              |           | h(Vs)     | =  -&.  |                 |         | (I3161  |          |                |     |     |     |
+Table  Bl.  The  tl,  molecular  orbital  and  tlua  and  tsun nonbonding  orbitals
+Ia> =t~lP,x,2)-tIp,X,5)xIp,X,3>+jp,X,6)~
+|     |     | &”  | iB> =       | MP,                 | y,  1 HIP,   |     | y,  4)SlP,  | Y, 3)+/P,  | Y, 6))           |     |     |
+| --- | --- | --- | ----------- | ------------------- | ------------ | --- | ----------- | ---------- | ---------------- | --- | --- |
+|     |     |     | tr>         | =  $(lP,            | z  I)-!-IP,  |     | &4)flP,     | &2)-+lP,   | z  5>>           |     |     |
+|     |     |     | -/E>        | =  &(lP, X, 2)+/p,  |              |     | X7 5)-/p,   | X,         | ~)-IP,  X,  6))  |     |     |
+|     |     |     | ~2%” IT> =  | B(-IP,              | Y, 1 >-IP,   |     | Y, 4)+]P,   | Y, ~)s[P,  | Y, 6))           |     |     |
+I li>=B~lP,Z,l)+IP,z,4)-JP,z,2)-IP,z,5))
+|     |     |     |       |                 |     |     |     |          | 4))  )  |     |     |
+| --- | --- | --- | ----- | --------------- | --- | --- | --- | -------- | ------- | --- | --- |
+|     |     |     | la’)  | =  --$(d4&~$P.  |     |     | x,  | 1 >+lp,  | x,      |     |     |
+Y,5 )))
+|     |     |     | tn.8  IB’>  =  | -~-!~-   | (b4PY  | f  $c!P,  | Y,  | 2>fb,  |     |     |     |
+| --- | --- | --- | -------------- | -------- | ------ | --------- | --- | ------ | --- | --- | --- |
+(
+|     |     |     | lr’>  | =  -&Wzi  |     | $lP,  | 2,  | 3 >+jp,  | Z,6))/  |     |     |
+| --- | --- | --- | ----- | --------- | --- | ----- | --- | -------- | ------- | --- | --- |
+j
+|     |     |     |     |     |     | _.___~-.-_-----____I   |     |     |     | -   |     |
+| --- | --- | --- | --- | --- | --- | ---------------------- | --- | --- | --- | --- | --- |
+
+MAGNETO-OPTICAL  PROPERTIES  OF  FERROMAGNETIC  CHROMIUM  TRIHALIDES  1549
+| where  |     |     |     |     | calculated  | similarly.  | In  | this  case,  |     |
+| ------ | --- | --- | --- | --- | ----------- | ----------- | --- | ------------ | --- |
+(~zs2(2~l)~l~~2~l~)4~2ll~~Vsoll~2~2(3~l)~l~(2~l~)4~2)
+|     | SE =  | 2 (P,Y,21P,  | Y,l >.  |     |     |     |     |     |     |
+| --- | ----- | ------------ | ------- | --- | --- | --- | --- | --- | --- |
+=~(~2~23~lull~solI~2s2~~lg)+(~l~2@ull~soll~lu2~l~))
+| Thus,  for the electron  |     | transfer  | state from  | a bonding  |     |     |     |     |     |
+| ------------------------ | --- | --------- | ----------- | ---------- | --- | --- | --- | --- | --- |
+x 2/($)(ll(l)fr~11,13(~)~)
+| molecular  | orbital  | tl,  to an ea* state,  |     |     |     |     |     |     |     |
+| ---------- | -------- | ---------------------- | --- | --- | --- | --- | --- | --- | --- |
+x (~1,~1,(~2,)~1,~2,I~l,,~1,~1,(~1,)~2u)
+32/10
+X(4T2) =  -;+..
+|     |     |     |     | (Bl7)  |     | =  -i(  | %4p -  i3d)  |     | (B18)  |
+| --- | --- | --- | --- | ------ | --- | ------- | ------------ | --- | ------ |
+2
+|     |     |     |     |     | where  | &d  and  | 5~  are  | the  spin-orbit  | coupling  |
+| --- | --- | --- | --- | --- | ------ | -------- | -------- | ---------------- | --------- |
+On  the  other  hand,  in  the  case  of  the  intra-  constants  of the  single  3d  and  4p  electrons  of  a
+| atomic  type        | transition  | for            | which       | the  final  state  |       |                      |        |              |     |
+| ------------------- | ----------- | -------------- | ----------- | ------------------ | ----- | -------------------- | ------ | ------------ | --- |
+|                     |             |                |             |                    | Crs+  | ion,  respectively.  | Thus,  | from  (B3),  |     |
+| has  the  electron  |             | configuration  | t2s*2tlu*,  | the spin-          |       |                      |        |              |     |
+orbit  coupling  constant  X(4T2(t2g*2tlu*))  is  X4Ts(tsg2tlu))  =  (B19)
+$(54p- hd).

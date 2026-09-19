@@ -1,0 +1,52 @@
+# =========================================================================
+# SYSTEM: CrCl3 2x2 + H (S1 top-Cl) (No vdW, U=0eV)
+# Cell: CrCl3 2x2 Monolayer Supercell (8 Cr, 24 Cl, 1 H)
+# Vacuum: c = 20.0000 Angstroms (Fixed vacuum layer, slab centered at z = 0.5)
+# Method: PBE (Pure GGA, no dispersion), U = 0 eV
+# Equilibrium In-Plane Cell Parameter: a_2x2 = 12.0925 Angstroms (from ISIF=3 1x1 zero-stress)
+# =========================================================================
+
+# --- 1. Electronic Minimization & Plane-Wave Basis ---
+SYSTEM   = CrCl3 2x2 + H (S1 top-Cl) (No vdW, U=0eV) # Informative calculation title printed in OUTCAR
+PREC     = Accurate    # High-precision FFT and integration grid; eliminates grid-aliasing forces in 2D sheets
+ENCUT    = 400.0       # Kinetic energy cutoff (eV); ~1.33x max ENMAX (Cl ~300 eV), consistent with 1x1 and H2 references
+ALGO     = Normal      # Blocked-Davidson electronic minimization; numerically stable for magnetic Cr3+ d3 ions
+EDIFF    = 1.0E-06     # Energy convergence threshold for electronic SCF loop (eV); ensures well-converged wavefunctions
+NELM     = 100         # Maximum number of electronic SCF cycles per ionic step; provides headroom while halting stalled loops
+
+# --- 2. Spin Polarization & Magnetic Moments ---
+ISPIN    = 2           # Spin-polarized calculation; mandatory for open-shell magnetic Cr3+ (3d3) ions
+MAGMOM   = 8*3.0 24*0.0 1*0.0 # Initial magnetic moments (muB): 3.0 for Cr3+ (d3, S=3/2), 0.0 for Cl- (closed shell), 0.0 for H
+
+# --- 3. Brillouin-Zone Integration & Smearing ---
+ISMEAR   = 0           # Gaussian smearing; required for 2D semiconductor slab to guarantee variational ionic forces
+SIGMA    = 0.05        # Smearing width (eV); 50 meV minimizes artificial electronic entropy (-TS ~ 0) in semiconductors
+
+# --- 4. Parallelization & Computational Performance ---
+NCORE    = 4           # Number of CPU cores per orbital group; optimizes FFT communication on 16-core nodes (4 cores/CCX)
+LREAL    = Auto        # Projection operators evaluated in real space; optimal performance for 32/33-atom supercells
+
+# --- 5. van der Waals Dispersion Correction ---
+# (DISABLED) No IVDW tag: Pure GGA-PBE without dispersion correction
+
+# --- 6. Ionic Relaxation & Convergence Criteria ---
+IBRION   = 2           # Conjugate-gradient algorithm; most robust scheme for atomic coordinate relaxation
+NSW      = 100         # Maximum number of ionic optimization steps; provides headroom for hydrogen relaxation
+ISIF     = 2           # Relax atomic positions only; cell vectors and vacuum thickness (c=20.0 A) strictly fixed
+EDIFFG   = -0.025      # Force convergence criterion (eV/Angstrom); optimization stops when all forces < 0.025 eV/A (paper standard)
+
+# --- 7. PAW Density Mixing & Aspherical Gradients ---
+LASPH    = .TRUE.      # Non-spherical gradient corrections inside PAW augmentation spheres; essential for directional 3d orbitals
+LMAXMIX  = 4           # Mix charge density up to l=4; strictly required for d-orbital PAW occupancy matrix convergence
+
+# --- 8. Hubbard U Correction ---
+LDAU     = .FALSE.     # Hubbard U disabled (U = 0 eV); pure GGA-PBE baseline without on-site Coulomb correction
+
+# --- 9. Surface Dipole Correction (2D Slab Standard) ---
+LDIPOL   = .TRUE.      # Activate dipole correction; cancels spurious electrostatic field across the vacuum region
+IDIPOL   = 3           # Correct dipole moment along the out-of-plane z direction (normal to 2D slab)
+DIPOL    = 0.5 0.5 0.5 # Slab center of mass in fractional coordinates (slab centered at z = 0.5)
+
+# --- 10. Wavefunction & Charge Output Management ---
+LWAVE    = .FALSE.     # Do NOT write WAVECAR; eliminates disk I/O bottleneck and prevents storage bloat during relaxation
+LCHARG   = .FALSE.     # Do NOT write CHGCAR; optimizes I/O bandwidth during ionic relaxation
