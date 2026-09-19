@@ -31,6 +31,7 @@ REPORT*
 # --- Compressed Archives & Large Bundles ---
 *.zip
 !crcl3_h_adsorption_structures_initial_final.zip
+!crcl3_2x2_h_ads_structures_initial_final.zip
 *.tar.gz
 *.tar.bz2
 *.tar
