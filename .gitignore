@@ -25,9 +25,12 @@ OUTCAR*
 CONTCAR*
 OSZICAR*
 IBZKPT*
+PCDAT*
+REPORT*
 
 # --- Compressed Archives & Large Bundles ---
 *.zip
+!crcl3_h_adsorption_structures_initial_final.zip
 *.tar.gz
 *.tar.bz2
 *.tar
@@ -109,3 +112,7 @@ Thumbs.db
 *.swo
 .vscode/
 .idea/
+
+# --- Local Temporary & Tool Directories ---
+temporary/
+server-info/
