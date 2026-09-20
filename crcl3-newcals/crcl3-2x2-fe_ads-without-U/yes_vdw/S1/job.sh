@@ -1,70 +1,94 @@
 #!/bin/bash
 #SBATCH -J Fe_S1_yes_vdw
-#SBATCH -o job.%j.out
-#SBATCH -e job.%j.err
-#SBATCH --partition=alto,medio
+#SBATCH -p fulereno
 #SBATCH --nodes=1
-#SBATCH --exclusive
-#SBATCH --time=168:00:00
+#SBATCH --ntasks=64
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=64G
+#SBATCH --time=5-00:00:00
+#SBATCH --signal=B:USR1@300
+#SBATCH --requeue
+#SBATCH -o %x.%j.out
+#SBATCH -e %x.%j.err
 
-# ==============================================================================
-# HUK CLUSTER OPTIMIZED SLURM EXECUTION SCRIPT
-# System: CrCl3 2x2 + Adatom (Fe_S1_yes_vdw)
-# Target Node: huk120 (alto, 36 cores) or huk123/124 (medio, 28 cores)
-# ==============================================================================
+echo "=========================================================="
+echo "Job Name:    $SLURM_JOB_NAME"
+echo "Job ID:      $SLURM_JOB_ID"
+echo "Host:        $(hostname)"
+echo "Directory:   $(pwd)"
+echo "Start Time:  $(date)"
+echo "CPUs Alloc:  $SLURM_NTASKS"
+echo "Time Limit:  5-00:00:00 (Micro-Batch Chained, fulereno)"
+echo "=========================================================="
 
-# --- 1. Thread Affinity & Environment Settings ---
+# 1. System Limits & OpenMP Environment
+ulimit -s unlimited 2>/dev/null || true
 export OMP_NUM_THREADS=1
-export MKL_NUM_THREADS=1
-ulimit -s unlimited
 
-# --- 2. Slurm Job Diagnostics ---
-echo "=========================================================="
-echo "Starting Slurm Job : $SLURM_JOB_NAME ($SLURM_JOB_ID)"
-echo "Executing on Host  : $(hostname)"
-echo "Partition Selected : $SLURM_JOB_PARTITION"
-echo "Allocated Node(s)  : $SLURM_NODELIST"
-echo "Allocated CPUs     : $SLURM_CPUS_ON_NODE"
-echo "Working Directory  : $(pwd)"
-echo "Start Timestamp    : $(date)"
-echo "=========================================================="
+# 2. Autonomous Checkpoint & Self-Resubmission Handler (runs 300s before walltime)
+checkpoint_and_resubmit() {
+    echo "⚠️  [$( date)] Slurm USR1 intercepted — graceful checkpoint..."
+    echo "LSTOP = .TRUE." > STOPCAR
+    if [ -n "$VASP_PID" ]; then
+        echo "Waiting for current ionic step to finish (PID: $VASP_PID)..."
+        wait $VASP_PID
+    fi
+    if grep -q "reached required accuracy" OUTCAR 2>/dev/null; then
+        echo "🎉 [$(date)] Calculation converged! No resubmission needed."
+        rm -f STOPCAR
+        exit 0
+    fi
+    if [ -s CONTCAR ] && [ "$(wc -l < CONTCAR)" -ge 8 ]; then
+        echo "[$(date)] Valid CONTCAR found — updating POSCAR for next stage..."
+        cp POSCAR "POSCAR.step_${SLURM_JOB_ID}"
+        cp CONTCAR POSCAR
+        cp OUTCAR  "OUTCAR.step_${SLURM_JOB_ID}" 2>/dev/null || true
+    fi
+    rm -f STOPCAR
+    echo "🚀 [$(date)] Auto-submitting next stage to Slurm..."
+    NEXT_ID=$(sbatch job.sh | awk '{print $4}')
+    echo "Next stage queued: Job ID $NEXT_ID"
+    exit 0
+}
+trap 'checkpoint_and_resubmit' USR1 TERM
 
-# --- 3. Dynamic Parallelization Sizing (Amdahl's Law Tuning) ---
-NPROCS=${SLURM_CPUS_ON_NODE:-$(nproc)}
-if [ -z "$NPROCS" ] || [ "$NPROCS" -le 1 ]; then
-    NPROCS=$(nproc)
+# 3. Resumption Logic: restart from last valid CONTCAR
+if [ -f CONTCAR ] && [ -s CONTCAR ]; then
+    NLINES=$(wc -l < CONTCAR)
+    if [ "$NLINES" -ge 8 ]; then
+        echo "[$(date)] Found valid CONTCAR ($NLINES lines). Resuming relaxation..."
+        cp POSCAR "POSCAR.bak_$(date +%s)"
+        cp CONTCAR POSCAR
+    fi
 fi
 
-# Determine optimal NCORE divisor based on node topology:
-# - huk120 (alto, 36 cores): NCORE = 6 (6 orbital groups)
-# - huk123/124 (medio, 28 cores): NCORE = 4 (7 orbital groups)
-# - huk126 (normal, 24 cores): NCORE = 4 (6 orbital groups)
-if [ "$NPROCS" -eq 36 ]; then
-    NCORE_OPT=6
-elif [ "$NPROCS" -eq 28 ]; then
-    NCORE_OPT=4
-elif [ "$NPROCS" -eq 24 ]; then
-    NCORE_OPT=4
-else
-    NCORE_OPT=4
-fi
+# 4. Environment — Carbono OpenHPC Stack (vasp/6.2.0 provides OpenMPI 4.1.4)
+module purge
+module load vasp/6.2.0
 
-if grep -q "NCORE" INCAR 2>/dev/null; then
-    sed -i "s/.*NCORE.*/NCORE    = $NCORE_OPT           # Dynamically tuned for $NPROCS cores on $(hostname)/" INCAR
-fi
-
-echo "Running VASP with $NPROCS MPI processes (NCORE=$NCORE_OPT)..."
-
-# --- 4. Execute VASP via Intel MPI ---
-mpirun -np $NPROCS vasp_std > run.log 2>&1
+# 5. Execute VASP in background so USR1 trap remains active
+echo "Executing VASP 6.2.0 with $SLURM_NTASKS MPI ranks (--bind-to none)..."
+mpirun --bind-to none -np $SLURM_NTASKS vasp_std > vasp.out 2>&1 &
+VASP_PID=$!
+wait $VASP_PID
 EXIT_CODE=$?
 
-echo "=========================================================="
-echo "Execution finished at $(date) with exit code: $EXIT_CODE"
-if grep -q "General timing and accounting informations for this job" run.log 2>/dev/null || grep -q "reached required accuracy" run.log 2>/dev/null; then
-    echo ">>> STATUS: VASP CALCULATION CONVERGED SUCCESSFULLY <<<"
+rm -f STOPCAR
+
+# 6. Post-Run Convergence Check
+if grep -q "reached required accuracy" OUTCAR 2>/dev/null; then
+    echo "🎉 [$(date)] VASP converged within walltime window!"
+    exit 0
 else
-    echo ">>> WARNING: Check run.log for convergence or SCF abort <<<"
+    if [ -s CONTCAR ] && [ "$(wc -l < CONTCAR)" -ge 8 ]; then
+        echo "[$(date)] Relaxation ongoing — auto-resubmitting next micro-batch..."
+        cp POSCAR "POSCAR.bak_$(date +%s)"
+        cp CONTCAR POSCAR
+        sbatch job.sh
+    fi
 fi
+
+echo "=========================================================="
+echo "Finished at $(date) with exit code $EXIT_CODE"
 echo "=========================================================="
 exit $EXIT_CODE
