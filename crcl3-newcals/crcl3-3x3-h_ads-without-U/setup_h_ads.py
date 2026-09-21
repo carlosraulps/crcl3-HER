@@ -10,7 +10,7 @@
 
  Two dispersion variants:
    no_vdw  -- Pure GGA-PBE (no van der Waals correction)
-   yes_vdw -- PBE + DFT-D3 (Grimme zero-damping, IVDW=11)
+   yes_vdw -- PBE + DFT-D3 (Grimme Becke-Johnson damping, IVDW=12)
 
  Both variants use U = 0 (LDAU = .FALSE.) and ISIF = 2.
  K-points: 5x5x1 Gamma-centered (Nk*a ~ 54.4 A, reciprocally commensurate with 2x2 and 1x1).
@@ -164,7 +164,7 @@ def generate_incar(vdw, site_name, a_3x3, has_h):
                       "0.0 for Cl- (closed shell)" +
                       (", 0.0 for H" if has_h else ""))
     h_count_str = ", 1 H" if has_h else ""
-    d3_method = " + Grimme DFT-D3 (zero-damping)" if vdw else " (Pure GGA, no dispersion)"
+    d3_method = " + Grimme DFT-D3 (BJ-damping)" if vdw else " (Pure GGA, no dispersion)"
     d3_baseline = "DFT-D3" if vdw else "GGA-PBE"
 
     incar = """# =========================================================================
@@ -192,7 +192,7 @@ ISMEAR   = 0           # Gaussian smearing; required for 2D semiconductor slab t
 SIGMA    = 0.05        # Smearing width (eV); 50 meV minimizes artificial electronic entropy (-TS ~ 0) in semiconductors
 
 # --- 4. Parallelization & Computational Performance ---
-NCORE    = 4           # Number of CPU cores per orbital group; optimizes FFT communication on 16-core nodes
+NCORE    = 8           # Number of CPU cores per orbital group; matches 8-core AMD EPYC Zen3 CCD L3 cache for 64 MPI ranks
 LREAL    = Auto        # Projection operators evaluated in real space; essential for 72/73-atom 3x3 supercells
 """.format(
         system_tag=system_tag, vdw_label=vdw_label, h_count_str=h_count_str,
@@ -203,7 +203,7 @@ LREAL    = Auto        # Projection operators evaluated in real space; essential
     if vdw:
         incar += """
 # --- 5. van der Waals Dispersion Correction ---
-IVDW     = 11          # Grimme DFT-D3 zero-damping dispersion correction; models non-local vdW interactions
+IVDW     = 12          # Grimme DFT-D3 Becke-Johnson (BJ) damping dispersion correction; models non-local vdW interactions
 """
     else:
         incar += """
@@ -215,7 +215,7 @@ IVDW     = 11          # Grimme DFT-D3 zero-damping dispersion correction; model
 # --- 6. Ionic Relaxation & Convergence Criteria ---
 IBRION   = 2           # Conjugate-gradient algorithm; most robust scheme for atomic coordinate relaxation
 NSW      = 100         # Maximum number of ionic optimization steps; provides headroom for hydrogen relaxation
-ISIF     = 2           # Relax atomic positions only; cell vectors and vacuum thickness (c={c_vac:.1f} A) strictly fixed
+ISIF     = 2           # Relax atomic positions only; cell vectors and vacuum thickness (c: {c_vac:.1f} A) strictly fixed
 EDIFFG   = -0.025      # Force convergence criterion (eV/Angstrom); optimization stops when all forces < 0.025 eV/A (paper standard)
 
 # --- 7. PAW Density Mixing & Aspherical Gradients ---
@@ -239,11 +239,11 @@ LCHARG   = .FALSE.     # Do NOT write CHGCAR; optimizes I/O bandwidth during ion
 
 
 def generate_kpoints():
-    """Generate KPOINTS file: 5x5x1 Gamma-centered (Nk*a ~ 54.4 A, commensurate with 5x5x1 for 2x2)."""
-    return """K-Points 5x5x1 Gamma-centered (CrCl3 3x3 Supercell)
+    """Generate KPOINTS file: 3x3x1 Gamma-centered (Nk*a ~ 54.4 A, commensurate with 5x5x1 for 2x2)."""
+    return """K-Points 3x3x1 Gamma-centered (CrCl3 3x3 Supercell)
 0
 Gamma
-  5  5  1
+  3  3  1
   0  0  0
 """
 
@@ -269,44 +269,63 @@ def build_potcar(dest_path, include_h=False):
         f.write(full_content)
 
 
-def generate_job_script(job_name, project_dir, scratch_subdir):
-    """Generate a SLURM job script matching the project convention."""
-    scratch_dir = os.path.join(SCRATCH_ROOT, scratch_subdir)
+def generate_job_script(job_name, project_dir=None, scratch_subdir=None):
+    """Generate a production SLURM job script for Carbono HPC."""
     return """#!/bin/bash
 #SBATCH -J {job_name}
-#SBATCH --partition=batch
+#SBATCH -p fulereno
 #SBATCH --nodes=1
-#SBATCH --ntasks=16
-#SBATCH --exclusive
-#SBATCH --time=24:00:00
+#SBATCH --ntasks=64
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=64G
+#SBATCH --time=5-00:00:00
+#SBATCH --requeue
+#SBATCH -o %x.%j.out
+#SBATCH -e %x.%j.err
 
-PROJECT_DIR="{project_dir}"
-SCRATCH_DIR="{scratch_dir}"
+echo "=========================================================="
+echo "Job Name:    $SLURM_JOB_NAME"
+echo "Job ID:      $SLURM_JOB_ID"
+echo "Host:        $(hostname)"
+echo "Directory:   $(pwd)"
+echo "Start Time:  $(date)"
+echo "CPUs Alloc:  $SLURM_NTASKS"
+echo "=========================================================="
 
-echo "Starting VASP job on $(hostname) at $(date)"
-echo "Scratch directory: $SCRATCH_DIR"
-echo "Project destination: $PROJECT_DIR"
-
-# Clean scratch directory to guarantee fresh execution
-rm -rf "$SCRATCH_DIR"
-mkdir -p "$SCRATCH_DIR"
-cp "$PROJECT_DIR"/INCAR "$PROJECT_DIR"/POSCAR "$PROJECT_DIR"/POTCAR "$PROJECT_DIR"/KPOINTS "$SCRATCH_DIR"/
-cd "$SCRATCH_DIR"
-
+# 1. System Limits & OpenMP Environment
+ulimit -s unlimited 2>/dev/null || true
 export OMP_NUM_THREADS=1
-export OMPI_MCA_hwloc_base_binding_policy=none
-export PRTE_MCA_rmaps_default_mapping_policy=:oversubscribe
 
-# Execute VASP with 16 ranks and 1 OpenMP thread per rank
-run_vasp -np 16 -nt 1 > vasp_run.log 2>&1
+# 2. Fault Tolerance: Intercept termination/preemption signals for graceful VASP exit
+trap 'echo "LABORT = .TRUE." > STOPCAR; echo "[$(date)] Intercepted termination signal! Flushed STOPCAR for clean exit."; wait' SIGTERM SIGINT SIGHUP
 
+# 3. Resumption Logic: Check if valid CONTCAR exists from previous step/interruption
+if [ -f CONTCAR ] && [ -s CONTCAR ]; then
+    NLINES=$(wc -l < CONTCAR)
+    if [ "$NLINES" -ge 8 ]; then
+        echo "[$(date)] Found existing valid CONTCAR ($NLINES lines). Resuming relaxation..."
+        cp POSCAR POSCAR.bak_$(date +%s)
+        cp CONTCAR POSCAR
+    fi
+fi
+
+# 4. Environment Preparation (Carbono OpenHPC Stack)
+module purge
+module load vasp/6.2.0
+
+# 5. In-Situ VASP Execution
+echo "Executing VASP 6.2.0 with $SLURM_NTASKS MPI ranks (OpenMPI 4.1.4, --bind-to none)..."
+mpirun --bind-to none -np $SLURM_NTASKS vasp_std > vasp.out 2>&1
 EXIT_CODE=$?
-echo "VASP finished with exit code $EXIT_CODE. Syncing results back to project..."
-cp "$SCRATCH_DIR"/OUTCAR "$SCRATCH_DIR"/CONTCAR "$SCRATCH_DIR"/EIGENVAL "$SCRATCH_DIR"/DOSCAR "$SCRATCH_DIR"/vasprun.xml "$SCRATCH_DIR"/OSZICAR "$SCRATCH_DIR"/vasp_run.log "$PROJECT_DIR"/ 2>/dev/null || true
 
-echo "Completed at $(date) with exit code $EXIT_CODE"
+# Remove STOPCAR if present after clean termination
+rm -f STOPCAR
+
+echo "=========================================================="
+echo "Finished at $(date) with exit code $EXIT_CODE"
+echo "=========================================================="
 exit $EXIT_CODE
-""".format(job_name=job_name, project_dir=project_dir, scratch_dir=scratch_dir)
+""".format(job_name=job_name)
 
 
 def setup_all():
@@ -377,7 +396,7 @@ def setup_all():
 
     vdw_configs = [
         ("no_vdw", False, "Pure PBE (no dispersion)"),
-        ("yes_vdw", True, "PBE + DFT-D3 (IVDW=11)"),
+        ("yes_vdw", True, "PBE + DFT-D3 (IVDW=12, BJ-damping)"),
     ]
 
     total_calcs = 0
@@ -405,9 +424,9 @@ def setup_all():
         with open(os.path.join(clean_dir, "KPOINTS"), "w") as f:
             f.write(kpoints_content)
         build_potcar(os.path.join(clean_dir, "POTCAR"), include_h=False)
-        job_name = "H3x3_cln_{}".format(vdw_name)
+        job_name = "H3x3_clean_{}".format(vdw_name.replace("_", ""))
         with open(os.path.join(clean_dir, "job.sh"), "w") as f:
-            f.write(generate_job_script(job_name, clean_project, "{}/clean".format(vdw_name)))
+            f.write(generate_job_script(job_name))
         os.chmod(os.path.join(clean_dir, "job.sh"), 0o755)
 
         print("    [OK] clean/ -- pristine CrCl3 3x3 reference (18 Cr + 54 Cl)")
@@ -434,9 +453,9 @@ def setup_all():
             with open(os.path.join(site_dir, "KPOINTS"), "w") as f:
                 f.write(kpoints_content)
             build_potcar(os.path.join(site_dir, "POTCAR"), include_h=True)
-            job_name = "H3x3_{}_{}".format(site_key, vdw_name)
+            job_name = "H3x3_{}_{}".format(site_key, vdw_name.replace("_", ""))
             with open(os.path.join(site_dir, "job.sh"), "w") as f:
-                f.write(generate_job_script(job_name, site_project, "{}/{}".format(vdw_name, site_key)))
+                f.write(generate_job_script(job_name))
             os.chmod(os.path.join(site_dir, "job.sh"), 0o755)
 
             print("    [OK] {}/ -- {} (18 Cr + 54 Cl + 1 H)".format(site_key, site_info["desc"]))

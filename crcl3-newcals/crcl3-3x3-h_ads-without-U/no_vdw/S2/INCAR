@@ -23,7 +23,7 @@ ISMEAR   = 0           # Gaussian smearing; required for 2D semiconductor slab t
 SIGMA    = 0.05        # Smearing width (eV); 50 meV minimizes artificial electronic entropy (-TS ~ 0) in semiconductors
 
 # --- 4. Parallelization & Computational Performance ---
-NCORE    = 4           # Number of CPU cores per orbital group; optimizes FFT communication on 16-core nodes
+NCORE    = 8           # Number of CPU cores per orbital group; matches 8-core AMD EPYC Zen3 CCD L3 cache for 64 MPI ranks
 LREAL    = Auto        # Projection operators evaluated in real space; essential for 72/73-atom 3x3 supercells
 
 # --- 5. van der Waals Dispersion Correction ---

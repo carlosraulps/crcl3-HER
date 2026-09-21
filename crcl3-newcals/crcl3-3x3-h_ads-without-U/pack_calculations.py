@@ -8,7 +8,13 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 TAR_NAME = "crcl3_3x3_h_ads_without_U.tar.gz"
 ZIP_NAME = "crcl3_3x3_h_ads_without_U.zip"
 INCLUDE_DIRS = ["no_vdw", "yes_vdw"]
-INCLUDE_FILES = ["setup_h_ads.py", "verify_supercell.py", "pack_calculations.py"]
+INCLUDE_FILES = [
+    "setup_h_ads.py",
+    "verify_supercell.py",
+    "pack_calculations.py",
+    "submit_all_3x3.sh",
+    "check_status_3x3.sh",
+]
 
 def make_tar():
     tar_path = os.path.join(SCRIPT_DIR, TAR_NAME)
