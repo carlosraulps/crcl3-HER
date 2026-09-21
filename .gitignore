@@ -78,6 +78,7 @@ venv/
 
 # --- Temporary, Scratch, Backup & Crash Files ---
 temp/
+temporary/
 graphify-out/
 media/
 */media/
