@@ -1,34 +1,54 @@
 #!/bin/bash
-#SBATCH -J H1x1_S3_yes_vdw
-#SBATCH --partition=batch
+#SBATCH -J H1x1_S3_yesvdw
+#SBATCH -p normal
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
-#SBATCH --exclusive
-#SBATCH --time=24:00:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=16G
+#SBATCH --time=7-00:00:00
+#SBATCH --requeue
+#SBATCH -o %x.%j.out
+#SBATCH -e %x.%j.err
 
-PROJECT_DIR="/home/cr/cr-gd/google-drive/Proyectos/paper-adaptation/crcl3-newcals/crcl3-1x1-h_ads-without-U/yes_vdw/S3"
-SCRATCH_DIR="/home/cr/scratch_vasp/crcl3-1x1-h_ads-without-U/yes_vdw/S3"
+echo "=========================================================="
+echo "Job Name:    $SLURM_JOB_NAME"
+echo "Job ID:      $SLURM_JOB_ID"
+echo "Host:        $(hostname)"
+echo "Directory:   $(pwd)"
+echo "Start Time:  $(date)"
+echo "CPUs Alloc:  $SLURM_NTASKS"
+echo "=========================================================="
 
-echo "Starting VASP job on $(hostname) at $(date)"
-echo "Scratch directory: $SCRATCH_DIR"
-echo "Project destination: $PROJECT_DIR"
+# 1. Fault Tolerance: Intercept shutdown/preemption signals for graceful VASP exit
+trap 'echo "LABORT = .TRUE." > STOPCAR; echo "[$(date)] Intercepted termination signal! Flushed STOPCAR for clean exit."; wait' SIGTERM SIGINT SIGHUP
 
-# Clean scratch directory to guarantee fresh execution
-rm -rf "$SCRATCH_DIR"
-mkdir -p "$SCRATCH_DIR"
-cp "$PROJECT_DIR"/INCAR "$PROJECT_DIR"/POSCAR "$PROJECT_DIR"/POTCAR "$PROJECT_DIR"/KPOINTS "$SCRATCH_DIR"/
-cd "$SCRATCH_DIR"
+# 2. Resumption Logic: Check if valid CONTCAR exists from previous step/interruption
+if [ -f CONTCAR ] && [ -s CONTCAR ]; then
+    NLINES=$(wc -l < CONTCAR)
+    if [ "$NLINES" -ge 8 ]; then
+        echo "[$(date)] Found existing valid CONTCAR ($NLINES lines). Resuming relaxation..."
+        cp POSCAR POSCAR.bak_$(date +%s)
+        cp CONTCAR POSCAR
+    fi
+fi
+
+# 3. Environment Preparation
+module purge
+module load spack/1.0.1
+module load openmpi/5.0.8-aocc-5.0.0-linux-rocky10-icelake-wxmifob
+module load vasp/6.5.1-aocc-5.0.0-linux-rocky10-icelake-erkzov4
 
 export OMP_NUM_THREADS=1
-export OMPI_MCA_hwloc_base_binding_policy=none
-export PRTE_MCA_rmaps_default_mapping_policy=:oversubscribe
 
-# Execute VASP with 16 ranks and 1 OpenMP thread per rank
-run_vasp -np 16 -nt 1 > vasp_run.log 2>&1
-
+# 4. In-Situ VASP Execution
+echo "Executing VASP 6.5.1 with $SLURM_NTASKS MPI ranks..."
+mpirun -np $SLURM_NTASKS vasp_std > vasp.out 2>&1
 EXIT_CODE=$?
-echo "VASP finished with exit code $EXIT_CODE. Syncing results back to project..."
-cp "$SCRATCH_DIR"/OUTCAR "$SCRATCH_DIR"/CONTCAR "$SCRATCH_DIR"/EIGENVAL "$SCRATCH_DIR"/DOSCAR "$SCRATCH_DIR"/vasprun.xml "$SCRATCH_DIR"/OSZICAR "$SCRATCH_DIR"/vasp_run.log "$PROJECT_DIR"/ 2>/dev/null || true
 
-echo "Completed at $(date) with exit code $EXIT_CODE"
+# Remove STOPCAR if present after clean termination
+rm -f STOPCAR
+
+echo "=========================================================="
+echo "Finished at $(date) with exit code $EXIT_CODE"
+echo "=========================================================="
 exit $EXIT_CODE

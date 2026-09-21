@@ -255,43 +255,47 @@ def build_potcar(dest_path, include_h=False):
 
 
 def generate_job_script(job_name, project_dir, scratch_subdir):
-    """Generate a SLURM job script matching the project convention."""
-    scratch_dir = os.path.join(SCRATCH_ROOT, scratch_subdir)
+    """Generate an optimized SLURM job script matching this cluster's environment."""
     return """#!/bin/bash
 #SBATCH -J {job_name}
-#SBATCH --partition=batch
+#SBATCH -p normal
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
-#SBATCH --exclusive
-#SBATCH --time=24:00:00
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=16G
+#SBATCH --time=7-00:00:00
+#SBATCH -o %x.%j.out
+#SBATCH -e %x.%j.err
 
-PROJECT_DIR="{project_dir}"
-SCRATCH_DIR="{scratch_dir}"
+echo "=========================================================="
+echo "Job Name:    $SLURM_JOB_NAME"
+echo "Job ID:      $SLURM_JOB_ID"
+echo "Host:        $(hostname)"
+echo "Directory:   $(pwd)"
+echo "Start Time:  $(date)"
+echo "CPUs Alloc:  $SLURM_NTASKS"
+echo "=========================================================="
 
-echo "Starting VASP job on $(hostname) at $(date)"
-echo "Scratch directory: $SCRATCH_DIR"
-echo "Project destination: $PROJECT_DIR"
+# Purge existing and load cluster-native Spack modules
+module purge
+module load spack/1.0.1
+module load openmpi/5.0.8-aocc-5.0.0-linux-rocky10-icelake-wxmifob
+module load vasp/6.5.1-aocc-5.0.0-linux-rocky10-icelake-erkzov4
 
-# Clean scratch directory to guarantee fresh execution
-rm -rf "$SCRATCH_DIR"
-mkdir -p "$SCRATCH_DIR"
-cp "$PROJECT_DIR"/INCAR "$PROJECT_DIR"/POSCAR "$PROJECT_DIR"/POTCAR "$PROJECT_DIR"/KPOINTS "$SCRATCH_DIR"/
-cd "$SCRATCH_DIR"
-
+# OpenMP threads per MPI rank
 export OMP_NUM_THREADS=1
-export OMPI_MCA_hwloc_base_binding_policy=none
-export PRTE_MCA_rmaps_default_mapping_policy=:oversubscribe
 
-# Execute VASP with 16 ranks and 1 OpenMP thread per rank
-run_vasp -np 16 -nt 1 > vasp_run.log 2>&1
-
+# Execute VASP in-situ
+echo "Executing VASP 6.5.1 with $SLURM_NTASKS MPI ranks..."
+mpirun -np $SLURM_NTASKS vasp_std > vasp.out 2>&1
 EXIT_CODE=$?
-echo "VASP finished with exit code $EXIT_CODE. Syncing results back to project..."
-cp "$SCRATCH_DIR"/OUTCAR "$SCRATCH_DIR"/CONTCAR "$SCRATCH_DIR"/EIGENVAL "$SCRATCH_DIR"/DOSCAR "$SCRATCH_DIR"/vasprun.xml "$SCRATCH_DIR"/OSZICAR "$SCRATCH_DIR"/vasp_run.log "$PROJECT_DIR"/ 2>/dev/null || true
 
-echo "Completed at $(date) with exit code $EXIT_CODE"
+echo "=========================================================="
+echo "Finished at $(date) with exit code $EXIT_CODE"
+echo "=========================================================="
 exit $EXIT_CODE
-""".format(job_name=job_name, project_dir=project_dir, scratch_dir=scratch_dir)
+""".format(job_name=job_name)
+
 
 
 def setup_all():
