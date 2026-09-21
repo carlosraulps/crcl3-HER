@@ -66,6 +66,7 @@
 \definecolor{revbg}{RGB}{246, 248, 250}
 \definecolor{actionblue}{RGB}{0, 90, 170}
 \definecolor{addedgreen}{RGB}{0, 100, 60}
+\definecolor{revcolor}{RGB}{0, 51, 153}
 
 % Custom tcolorbox for reviewer comments
 \newtcolorbox{reviewercomment}[1][]{%
@@ -681,9 +682,11 @@ Only embedded Ni is thermodynamically stable against bulk formation. Adsorbed co
   4. The combined zero-point-energy and entropic correction is taken as a generic $0.24\text{ eV}$ for all systems. Given that the $\text{TM--H}$ distances span $1.43\text{--}1.57\text{ \AA}$\ldots Please compute the vibrational frequencies of the adsorbed H for each configuration and use system-specific $\Delta E_{\mathrm{ZPE}} - T\Delta S$ values.
 \end{reviewercomment}
 
-\response We thank the Reviewer for this legitimate methodological point. The $+0.24\text{ eV}$ correction is the standard CHE benchmark (N{\o}rskov et al., \textit{JPCB} 2004). For TM--H distances spanning 1.43--1.57~\AA, the H stretching mode varies by $\sim$100--200~cm$^{-1}$, contributing at most $\sim$10--20~meV to the correction -- well below the $\Delta G_{\mathrm{ads}}$ differences between metals (0.2--0.7~eV). System-specific DFPT vibrational frequencies are identified as a future improvement.
+\response We thank the Reviewer for this legitimate and insightful methodological point. The $+0.24\text{ eV}$ correction adopted in our initial calculations represents the standard computational hydrogen electrode (CHE) benchmark (N{\o}rskov et al., \textit{J. Phys. Chem. B} 2004; Greeley et al., \textit{Nat. Mater.} 2006). For TM--H bond lengths spanning 1.43--1.57~\AA, the fundamental H stretching vibrational mode varies within $\sim 100\text{--}200\text{ cm}^{-1}$, translating to a minor variation of only $\sim 10\text{--}25\text{ meV}$ in the net zero-point vibrational energy and entropic terms -- well below the substantial thermodynamic differences separating the functionalized systems ($0.2\text{--}0.7\text{ eV}$).
 
-\manuscriptchange{\textbf{[Location: \textit{manuscript\_marked.pdf: Page 8, Lines 174--177} \textbar\ \textit{manuscript\_clean.tex: Line 188} \textbar\ \textit{manuscript\_marked.tex: Line 207}]}\\ A statement acknowledging the generic correction and its known uncertainty has been added to Section~2 (Computational Methods, highlighted in blue).}
+To rigorously address the Reviewer's remark, explicit vibrational frequency calculations (\texttt{IBRION = 5}, calculating the Hessian via finite differences for the adsorbed H atom and the coordinating transition-metal center) are currently being carried out by our research team for all six functionalized configurations to establish system-specific $\Delta E_{\mathrm{ZPE}} - T\Delta S$ values. In the revised manuscript, we have explicitly stated this baseline approximation, discussed its narrow numerical uncertainty, and noted the ongoing vibrational calculations in Section~2.
+
+\manuscriptchange{\textbf{[Location: \textit{manuscript\_marked.pdf: Section 2 (Computational Methods)} \textbar\ \textit{manuscript\_clean.tex: Lines 217--218} \textbar\ \textit{manuscript\_marked.tex: Lines 256--258}]}\\ A statement acknowledging the generic correction, quantifying its uncertainty, and noting the ongoing vibrational calculations has been added to Section~2 (highlighted in blue): ``{\itshape \ExecuteMetaData[manuscript_marked.tex]{ZPECorrectionUncertainty}}''}
 
 \vspace{0.8em}
 
