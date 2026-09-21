@@ -1,2 +1,4 @@
-# Ensure manuscript_marked.aux is available for cross-referencing on Overleaf
-system("pdflatex -interaction=batchmode -draftmode manuscript_marked.tex");
+# Ensure manuscript_marked.aux is available for cross-referencing only when building response letter on Overleaf
+if (grep(/response_letter/i, @ARGV) && (! -f "manuscript_marked.aux")) {
+    system("pdflatex -synctex=1 -interaction=batchmode -draftmode manuscript_marked.tex");
+}
