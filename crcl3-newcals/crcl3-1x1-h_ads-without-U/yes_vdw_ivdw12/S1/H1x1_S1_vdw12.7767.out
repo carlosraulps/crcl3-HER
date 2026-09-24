@@ -1,0 +1,12 @@
+==========================================================
+Job Name:    H1x1_S1_vdw12
+Job ID:      7767
+Host:        huk122
+Directory:   /home/juan/Carlos/crcl3-1x1-h_ads-without-U/yes_vdw_ivdw12/S1
+Start Time:  Tue Sep 22 20:49:43 UTC 2026
+CPUs Alloc:  16
+==========================================================
+Executing VASP 6.5.1 with 16 MPI ranks...
+==========================================================
+Finished at Tue Sep 22 21:28:50 UTC 2026 with exit code 0
+==========================================================

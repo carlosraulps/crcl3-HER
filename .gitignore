@@ -114,6 +114,7 @@ Thumbs.db
 *.swp
 *.swo
 .vscode/
+*.code-workspace
 .idea/
 
 # --- Local Temporary & Tool Directories ---
