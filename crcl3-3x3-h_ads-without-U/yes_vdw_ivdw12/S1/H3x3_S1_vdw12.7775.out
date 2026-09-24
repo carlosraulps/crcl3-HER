@@ -1,0 +1,9 @@
+==========================================================
+Job Name:    H3x3_S1_vdw12
+Job ID:      7775
+Host:        huk122
+Directory:   /home/juan/Carlos/crcl3-3x3-h_ads-without-U/yes_vdw_ivdw12/S1
+Start Time:  Wed Sep 23 01:27:02 UTC 2026
+CPUs Alloc:  24
+==========================================================
+Executing VASP 6.5.1 with 24 MPI ranks...
