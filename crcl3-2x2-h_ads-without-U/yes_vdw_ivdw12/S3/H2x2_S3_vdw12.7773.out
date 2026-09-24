@@ -1,0 +1,12 @@
+==========================================================
+Job Name:    H2x2_S3_vdw12
+Job ID:      7773
+Host:        huk123
+Directory:   /home/juan/Carlos/crcl3-2x2-h_ads-without-U/yes_vdw_ivdw12/S3
+Start Time:  Wed Sep 23 00:39:18 UTC 2026
+CPUs Alloc:  24
+==========================================================
+Executing VASP 6.5.1 with 24 MPI ranks...
+==========================================================
+Finished at Wed Sep 23 01:06:04 UTC 2026 with exit code 0
+==========================================================

@@ -118,3 +118,10 @@ Thumbs.db
 # --- Local Temporary & Tool Directories ---
 temporary/
 
+# --- Whitelist Calculation Outputs for HUK IVDW=12 Suites ---
+!**/yes_vdw_ivdw12/**/CONTCAR
+!**/yes_vdw_ivdw12/**/OSZICAR
+!**/yes_vdw_ivdw12/**/OUTCAR
+!**/yes_vdw_ivdw12/**/IBZKPT
+!**/yes_vdw_ivdw12/**/vasp.out
+!**/yes_vdw_ivdw12/**/*.out

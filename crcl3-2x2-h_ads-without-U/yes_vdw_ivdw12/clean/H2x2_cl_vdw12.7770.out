@@ -1,0 +1,12 @@
+==========================================================
+Job Name:    H2x2_cl_vdw12
+Job ID:      7770
+Host:        huk122
+Directory:   /home/juan/Carlos/crcl3-2x2-h_ads-without-U/yes_vdw_ivdw12/clean
+Start Time:  Tue Sep 22 21:38:12 UTC 2026
+CPUs Alloc:  24
+==========================================================
+Executing VASP 6.5.1 with 24 MPI ranks...
+==========================================================
+Finished at Tue Sep 22 22:15:14 UTC 2026 with exit code 0
+==========================================================

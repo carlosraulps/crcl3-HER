@@ -1,0 +1,12 @@
+==========================================================
+Job Name:    H2_ref_vdw12
+Job ID:      7765
+Host:        huk122
+Directory:   /home/juan/Carlos/H2_reference/yes_vdw_ivdw12
+Start Time:  Tue Sep 22 20:47:49 UTC 2026
+CPUs Alloc:  8
+==========================================================
+Executing VASP 6.5.1 with 8 MPI ranks...
+==========================================================
+Finished at Tue Sep 22 20:50:10 UTC 2026 with exit code 0
+==========================================================
