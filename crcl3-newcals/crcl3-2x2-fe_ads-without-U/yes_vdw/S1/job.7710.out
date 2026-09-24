@@ -1,0 +1,14 @@
+==========================================================
+Starting Slurm Job : Fe_S1_yes_vdw (7710)
+Executing on Host  : huk120
+Partition Selected : alto
+Allocated Node(s)  : huk120
+Allocated CPUs     : 36
+Working Directory  : /home/carlos/crcl3-newcals/crcl3-2x2-fe_ads-without-U/yes_vdw/S1
+Start Timestamp    : Sun Sep 20 15:32:35 UTC 2026
+==========================================================
+Running VASP with 36 MPI processes (NCORE=6)...
+==========================================================
+Execution finished at Tue Sep 22 15:25:41 UTC 2026 with exit code: 0
+>>> STATUS: VASP CALCULATION CONVERGED SUCCESSFULLY <<<
+==========================================================

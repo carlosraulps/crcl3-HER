@@ -119,3 +119,18 @@ Thumbs.db
 # --- Local Temporary & Tool Directories ---
 temporary/
 
+# --- Whitelist Calculation Outputs for HUK IVDW=12 Suites ---
+!**/yes_vdw_ivdw12/**/CONTCAR
+!**/yes_vdw_ivdw12/**/OSZICAR
+!**/yes_vdw_ivdw12/**/OUTCAR
+!**/yes_vdw_ivdw12/**/IBZKPT
+!**/yes_vdw_ivdw12/**/vasp.out
+!**/yes_vdw_ivdw12/**/*.out
+
+# --- Whitelist Calculation Outputs for CrCl3 2x2 TM Suites ---
+!crcl3-newcals/crcl3-2x2-*/**/CONTCAR
+!crcl3-newcals/crcl3-2x2-*/**/OSZICAR
+!crcl3-newcals/crcl3-2x2-*/**/OUTCAR
+!crcl3-newcals/crcl3-2x2-*/**/IBZKPT
+!crcl3-newcals/crcl3-2x2-*/**/vasp.out
+!crcl3-newcals/crcl3-2x2-*/**/*.out

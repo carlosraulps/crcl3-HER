@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH -J H1x1_S3_12_vdw12
-#SBATCH -p normal
+#SBATCH -J H1x1_S3_vdw12
+#SBATCH -p alto,medio,normal
 #SBATCH --nodes=1
 #SBATCH --ntasks=16
 #SBATCH --cpus-per-task=1
@@ -32,17 +32,14 @@ if [ -f CONTCAR ] && [ -s CONTCAR ]; then
     fi
 fi
 
-# 3. Environment Preparation
-module purge
-module load spack/1.0.1
-module load openmpi/5.0.8-aocc-5.0.0-linux-rocky10-icelake-wxmifob
-module load vasp/6.5.1-aocc-5.0.0-linux-rocky10-icelake-erkzov4
-
+# 3. Environment Preparation for HUK Cluster
 export OMP_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+ulimit -s unlimited
 
-# 4. In-Situ VASP Execution
+# 4. In-Situ VASP Execution using native HUK oneAPI MPI & VASP 6.5.1
 echo "Executing VASP 6.5.1 with $SLURM_NTASKS MPI ranks..."
-mpirun -np $SLURM_NTASKS vasp_std > vasp.out 2>&1
+mpirun -np $SLURM_NTASKS /opt/vasp/vasp/bin/vasp_std > vasp.out 2>&1
 EXIT_CODE=$?
 
 # Remove STOPCAR if present after clean termination

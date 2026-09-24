@@ -23,7 +23,7 @@ ISMEAR   = 0           # Gaussian smearing; required for 2D semiconductor slab t
 SIGMA    = 0.05        # Smearing width (eV); 50 meV minimizes artificial electronic entropy (-TS ~ 0) in semiconductors
 
 # --- 4. Parallelization & Computational Performance ---
-NCORE    = 4           # Number of CPU cores per orbital group; optimizes FFT communication on 16-core nodes (4 cores/CCX)
+NCORE    = 4           # Dynamically tuned for 28 cores on huk124
 LREAL    = Auto        # Projection operators evaluated in real space; optimal performance for 32/33-atom supercells
 
 # --- 5. van der Waals Dispersion Correction ---
