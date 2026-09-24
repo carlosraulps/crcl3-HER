@@ -2,9 +2,9 @@
 #SBATCH -J Co_S3_U329
 #SBATCH -p fulereno
 #SBATCH --nodes=1
-#SBATCH --ntasks=32
+#SBATCH --ntasks=64
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=32G
+#SBATCH --mem=64G
 #SBATCH --time=04:00:00
 #SBATCH --signal=B:USR1@300
 #SBATCH --requeue
@@ -58,6 +58,9 @@ if [ -f CONTCAR ] && [ -s CONTCAR ]; then
         cp CONTCAR POSCAR
     fi
 fi
+
+# Dynamically tune NCORE for 64 cores
+sed -i "s/.*NCORE.*/NCORE    = 8/" INCAR
 
 module purge
 module load vasp/6.2.0
