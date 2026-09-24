@@ -1,0 +1,11 @@
+==========================================================
+Job Name:    Ni_S2_no_vdw
+Job ID:      162429
+Host:        n13
+Directory:   /home/carlos.primo/crcl3-HER/crcl3-newcals/crcl3-2x2-ni_ads-without-U/no_vdw/S2
+Start Time:  Wed Sep 23 19:05:20 -03 2026
+CPUs Alloc:  64
+Time Limit:  5-00:00:00 (Micro-Batch Chained, fulereno)
+==========================================================
+Executing VASP 6.2.0 with 64 MPI ranks (--bind-to none)...
+🎉 [Wed Sep 23 19:47:24 -03 2026] VASP converged within walltime window!

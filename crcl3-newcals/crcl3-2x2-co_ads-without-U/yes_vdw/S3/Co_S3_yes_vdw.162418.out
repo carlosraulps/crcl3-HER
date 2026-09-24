@@ -1,0 +1,11 @@
+==========================================================
+Job Name:    Co_S3_yes_vdw
+Job ID:      162418
+Host:        n13
+Directory:   /home/carlos.primo/crcl3-HER/crcl3-newcals/crcl3-2x2-co_ads-without-U/yes_vdw/S3
+Start Time:  Wed Sep 23 11:46:30 -03 2026
+CPUs Alloc:  64
+Time Limit:  5-00:00:00 (Micro-Batch Chained, fulereno)
+==========================================================
+Executing VASP 6.2.0 with 64 MPI ranks (--bind-to none)...
+🎉 [Wed Sep 23 14:27:09 -03 2026] VASP converged within walltime window!

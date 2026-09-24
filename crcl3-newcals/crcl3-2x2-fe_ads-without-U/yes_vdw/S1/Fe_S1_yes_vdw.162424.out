@@ -1,0 +1,15 @@
+==========================================================
+Job Name:    Fe_S1_yes_vdw
+Job ID:      162424
+Host:        n11
+Directory:   /home/carlos.primo/crcl3-HER/crcl3-newcals/crcl3-2x2-fe_ads-without-U/yes_vdw/S1
+Start Time:  Wed Sep 23 15:10:59 -03 2026
+CPUs Alloc:  64
+Time Limit:  5-00:00:00 (Micro-Batch Chained, fulereno)
+==========================================================
+Executing VASP 6.2.0 with 64 MPI ranks (--bind-to none)...
+[Thu Sep 24 06:10:26 -03 2026] Relaxation ongoing — auto-resubmitting next micro-batch...
+Submitted batch job 163636
+==========================================================
+Finished at Thu Sep 24 06:10:26 -03 2026 with exit code 0
+==========================================================

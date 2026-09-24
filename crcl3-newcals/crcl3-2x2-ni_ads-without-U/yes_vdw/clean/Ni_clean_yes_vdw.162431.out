@@ -1,0 +1,11 @@
+==========================================================
+Job Name:    Ni_clean_yes_vdw
+Job ID:      162431
+Host:        n08
+Directory:   /home/carlos.primo/crcl3-HER/crcl3-newcals/crcl3-2x2-ni_ads-without-U/yes_vdw/clean
+Start Time:  Wed Sep 23 19:47:36 -03 2026
+CPUs Alloc:  64
+Time Limit:  5-00:00:00 (Micro-Batch Chained, fulereno)
+==========================================================
+Executing VASP 6.2.0 with 64 MPI ranks (--bind-to none)...
+🎉 [Wed Sep 23 19:56:39 -03 2026] VASP converged within walltime window!

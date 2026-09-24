@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH -J Co_S2_yes_vdw
 #SBATCH -p fulereno
+#SBATCH --exclude=n10
 #SBATCH --nodes=1
 #SBATCH --ntasks=64
 #SBATCH --cpus-per-task=1

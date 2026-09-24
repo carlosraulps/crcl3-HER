@@ -1,0 +1,12 @@
+==========================================================
+Job Name:    Co_S2_yes_vdw
+Job ID:      162417
+Host:        n10
+Directory:   /home/carlos.primo/crcl3-HER/crcl3-newcals/crcl3-2x2-co_ads-without-U/yes_vdw/S2
+Start Time:  Wed Sep 23 11:42:30 -03 2026
+CPUs Alloc:  64
+Time Limit:  5-00:00:00 (Micro-Batch Chained, fulereno)
+==========================================================
+Executing VASP 6.2.0 with 64 MPI ranks (--bind-to none)...
+⚠️  [Thu Sep 24 10:54:14 -03 2026] Slurm USR1 intercepted — graceful checkpoint...
+Waiting for current ionic step to finish (PID: 3392205)...
