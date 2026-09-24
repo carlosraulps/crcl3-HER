@@ -186,14 +186,16 @@ def plot_multipanel_comparison(df):
         for r in rects:
             h = r.get_height()
             if not np.isnan(h):
-                ax_a.text(r.get_x() + r.get_width()/2.0, h + 0.03, f'{h:.2f}',
-                          ha='center', va='bottom', fontsize=7.2, fontweight='bold', fontfamily='serif')
+                ax_a.text(r.get_x() + r.get_width()/2.0, h + 0.04, f'{h:.2f}',
+                          ha='center', va='bottom', rotation=90, fontsize=7.2, fontweight='bold', fontfamily='serif',
+                          bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.85),
+                          zorder=5)
 
     ax_a.set_xticks(x)
     ax_a.set_xticklabels([c[2] for c in conditions], fontsize=8.5)
-    ax_a.set_ylabel(r'$E_{\mathrm{ads}} = E_{\mathrm{slab+H}} - E_{\mathrm{clean}} - \frac{1}{2}E(\mathrm{H}_2)\ \ (\mathrm{eV})$', fontsize=11)
+    ax_a.set_ylabel(r'$E_{\mathrm{ads}} = E_{\mathrm{slab+H}} - E_{\mathrm{clean}} - \frac{1}{2}E(\mathrm{H}_2)\ \ (\mathrm{eV})$', fontsize=14)
     ax_a.set_title(r'(a) Hydrogen Adsorption Energy ($1\times1$ vs $2\times2$ vs $3\times3$)', fontsize=12, fontweight='bold', pad=10)
-    ax_a.set_ylim(1.1, 2.95)
+    ax_a.set_ylim(1.1, 3.20)
     ax_a.yaxis.set_major_locator(MultipleLocator(0.3))
     ax_a.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax_a.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
@@ -218,16 +220,16 @@ def plot_multipanel_comparison(df):
             h = r.get_height()
             if not np.isnan(h):
                 ax_b.text(r.get_x() + r.get_width()/2.0, h - 0.05, f'{h:.2f}',
-                          ha='center', va='top', fontsize=7.2, fontweight='bold', fontfamily='serif',
+                          ha='center', va='top', rotation=90, fontsize=7.2, fontweight='bold', fontfamily='serif',
                           bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.85),
                           zorder=5)
 
     ax_b.axhline(0, color='black', linewidth=0.9, zorder=4)
     ax_b.set_xticks(x)
     ax_b.set_xticklabels([c[2] for c in conditions], fontsize=8.5)
-    ax_b.set_ylabel(r'$\Delta E = E_{\mathrm{slab+H}} - E_{\mathrm{clean}}\ \ (\mathrm{eV})$', fontsize=11)
+    ax_b.set_ylabel(r'$\Delta E = E_{\mathrm{slab+H}} - E_{\mathrm{clean}}\ \ (\mathrm{eV})$', fontsize=14)
     ax_b.set_title(r'(b) Thermodynamic Binding Energy $\Delta E$', fontsize=12, fontweight='bold', pad=10)
-    ax_b.set_ylim(-2.45, 0.15)
+    ax_b.set_ylim(-2.70, 0.15)
     ax_b.yaxis.set_major_locator(MultipleLocator(0.5))
     ax_b.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax_b.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
@@ -257,7 +259,7 @@ def plot_multipanel_comparison(df):
                   linewidth=1.4, alpha=0.65, label=f'{s_name} (PBE+D3 Zero)', zorder=2)
         
     ax_c.set_xlabel(r'Periodic $\mathrm{H-H}$ Image Separation $d_{\mathrm{H-H}}\ \ (\mathrm{\AA})$', fontsize=11)
-    ax_c.set_ylabel(r'$E_{\mathrm{ads}}\ \ (\mathrm{eV})$', fontsize=11)
+    ax_c.set_ylabel(r'$E_{\mathrm{ads}}\ \ (\mathrm{eV})$', fontsize=14)
     ax_c.set_title(r'(c) Multi-Scale Coverage Convergence: $E_{\mathrm{ads}}$ vs $d_{\mathrm{H-H}}$',
                    fontsize=12, fontweight='bold', pad=10)
     ax_c.set_xticks(d_vals)
@@ -302,7 +304,7 @@ def plot_multipanel_comparison(df):
         
     ax_d.set_xticks([0, 1, 2])
     ax_d.set_xticklabels(step_labels, fontsize=11.0, fontweight='bold')
-    ax_d.set_ylabel(r'$\Delta G_{\mathrm{H}^*}\ \ (\mathrm{eV})$', fontsize=11)
+    ax_d.set_ylabel(r'$\Delta G_{\mathrm{H}^*}\ \ (\mathrm{eV})$', fontsize=14)
     ax_d.set_title(r'(d) HER Free Energy Profile ($\Delta G_{\mathrm{H}^*} = E_{\mathrm{ads}} + 0.24\ \mathrm{eV}$)',
                    fontsize=12, fontweight='bold', pad=10)
     ax_d.set_ylim(-0.3, 2.9)
@@ -365,15 +367,17 @@ def plot_standalone_comparison(df):
         for r in rects:
             h = r.get_height()
             if not np.isnan(h):
-                ax.text(r.get_x() + r.get_width()/2.0, h + 0.03, f'{h:.2f}',
-                        ha='center', va='bottom', fontsize=7.5, fontweight='bold', fontfamily='serif')
+                ax.text(r.get_x() + r.get_width()/2.0, h + 0.04, f'{h:.2f}',
+                        ha='center', va='bottom', rotation=90, fontsize=7.5, fontweight='bold', fontfamily='serif',
+                        bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.85),
+                        zorder=5)
 
     ax.set_xticks(x)
     ax.set_xticklabels([c[2] for c in categories], fontsize=8.5)
-    ax.set_ylabel(r'$E_{\mathrm{ads}} = E_{\mathrm{slab+H}} - E_{\mathrm{clean}} - \frac{1}{2}E(\mathrm{H}_2)\ \ (\mathrm{eV})$', fontsize=11.5)
+    ax.set_ylabel(r'$E_{\mathrm{ads}} = E_{\mathrm{slab+H}} - E_{\mathrm{clean}} - \frac{1}{2}E(\mathrm{H}_2)\ \ (\mathrm{eV})$', fontsize=14.5)
     ax.set_title(r'Hydrogen Adsorption Energy on Monolayer $\mathrm{CrCl}_3$: Multi-Scale Scaling ($1\times1$ vs $2\times2$ vs $3\times3$)',
                  fontsize=12.5, fontweight='bold', pad=12)
-    ax.set_ylim(1.1, 2.75)
+    ax.set_ylim(1.1, 2.95)
     ax.yaxis.set_major_locator(MultipleLocator(0.3))
     ax.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)

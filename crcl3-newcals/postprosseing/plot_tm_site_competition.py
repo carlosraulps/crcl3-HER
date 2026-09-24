@@ -170,17 +170,18 @@ def plot_multipanel_tm_comparison(df):
         for r in rects:
             h = r.get_height()
             if not np.isnan(h):
-                ax_a.text(r.get_x() + r.get_width()/2.0, h - 0.12, f'{h:.2f}',
+                ax_a.text(r.get_x() + r.get_width()/2.0, h - 0.10, f'{h:.2f}',
                           ha='center', va='top', fontsize=7.8, fontweight='bold', fontfamily='serif',
+                          rotation=90,
                           bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.85),
                           zorder=5)
 
     ax_a.axhline(0, color='black', linewidth=0.9, zorder=4)
     ax_a.set_xticks(x)
     ax_a.set_xticklabels([c[2] for c in conditions], fontsize=9.5)
-    ax_a.set_ylabel(r'$\Delta E_{\mathrm{bind}} = E_{\mathrm{slab+TM}} - E_{\mathrm{clean}}\ \ (\mathrm{eV})$', fontsize=11)
+    ax_a.set_ylabel(r'$\Delta E_{\mathrm{bind}} = E_{\mathrm{slab+TM}} - E_{\mathrm{clean}}\ \ (\mathrm{eV})$', fontsize=14)
     ax_a.set_title(r'(a) Transition Metal Binding Energy on $\mathrm{CrCl}_3$ ($2\times2$)', fontsize=12, fontweight='bold', pad=10)
-    ax_a.set_ylim(-7.5, 0.2)
+    ax_a.set_ylim(-8.3, 0.2)
     ax_a.yaxis.set_major_locator(MultipleLocator(1.0))
     ax_a.yaxis.set_minor_locator(MultipleLocator(0.2))
     ax_a.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
@@ -205,14 +206,17 @@ def plot_multipanel_tm_comparison(df):
             h = r.get_height()
             if not np.isnan(h):
                 lbl = "GS" if abs(h) < 1e-3 else f'+{h:.2f}'
-                ax_b.text(r.get_x() + r.get_width()/2.0, h + 0.04, lbl,
-                          ha='center', va='bottom', fontsize=7.8, fontweight='bold', fontfamily='serif')
+                ax_b.text(r.get_x() + r.get_width()/2.0, h + 0.05, lbl,
+                          ha='center', va='bottom', fontsize=7.8, fontweight='bold', fontfamily='serif',
+                          rotation=90,
+                          bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.85),
+                          zorder=5)
 
     ax_b.set_xticks(x)
     ax_b.set_xticklabels([c[2] for c in conditions], fontsize=9.5)
-    ax_b.set_ylabel(r'$\Delta E - \Delta E_{\mathrm{min}}\ \ (\mathrm{eV})$', fontsize=11)
+    ax_b.set_ylabel(r'$\Delta E - \Delta E_{\mathrm{min}}\ \ (\mathrm{eV})$', fontsize=14)
     ax_b.set_title(r'(b) Relative Site Preference & Metastability Penalty', fontsize=12, fontweight='bold', pad=10)
-    ax_b.set_ylim(-0.05, 3.4)
+    ax_b.set_ylim(-0.05, 3.8)
     ax_b.yaxis.set_major_locator(MultipleLocator(0.5))
     ax_b.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax_b.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
@@ -238,15 +242,18 @@ def plot_multipanel_tm_comparison(df):
         
         for r in rects:
             h = r.get_height()
-            ax_c.text(r.get_x() + r.get_width()/2.0, h - 0.04 if h < 0 else h + 0.02, f'{h:+.2f}',
-                      ha='center', va='top' if h < 0 else 'bottom', fontsize=8.0, fontweight='bold', fontfamily='serif')
+            ax_c.text(r.get_x() + r.get_width()/2.0, h - 0.05 if h < 0 else h + 0.05, f'{h:+.2f}',
+                      ha='center', va='top' if h < 0 else 'bottom', fontsize=7.8, fontweight='bold', fontfamily='serif',
+                      rotation=90,
+                      bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.85),
+                      zorder=5)
 
     ax_c.axhline(0, color='black', linewidth=0.9, zorder=4)
     ax_c.set_xticks(x_tm)
     ax_c.set_xticklabels([f'{m} ({m}-doped)' for m in metals], fontsize=10.5)
-    ax_c.set_ylabel(r'$\Delta E_{\mathrm{disp}} = \Delta E(\mathrm{D3}) - \Delta E(\mathrm{PBE})\ \ (\mathrm{eV})$', fontsize=11)
+    ax_c.set_ylabel(r'$\Delta E_{\mathrm{disp}} = \Delta E(\mathrm{D3}) - \Delta E(\mathrm{PBE})\ \ (\mathrm{eV})$', fontsize=14)
     ax_c.set_title(r'(c) Dispersion Contribution to Binding Energy', fontsize=12, fontweight='bold', pad=10)
-    ax_c.set_ylim(-1.6, 1.5)
+    ax_c.set_ylim(-1.9, 1.9)
     ax_c.yaxis.set_major_locator(MultipleLocator(0.5))
     ax_c.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax_c.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
@@ -274,18 +281,21 @@ def plot_multipanel_tm_comparison(df):
         for r in rects:
             h = r.get_height()
             if not np.isnan(h):
-                ax_d.text(r.get_x() + r.get_width()/2.0, h + 0.3, f'{h:.1f}',
-                          ha='center', va='bottom', fontsize=7.8, fontweight='bold', fontfamily='serif')
+                ax_d.text(r.get_x() + r.get_width()/2.0, h + 0.35, f'{h:.1f}',
+                          ha='center', va='bottom', fontsize=7.8, fontweight='bold', fontfamily='serif',
+                          rotation=90,
+                          bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.85),
+                          zorder=5)
 
     ax_d.set_xticks(x)
     ax_d.set_xticklabels([c[2] for c in conditions], fontsize=9.5)
-    ax_d.set_ylabel(r'Total Magnetic Moment $M_{\mathrm{tot}}\ \ (\mu_B)$', fontsize=11)
+    ax_d.set_ylabel(r'Total Magnetic Moment $M_{\mathrm{tot}}\ \ (\mu_B)$', fontsize=14)
     ax_d.set_title(r'(d) Total Slab Spin Moment $M_{\mathrm{tot}}$ upon TM Adsorption', fontsize=12, fontweight='bold', pad=10)
-    ax_d.set_ylim(19.0, 31.0)
+    ax_d.set_ylim(19.0, 32.5)
     ax_d.yaxis.set_major_locator(MultipleLocator(2.0))
     ax_d.yaxis.set_minor_locator(MultipleLocator(0.5))
     ax_d.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
-    ax_d.legend(frameon=True, facecolor='white', framealpha=0.92, fontsize=9.0, loc='upper right')
+    ax_d.legend(frameon=True, facecolor='white', framealpha=0.92, fontsize=10.0, loc='upper right')
 
     plt.suptitle(r'Transition Metal Functionalization on Monolayer $\mathrm{CrCl}_3$ ($2\times2$ Supercell): $\mathrm{Co}$ vs $\mathrm{Fe}$ vs $\mathrm{Ni}$',
                  fontsize=14, fontweight='bold', y=0.995)
@@ -335,16 +345,17 @@ def plot_presentation_summary(df):
             if not np.isnan(h):
                 ax.text(r.get_x() + r.get_width()/2.0, h - 0.12, f'{h:.2f} eV',
                         ha='center', va='top', fontsize=8.2, fontweight='bold', fontfamily='serif',
+                        rotation=90,
                         bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.88),
                         zorder=5)
 
     ax.axhline(0, color='black', linewidth=0.9, zorder=4)
     ax.set_xticks(x)
     ax.set_xticklabels([g[2] for g in groups], fontsize=10.5, fontweight='bold')
-    ax.set_ylabel(r'$\Delta E_{\mathrm{bind}} = E_{\mathrm{slab+TM}} - E_{\mathrm{clean}}\ \ (\mathrm{eV})$', fontsize=12)
+    ax.set_ylabel(r'$\Delta E_{\mathrm{bind}} = E_{\mathrm{slab+TM}} - E_{\mathrm{clean}}\ \ (\mathrm{eV})$', fontsize=15)
     ax.set_title(r'Adsorption Energetics and Site Competition for $3d$ Transition Metals on Monolayer $\mathrm{CrCl}_3$',
                  fontsize=13, fontweight='bold', pad=12)
-    ax.set_ylim(-7.5, 0.2)
+    ax.set_ylim(-8.5, 0.2)
     ax.yaxis.set_major_locator(MultipleLocator(1.0))
     ax.yaxis.set_minor_locator(MultipleLocator(0.2))
     ax.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
