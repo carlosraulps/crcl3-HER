@@ -167,6 +167,86 @@ def analyze_tm_site1():
             
     return results
 
+def analyze_co_with_u():
+    import re
+    print("\n" + "=" * 80)
+    print("PART 3: COBALT (Co) ADSORPTION WITH HUBBARD U = 3.29 eV (SITE 1 vs SITE 3)")
+    print("=" * 80)
+    
+    sites = [
+        ("S1", "Site 1 (Top-Cl)"),
+        ("S3", "Site 3 (Top-Cr)")
+    ]
+    
+    clean_oszicar = os.path.join(BASE_DIR, "crcl3-2x2-co_ads-with-U", "yes_vdw", "clean", "OSZICAR")
+    e_clean = None
+    if os.path.exists(clean_oszicar):
+        with open(clean_oszicar, "r") as f:
+            for line in f:
+                if "E0=" in line:
+                    m = re.search(r'E0=\s*([^\s]+)', line)
+                    if m:
+                        e_clean = float(m.group(1))
+                        
+    for s_key, s_name in sites:
+        site_dir = os.path.join(BASE_DIR, "crcl3-2x2-co_ads-with-U", "yes_vdw", s_key)
+        contcar_path = os.path.join(site_dir, "CONTCAR")
+        outcar_path = os.path.join(site_dir, "OUTCAR")
+        poscar_path = os.path.join(site_dir, "POSCAR")
+        oszicar_path = os.path.join(site_dir, "OSZICAR")
+        
+        if not os.path.exists(contcar_path):
+            print(f"[{s_name:18s}] CONTCAR not found")
+            continue
+            
+        atoms = read(contcar_path)
+        co_idx = len(atoms) - 1 # Co is last atom
+        
+        # Initial displacement from POSCAR
+        disp = None
+        if os.path.exists(poscar_path):
+            init_atoms = read(poscar_path)
+            disp = np.linalg.norm(atoms.positions[co_idx] - init_atoms.positions[co_idx])
+            
+        # Nearest Cl atoms
+        cl_indices = [i for i, a in enumerate(atoms) if a.symbol == "Cl"]
+        distances_cl = []
+        for cl_i in cl_indices:
+            d = atoms.get_distance(co_idx, cl_i, mic=True)
+            distances_cl.append((d, cl_i))
+        distances_cl.sort()
+        
+        # Nearest Cr atoms
+        cr_indices = [i for i, a in enumerate(atoms) if a.symbol == "Cr"]
+        distances_cr = []
+        for cr_i in cr_indices:
+            d = atoms.get_distance(co_idx, cr_i, mic=True)
+            distances_cr.append((d, cr_i))
+        distances_cr.sort()
+        
+        # Energy & Mag from OSZICAR
+        e_tot = None
+        mag = None
+        if os.path.exists(oszicar_path):
+            with open(oszicar_path, "r") as f:
+                for line in f:
+                    if "E0=" in line:
+                        m = re.search(r'E0=\s*([^\s]+)', line)
+                        mag_m = re.search(r'mag=\s*([^\s]+)', line)
+                        if m:
+                            e_tot = float(m.group(1))
+                        if mag_m:
+                            mag = float(mag_m.group(1))
+                            
+        delta_e = (e_tot - e_clean) if (e_tot and e_clean) else None
+        delta_str = f"{delta_e:.3f} eV" if delta_e is not None else "N/A"
+        
+        coord_cl = [d for d, _ in distances_cl if d < 2.5]
+        status = "BOUND TO SURFACE" if distances_cl[0][0] < 2.5 else "DESORBED"
+        mag_str = f"{mag:.2f} muB" if mag is not None else "N/A"
+        print(f"[{s_name:18s}] Disp: {disp:5.2f} Å | Cl-bonds: {[round(x, 2) for x in coord_cl]} Å | Nearest Cr: {distances_cr[0][0]:.2f} Å | E_tot: {e_tot:.3f} eV | Delta_E: {delta_str} | Mag: {mag_str} | {status}")
+
 if __name__ == "__main__":
     analyze_h_site1()
     analyze_tm_site1()
+    analyze_co_with_u()

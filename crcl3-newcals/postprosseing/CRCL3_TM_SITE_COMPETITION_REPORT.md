@@ -31,6 +31,8 @@
 | **Ni** (Nickel) | PBE+D3 (BJ) | S1 | Site 1 (Top-Cl) | -162.1068 | -165.9142 | **-3.807** | +0.392 eV | 24.00 | 33 |
 | **Ni** (Nickel) | PBE+D3 (BJ) | S2 | Site 2 (Hollow) | -162.1068 | -166.3062 | **-4.199** | **GROUND STATE** | 24.00 | 16 |
 | **Ni** (Nickel) | PBE+D3 (BJ) | S3 | Site 3 (Top-Cr) | -162.1068 | -165.2844 | **-3.178** | +1.022 eV | 24.00 | 20 |
+| **Co** (Cobalt) | PBE+D3+U (3.29 eV) | S1 | Site 1 (Top-Cl) | -147.2707 | -150.5538 | **-3.283** | +1.219 eV | 27.00 | 4 |
+| **Co** (Cobalt) | PBE+D3+U (3.29 eV) | S3 | Site 3 (Top-Cr) | -147.2707 | -151.7732 | **-4.502** | **GROUND STATE** | 27.00 | 9 |
 
 ---
 
@@ -51,6 +53,11 @@
    - In Pure PBE, the Hollow site ($S_2$) is the ground state with $\Delta E = -6.333\text{ eV}$ and $M = 28.44\,\mu_B$ ($+4\,\mu_B$ high-spin Fe contribution).
    - Under PBE+D3 (BJ), Top-Cl ($S_1$) undergoes a collective relaxation yielding a deep thermodynamic minimum of **$\Delta E = -6.807\text{ eV}$** with $M = 22.00\,\mu_B$, reflecting strong spin-reorganization and hybridization with the ligand chlorine.
 
-4. **Universal Avoidance of Top-Cr ($S_3$):**
-   - For all three transition metals, Site 3 (Top-Cr) is consistently the least favorable position, with an energetic penalty of $+0.65\text{ to } +3.00\text{ eV}$ relative to the ground state.
+4. **Universal Avoidance of Top-Cr ($S_3$) in Standard PBE/PBE+D3:**
+   - For all three transition metals without on-site Coulomb corrections, Site 3 (Top-Cr) is consistently the least favorable position, with an energetic penalty of $+0.65\text{ to } +3.00\text{ eV}$ relative to the ground state.
    - This is physically driven by strong electrostatic repulsion and core Pauli exclusion between the approaching $3d$ transition metal cation and the underlying high-spin $\text{Cr}^{3+}$ ($t_{2g}^3$) center.
+
+5. **Impact of Hubbard $U = 3.29\text{ eV}$ on Cobalt Site Stability:**
+   - Incorporating the Dudarev Hubbard $U = 3.29\text{ eV}$ on the Cr $3d$ orbitals (derived from the optimal lattice/gap intersection in `relax-crcl3-i3-vdw-u`) significantly enhances electron localization on Cr$^{3+}$ ($t_{2g}^3$).
+   - For Cobalt, Top-Cr ($S_3$) achieves a strong binding energy of $\Delta E = -4.502\text{ eV}$ with an exact ferromagnetic spin moment of $M_{\mathrm{tot}} = 27.00\,\mu_B$ ($8\times 3.0\,\mu_B$ from Cr plus $3.0\,\mu_B$ from high-spin Co$^{2+}$).
+   - Top-Cl ($S_1$) exhibits an intermediate binding energy of $\Delta E = -3.283\text{ eV}$ while undergoing relaxation, demonstrating the stabilization of coordinated adsorption states under on-site Coulomb correction.

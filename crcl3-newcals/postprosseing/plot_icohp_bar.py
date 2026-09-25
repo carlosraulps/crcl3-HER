@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Setup paths
-base_dir = "/Users/apple/Research/abc/paper-adaptation/crcl3-newcals"
+base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 post_dir = os.path.join(base_dir, "postprosseing")
 os.makedirs(post_dir, exist_ok=True)
 

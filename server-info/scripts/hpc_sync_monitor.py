@@ -302,8 +302,9 @@ def execute_continuation_hook(job: Dict[str, Any], meta: Dict[str, Any]):
         hook_script = parent_dir / "setup_h_on_co_u.py"
         if hook_script.exists():
             print(f"  • Executing {hook_script} for site {local_dir.name}...")
+            py_exec = "/home/cr/venvs/research/bin/python3" if os.path.exists("/home/cr/venvs/research/bin/python3") else sys.executable
             res = subprocess.run(
-                [sys.executable, str(hook_script), "--site", local_dir.name],
+                [py_exec, str(hook_script), "--site", local_dir.name],
                 capture_output=True, text=True, cwd=str(parent_dir)
             )
             print(f"  • Hook Output:\n{res.stdout}")

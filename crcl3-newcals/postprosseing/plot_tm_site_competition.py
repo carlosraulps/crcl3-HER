@@ -117,12 +117,46 @@ def collect_tm_data():
                         'ionic_steps': site_info['step']
                     })
                     
+    # Check for systems with Hubbard U
+    u_systems = [
+        ('Co', 'Cobalt', 'crcl3-2x2-co_ads-with-U', 3.0, 'yes_vdw', 'yes_vdw_u', 'PBE+D3+U (3.29 eV)')
+    ]
+    for tm_sym, tm_name, folder, nom_mag, vdw_sub, vdw_key, vdw_label in u_systems:
+        base_path = os.path.join(BASE_DIR, folder)
+        clean_dir = os.path.join(base_path, vdw_sub, "clean")
+        clean_info = extract_vasp_info(clean_dir)
+        e_clean = clean_info['E0']
+        
+        for site_key, site_label, color in sites:
+            site_dir = os.path.join(base_path, vdw_sub, site_key)
+            site_info = extract_vasp_info(site_dir)
+            
+            if site_info['E0'] is not None and e_clean is not None:
+                e_tot = site_info['E0']
+                delta_e = e_tot - e_clean
+                
+                records.append({
+                    'TM': tm_sym,
+                    'TM_name': tm_name,
+                    'nominal_moment': nom_mag,
+                    'vdw_key': vdw_key,
+                    'vdw_label': vdw_label,
+                    'site_key': site_key,
+                    'site_label': site_label,
+                    'site_color': color,
+                    'E_clean': e_clean,
+                    'E_tot': e_tot,
+                    'Delta_E': delta_e,
+                    'mag': site_info['mag'],
+                    'ionic_steps': site_info['step']
+                })
+
     df = pd.DataFrame(records)
     
     # Calculate relative stability within each (TM, functional) group
     df['Delta_E_rel'] = 0.0
-    for tm in ['Co', 'Fe', 'Ni']:
-        for vdw in ['no_vdw', 'yes_vdw']:
+    for tm in df['TM'].unique():
+        for vdw in df[df['TM'] == tm]['vdw_key'].unique():
             mask = (df['TM'] == tm) & (df['vdw_key'] == vdw)
             min_val = df.loc[mask, 'Delta_E'].min()
             df.loc[mask, 'Delta_E_rel'] = df.loc[mask, 'Delta_E'] - min_val
@@ -148,6 +182,7 @@ def plot_multipanel_tm_comparison(df):
     conditions = [
         ('Co', 'no_vdw', 'Co\nPBE'),
         ('Co', 'yes_vdw', 'Co\nPBE+D3'),
+        ('Co', 'yes_vdw_u', 'Co\nPBE+D3+U'),
         ('Fe', 'no_vdw', 'Fe\nPBE'),
         ('Fe', 'yes_vdw', 'Fe\nPBE+D3'),
         ('Ni', 'no_vdw', 'Ni\nPBE'),
@@ -155,7 +190,7 @@ def plot_multipanel_tm_comparison(df):
     ]
     
     x = np.arange(len(conditions))
-    width = 0.25
+    width = 0.24
     
     for idx, (s_key, s_name, color) in enumerate(sites):
         vals = []
@@ -311,11 +346,12 @@ def plot_multipanel_tm_comparison(df):
 
 def plot_presentation_summary(df):
     """Generates focused grouped presentation bar chart."""
-    fig, ax = plt.subplots(figsize=(11.5, 6.0))
+    fig, ax = plt.subplots(figsize=(13.0, 6.0))
     
     groups = [
         ('Co', 'no_vdw', 'Co (PBE)'),
         ('Co', 'yes_vdw', 'Co (PBE+D3)'),
+        ('Co', 'yes_vdw_u', 'Co (PBE+D3+U)'),
         ('Fe', 'no_vdw', 'Fe (PBE)'),
         ('Fe', 'yes_vdw', 'Fe (PBE+D3)'),
         ('Ni', 'no_vdw', 'Ni (PBE)'),
@@ -405,9 +441,13 @@ def write_tm_report(df):
         f.write("   - Fe exhibits the highest binding energy among all three $3d$ transition metals, exceeding $-6.8\\text{ eV}$ at Top-Cl under PBE+D3 (BJ).\n")
         f.write("   - In Pure PBE, the Hollow site ($S_2$) is the ground state with $\\Delta E = -6.333\\text{ eV}$ and $M = 28.44\\,\\mu_B$ ($+4\\,\\mu_B$ high-spin Fe contribution).\n")
         f.write("   - Under PBE+D3 (BJ), Top-Cl ($S_1$) undergoes a collective relaxation yielding a deep thermodynamic minimum of **$\\Delta E = -6.807\\text{ eV}$** with $M = 22.00\\,\\mu_B$, reflecting strong spin-reorganization and hybridization with the ligand chlorine.\n\n")
-        f.write("4. **Universal Avoidance of Top-Cr ($S_3$):**\n")
-        f.write("   - For all three transition metals, Site 3 (Top-Cr) is consistently the least favorable position, with an energetic penalty of $+0.65\\text{ to } +3.00\\text{ eV}$ relative to the ground state.\n")
-        f.write("   - This is physically driven by strong electrostatic repulsion and core Pauli exclusion between the approaching $3d$ transition metal cation and the underlying high-spin $\\text{Cr}^{3+}$ ($t_{2g}^3$) center.\n")
+        f.write("4. **Universal Avoidance of Top-Cr ($S_3$) in Standard PBE/PBE+D3:**\n")
+        f.write("   - For all three transition metals without on-site Coulomb corrections, Site 3 (Top-Cr) is consistently the least favorable position, with an energetic penalty of $+0.65\\text{ to } +3.00\\text{ eV}$ relative to the ground state.\n")
+        f.write("   - This is physically driven by strong electrostatic repulsion and core Pauli exclusion between the approaching $3d$ transition metal cation and the underlying high-spin $\\text{Cr}^{3+}$ ($t_{2g}^3$) center.\n\n")
+        f.write("5. **Impact of Hubbard $U = 3.29\\text{ eV}$ on Cobalt Site Stability:**\n")
+        f.write("   - Incorporating the Dudarev Hubbard $U = 3.29\\text{ eV}$ on the Cr $3d$ orbitals (derived from the optimal lattice/gap intersection in `relax-crcl3-i3-vdw-u`) significantly enhances electron localization on Cr$^{3+}$ ($t_{2g}^3$).\n")
+        f.write("   - For Cobalt, Top-Cr ($S_3$) achieves a strong binding energy of $\\Delta E = -4.502\\text{ eV}$ with an exact ferromagnetic spin moment of $M_{\\mathrm{tot}} = 27.00\\,\\mu_B$ ($8\\times 3.0\\,\\mu_B$ from Cr plus $3.0\\,\\mu_B$ from high-spin Co$^{2+}$).\n")
+        f.write("   - Top-Cl ($S_1$) exhibits an intermediate binding energy of $\\Delta E = -3.283\\text{ eV}$ while undergoing relaxation, demonstrating the stabilization of coordinated adsorption states under on-site Coulomb correction.\n")
 
     print(f"Generated: {md_path}")
 
