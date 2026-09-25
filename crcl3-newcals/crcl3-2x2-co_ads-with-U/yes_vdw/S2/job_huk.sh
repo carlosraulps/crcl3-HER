@@ -1,8 +1,8 @@
 #!/bin/bash
-#SBATCH -J clean_U329
+#SBATCH -J Co_S2_U329
 #SBATCH -o job.%j.out
 #SBATCH -e job.%j.err
-#SBATCH --partition=alto,medio
+#SBATCH --partition=hram,medio,alto
 #SBATCH --nodes=1
 #SBATCH --exclusive
 #SBATCH --time=168:00:00
@@ -22,11 +22,9 @@ echo "Start Timestamp    : $(date)"
 echo "=========================================================="
 
 NPROCS=${SLURM_CPUS_ON_NODE:-$(nproc)}
-if [ -z "$NPROCS" ] || [ "$NPROCS" -le 1 ]; then
-    NPROCS=$(nproc)
-fi
-
-if [ "$NPROCS" -eq 36 ]; then
+if [ "$NPROCS" -eq 40 ]; then
+    NCORE_OPT=5
+elif [ "$NPROCS" -eq 36 ]; then
     NCORE_OPT=6
 elif [ "$NPROCS" -eq 28 ]; then
     NCORE_OPT=4
@@ -42,7 +40,7 @@ EXIT_CODE=$?
 
 echo "=========================================================="
 echo "Execution finished at $(date) with exit code: $EXIT_CODE"
-if grep -q "General timing and accounting informations for this job" run.log 2>/dev/null || grep -q "reached required accuracy" run.log 2>/dev/null; then
+if grep -q "reached required accuracy" run.log 2>/dev/null; then
     echo ">>> STATUS: VASP CALCULATION CONVERGED SUCCESSFULLY <<<"
 fi
 echo "=========================================================="
