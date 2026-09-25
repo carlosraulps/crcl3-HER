@@ -1,33 +1,42 @@
 #!/usr/bin/env python3
 """
 ================================================================================
-HPC Cluster Intelligence MCP Server (JSON-RPC 2.0 stdio)
+HPC Cluster Intelligence & Superpower MCP Server (JSON-RPC 2.0 stdio)
 ================================================================================
-Exposes HPC cluster hardware specifications, live Slurm telemetry, job sizing
-advisories, and automated batch script generation as Model Context Protocol (MCP)
-tools for Antigravity, Claude, and AI assistants.
+Exposes HPC cluster hardware profiles, live Slurm telemetry, job sizing
+advisories, multi-cluster turnaround optimization, auto-dispatch, and
+safeguarded synchronization as Model Context Protocol (MCP) tools.
 
 Tools provided:
   - list_clusters()
   - get_cluster_info(cluster_name)
   - get_live_telemetry(cluster_name)
-  - calculate_optimal_job(cluster, app, atoms, kpoints, supercell, walltime_days, hybrid)
-  - generate_slurm_script(cluster, app, job_name, atoms, kpoints, supercell)
+  - calculate_optimal_job(cluster, app, atoms, kpoints, ...)
+  - decide_cluster(atoms, steps, kpoints, calc_dir)
+  - dispatch_calculation(calc_dir, target_cluster, continuation_hook, dry_run)
+  - sync_and_monitor(sync_on_completion)
+  - list_tracked_jobs()
 ================================================================================
 """
 
 import sys
 import os
 import json
-import subprocess
-from typing import Dict, Any
+from typing import Dict, Any, Optional
+
+# Add scripts directory to sys.path
+SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
+if SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, SCRIPT_DIR)
 
 from job_efficiency_advisor import JobEfficiencyAdvisor
 from slurm_generator import generate_sbatch
+import hpc_meta_dispatcher as dispatcher
+import hpc_sync_monitor as monitor
 
 
 def load_clusters_db() -> Dict[str, Any]:
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base_dir = os.path.dirname(SCRIPT_DIR)
     clusters_path = os.path.join(base_dir, "resources", "clusters.json")
     if os.path.exists(clusters_path):
         with open(clusters_path, "r") as f:
@@ -41,34 +50,34 @@ ADVISOR = JobEfficiencyAdvisor()
 TOOLS = [
     {
         "name": "list_clusters",
-        "description": "Lists all available HPC clusters (Iskay, Huk, Carbono, Arch) with hardware and network summaries.",
+        "description": "Lists all available HPC clusters (Iskay, Huk, Carbono, Arch) with hardware, CPU architecture, and network access methods.",
         "inputSchema": {"type": "object", "properties": {}}
     },
     {
         "name": "get_cluster_info",
-        "description": "Retrieves comprehensive architecture, hardware topology, partitions, and storage limits for a specific cluster.",
+        "description": "Retrieves comprehensive architecture, hardware topology, partitions, storage paths, and module environments for a specific cluster.",
         "inputSchema": {
             "type": "object",
             "properties": {
-                "cluster_name": {"type": "string", "description": "Name of the cluster (iskay, huk, carbono, arch)"}
+                "cluster_name": {"type": "string", "description": "Name of cluster (iskay, huk, carbono, arch)"}
             },
             "required": ["cluster_name"]
         }
     },
     {
         "name": "get_live_telemetry",
-        "description": "Queries real-time Slurm daemon reachability, active nodes, and running queue on Iskay or Huk.",
+        "description": "Queries real-time Slurm reachability, active responding nodes, and running queue count on Huk, Carbono, or Iskay.",
         "inputSchema": {
             "type": "object",
             "properties": {
-                "cluster_name": {"type": "string", "description": "Target cluster (iskay or huk)"}
+                "cluster_name": {"type": "string", "description": "Target cluster (iskay, huk, carbono)"}
             },
             "required": ["cluster_name"]
         }
     },
     {
         "name": "calculate_optimal_job",
-        "description": "Calculates the most efficient core count, node placement, partition, memory request, and software tuning tags (NCORE, KPAR) for a project.",
+        "description": "Calculates optimal core allocation, partition, memory request, and VASP parallel tags (NCORE, KPAR) using Amdahl's Law.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -84,20 +93,45 @@ TOOLS = [
         }
     },
     {
-        "name": "generate_slurm_script",
-        "description": "Generates an optimized, ready-to-run .sbatch Slurm job script tailored to the cluster and software parameters.",
+        "name": "decide_cluster",
+        "description": "Evaluates live node core fragmentation, queue latency, and empirical execution benchmarks across Carbono, Huk, and Iskay to recommend the cluster with minimum total turnaround time.",
         "inputSchema": {
             "type": "object",
             "properties": {
-                "cluster": {"type": "string", "description": "Target cluster (iskay, huk, carbono)"},
-                "app": {"type": "string", "default": "vasp"},
-                "job_name": {"type": "string", "default": "dft_calc"},
-                "atoms": {"type": "integer", "default": 32},
-                "kpoints": {"type": "integer", "default": 4},
-                "supercell": {"type": "string", "default": "custom"}
-            },
-            "required": ["cluster"]
+                "atoms": {"type": "integer", "default": 33, "description": "Number of atoms"},
+                "steps": {"type": "integer", "default": 40, "description": "Expected relaxation steps"},
+                "calc_dir": {"type": "string", "description": "Optional local calculation directory to inspect POSCAR/INCAR"}
+            }
         }
+    },
+    {
+        "name": "dispatch_calculation",
+        "description": "Automatically selects the fastest cluster (or targeted cluster), generates a tailored zero-redundancy Slurm batch script with USR1 checkpoint traps, rsyncs inputs, submits via sbatch, and registers the job in the global tracking ledger.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "calc_dir": {"type": "string", "description": "Absolute path to local calculation directory with POSCAR/INCAR/POTCAR"},
+                "target_cluster": {"type": "string", "description": "Optional forced target cluster (carbono, huk, iskay)"},
+                "continuation_hook": {"type": "string", "description": "Optional workflow hook to run upon completion (e.g. stage_h_on_co)"},
+                "dry_run": {"type": "boolean", "default": False, "description": "Simulate dispatch without submitting"}
+            },
+            "required": ["calc_dir"]
+        }
+    },
+    {
+        "name": "sync_and_monitor",
+        "description": "Audits all active jobs in ~/.hpc_jobs_ledger.json, verifies convergence using strict multi-tier validation (preventing false positives/negatives), rsyncs outputs back to local workspace, triggers continuation hooks, and pushes to Git master branch.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "sync_on_completion": {"type": "boolean", "default": True, "description": "Whether to auto-sync outputs on convergence"}
+            }
+        }
+    },
+    {
+        "name": "list_tracked_jobs",
+        "description": "Returns the complete persistent ledger of active and completed calculations across all clusters.",
+        "inputSchema": {"type": "object", "properties": {}}
     }
 ]
 
@@ -124,17 +158,9 @@ def handle_tool_call(name: str, args: Dict[str, Any]) -> Any:
 
     elif name == "get_live_telemetry":
         c = args.get("cluster_name", "").lower()
-        if c == "iskay":
-            res = subprocess.run("sinfo -h -o '%N %T %c %m' 2>/dev/null", shell=True, capture_output=True, text=True)
-            nodes = res.stdout.strip().splitlines()
-            q_res = subprocess.run("squeue -h -t R | wc -l", shell=True, capture_output=True, text=True)
-            return {"cluster": "iskay", "status": "online", "nodes_count": len(nodes), "running_jobs": int(q_res.stdout.strip() or 0)}
-        elif c == "huk":
-            res = subprocess.run("ssh -o BatchMode=yes -o ConnectTimeout=3 huk 'sinfo -h -o \"%N %T %c %m\"' 2>/dev/null", shell=True, capture_output=True, text=True)
-            nodes = [l for l in res.stdout.strip().splitlines() if len(l.split()) >= 4]
-            q_res = subprocess.run("ssh -o BatchMode=yes -o ConnectTimeout=3 huk 'squeue -h -t R | wc -l' 2>/dev/null", shell=True, capture_output=True, text=True)
-            return {"cluster": "huk", "status": "online", "nodes_count": len(nodes), "running_jobs": int(q_res.stdout.strip() or 0)}
-        return {"error": f"Live telemetry only supported for iskay and huk currently."}
+        from server_info import ServerInfoCLI
+        cli = ServerInfoCLI()
+        return cli.get_live_status(c)
 
     elif name == "calculate_optimal_job":
         return ADVISOR.advise(
@@ -147,16 +173,45 @@ def handle_tool_call(name: str, args: Dict[str, Any]) -> Any:
             is_hybrid=args.get("is_hybrid", False)
         )
 
-    elif name == "generate_slurm_script":
-        script = generate_sbatch(
-            cluster=args.get("cluster", "huk"),
-            app=args.get("app", "vasp"),
-            job_name=args.get("job_name", "dft_calc"),
-            atoms=args.get("atoms", 32),
-            kpoints=args.get("kpoints", 4),
-            supercell=args.get("supercell", "custom")
+    elif name == "decide_cluster":
+        calc_dir = args.get("calc_dir")
+        if calc_dir and os.path.exists(calc_dir):
+            calc_info = dispatcher.inspect_calculation_dir(calc_dir)
+        else:
+            calc_info = {
+                "name": "MCP Query",
+                "atoms": args.get("atoms", 33),
+                "steps": args.get("steps", 40),
+                "kpoints": 4,
+                "supercell": "2x2" if args.get("atoms", 33) <= 40 else "3x3",
+                "has_u": False,
+                "u_val": 0.0
+            }
+        matrix = dispatcher.compute_turnaround_matrix(calc_info)
+        return {
+            "evaluations": matrix["evaluations"],
+            "recommended_winner": matrix["winner"]
+        }
+
+    elif name == "dispatch_calculation":
+        calc_dir = args.get("calc_dir")
+        target_cluster = args.get("target_cluster")
+        hook = args.get("continuation_hook")
+        dry_run = args.get("dry_run", False)
+        return dispatcher.dispatch_calculation(
+            calc_dir,
+            target_cluster=target_cluster,
+            continuation_hook=hook,
+            dry_run=dry_run
         )
-        return {"script": script}
+
+    elif name == "sync_and_monitor":
+        sync_on_completion = args.get("sync_on_completion", True)
+        stats = monitor.process_ledger_jobs(sync_on_completion=sync_on_completion)
+        return {"status": "SUCCESS", "stats": stats, "ledger": monitor.load_ledger()}
+
+    elif name == "list_tracked_jobs":
+        return monitor.load_ledger()
 
     return {"error": f"Unknown tool: {name}"}
 
@@ -178,7 +233,7 @@ def main():
                     "result": {
                         "protocolVersion": "2024-11-05",
                         "capabilities": {"tools": {}},
-                        "serverInfo": {"name": "hpc-server-info-mcp", "version": "1.0.0"}
+                        "serverInfo": {"name": "hpc-server-info-mcp", "version": "2.0.0"}
                     }
                 }
             elif method == "tools/list":

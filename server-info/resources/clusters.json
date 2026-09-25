@@ -134,10 +134,16 @@
         "environment_system": "Lmod / Environment Modules"
       },
       "hardware_summary": {
-        "cores_per_node": "32 to 64",
+        "nodes_count": 14,
+        "node_prefix": "n",
+        "nodes": ["n01", "n02", "n03", "n04", "n05", "n06", "n07", "n08", "n09", "n10", "n11", "n12", "n13", "n14"],
+        "cores_per_node": "128 (n01-n07) / 192 (n08-n14)",
+        "total_cores": 2240,
+        "ram_per_node_gb": 512,
+        "total_ram_gb": 7168,
         "architecture": "x86_64 Enterprise Linux",
-        "cpu_model": "Intel Xeon / AMD EPYC",
-        "gpu": "NVIDIA compute nodes available in specific partitions"
+        "cpu_model": "AMD EPYC 7702 (128c) / 7642 (192c)",
+        "gpu": "NVIDIA compute nodes in partitions metano/etileno/grafite (gn01-gn04)"
       },
       "environment": {
         "modules_cmd": "module load python; module load vasp",

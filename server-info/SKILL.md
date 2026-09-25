@@ -1,98 +1,84 @@
 ---
 name: server-info
 description: >-
-  Comprehensive HPC cluster intelligence, hardware topology, live telemetry,
-  and scientific job optimization advisor for Iskay, Huk, Carbono, Arch, and future
-  clusters. Activate this skill whenever the user asks for server specs, cluster info
-  (e.g., '/server-info <cluster>'), optimal node/core/memory allocations, Slurm batch script
-  generation, or efficient job placement for physics, DFT (VASP, SIESTA), ML, or general compute.
+  Comprehensive HPC multi-cluster intelligence, live node telemetry, core
+  fragmentation detection, empirical turnaround optimization, automated zero-redundancy
+  Slurm batch script generation and dispatch, and safeguarded multi-tier synchronization
+  daemon with Git master push and continuation triggers across Iskay, Huk, Carbono, and Arch.
+  Activate whenever the user asks for server specs, cluster queues, optimal job placement,
+  turnaround estimations, job dispatching, or automated synchronization between clusters.
 ---
 
-# ⚡ Server-Info: HPC Multi-Cluster Intelligence & Optimization Skill
+# ⚡ Server-Info: HPC Multi-Cluster Intelligence & Optimization Superpower
 
-Welcome to the **Server-Info Skill**. This tool suite provides deep architecture profiles, live Slurm cluster telemetry, and scientific job efficiency algorithms for high-performance computing clusters accessible in this environment.
+Welcome to the upgraded **Server-Info Superpower Suite**. This package provides comprehensive architecture profiles, real-time Slurm cluster telemetry, Amdahl's Law parallel sizing, empirical turnaround optimization, automated job dispatching, and a safeguarded multi-tier synchronization monitor that prevents false positives/negatives.
 
 ---
 
-## 🚀 Quick Commands & Capabilities
+## 🚀 Quick CLI Commands
 
-| Goal | Command / Action | Description |
+The unified `server-info` command is available directly on PATH:
+
+| Command | Action | Description |
 | :--- | :--- | :--- |
-| **Inspect Cluster** | `python3 scripts/server_info.py <cluster> --live` | Returns hardware topology, partition limits, and live Slurm status. |
-| **Cluster Overview** | `python3 scripts/server_info.py all --live` | Displays side-by-side comparison across all 4 clusters. |
-| **Job Sizing Advisor** | `python3 scripts/job_efficiency_advisor.py <cluster> --app vasp --atoms <N>` | Calculates optimal cores, memory, partition, `NCORE`, and `KPAR`. |
-| **Generate Batch Script** | `python3 scripts/slurm_generator.py --cluster <cluster> --app vasp --atoms <N> -o job.sbatch` | Generates ready-to-run `.sbatch` script tailored to target hardware. |
+| `server-info` | **Ecosystem Overview** | Side-by-side comparison table of all 4 clusters with live reachability probe. |
+| `server-info <cluster> --live` | **Cluster Telemetry** | Hardware topology, partition limits, node states, and active queues (`huk`, `carbono`, `iskay`, `arch`). |
+| `server-info --decide [--steps N] [--atoms N]` | **Turnaround Matrix** | Audits node fragmentation, wait times ($T_{\text{wait}}$), and compute rates ($t_{\text{step}}$) to pick the fastest cluster. |
+| `server-info --dispatch <calc_dir>` | **Meta-Scheduler Dispatch** | Automatically selects cluster, adapts Slurm script with USR1 micro-batch traps, rsyncs inputs, submits via `sbatch`, and registers in ledger. |
+| `server-info --sync-check` | **Safeguarded Sync** | Verifies convergence via multi-tier validation (`OUTCAR` strings, `CONTCAR` integrity, `OSZICAR` $E_0$), syncs outputs, runs continuation hooks, and pushes to Git `master`. |
+| `server-info --sync-watch [--interval N]` | **Persistent Monitor** | Runs the synchronization daemon in continuous loop. |
+| `server-info --jobs` | **Ledger Audit** | Displays table of all active and completed calculations tracked in `~/.hpc_jobs_ledger.json`. |
+| `server-info --advise <cluster> --atoms N` | **Job Sizing Advisor** | Calculates optimal cores, partition, memory request, and VASP `NCORE`/`KPAR` parameters. |
 
 ---
 
-## 🌐 Supported Cluster Profiles
+## 🌐 Supported Cluster Architectures
 
-* [**Iskay (`iskay`)**](./resources/profiles/iskay.json): 2 high-density compute nodes (`iskay201`, `iskay202`), **256 cores / 742 GB RAM each** (512 cores total), direct subprocess driver, full internet access.
-* [**Huk (`huk`)**](./resources/profiles/huk.json): 10 dedicated nodes (`huk119`–`huk128`), **296 cores / 1,642 GB RAM total**. Internal isolated cluster on LAN (`192.168.16.100`), access via persistent ControlMaster SSH socket. Features specialized partitions (`hram`, `alto`, `medio`, `normal`).
-* [**Carbono (`carbono`)**](./resources/profiles/carbono.json): UFABC academic supercomputer in Brazil (UTC-3). Lmod module environment (`module load vasp`, etc.).
-* [**Arch Workstation (`arch`)**](./resources/profiles/arch.json): Local development and post-processing machine with desktop notifications, Qtile integration, and visualization tools.
+* **Carbono Supercomputer (`carbono`)**:
+  - Academic supercomputer at UFABC (Brazil, UTC-3).
+  - 14 compute nodes (`n01`–`n14`), **2,240 AMD EPYC cores**, 7.1 TB RAM.
+  - Partitions: `fulereno` (MinTRES=64c, MaxTRESPU=384c), `nanotubo` (MinTRES=17c), `grafeno` (1-16c).
+  - Empirical Rate: **4.14 min / ionic step** (64 cores, $2\times2$ 33-atom cell).
+  - High wait times ($T_{\text{wait}} \ge 24\text{h}$) when idle cores are fragmented below single-node 64-core blocks.
 
-Detailed comparison table: [Cluster Cheat Sheet](./references/cluster_cheat_sheet.md)
+* **Huk Dedicated Cluster (`huk`)**:
+  - Internal dedicated cluster on LAN (`192.168.16.100`) accessed via persistent SSH socket.
+  - 10 compute nodes (`huk119`–`huk128`), **296 Intel Xeon cores**, 1.6 TB RAM.
+  - Partitions: `hram` (huk119, 40c, 504 GB RAM), `alto` (huk120-121, 36c), `medio` (huk122-124, 28c), `normal` (huk125-128, 24c, up to 90 days).
+  - Empirical Rates: **8.50 min / step** (`alto`, 36c), **12.62 min / step** (`medio`, 28c).
+  - Dedicated nodes frequently offer **$T_{\text{wait}} = 0$**, allowing same-day completions.
 
----
+* **Iskay Gateway Cluster (`iskay`)**:
+  - High-density gateway cluster (`192.168.16.200`).
+  - 2 nodes (`iskay201`, `iskay202`), **256 cores / 742 GB RAM each** (512 cores total).
+  - Ideal for large $3\times3$ supercells and massive parameter sweeps.
 
-## 🔬 Scientific Job Optimization Protocol
-
-When a user asks how to configure or submit a calculation (VASP, SIESTA, LAMMPS, or general MPI):
-
-### Step 1: Query Target Hardware & Queue State
-Run the live inspector to determine current node availability:
-```bash
-python3 scripts/server_info.py <cluster> --live
-```
-
-### Step 2: Calculate Optimal Job Parameters
-Run the efficiency advisor with system size (atom count, k-points, supercell):
-```bash
-# Example: 32-atom VASP calculation on Huk:
-python3 scripts/job_efficiency_advisor.py huk --app vasp --atoms 32 --kpoints 8
-```
-The advisor evaluates:
-1. **Memory Ceiling & OOM Buffer**: Estimates peak electronic memory + 20% safety margin.
-2. **Partition Selection**:
-   - Systems $>115\text{ GB}$ or hybrid functionals (HSE06) $\rightarrow$ **`hram` (huk119, 504 GB)**.
-   - Fast turnaround relaxations $\rightarrow$ **`alto` (36 cores, 7d limit)**.
-   - Long ionic runs $\rightarrow$ **`medio` (30d)** or **`normal` (90d)**.
-3. **Core Sizing & Amdahl's Law**: Prevents allocating 64+ cores when communication latency causes speedup to plateau below 50% efficiency.
-4. **VASP `INCAR` Tags**:
-   - `KPAR`: Divisor of total k-points.
-   - `NCORE`: $4$, $6$, or $8$ (matching socket core divisors, never $1$).
-
-### Step 3: Generate the Submission Script
-Generate the customized `.sbatch` script directly:
-```bash
-python3 scripts/slurm_generator.py --cluster huk --app vasp --job-name crcl3_2x2 --atoms 32 -o job.sbatch
-```
-
-### Step 4: Validate Pre-Submission
-Review against the [Pre-Submission Checklist](./references/submission_protocol.md) before executing `sbatch`.
+* **Arch Workstation (`arch`)**:
+  - Local workstation for prototyping, visualization, post-processing, and desktop notifications.
 
 ---
 
-## 📚 Technical References
+## 🛡️ False-Positive & False-Negative Safeguards
 
-* [**VASP HPC Tuning Guide**](./references/vasp_hpc_optimization.md): In-depth parallelization mechanics (`NCORE`, `KPAR`, plane-waves, memory scaling per atom).
-* [**Slurm Scheduling Efficiency Guide**](./references/slurm_efficiency_guide.md): CPU core pinning (`--cpu-bind=cores`), NUMA socket penalties, hyperthreading vs physical cores, Amdahl's Law derivations.
-* [**Submission Protocol Runbook**](./references/submission_protocol.md): Pre-flight check, dry-run testing procedures, and post-submission monitoring.
-* [**Cluster Database Registry**](./resources/clusters.json): JSON schema and registry database for all clusters.
+The synchronization daemon (`hpc_sync_monitor.py`) enforces strict multi-tier verification before marking any calculation as completed:
+1. **Slurm Queue Verification**: Queries `squeue -j <id>` to ensure job is no longer running (`R`), pending (`PD`), or completing (`CG`).
+2. **Physical Convergence Verification**: Searches `OUTCAR` for `"reached required accuracy - stopping structural energy minimisation"` (for relaxations) or `"General timing and accounting"` (for static runs).
+3. **Geometry Integrity Audit**: Verifies `CONTCAR` exists, has size $> 100$ bytes, line count $\ge 8$, and valid floating-point direct coordinates. A 0-byte or truncated `CONTCAR` is immediately flagged as `INCOMPLETE` / `CRASHED`.
+4. **Energy Extraction**: Extracts final ground-state electronic energy $E_0$ and total magnetic moment from `OSZICAR`.
+5. **Non-Blocking Git Synchronization**: Runs `git push` with `GIT_TERMINAL_PROMPT=0` and timeout guards to ensure unattended background execution never blocks on interactive authentication.
 
 ---
 
-## 🔌 Model Context Protocol (MCP) Server Integration
+## 🔌 Model Context Protocol (MCP) Integration
 
-This skill includes a built-in JSON-RPC 2.0 MCP server for direct AI tool calling:
-```bash
-# Run standalone stdio MCP server:
-python3 scripts/mcp_server.py
-```
-Exposes tools:
-* `list_clusters()`
-* `get_cluster_info(cluster_name)`
-* `get_live_telemetry(cluster_name)`
-* `calculate_optimal_job(cluster, app, atoms, kpoints, ...)`
-* `generate_slurm_script(cluster, app, job_name, ...)`
+The skill includes a dedicated JSON-RPC 2.0 MCP server executable at `/home/cr/.local/bin/server-info-mcp` and registered in `~/.gemini/config/mcp_config.json`:
+
+Exposed AI Tools:
+* `list_clusters()`: Master database of cluster profiles.
+* `get_cluster_info(cluster_name)`: Detailed hardware, partitions, and environment.
+* `get_live_telemetry(cluster_name)`: Live nodes and running jobs probe.
+* `calculate_optimal_job(cluster, app, atoms, kpoints)`: Amdahl's Law sizing advisor.
+* `decide_cluster(atoms, steps, calc_dir)`: Multi-factor turnaround comparison matrix.
+* `dispatch_calculation(calc_dir, target_cluster, hook, dry_run)`: End-to-end automated dispatch.
+* `sync_and_monitor(sync_on_completion)`: Live audit, convergence verification, and auto-sync.
+* `list_tracked_jobs()`: Complete persistent ledger of calculations.
