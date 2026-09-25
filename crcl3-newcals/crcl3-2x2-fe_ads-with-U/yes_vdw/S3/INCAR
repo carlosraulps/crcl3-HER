@@ -1,0 +1,49 @@
+# =========================================================================
+# VASP INCAR: CrCl3 2x2 + Fe Adatom at S3 Site 3 (Top-Cr) (PBE+D3(BJ) + U=3.29eV)
+# Functional: PBE + Grimme DFT-D3 (BJ damping, IVDW=12)
+# Hubbard U: Dudarev formulation on Cr 3d (U=3.29 eV)
+# =========================================================================
+
+# --- Electronic Minimization & Plane-Wave Basis ---
+PREC     = Accurate
+ENCUT    = 400.0
+EDIFF    = 1.0E-06
+NELM     = 100
+
+# --- Spin Polarization & Magnetic Initialization ---
+ISPIN    = 2
+MAGMOM   = 8*3.0 24*0.0 1*4.0
+
+# --- Brillouin Zone & Smearing ---
+ISMEAR   = 0
+SIGMA    = 0.05
+
+# --- Parallelization & Performance ---
+NCORE    = 4
+LREAL    = Auto
+
+# --- Dispersion Correction (Becke-Johnson Damping) ---
+IVDW     = 12
+
+# --- Ionic Relaxation ---
+IBRION   = 2
+NSW      = 100
+EDIFFG   = -0.025
+
+# --- PAW & Density Mixing for d-Electrons ---
+LASPH    = .TRUE.
+LMAXMIX  = 4
+
+# --- Hubbard U Correction (Cr 3d Dudarev Formulation) ---
+LDAU     = .TRUE.
+LDAUL    = 2 -1 -1
+LDAUU    = 3.29 0.0 0.0
+
+# --- Dipole Correction ---
+LDIPOL   = .TRUE.
+IDIPOL   = 3
+DIPOL    = 0.5 0.5 0.5
+
+# --- Wavefunction & Charge Output Management ---
+LWAVE    = .FALSE.
+LCHARG   = .FALSE.

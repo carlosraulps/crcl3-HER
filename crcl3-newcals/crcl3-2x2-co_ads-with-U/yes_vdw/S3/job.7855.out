@@ -1,0 +1,14 @@
+==========================================================
+Starting Slurm Job : Co_S3_U329 (7855)
+Executing on Host  : huk124
+Partition Selected : medio
+Allocated Node(s)  : huk124
+Allocated CPUs     : 28
+Working Directory  : /home/carlos/crcl3-newcals/crcl3-2x2-co_ads-with-U/yes_vdw/S3
+Start Timestamp    : Fri Sep 25 10:49:44 UTC 2026
+==========================================================
+Running VASP with 28 MPI processes (NCORE=4)...
+==========================================================
+Execution finished at Fri Sep 25 12:35:59 UTC 2026 with exit code: 0
+>>> STATUS: VASP CALCULATION CONVERGED SUCCESSFULLY <<<
+==========================================================

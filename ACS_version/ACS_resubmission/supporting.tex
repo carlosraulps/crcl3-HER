@@ -11,6 +11,8 @@
 \usepackage{adjustbox}
 \usepackage{longtable}
 \usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
 \usepackage[normalem]{ulem} 
 %\usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
 
@@ -137,6 +139,165 @@ Coordination-Dependent Hydrogen Adsorption on Co-, Fe-, and Ni-Functionalized Mo
         \caption*{Fig. S5. Relationship between the local magnetic moment of the functionalizing transition-metal atom, $\mu_{\mathrm{TM}}$, in the relaxed H-free configurations and the hydrogen adsorption free energy, $\Delta G_{\mathrm{ads}}$, subsequently calculated after H adsorption. Black and red symbols represent the surface-adsorbed and embedded Co-, Fe-, and Ni functionalized CrCl$_3$ monolayers, respectively. Magnetic moments are expressed in units of the Bohr magneton, $\mu_{\mathrm{B}}$.}
         \label{fig:S5}
 \end{figure}
+
+\clearpage
+\section*{Supplementary Tables: Comprehensive Structural, Energetic, and Thermodynamic Benchmarks}
+
+\subsection*{Table S1: Multi-Scale Hydrogen Adsorption on Pristine Monolayer $\text{CrCl}_3$}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption*{Table S1. Comprehensive multi-scale evaluation of hydrogen adsorption on pristine monolayer $\text{CrCl}_3$ across three supercell dimensions ($1\times1$, $2\times2$, and $3\times3$), three high-symmetry adsorption sites (S1: Top-Cl, S2: Hollow, S3: Top-Cr), and three levels of exchange-correlation dispersion treatment (pure PBE, PBE+D3 zero-damping, and PBE+D3 Becke-Johnson damping). All calculations were performed spin-polarized with $E_{\text{cut}} = 400$~eV and commensurate Monkhorst-Pack $k$-point grids ($10\times10\times1$, $5\times5\times1$, and $3\times3\times1$, respectively). Adsorption energies are referenced to isolated $\text{H}_2$ gas: $\Delta E_{\text{ads}} = E_{\text{host+H}} - E_{\text{host}} - \frac{1}{2} E(\text{H}_2)$. Free energies are evaluated as $\Delta G_{\text{ads}} = \Delta E_{\text{ads}} + \Delta\text{ZPE} - T\Delta S$, where explicit phononic columns ($\Delta\text{ZPE}$ and $-T\Delta S$) are provided for complete vibrational frequency assignment.}
+\label{tab:pristine_h_multiscale}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lcccccccccc}
+\toprule
+\textbf{Supercell} & \textbf{Site} & \textbf{Coord.} & \textbf{Method / vdW} & $E_{\text{host}}$ (eV) & $E_{\text{host+H}}$ (eV) & $\Delta E_{\text{ads}}$ (eV) & $\Delta\text{ZPE}^{*}$ (eV) & $-T\Delta S^{*}$ (eV) & $\Delta G_{\text{ads}}$ (eV) & $\mu_{\text{tot}}$ ($\mu_{\text{B}}$) \\
+\midrule
+\multirow{9}{*}{$1\times1$ ($\theta = 1.00$)} 
+ & S1 & Top-Cl  & PBE (no vdW)    & $-39.0717$ & $-40.7734$ & $+1.678$ & $+0.040$ & $+0.200$ & $+1.918$ & $7.00$ \\
+ & S2 & Hollow  & PBE (no vdW)    & $-39.0717$ & $-39.9647$ & $+2.487$ & $+0.040$ & $+0.200$ & $+2.727$ & $5.04$ \\
+ & S3 & Top-Cr  & PBE (no vdW)    & $-39.0717$ & $-40.8155$ & $+1.636$ & $+0.040$ & $+0.200$ & $+1.876$ & $5.00$ \\
+\cmidrule(lr){2-11}
+ & S1 & Top-Cl  & PBE+D3 (zero)   & $-39.9841$ & $-41.8232$ & $+1.542$ & $+0.040$ & $+0.200$ & $+1.782$ & $7.00$ \\
+ & S2 & Hollow  & PBE+D3 (zero)   & $-39.9841$ & $-40.9868$ & $+2.378$ & $+0.040$ & $+0.200$ & $+2.618$ & $5.51$ \\
+ & S3 & Top-Cr  & PBE+D3 (zero)   & $-39.9841$ & $-41.7093$ & $+1.656$ & $+0.040$ & $+0.200$ & $+1.896$ & $5.00$ \\
+\cmidrule(lr){2-11}
+ & S1 & Top-Cl  & PBE+D3 (BJ)     & $-40.5268$ & $-42.5826$ & $+1.325$ & $+0.040$ & $+0.200$ & $+1.565$ & $7.00$ \\
+ & S2 & Hollow  & PBE+D3 (BJ)     & $-40.5268$ & $-41.8481$ & $+2.060$ & $+0.040$ & $+0.200$ & $+2.300$ & $7.00$ \\
+ & S3 & Top-Cr  & PBE+D3 (BJ)     & $-40.5268$ & $-42.2405$ & $+1.667$ & $+0.040$ & $+0.200$ & $+1.907$ & $5.00$ \\
+\midrule
+\multirow{9}{*}{$2\times2$ ($\theta = 0.25$)} 
+ & S1 & Top-Cl  & PBE (no vdW)    & $-156.2868$ & $-158.0877$ & $+1.579$ & $+0.040$ & $+0.200$ & $+1.819$ & $25.00$ \\
+ & S2 & Hollow  & PBE (no vdW)    & $-156.2868$ & $-157.1957$ & $+2.471$ & $+0.040$ & $+0.200$ & $+2.711$ & $23.00$ \\
+ & S3 & Top-Cr  & PBE (no vdW)    & $-156.2868$ & $-158.0422$ & $+1.624$ & $+0.040$ & $+0.200$ & $+1.864$ & $23.00$ \\
+\cmidrule(lr){2-11}
+ & S1 & Top-Cl  & PBE+D3 (zero)   & $-159.9366$ & $-161.8036$ & $+1.514$ & $+0.040$ & $+0.200$ & $+1.754$ & $25.00$ \\
+ & S2 & Hollow  & PBE+D3 (zero)   & $-159.9366$ & $-160.9571$ & $+2.361$ & $+0.040$ & $+0.200$ & $+2.601$ & $23.00$ \\
+ & S3 & Top-Cr  & PBE+D3 (zero)   & $-159.9366$ & $-161.6926$ & $+1.625$ & $+0.040$ & $+0.200$ & $+1.865$ & $23.00$ \\
+\cmidrule(lr){2-11}
+ & S1 & Top-Cl  & PBE+D3 (BJ)     & $-162.1074$ & $-164.2008$ & $+1.288$ & $+0.040$ & $+0.200$ & $+1.528$ & $25.00$ \\
+ & S2 & Hollow  & PBE+D3 (BJ)     & $-162.1074$ & $-163.1641$ & $+2.324$ & $+0.040$ & $+0.200$ & $+2.564$ & $23.01$ \\
+ & S3 & Top-Cr  & PBE+D3 (BJ)     & $-162.1074$ & $-163.8525$ & $+1.636$ & $+0.040$ & $+0.200$ & $+1.876$ & $23.00$ \\
+\midrule
+\multirow{9}{*}{$3\times3$ ($\theta = 0.11$)} 
+ & S1 & Top-Cl  & PBE (no vdW)    & $-351.6468$ & $-353.7608$ & $+1.266$ & $+0.040$ & $+0.200$ & $+1.506$ & $55.00$ \\
+ & S2 & Hollow  & PBE (no vdW)    & $-351.6468$ & $-352.5562$ & $+2.470$ & $+0.040$ & $+0.200$ & $+2.710$ & $53.00$ \\
+ & S3 & Top-Cr  & PBE (no vdW)    & $-351.6468$ & $-353.4262$ & $+1.600$ & $+0.040$ & $+0.200$ & $+1.840$ & $53.00$ \\
+\cmidrule(lr){2-11}
+ & S1 & Top-Cl  & PBE+D3 (zero)   & $-364.7418$ & $-366.8243$ & $+1.298$ & $+0.040$ & $+0.200$ & $+1.538$ & $55.00$ \\
+ & S2 & Hollow  & PBE+D3 (zero)   & $-364.7418$ & $-365.7984$ & $+2.324$ & $+0.040$ & $+0.200$ & $+2.564$ & $53.00$ \\
+ & S3 & Top-Cr  & PBE+D3 (zero)   & $-364.7418$ & $-366.4930$ & $+1.630$ & $+0.040$ & $+0.200$ & $+1.870$ & $53.00$ \\
+\cmidrule(lr){2-11}
+ & S1 & Top-Cl  & PBE+D3 (BJ)     & $-364.7418$ & $-366.7699$ & $+1.353$ & $+0.040$ & $+0.200$ & $+1.593$ & $55.00$ \\
+ & S2 & Hollow  & PBE+D3 (BJ)     & $-364.7418$ & $-365.7988$ & $+2.324$ & $+0.040$ & $+0.200$ & $+2.564$ & $53.00$ \\
+ & S3 & Top-Cr  & PBE+D3 (BJ)     & $-364.7418$ & $-366.4846$ & $+1.638$ & $+0.040$ & $+0.200$ & $+1.878$ & $53.00$ \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\vspace{1ex}
+{\footnotesize $^{*}$Placeholder zero-point energy ($\Delta\text{ZPE} = +0.040$~eV) and entropic ($-T\Delta S = +0.200$~eV at $298.15$~K) values represent the standard computational hydrogen electrode (CHE) reference terms ($\Delta G = \Delta E_{\text{ads}} + 0.24$~eV). These explicit columns are formatted to receive the full explicit phonon/vibrational frequency mode calculations upon completion by the co-authors.}
+\end{table}
+
+\subsection*{Table S2: Transition-Metal Functionalization on Monolayer $\text{CrCl}_3$ ($2\times2$ Supercell)}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption*{Table S2. Structural energetics, magnetic states, and relative stabilities of transition-metal adatoms (Co, Fe, Ni) functionalized on monolayer $\text{CrCl}_3$ in a $2\times2$ supercell. Configurations include surface sites: Site 1 (S1, top-Cl, 1-fold coordinated), Site 2 (S2, hollow, 3-fold coordinated), Site 3 (S3, top-Cr, 3-fold coordinated directly above lower Cr), and the embedded configuration (6-fold octahedral coordination in a Cr vacancy). Calculations evaluate standard PBE, PBE+D3(BJ) ($U=0$), and DFT+U ($U_{\text{eff}} = 3.29$~eV applied exclusively to Cr $3d$). Interaction energy is defined as $E_{\text{int}} = E_{\text{tot}} - E_{\text{host}}$.}
+\label{tab:tm_functionalization_crcl3}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llcccccccl}
+\toprule
+\textbf{Metal (TM)} & \textbf{Site / Coord.} & \textbf{Coord. No.} & \textbf{Level of Theory} & $E_{\text{host}}$ (eV) & $E_{\text{tot}}$ (eV) & $E_{\text{int}}$ (eV) & $\mu_{\text{tot}}$ ($\mu_{\text{B}}$) & \textbf{Relative Rank} & \textbf{Integrity / Notes} \\
+\midrule
+\multirow{9}{*}{\textbf{Cobalt (Co)}} 
+ & S1 (Top-Cl)  & 1 & PBE (no vdW)    & $-156.2868$ & $-161.0147$ & $-4.728$ & $23.00$ & Metastable ($\Delta E = +0.00\text{ eV}$) & Chemisorbed ($d_{\text{Co-Cl}} = 2.14$~\AA) \\
+ & S2 (Hollow)  & 3 & PBE (no vdW)    & $-156.2868$ & $-161.0131$ & $-4.726$ & $23.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Co-Cl}} = 2.24$~\AA) \\
+ & S3 (Top-Cr)  & 3 & PBE (no vdW)    & $-156.2868$ & $-160.3660$ & $-4.079$ & $23.00$ & Metastable ($\Delta E = +0.65\text{ eV}$) & Chemisorbed ($d_{\text{Co-Cr}} = 2.59$~\AA) \\
+ & Embedded     & 6 & PBE (no vdW)    & $-156.2868$ & $-160.8042$ & $-4.517$ & $27.12$ & Embedded ground state                    & Octahedral ($d_{\text{Co-Cl}} = 2.31$~\AA) \\
+\cmidrule(lr){2-10}
+ & S1 (Top-Cl)  & 1 & PBE+D3 (BJ)     & $-162.1068$ & $-166.9422$ & $-4.836$ & $27.00$ & Metastable ($\Delta E = +0.22\text{ eV}$) & Chemisorbed ($d_{\text{Co-Cl}} = 2.13$~\AA) \\
+ & S2 (Hollow)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-167.1638$ & $-5.057$ & $23.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Co-Cl}} = 2.23$~\AA) \\
+ & S3 (Top-Cr)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-166.4536$ & $-4.347$ & $23.00$ & Metastable ($\Delta E = +0.71\text{ eV}$) & Chemisorbed ($d_{\text{Co-Cr}} = 2.58$~\AA) \\
+\cmidrule(lr){2-10}
+ & S1 (Top-Cl)  & 1 & PBE+D3+U (3.29) & $-147.3038$ & $-150.5731^{\dagger}$ & $-3.269$ & $27.00$ & Metastable ($\Delta E = +1.67\text{ eV}$) & Chemisorbed ($d_{\text{Co-Cl}} = 2.16$~\AA) \\
+ & S2 (Hollow)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & $-152.2452^{\dagger}$ & $-4.941$ & $27.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Co-Cl}} = 2.22$~\AA) \\
+ & S3 (Top-Cr)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & $-151.7732$ & $-4.469$ & $27.00$ & Metastable ($\Delta E = +0.47\text{ eV}$) & Coaxial Cr-Co ferromagnetic ($d_{\text{Co-Cr}} = 2.58$~\AA) \\
+\midrule
+\multirow{9}{*}{\textbf{Iron (Fe)}} 
+ & S1 (Top-Cl)  & 1 & PBE (no vdW)    & $-156.2868$ & $-161.9051$ & $-5.618$ & $28.41$ & Metastable ($\Delta E = +0.71\text{ eV}$) & Chemisorbed ($d_{\text{Fe-Cl}} = 2.16$~\AA) \\
+ & S2 (Hollow)  & 3 & PBE (no vdW)    & $-156.2868$ & $-162.6198$ & $-6.333$ & $28.44$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Fe-Cl}} = 2.28$~\AA) \\
+ & S3 (Top-Cr)  & 3 & PBE (no vdW)    & $-156.2868$ & $-161.3136$ & $-5.027$ & $21.65$ & Metastable ($\Delta E = +1.31\text{ eV}$) & Chemisorbed ($d_{\text{Fe-Cr}} = 2.62$~\AA) \\
+ & Embedded     & 6 & PBE (no vdW)    & $-156.2868$ & $-162.1081$ & $-5.821$ & $28.96$ & Embedded ground state                    & Octahedral ($d_{\text{Fe-Cl}} = 2.36$~\AA) \\
+\cmidrule(lr){2-10}
+ & S1 (Top-Cl)  & 1 & PBE+D3 (BJ)     & $-162.1068$ & $-168.9135$ & $-6.807$ & $22.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Fe-Cl}} = 2.14$~\AA) \\
+ & S2 (Hollow)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-168.1160$ & $-6.009$ & $28.39$ & Metastable ($\Delta E = +0.80\text{ eV}$) & Chemisorbed ($d_{\text{Fe-Cl}} = 2.26$~\AA) \\
+ & S3 (Top-Cr)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-165.9127$ & $-3.806$ & $24.18$ & Metastable ($\Delta E = +3.00\text{ eV}$) & Chemisorbed ($d_{\text{Fe-Cr}} = 2.61$~\AA) \\
+\cmidrule(lr){2-10}
+ & S1 (Top-Cl)  & 1 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
+ & S2 (Hollow)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
+ & S3 (Top-Cr)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
+\midrule
+\multirow{9}{*}{\textbf{Nickel (Ni)}} 
+ & S1 (Top-Cl)  & 1 & PBE (no vdW)    & $-156.2868$ & $-159.7885$ & $-3.502$ & $24.00$ & Metastable ($\Delta E = +0.29\text{ eV}$) & Chemisorbed ($d_{\text{Ni-Cl}} = 2.12$~\AA) \\
+ & S2 (Hollow)  & 3 & PBE (no vdW)    & $-156.2868$ & $-160.0785$ & $-3.792$ & $24.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Ni-Cl}} = 2.21$~\AA) \\
+ & S3 (Top-Cr)  & 3 & PBE (no vdW)    & $-156.2868$ & $-159.2846$ & $-2.998$ & $24.00$ & Metastable ($\Delta E = +0.79\text{ eV}$) & Chemisorbed ($d_{\text{Ni-Cr}} = 2.55$~\AA) \\
+ & Embedded     & 6 & PBE (no vdW)    & $-156.2868$ & $-159.3190$ & $-3.032$ & $24.00$ & Embedded ground state                    & Octahedral ($d_{\text{Ni-Cl}} = 2.28$~\AA) \\
+\cmidrule(lr){2-10}
+ & S1 (Top-Cl)  & 1 & PBE+D3 (BJ)     & $-162.1068$ & $-165.9142$ & $-3.807$ & $24.00$ & Metastable ($\Delta E = +0.39\text{ eV}$) & Chemisorbed ($d_{\text{Ni-Cl}} = 2.11$~\AA) \\
+ & S2 (Hollow)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-166.3062$ & $-4.199$ & $24.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Ni-Cl}} = 2.20$~\AA) \\
+ & S3 (Top-Cr)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-165.2844$ & $-3.178$ & $24.00$ & Metastable ($\Delta E = +1.02\text{ eV}$) & Chemisorbed ($d_{\text{Ni-Cr}} = 2.54$~\AA) \\
+\cmidrule(lr){2-10}
+ & S1 (Top-Cl)  & 1 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
+ & S2 (Hollow)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
+ & S3 (Top-Cr)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\vspace{1ex}
+{\footnotesize $^{\dagger}$Intermediate relaxation values undergoing final micro-batch convergence.}
+\end{table}
+
+\subsection*{Table S3: Hydrogen Evolution Reaction (HER) Adsorption Thermodynamics on TM-Functionalized $\text{CrCl}_3$}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption*{Table S3. Hydrogen adsorption thermodynamics, vibrational free energy corrections, and theoretical HER overpotentials ($\eta_{\text{HER}}$) for single-atom transition-metal (Co, Fe, Ni) catalytic sites on monolayer $\text{CrCl}_3$. Adsorption energies are evaluated via the computational hydrogen electrode (CHE) framework: $\Delta E_{\text{ads}} = E_{\text{slab+H}} - E_{\text{slab}} - \frac{1}{2} E(\text{H}_2)$. The Gibbs free energy of adsorption is given by $\Delta G_{\text{ads}} = \Delta E_{\text{ads}} + \Delta\text{ZPE} - T\Delta S$. Theoretical overpotentials are defined by the Volmer-step thermodynamic descriptor: $\eta_{\text{HER}} = |\Delta G_{\text{ads}}| / e$. Dedicated columns for $\Delta\text{ZPE}$ and $-T\Delta S$ are explicitly provided to accommodate the co-authors' full vibrational phonon spectrum calculations.}
+\label{tab:her_thermodynamics_master}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llccccccccl}
+\toprule
+\textbf{Catalyst System} & \textbf{Site / Geometry} & \textbf{Level of Theory} & $E_{\text{slab}}$ (eV) & $E_{\text{slab+H}}$ (eV) & $\Delta E_{\text{ads}}$ (eV) & $\Delta\text{ZPE}^{*}$ (eV) & $-T\Delta S^{*}$ (eV) & $\Delta G_{\text{ads}}$ (eV) & $\eta_{\text{HER}}$ (V) & \textbf{HER Activity \& Rate-Limiting Regime} \\
+\midrule
+\multicolumn{11}{l}{\textit{\textbf{A. Pristine Monolayer Reference}}} \\
+Pristine $\text{CrCl}_3$ & Top-Cl (S1)  & PBE (no vdW)    & $-156.2868$ & $-158.0877$ & $+1.579$ & $+0.040$ & $+0.200$ & $+1.819$ & $1.819$ & Inert (Severe Volmer endothermicity) \\
+Pristine $\text{CrCl}_3$ & Top-Cl (S1)  & PBE+D3 (BJ)     & $-162.1074$ & $-164.2008$ & $+1.288$ & $+0.040$ & $+0.200$ & $+1.528$ & $1.528$ & Inert (Severe Volmer endothermicity) \\
+\midrule
+\multicolumn{11}{l}{\textit{\textbf{B. Surface-Adsorbed Transition Metals (3-fold Coordinated)}}} \\
+$\text{CrCl}_3\text{--Co}$ (ads) & Atop Co (S2/S3) & PBE (no vdW)    & $-160.0665$ & $-163.4806$ & $-0.034$ & $+0.040$ & $+0.200$ & $+0.206$ & $0.206$ & \textbf{Optimal Catalyst} (Near-thermoneutral) \\
+$\text{CrCl}_3\text{--Fe}$ (ads) & Atop Fe (S2)    & PBE (no vdW)    & $-161.2266$ & $-164.4956$ & $+0.111$ & $+0.040$ & $+0.200$ & $+0.351$ & $0.351$ & Moderate Activity (Volmer-limited) \\
+$\text{CrCl}_3\text{--Ni}$ (ads) & Atop Ni (S2)    & PBE (no vdW)    & $-159.4708$ & $-162.2285$ & $+0.622$ & $+0.040$ & $+0.200$ & $+0.862$ & $0.862$ & Suppressed (Weak TM--H binding) \\
+\midrule
+\multicolumn{11}{l}{\textit{\textbf{C. Embedded Transition Metals (6-fold Octahedrally Coordinated)}}} \\
+$\text{CrCl}_3\text{--Co}$ (emb) & Atop Co (Oct)   & PBE (no vdW)    & $-160.8042$ & $-162.6794$ & $+1.505$ & $+0.040$ & $+0.200$ & $+1.745$ & $1.745$ & Poisoned / Suppressed by coordination \\
+$\text{CrCl}_3\text{--Fe}$ (emb) & Atop Fe (Oct)   & PBE (no vdW)    & $-162.1081$ & $-164.3669$ & $+1.121$ & $+0.040$ & $+0.200$ & $+1.361$ & $1.361$ & Poisoned / Suppressed by coordination \\
+$\text{CrCl}_3\text{--Ni}$ (emb) & Atop Ni (Oct)   & PBE (no vdW)    & $-159.3190$ & $-161.0585$ & $+1.640$ & $+0.040$ & $+0.200$ & $+1.880$ & $1.880$ & Severe structural deformation penalty \\
+\midrule
+\multicolumn{11}{l}{\textit{\textbf{D. Surface-Adsorbed Centers with Hubbard $U$ ($U_{\text{eff}} = 3.29$~eV) and DFT-D3(BJ) Dispersion}}} \\
+$\text{CrCl}_3\text{--Co}$ (S3)  & Atop Co (S3\_H) & PBE+D3+U (3.29) & $-151.7732$ & [Computing] & ---      & $+0.040$ & $+0.200$ & [Pending] & [Pending] & Under active execution (Job 7857) \\
+$\text{CrCl}_3\text{--Co}$ (S1)  & Atop Co (S1\_H) & PBE+D3+U (3.29) & $-150.5731$ & [Chained]   & ---      & $+0.040$ & $+0.200$ & [Pending] & [Pending] & Auto-dispatched upon S1 convergence \\
+$\text{CrCl}_3\text{--Co}$ (S2)  & Atop Co (S2\_H) & PBE+D3+U (3.29) & $-152.2452$ & [Chained]   & ---      & $+0.040$ & $+0.200$ & [Pending] & [Pending] & Auto-dispatched upon S2 convergence \\
+$\text{CrCl}_3\text{--Fe}$       & Atop Fe (SX\_H) & PBE+D3+U (3.29) & [Queued]    & [Queued]    & ---      & $+0.040$ & $+0.200$ & [Pending] & [Pending] & Staged in workflow pipeline \\
+$\text{CrCl}_3\text{--Ni}$       & Atop Ni (SX\_H) & PBE+D3+U (3.29) & [Queued]    & [Queued]    & ---      & $+0.040$ & $+0.200$ & [Pending] & [Pending] & Staged in workflow pipeline \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\vspace{1ex}
+{\footnotesize $^{*}$Reference vibrational benchmarks: zero-point energy ($\Delta\text{ZPE} = +0.040$~eV) and vibrational entropy ($-T\Delta S = +0.200$~eV at $298.15$~K) yield the standard $+0.240$~eV correction. The separate $\Delta\text{ZPE}$ and $-T\Delta S$ columns are specifically reserved for insertion of individual phononic eigenvalues currently being computed by co-authors.}
+\end{table}
 
 \end{suppinfo}
 
