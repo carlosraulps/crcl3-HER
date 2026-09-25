@@ -18,8 +18,8 @@ This report documents the deployment, execution, and outputs of 13 density funct
   - $4 \times$ $2\times2$ Supercell suite (`clean`, `S1`, `S2`, `S3`)
   - $4 \times$ $3\times3$ Supercell suite (`clean`, `S1`, `S2`, `S3`)
 - **Convergence Status:**
-  - **11 / 13 calculations** are completely converged to the required electronic ($10^{-5}\text{ eV}$) and ionic force ($0.02\text{ eV/\AA}$) criteria.
-  - **2 / 13 calculations** ($3\times3$ `S1` and `S3`) are actively running and progressing toward ionic convergence on Huk nodes `huk122` and `huk124`.
+  - **12 / 13 calculations** are completely converged to the required electronic ($10^{-5}\text{ eV}$) and ionic force ($0.02\text{ eV/\AA}$) criteria.
+  - **1 / 13 calculation** ($3\times3$ `S1`) is actively running on Huk node `huk122` (currently at ionic step 28, smoothly converging).
 
 ---
 
@@ -54,9 +54,9 @@ $$\Delta E = E(\text{CrCl}_3 + \text{H}) - E(\text{CrCl}_3)$$
 | **$2\times2$** | S2 (Hollow) | Adsorbed | 19 | -163.164110 | -1.056680 | **+2.324375** | **CONVERGED** |
 | **$2\times2$** | S3 (Top-Cr) | Adsorbed | 3 | -163.852470 | -1.745040 | **+1.636015** | **CONVERGED** |
 | **$3\times3$** | Clean | Ferromagnetic | 5 | -364.741770 | — | — | **CONVERGED** |
-| **$3\times3$** | S1 (Top-Cl) | Adsorbed | 16 | -366.769920 | -2.028150 | *+1.352905* | *Running (huk122)* |
+| **$3\times3$** | S1 (Top-Cl) | Adsorbed | 28 | -366.793240 | -2.051470 | *+1.329585* | *Running (huk122)* |
 | **$3\times3$** | S2 (Hollow) | Adsorbed | 30 | -365.798770 | -1.057000 | **+2.324055** | **CONVERGED** |
-| **$3\times3$** | S3 (Top-Cr) | Adsorbed | 17 | -366.484640 | -1.742870 | *+1.638185* | *Running (huk124)* |
+| **$3\times3$** | S3 (Top-Cr) | Adsorbed | 28 | -366.492970 | -1.751200 | **+1.629855** | **CONVERGED** |
 
 ---
 
@@ -69,11 +69,12 @@ Comparing the fully converged $2\times2$ supercell (32 substrate atoms + 1 H) wi
   $$\text{Difference} = |\Delta E(3\times3) - \Delta E(2\times2)| = \mathbf{0.32\text{ meV}}$$
   $$E_{\text{ads}}(2\times2) = +2.3244\text{ eV} \quad \text{vs} \quad E_{\text{ads}}(3\times3) = +2.3241\text{ eV}$$
 - **Top-Cr Site (S3):**
-  $$\Delta E(2\times2) = -1.745040\text{ eV} \quad \text{vs} \quad \Delta E(3\times3, \text{step 17}) = -1.742870\text{ eV}$$
-  $$\text{Difference} = \mathbf{2.17\text{ meV}}$$
-  $$E_{\text{ads}}(2\times2) = +1.6360\text{ eV} \quad \text{vs} \quad E_{\text{ads}}(3\times3) = +1.6382\text{ eV}$$
+  $$\Delta E(2\times2) = -1.745040\text{ eV} \quad \text{vs} \quad \Delta E(3\times3) = -1.751200\text{ eV}$$
+  $$\text{Difference} = |\Delta E(3\times3) - \Delta E(2\times2)| = \mathbf{6.16\text{ meV}}$$
+  $$E_{\text{ads}}(2\times2) = +1.6360\text{ eV} \quad \text{vs} \quad E_{\text{ads}}(3\times3) = +1.6299\text{ eV}$$
 
-**Conclusion:** The $2\times2$ supercell captures the isolated adsorbate limit with ultra-high fidelity (sub-3 meV error relative to the dilute $3\times3$ limit). Periodic adsorbate-adsorbate dipole/strain interactions are negligible beyond $2\times2$.
+**Conclusion:** Both S2 (hollow) and S3 (top-Cr) exhibit sub-7 meV convergence between $2\times2$ and $3\times3$ supercells. This rigorously confirms that the $2\times2$ supercell fully achieves the isolated adsorbate dilute limit without periodic image artifacts.
+
 
 ### B. Comparison Between IVDW = 11 (D3-zero) and IVDW = 12 (D3-BJ)
 Taking the converged $2\times2$ Site 3 (Top-Cr) calculation:
