@@ -136,9 +136,9 @@ exit $EXIT_CODE
 
 JOB_CARBONO_TEMPLATE = """#!/bin/bash
 #SBATCH -J {job_name}
-#SBATCH -p nanotubo,fulereno
+#SBATCH -p fulereno
 #SBATCH --nodes=1
-#SBATCH --ntasks=32
+#SBATCH --ntasks=64
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=64G
 #SBATCH --time=04:00:00
@@ -190,7 +190,7 @@ if [ -f CONTCAR ] && [ -s CONTCAR ]; then
     fi
 fi
 
-sed -i "s/.*NCORE.*/NCORE    = 4/" INCAR
+sed -i "s/.*NCORE.*/NCORE    = 8/" INCAR
 
 module purge
 module load vasp/6.2.0
