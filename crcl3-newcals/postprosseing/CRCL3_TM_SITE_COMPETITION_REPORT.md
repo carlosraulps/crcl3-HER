@@ -28,7 +28,7 @@
 | **Ni** (Nickel) | Pure PBE | S1 | Site 1 (Top-Cl) | -156.2868 | -159.7885 | **-3.502** | +0.290 eV | 24.00 | 76 |
 | **Ni** (Nickel) | Pure PBE | S2 | Site 2 (Hollow) | -156.2868 | -160.0785 | **-3.792** | **GROUND STATE** | 24.00 | 16 |
 | **Ni** (Nickel) | Pure PBE | S3 | Site 3 (Top-Cr) | -156.2868 | -159.2846 | **-2.998** | +0.794 eV | 24.00 | 12 |
-| **Ni** (Nickel) | PBE+D3 (BJ) | S1 | Site 1 (Top-Cl) | -162.1068 | -165.9039 | **-3.797** | +0.402 eV | 24.00 | 100 |
+| **Ni** (Nickel) | PBE+D3 (BJ) | S1 | Site 1 (Top-Cl) | -162.1068 | -165.9142 | **-3.807** | +0.392 eV | 24.00 | 33 |
 | **Ni** (Nickel) | PBE+D3 (BJ) | S2 | Site 2 (Hollow) | -162.1068 | -166.3062 | **-4.199** | **GROUND STATE** | 24.00 | 16 |
 | **Ni** (Nickel) | PBE+D3 (BJ) | S3 | Site 3 (Top-Cr) | -162.1068 | -165.2844 | **-3.178** | +1.022 eV | 24.00 | 20 |
 
