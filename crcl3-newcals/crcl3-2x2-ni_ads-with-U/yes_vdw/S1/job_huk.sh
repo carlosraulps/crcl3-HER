@@ -2,7 +2,7 @@
 #SBATCH -J Ni_S1_U3
 #SBATCH -o job.%j.out
 #SBATCH -e job.%j.err
-#SBATCH --partition=medio,hram,alto
+#SBATCH --partition=alto,medio
 #SBATCH --nodes=1
 #SBATCH --exclusive
 #SBATCH --time=168:00:00

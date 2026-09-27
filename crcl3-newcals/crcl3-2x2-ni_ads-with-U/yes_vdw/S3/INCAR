@@ -19,7 +19,7 @@ ISMEAR   = 0
 SIGMA    = 0.05
 
 # --- Parallelization & Performance ---
-NCORE    = 4
+NCORE    = 8
 LREAL    = Auto
 
 # --- Dispersion Correction (Becke-Johnson Damping) ---

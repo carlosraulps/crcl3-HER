@@ -192,15 +192,15 @@ def generate_ni_multipanel():
     w = 0.35
 
     # PBE+D3: S2=0.00 (GS, -4.20 eV), S1=0.39 eV (-3.81 eV), S3=1.02 eV (-3.18 eV)
-    # PBE+D3+U: S2=0.00 (GS, -4.37 eV CONVERGED), S1=0.23 eV (-4.14 eV Step 53), S3=1.02 eV (Carbono 164300)
+    # PBE+D3+U: S2=0.00 (GS, -4.37 eV CONVERGED), S1=0.22 eV (-4.16 eV CONVERGED), S3=0.92 eV (-3.45 eV CONVERGED)
     penalties_no_u = [0.392, 0.000, 1.022]
-    penalties_u    = [0.228, 0.000, 1.020]
+    penalties_u    = [0.215, 0.000, 0.924]
 
     b1 = ax_a.bar(x - w/2, penalties_no_u, width=w, color='#3498db', edgecolor='black', linewidth=1.2, label='PBE+D3 (Without $U$)', alpha=0.9, zorder=3)
     b2 = ax_a.bar(x + w/2, penalties_u, width=w, color='#e74c3c', edgecolor='black', linewidth=1.2, label='PBE+D3+$U$ ($U=3.29\\,\\mathrm{eV}$)', alpha=0.9, zorder=3)
 
     t1 = ax_a.text(x[0] - w/2, penalties_no_u[0] + 0.08, '+0.39 eV\n(-3.81 eV)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#1f4e78', bbox=bbox_props, zorder=5)
-    t2 = ax_a.text(x[0] + w/2, penalties_u[0] + 0.32, '+0.23 eV\n(-4.14 eV, S53)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#781f1f', bbox=bbox_props, zorder=5)
+    t2 = ax_a.text(x[0] + w/2, penalties_u[0] + 0.32, '+0.22 eV\n(-4.16 eV, Done)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#781f1f', bbox=bbox_props, zorder=5)
     ax_a.plot([x[0] + w/2, x[0] + w/2], [penalties_u[0], penalties_u[0] + 0.30], color='#781f1f', linestyle=':', linewidth=1.1, zorder=4)
 
     t3 = ax_a.text(x[1] - w/2, 0.08, 'Ground State\n(-4.20 eV)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#1f4e78', bbox=bbox_props, zorder=5)
@@ -208,7 +208,7 @@ def generate_ni_multipanel():
     ax_a.plot([x[1] + w/2, x[1] + w/2], [penalties_u[1], 0.38], color='#781f1f', linestyle=':', linewidth=1.1, zorder=4)
 
     t5 = ax_a.text(x[2] - w/2, penalties_no_u[2] + 0.10, '+1.02 eV\n(-3.18 eV)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#1f4e78', bbox=bbox_props, zorder=5)
-    t6 = ax_a.text(x[2] + w/2, penalties_u[2] + 0.10, '+1.02 eV\n(Carbono n10)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#781f1f', bbox=bbox_props, zorder=5)
+    t6 = ax_a.text(x[2] + w/2, penalties_u[2] + 0.10, '+0.92 eV\n(-3.45 eV, Done)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#781f1f', bbox=bbox_props, zorder=5)
 
     resolve_text_overlaps(fig, ax_a, [t1, t2, t3, t4, t5, t6])
 

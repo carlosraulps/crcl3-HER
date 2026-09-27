@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH -J Ni_S1_U3
-#SBATCH -p fulereno
+#SBATCH -p nanotubo,fulereno
 #SBATCH --nodes=1
-#SBATCH --ntasks=64
+#SBATCH --ntasks=32
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=64G
 #SBATCH --time=04:00:00
@@ -54,7 +54,7 @@ if [ -f CONTCAR ] && [ -s CONTCAR ]; then
     fi
 fi
 
-sed -i "s/.*NCORE.*/NCORE    = 8/" INCAR
+sed -i "s/.*NCORE.*/NCORE    = 4/" INCAR
 
 module purge
 module load vasp/6.2.0
