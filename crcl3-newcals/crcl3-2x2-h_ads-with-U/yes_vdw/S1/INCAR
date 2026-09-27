@@ -1,0 +1,55 @@
+# =========================================================================
+# SYSTEM: CrCl3 2x2 + H (Top-Cl (Global Minimum)) (D3(BJ) + U=3.29eV)
+# Cell: CrCl3 2x2 Monolayer Supercell (8 Cr, 24 Cl, 1 H)
+# Vacuum: c = 20.0000 Angstroms (Fixed vacuum layer)
+# Method: PBE + Grimme DFT-D3(BJ) (IVDW=12) + Dudarev DFT+U (U=3.29 eV on Cr 3d)
+# =========================================================================
+
+# --- 1. Electronic Minimization & Plane-Wave Basis ---
+SYSTEM   = CrCl3 2x2 + H (S1) (D3, U=3.29eV)
+PREC     = Accurate
+ENCUT    = 400.0
+ALGO     = Normal
+EDIFF    = 1.0E-06
+NELM     = 100
+
+# --- 2. Spin Polarization & Magnetic Moments ---
+ISPIN    = 2
+MAGMOM   = 8*3.0 24*0.0 1*0.0
+
+# --- 3. Brillouin-Zone Integration & Smearing ---
+ISMEAR   = 0
+SIGMA    = 0.05
+
+# --- 4. Parallelization & Computational Performance ---
+NCORE    = 4
+LREAL    = Auto
+
+# --- 5. van der Waals Dispersion Correction (Becke-Johnson Damping) ---
+IVDW     = 12
+
+# --- 6. Ionic Relaxation & Convergence Criteria ---
+IBRION   = 2
+NSW      = 100
+ISIF     = 2
+EDIFFG   = -0.025
+
+# --- 7. PAW Density Mixing & Aspherical Gradients ---
+LASPH    = .TRUE.
+LMAXMIX  = 4
+
+# --- 8. Hubbard U Correction (Cr 3d Dudarev Formulation) ---
+LDAU     = .TRUE.
+LDAUTYPE = 2
+LDAUL    = 2 -1 -1
+LDAUU    = 3.29 0.0 0.0
+LDAUJ    = 0.0 0.0 0.0
+
+# --- 9. Surface Dipole Correction (2D Slab Standard) ---
+LDIPOL   = .TRUE.
+IDIPOL   = 3
+DIPOL    = 0.5 0.5 0.5
+
+# --- 10. Wavefunction & Charge Output Management ---
+LWAVE    = .FALSE.
+LCHARG   = .FALSE.
