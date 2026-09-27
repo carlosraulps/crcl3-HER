@@ -1,0 +1,32 @@
+# =========================================================================
+# VASP INCAR Template: Cococcioni Linear Response for CrCl3 2x2 Supercell
+# Target: Cr 3d manifold (l=2)
+# =========================================================================
+
+# --- Electronic Minimization & Plane-Wave Basis ---
+PREC     = Accurate
+ENCUT    = 400.0
+EDIFF    = 1.0E-06
+NELM     = 100
+
+# --- Spin Polarization & Magnetic Initialization ---
+ISPIN    = 2
+MAGMOM   = 1*3.0 7*3.0 24*0.0
+
+# --- Brillouin Zone & Smearing ---
+ISMEAR   = 0
+SIGMA    = 0.05
+
+# --- Parallelization & Performance ---
+NCORE    = 4
+LREAL    = Auto
+
+# --- Dispersion Correction ---
+IVDW     = 12
+
+# --- PAW & Density Mixing for d-Electrons ---
+LASPH    = .TRUE.
+LMAXMIX  = 4
+
+# --- Output verbosity for Density Matrix ---
+LORBIT   = 11
