@@ -119,7 +119,9 @@ def collect_tm_data():
                     
     # Check for systems with Hubbard U
     u_systems = [
-        ('Co', 'Cobalt', 'crcl3-2x2-co_ads-with-U', 3.0, 'yes_vdw', 'yes_vdw_u', 'PBE+D3+U (3.29 eV)')
+        ('Co', 'Cobalt', 'crcl3-2x2-co_ads-with-U', 3.0, 'yes_vdw', 'yes_vdw_u', 'PBE+D3+U (3.29 eV)'),
+        ('Ni', 'Nickel', 'crcl3-2x2-ni_ads-with-U', 2.0, 'yes_vdw', 'yes_vdw_u', 'PBE+D3+U (3.29 eV)'),
+        ('Fe', 'Iron', 'crcl3-2x2-fe_ads-with-U', 4.0, 'yes_vdw', 'yes_vdw_u', 'PBE+D3+U (3.29 eV)')
     ]
     for tm_sym, tm_name, folder, nom_mag, vdw_sub, vdw_key, vdw_label in u_systems:
         base_path = os.path.join(BASE_DIR, folder)
@@ -165,8 +167,8 @@ def collect_tm_data():
 
 def plot_multipanel_tm_comparison(df):
     """Generates 4-panel comprehensive publication-quality figure."""
-    fig, axs = plt.subplots(2, 2, figsize=(14, 11))
-    fig.subplots_adjust(hspace=0.34, wspace=0.26)
+    fig, axs = plt.subplots(2, 2, figsize=(15.2, 11.5))
+    fig.subplots_adjust(hspace=0.38, wspace=0.28)
     
     metals = ['Co', 'Fe', 'Ni']
     sites = [
@@ -180,13 +182,15 @@ def plot_multipanel_tm_comparison(df):
     # -------------------------------------------------------------
     ax_a = axs[0, 0]
     conditions = [
-        ('Co', 'no_vdw', 'Co\nPBE'),
-        ('Co', 'yes_vdw', 'Co\nPBE+D3'),
-        ('Co', 'yes_vdw_u', 'Co\nPBE+D3+U'),
-        ('Fe', 'no_vdw', 'Fe\nPBE'),
-        ('Fe', 'yes_vdw', 'Fe\nPBE+D3'),
-        ('Ni', 'no_vdw', 'Ni\nPBE'),
-        ('Ni', 'yes_vdw', 'Ni\nPBE+D3'),
+        ('Co', 'no_vdw', 'Co (PBE)'),
+        ('Co', 'yes_vdw', 'Co (+D3)'),
+        ('Co', 'yes_vdw_u', 'Co (+D3+U)'),
+        ('Fe', 'no_vdw', 'Fe (PBE)'),
+        ('Fe', 'yes_vdw', 'Fe (+D3)'),
+        ('Fe', 'yes_vdw_u', 'Fe (+D3+U)'),
+        ('Ni', 'no_vdw', 'Ni (PBE)'),
+        ('Ni', 'yes_vdw', 'Ni (+D3)'),
+        ('Ni', 'yes_vdw_u', 'Ni (+D3+U)'),
     ]
     
     x = np.arange(len(conditions))
@@ -206,15 +210,15 @@ def plot_multipanel_tm_comparison(df):
             h = r.get_height()
             if not np.isnan(h):
                 ax_a.text(r.get_x() + r.get_width()/2.0, h - 0.10, f'{h:.2f}',
-                          ha='center', va='top', fontsize=7.8, fontweight='bold', fontfamily='serif',
+                          ha='center', va='top', fontsize=7.5, fontweight='bold', fontfamily='serif',
                           rotation=90,
                           bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.85),
                           zorder=5)
 
     ax_a.axhline(0, color='black', linewidth=0.9, zorder=4)
     ax_a.set_xticks(x)
-    ax_a.set_xticklabels([c[2] for c in conditions], fontsize=9.5)
-    ax_a.set_ylabel(r'$\Delta E_{\mathrm{bind}} = E_{\mathrm{slab+TM}} - E_{\mathrm{clean}}\ \ (\mathrm{eV})$', fontsize=14)
+    ax_a.set_xticklabels([c[2] for c in conditions], fontsize=9.0, rotation=25, ha='right')
+    ax_a.set_ylabel(r'$\Delta E_{\mathrm{bind}} = E_{\mathrm{slab+TM}} - E_{\mathrm{clean}}\ \ (\mathrm{eV})$', fontsize=13)
     ax_a.set_title(r'(a) Transition Metal Binding Energy on $\mathrm{CrCl}_3$ ($2\times2$)', fontsize=12, fontweight='bold', pad=10)
     ax_a.set_ylim(-8.3, 0.2)
     ax_a.yaxis.set_major_locator(MultipleLocator(1.0))
@@ -241,15 +245,16 @@ def plot_multipanel_tm_comparison(df):
             h = r.get_height()
             if not np.isnan(h):
                 lbl = "GS" if abs(h) < 1e-3 else f'+{h:.2f}'
-                ax_b.text(r.get_x() + r.get_width()/2.0, h + 0.05, lbl,
-                          ha='center', va='bottom', fontsize=7.8, fontweight='bold', fontfamily='serif',
+                y_off = 0.05 if idx != 1 else 0.20
+                ax_b.text(r.get_x() + r.get_width()/2.0, h + y_off, lbl,
+                          ha='center', va='bottom', fontsize=7.5, fontweight='bold', fontfamily='serif',
                           rotation=90,
                           bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.85),
                           zorder=5)
 
     ax_b.set_xticks(x)
-    ax_b.set_xticklabels([c[2] for c in conditions], fontsize=9.5)
-    ax_b.set_ylabel(r'$\Delta E - \Delta E_{\mathrm{min}}\ \ (\mathrm{eV})$', fontsize=14)
+    ax_b.set_xticklabels([c[2] for c in conditions], fontsize=9.0, rotation=25, ha='right')
+    ax_b.set_ylabel(r'$\Delta E - \Delta E_{\mathrm{min}}\ \ (\mathrm{eV})$', fontsize=13)
     ax_b.set_title(r'(b) Relative Site Preference & Metastability Penalty', fontsize=12, fontweight='bold', pad=10)
     ax_b.set_ylim(-0.05, 3.8)
     ax_b.yaxis.set_major_locator(MultipleLocator(0.5))
@@ -316,17 +321,18 @@ def plot_multipanel_tm_comparison(df):
         for r in rects:
             h = r.get_height()
             if not np.isnan(h):
-                ax_d.text(r.get_x() + r.get_width()/2.0, h + 0.35, f'{h:.1f}',
-                          ha='center', va='bottom', fontsize=7.8, fontweight='bold', fontfamily='serif',
+                y_off = 0.30 + (idx * 0.45)
+                ax_d.text(r.get_x() + r.get_width()/2.0, h + y_off, f'{h:.1f}',
+                          ha='center', va='bottom', fontsize=7.5, fontweight='bold', fontfamily='serif',
                           rotation=90,
                           bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.85),
                           zorder=5)
 
     ax_d.set_xticks(x)
-    ax_d.set_xticklabels([c[2] for c in conditions], fontsize=9.5)
-    ax_d.set_ylabel(r'Total Magnetic Moment $M_{\mathrm{tot}}\ \ (\mu_B)$', fontsize=14)
+    ax_d.set_xticklabels([c[2] for c in conditions], fontsize=9.0, rotation=25, ha='right')
+    ax_d.set_ylabel(r'Total Magnetic Moment $M_{\mathrm{tot}}\ \ (\mu_B)$', fontsize=13)
     ax_d.set_title(r'(d) Total Slab Spin Moment $M_{\mathrm{tot}}$ upon TM Adsorption', fontsize=12, fontweight='bold', pad=10)
-    ax_d.set_ylim(19.0, 32.5)
+    ax_d.set_ylim(19.0, 33.5)
     ax_d.yaxis.set_major_locator(MultipleLocator(2.0))
     ax_d.yaxis.set_minor_locator(MultipleLocator(0.5))
     ax_d.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)

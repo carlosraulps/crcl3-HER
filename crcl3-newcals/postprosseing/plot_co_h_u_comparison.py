@@ -44,22 +44,31 @@ def create_comparison_figure():
     w = 0.35
     
     # Values: Delta E_rel (eV) relative to ground state
-    # Without U: S1=0.22 eV, S2=0.00 eV (GS), S3=0.71 eV
-    # With U: S1=0.14 eV (slid to hollow/bridge), S3=0.00 eV (GS)
+    # Without U: S1=0.22 eV, S2=0.00 eV (GS, -5.06 eV), S3=0.71 eV (-4.35 eV)
+    # With U: S1=0.00 eV (GS slid to hollow, -5.14 eV), S3=0.67 eV (Top-Cr, -4.47 eV)
     penalties_no_u = [0.222, 0.000, 0.710]
-    penalties_u    = [0.144, 0.000, 0.000]
+    penalties_u    = [0.000, 0.076, 0.671]
     
     bars1 = ax_a.bar(x - w/2, penalties_no_u, width=w, color='#3498db', edgecolor='black', linewidth=1.2, label='PBE+D3 (Without $U$)', alpha=0.9, zorder=3)
-    bars2 = ax_a.bar(x + w/2, [0.144, 0, 0.000], width=w, color='#e74c3c', edgecolor='black', linewidth=1.2, label='PBE+D3+$U$ ($U=3.29\\,\\mathrm{eV}$)', alpha=0.9, zorder=3)
+    bars2 = ax_a.bar(x + w/2, penalties_u, width=w, color='#e74c3c', edgecolor='black', linewidth=1.2, label='PBE+D3+$U$ ($U=3.29\\,\\mathrm{eV}$)', alpha=0.9, zorder=3)
+    
+    from smart_plot_optimizer import resolve_text_overlaps
     
     # Smart staggered annotations to prevent any collision
-    ax_a.text(x[0] - w/2, penalties_no_u[0] + 0.06, '+0.22 eV', ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#1f4e78', bbox=bbox_props, zorder=5)
-    ax_a.text(x[0] + w/2, penalties_u[0] + 0.18, '+0.14 eV\n(Slid/Bridge)', ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#781f1f', bbox=bbox_props, zorder=5)
+    t1 = ax_a.text(x[0] - w/2, penalties_no_u[0] + 0.08, '+0.22 eV', ha='center', va='bottom', fontsize=8.2, fontweight='bold', color='#1f4e78', bbox=bbox_props, zorder=5)
+    t2 = ax_a.text(x[0] + w/2, 0.06, 'Ground State\n(-5.14 eV, Slid)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#781f1f', bbox=bbox_props, zorder=5)
     
-    ax_a.text(x[1] - w/2, 0.06, 'Ground State\n(-5.06 eV)', ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#1f4e78', bbox=bbox_props, zorder=5)
+    # Site 2: vertically stagger the two badges to guarantee zero horizontal collision
+    t3 = ax_a.text(x[1] - w/2, 0.06, 'Ground State\n(-5.06 eV)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#1f4e78', bbox=bbox_props, zorder=5)
+    t4 = ax_a.text(x[1] + w/2, 0.36, '+0.08 eV\n(-5.06 eV)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#781f1f', bbox=bbox_props, zorder=5)
+    ax_a.plot([x[1] + w/2, x[1] + w/2], [penalties_u[1], 0.35], color='#781f1f', linestyle=':', linewidth=1.1, zorder=4)
     
-    ax_a.text(x[2] - w/2, penalties_no_u[2] + 0.06, '+0.71 eV\n(Repulsive)', ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#1f4e78', bbox=bbox_props, zorder=5)
-    ax_a.text(x[2] + w/2, 0.06, 'Ground State\n(-4.47 eV)', ha='center', va='bottom', fontsize=8.5, fontweight='bold', color='#781f1f', bbox=bbox_props, zorder=5)
+    # Site 3: staggered offsets with leader line for blue bar
+    t5 = ax_a.text(x[2] - w/2, penalties_no_u[2] + 0.22, '+0.71 eV\n(Repulsive)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#1f4e78', bbox=bbox_props, zorder=5)
+    ax_a.plot([x[2] - w/2, x[2] - w/2], [penalties_no_u[2], penalties_no_u[2] + 0.20], color='#1f4e78', linestyle=':', linewidth=1.1, zorder=4)
+    t6 = ax_a.text(x[2] + w/2, penalties_u[2] + 0.06, '+0.67 eV\n(Local Min, -4.47 eV)', ha='center', va='bottom', fontsize=8.0, fontweight='bold', color='#781f1f', bbox=bbox_props, zorder=5)
+    
+    resolve_text_overlaps(fig, ax_a, [t1, t2, t3, t4, t5, t6])
     
     ax_a.set_ylabel(r'Relative Energy Penalty $\Delta E_{\mathrm{rel}}$ (eV)', fontsize=12, fontweight='bold')
     ax_a.set_title(r'(a) Site Preference Inversion on $\mathrm{CrCl}_3(2\times2)$', fontsize=12, fontweight='bold', pad=10)
