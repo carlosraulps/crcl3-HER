@@ -57,9 +57,15 @@ fi
 sed -i "s/.*NCORE.*/NCORE    = 8/" INCAR
 
 module purge
-module load vasp/6.2.0
+module load gnu12 openmpi4 vasp/6.2.0
 
-mpirun --bind-to none -np $SLURM_NTASKS vasp_std > vasp.out 2>&1 &
+export OMPI_MCA_pml=ob1
+export OMPI_MCA_btl=vader,self,tcp
+export OMPI_MCA_mtl=^ofi,psm2
+export OMPI_MCA_osc=^ucx
+export UCX_TLS=sm,self
+
+mpirun --mca pml ob1 --mca btl vader,self,tcp --mca mtl ^ofi,psm2 --bind-to none -np $SLURM_NTASKS vasp_std > vasp.out 2>&1 &
 VASP_PID=$!
 wait $VASP_PID
 EXIT_CODE=$?
