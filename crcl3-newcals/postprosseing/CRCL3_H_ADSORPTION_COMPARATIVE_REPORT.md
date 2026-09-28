@@ -30,6 +30,9 @@
 | 2x2 | 0.250 | 12.09 | PBE+D3 (BJ) | **Site 1 (Top-Cl)** | -162.1074 | -164.2008 | **-2.0933** | **1.2877** | **1.5277** | 25.00 $\mu_B$ | 71 |
 | 2x2 | 0.250 | 12.09 | PBE+D3 (BJ) | **Site 2 (Hollow)** | -162.1074 | -163.1641 | **-1.0567** | **2.3244** | **2.5644** | 23.01 $\mu_B$ | 19 |
 | 2x2 | 0.250 | 12.09 | PBE+D3 (BJ) | **Site 3 (Top-Cr)** | -162.1074 | -163.8525 | **-1.7450** | **1.6360** | **1.8760** | 23.00 $\mu_B$ | 3 |
+| 2x2 | 0.250 | 12.09 | PBE+D3 (BJ)+U | **Site 1 (Top-Cl)** | -147.3038 | -149.7694 | **-2.4655** | **0.9145** | **1.1545** | 25.00 $\mu_B$ | 10 |
+| 2x2 | 0.250 | 12.09 | PBE+D3 (BJ)+U | **Site 2 (Hollow)** | -147.3038 | -148.8541 | **-1.5502** | **1.8298** | **2.0698** | 25.00 $\mu_B$ | 16 |
+| 2x2 | 0.250 | 12.09 | PBE+D3 (BJ)+U | **Site 3 (Top-Cr)** | -147.3038 | -148.5078 | **-1.2040** | **2.1760** | **2.4160** | 23.00 $\mu_B$ | 2 |
 | 3x3 | 0.111 | 18.14 | Pure PBE | **Site 1 (Top-Cl)** | -351.6468 | -353.7608 | **-2.1140** | **1.2658** | **1.5058** | 55.00 $\mu_B$ | 80 |
 | 3x3 | 0.111 | 18.14 | Pure PBE | **Site 2 (Hollow)** | -351.6468 | -352.5562 | **-0.9094** | **2.4704** | **2.7104** | 53.00 $\mu_B$ | 2 |
 | 3x3 | 0.111 | 18.14 | Pure PBE | **Site 3 (Top-Cr)** | -351.6468 | -353.4262 | **-1.7794** | **1.6005** | **1.8405** | 53.00 $\mu_B$ | 24 |
@@ -62,3 +65,8 @@
    - **Pristine Substrate:** Ferromagnetic coupling with total magnetic moment $M = N_{\mathrm{Cr}} \times 3.0\,\mu_B$ ($6\,\mu_B$ in $1\times1$, $24\,\mu_B$ in $2\times2$, $54\,\mu_B$ in $3\times3$).
    - **Site 1 (Top-Cl):** Polarizes ferromagnetically, adding $+1\,\mu_B$ to total slab magnetization ($7\,\mu_B$ in $1\times1$, $25\,\mu_B$ in $2\times2$, $55\,\mu_B$ in $3\times3$).
    - **Site 3 (Top-Cr):** Antiferromagnetically spin-pairs with the targeted Cr $3d$ electron, reducing total slab magnetization by $-1\,\mu_B$ ($5\,\mu_B$ in $1\times1$, $23\,\mu_B$ in $2\times2$, $53\,\mu_B$ in $3\times3$).
+
+5. **Electronic Correlation & Hubbard $+U$ Stabilization ($U_{\mathrm{Cr}} = 3.29\text{ eV}$):**
+   - Applying Hubbard $U = 3.29\text{ eV}$ on Cr $3d$ manifolds further stabilizes hydrogen binding across the active Top-Cl site: $\Delta E$ deepens from $-2.093\text{ eV}$ (PBE+D3 BJ) to **$-2.466\text{ eV}$ (PBE+D3 BJ + $U$)**.
+   - Consequently, the HER descriptor $\Delta G_{\mathrm{H}^*}$ decreases from $+1.53\text{ eV}$ to **$+1.15\text{ eV}$** on Site 1, bringing pristine $\text{CrCl}_3$ closer to optimal electrocatalytic conditions.
+   - Site 2 (Hollow) also stabilizes ($\Delta G = +2.07\text{ eV}$), while Site 3 (Top-Cr) undergoes relative destabilization ($\Delta G = +2.42\text{ eV}$) due to penalization of direct Cr-H orbital overlap by the on-site Coulomb repulsion $U$.

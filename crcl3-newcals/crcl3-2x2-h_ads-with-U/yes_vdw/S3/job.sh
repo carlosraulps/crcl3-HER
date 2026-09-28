@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH -J H2x2_S3_U3
-#SBATCH -p fulereno
+#SBATCH -p grafeno
 #SBATCH --nodes=1
-#SBATCH --ntasks=64
+#SBATCH --ntasks=16
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=64G
-#SBATCH --time=04:00:00
+#SBATCH --mem=16G
+#SBATCH --time=12:00:00
 #SBATCH --signal=B:USR1@300
 #SBATCH --requeue
 #SBATCH -o %x.%j.out
@@ -18,7 +18,8 @@ echo "Host:        $(hostname)"
 echo "Directory:   $(pwd)"
 echo "Start Time:  $(date)"
 echo "CPUs Alloc:  $SLURM_NTASKS"
-echo "Time Limit:  04:00:00 (Micro-Batch Chained)"
+echo "Partition:   $SLURM_JOB_PARTITION"
+echo "Time Limit:  12:00:00"
 echo "=========================================================="
 
 ulimit -s unlimited 2>/dev/null || true
@@ -54,7 +55,7 @@ if [ -f CONTCAR ] && [ -s CONTCAR ]; then
     fi
 fi
 
-sed -i "s/.*NCORE.*/NCORE    = 8/" INCAR
+sed -i "s/.*NCORE.*/NCORE    = 4/" INCAR
 
 module purge
 module load gnu12 openmpi4 vasp/6.2.0

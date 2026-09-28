@@ -22,7 +22,7 @@ ISMEAR   = 0
 SIGMA    = 0.05
 
 # --- 4. Parallelization & Computational Performance ---
-NCORE    = 4
+NCORE    = 8
 LREAL    = Auto
 
 # --- 5. van der Waals Dispersion Correction (Becke-Johnson Damping) ---
