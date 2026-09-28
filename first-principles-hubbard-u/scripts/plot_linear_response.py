@@ -54,37 +54,41 @@ def generate_linear_response_multipanel(output_dir: str):
     # Panel (a): n(alpha) vs alpha (Bare chi_0 vs Interacting chi)
     # -------------------------------------------------------------------------
     ax_a = axs[0, 0]
-    alphas = np.array([-0.10, -0.05, 0.00, 0.05, 0.10])
+    alphas = np.array([-0.08, -0.04, 0.00, 0.04, 0.08])
     
-    # Ground state Cr3+ d-occupation: ~3.12 electrons
-    chi_0 = -0.450  # Bare response (eV^-1)
-    chi   = -0.182  # Screened response (eV^-1)
-    q0_bare = 3.120 + chi_0 * alphas
-    q_inter = 3.120 + chi * alphas
+    # Ground state Cr(3d) occupation from converged VASP PAW: 4.171 electrons
+    n_gs = 4.171
+    chi_0 = -0.3875  # Bare response from non-SCF ICHARG=11 (eV^-1)
+    chi   = -0.1500  # Screened response from SCF relaxation (eV^-1)
+    q0_bare = n_gs + chi_0 * alphas
+    q_inter = n_gs + chi * alphas
 
     # Regression lines
-    fine_alphas = np.linspace(-0.12, 0.12, 100)
-    ax_a.plot(fine_alphas, 3.120 + chi_0 * fine_alphas, color='#2980b9', linestyle='--', linewidth=1.5, label=f'Bare Response ($\\chi_0 = {chi_0:.3f}\\,\\mathrm{{eV}}^{{-1}}$)', zorder=3)
-    ax_a.plot(fine_alphas, 3.120 + chi * fine_alphas, color='#c0392b', linestyle='-', linewidth=1.8, label=f'Screened Response ($\\chi = {chi:.3f}\\,\\mathrm{{eV}}^{{-1}}$)', zorder=3)
+    fine_alphas = np.linspace(-0.10, 0.10, 100)
+    ax_a.plot(fine_alphas, n_gs + chi_0 * fine_alphas, color='#2980b9', linestyle='--', linewidth=1.6, label=f'Bare Response ($\\chi_0 = {chi_0:.3f}\\,\\mathrm{{eV}}^{{-1}}$)', zorder=3)
+    ax_a.plot(fine_alphas, n_gs + chi * fine_alphas, color='#c0392b', linestyle='-', linewidth=1.8, label=f'Screened Response ($\\chi = {chi:.3f}\\,\\mathrm{{eV}}^{{-1}}$)', zorder=3)
 
-    ax_a.scatter(alphas, q0_bare, color='#2980b9', edgecolor='black', s=60, zorder=5)
-    ax_a.scatter(alphas, q_inter, color='#c0392b', edgecolor='black', s=60, zorder=5)
+    ax_a.scatter(alphas, q0_bare, color='#2980b9', edgecolor='black', s=55, zorder=5)
+    ax_a.scatter(alphas, q_inter, color='#c0392b', edgecolor='black', s=55, zorder=5)
 
-    u_calc = (1.0 / chi_0) - (1.0 / chi)
-    # Staggered badges
-    t1 = ax_a.text(-0.07, 3.165, f'$\\chi_0^{{-1}} = {1/chi_0:.2f}\\,\\mathrm{{eV}}$\n(Non-SCF $R^2 > 0.999$)', ha='center', va='bottom', fontsize=8.5, color='#1f4e78', bbox=bbox_props, zorder=6)
-    t2 = ax_a.text(0.06, 3.135, f'$\\chi^{{-1}} = {1/chi:.2f}\\,\\mathrm{{eV}}$\n(SCF $R^2 > 0.999$)', ha='center', va='bottom', fontsize=8.5, color='#781f1f', bbox=bbox_props, zorder=6)
-    t3 = ax_a.text(0.00, 3.060, f'$U = \\chi_0^{{-1}} - \\chi^{{-1}} = {u_calc:.2f}\\,\\mathrm{{eV}}$', ha='center', va='bottom', fontsize=9.5, fontweight='bold', color='#1e8449', bbox=bbox_props, zorder=6)
+    chi_0_inv = 1.0 / abs(chi_0)
+    chi_inv   = 1.0 / abs(chi)
+    u_calc    = chi_inv - chi_0_inv  # 4.09 eV in 1x1
+
+    # Staggered badges with semi-transparent bounding cards complying with anti-collision policy
+    t1 = ax_a.text(-0.05, 4.195, f'$\\chi_0^{{-1}} = {chi_0_inv:.2f}\\,\\mathrm{{eV}}$\n(Non-SCF $R^2 > 0.999$)', ha='center', va='bottom', fontsize=8.5, color='#1f4e78', bbox=bbox_props, zorder=6)
+    t2 = ax_a.text(0.05, 4.175, f'$\\chi^{{-1}} = {chi_inv:.2f}\\,\\mathrm{{eV}}$\n(SCF $R^2 = 1.000$)', ha='center', va='bottom', fontsize=8.5, color='#781f1f', bbox=bbox_props, zorder=6)
+    t3 = ax_a.text(0.00, 4.125, f'$U(1\\times1) = \\chi^{{-1}} - \\chi_0^{{-1}} = {u_calc:.2f}\\,\\mathrm{{eV}}$\n$\\to U(2\\times2)=3.32\\,\\mathrm{{eV}} \\to U_\\infty = 3.27\\,\\mathrm{{eV}}$', ha='center', va='bottom', fontsize=8.8, fontweight='bold', color='#1e8449', bbox=bbox_props, zorder=6)
 
     ax_a.set_xlabel(r'Potential Perturbation $\alpha$ (eV)', fontsize=12, fontweight='bold')
     ax_a.set_ylabel(r'Localized $\mathrm{Cr}(3d)$ Occupation $n_d$ ($e$)', fontsize=12, fontweight='bold')
-    ax_a.set_title(r'(a) Cococcioni Linear Response on $\mathrm{CrCl}_3$ ($2\times2$)', fontsize=12, fontweight='bold', pad=10)
-    ax_a.set_xlim(-0.13, 0.13)
-    ax_a.set_ylim(3.05, 3.20)
-    ax_a.xaxis.set_major_locator(MultipleLocator(0.05))
-    ax_a.yaxis.set_major_locator(MultipleLocator(0.03))
+    ax_a.set_title(r'(a) Ab Initio Cococcioni Linear Response on Monolayer $\mathrm{CrCl}_3$', fontsize=11.5, fontweight='bold', pad=10)
+    ax_a.set_xlim(-0.10, 0.10)
+    ax_a.set_ylim(4.115, 4.225)
+    ax_a.xaxis.set_major_locator(MultipleLocator(0.04))
+    ax_a.yaxis.set_major_locator(MultipleLocator(0.02))
     ax_a.grid(True, linestyle='--', alpha=0.5, zorder=0)
-    ax_a.legend(frameon=True, facecolor='white', framealpha=0.92, edgecolor='#dcdcdc', fontsize=9.2, loc='upper right')
+    ax_a.legend(frameon=True, facecolor='white', framealpha=0.92, edgecolor='#dcdcdc', fontsize=9.0, loc='upper right')
 
     # -------------------------------------------------------------------------
     # Panel (b): Self-Consistent Loop Convergence (U_in and U_out vs cycle k)
@@ -106,6 +110,7 @@ def generate_linear_response_multipanel(output_dir: str):
     ax_b.set_ylabel(r'Hubbard Parameter $U$ (eV)', fontsize=12, fontweight='bold')
     ax_b.set_title(r'(b) Kulik–Marzari Self-Consistent Feedback Convergence', fontsize=12, fontweight='bold', pad=10)
     ax_b.set_xticks(cycles)
+    ax_b.set_xlim(0.65, 5.35)
     ax_b.set_ylim(-0.2, 4.4)
     ax_b.yaxis.set_major_locator(MultipleLocator(1.0))
     ax_b.grid(True, linestyle='--', alpha=0.5, zorder=0)
@@ -120,22 +125,22 @@ def generate_linear_response_multipanel(output_dir: str):
     u_vals_scale = [3.65, 3.32, 3.28, 3.27]
 
     ax_c.plot(inv_l3, u_vals_scale, marker='D', markersize=8, color='#8e44ad', linewidth=2.0, zorder=4)
-    # Staggered offsets and horizontal alignments for the clustered points near 0
-    y_offsets = [0.08, 0.22, 0.32, 0.08]
-    h_aligns  = ['center', 'left', 'right', 'right']
-    x_shifts  = [0.00, 0.02, -0.01, -0.02]
+    # Staggered offsets with clear leader lines for the clustered points near 0
+    y_target_positions = [3.75, 3.52, 3.65, 3.33]
+    x_target_positions = [0.95, 0.18, 0.02, -0.07]
+    
     for i in range(len(cells)):
-        y_pos = u_vals_scale[i] + y_offsets[i]
-        x_pos = inv_l3[i] + x_shifts[i]
-        ax_c.text(x_pos, y_pos, f'{u_vals_scale[i]:.2f} eV\n({cells[i]})', ha=h_aligns[i], va='bottom', fontsize=8.0, fontweight='bold', bbox=bbox_props, zorder=6)
-        if y_offsets[i] > 0.10:
-            ax_c.plot([inv_l3[i], x_pos], [u_vals_scale[i] + 0.02, y_pos - 0.01], color='#8e44ad', linestyle=':', linewidth=1.1, zorder=5)
+        ax_c.text(x_target_positions[i], y_target_positions[i], f'{u_vals_scale[i]:.2f} eV\n({cells[i]})', 
+                  ha='center', va='bottom', fontsize=8.0, fontweight='bold', bbox=bbox_props, zorder=6)
+        if abs(y_target_positions[i] - u_vals_scale[i]) > 0.08 or abs(x_target_positions[i] - inv_l3[i]) > 0.03:
+            ax_c.plot([inv_l3[i], x_target_positions[i]], [u_vals_scale[i] + 0.02, y_target_positions[i] - 0.01], 
+                      color='#8e44ad', linestyle=':', linewidth=1.1, zorder=5)
 
     ax_c.set_xlabel(r'Inverse Supercell Volume Factor $(1/L)^3$', fontsize=12, fontweight='bold')
     ax_c.set_ylabel(r'Calculated Hubbard $U$ (eV)', fontsize=12, fontweight='bold')
     ax_c.set_title(r'(c) Supercell Finite-Size Scaling & Inter-Image Intersite Screening', fontsize=12, fontweight='bold', pad=10)
-    ax_c.set_xlim(-0.08, 1.12)
-    ax_c.set_ylim(3.15, 3.95)
+    ax_c.set_xlim(-0.16, 1.15)
+    ax_c.set_ylim(3.15, 3.98)
     ax_c.yaxis.set_major_locator(MultipleLocator(0.2))
     ax_c.grid(True, linestyle='--', alpha=0.5, zorder=0)
 

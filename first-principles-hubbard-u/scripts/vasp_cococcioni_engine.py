@@ -189,10 +189,12 @@ class CococcioniVASPEngine:
 
         if is_bare:
             incar_dict["ICHARG"] = "11" # Non-SCF: fixed charge density
-            incar_dict["NELM"] = "1"    # Exactly 1 step
+            incar_dict["NELM"] = "40"    # Diagonalize Kohn-Sham Hamiltonian under fixed rho_0
+            incar_dict["ALGO"] = "Fast"
         else:
-            incar_dict["ICHARG"] = "1"  # SCF relaxation
+            incar_dict["ICHARG"] = "1"  # SCF relaxation reading preconverged CHGCAR
             incar_dict["NELM"] = "60"
+            incar_dict["ALGO"] = "Fast"
 
         with open(output_incar, "w") as f:
             f.write("# VASP INCAR generated for Cococcioni Linear Response\n")
@@ -202,61 +204,44 @@ class CococcioniVASPEngine:
     def parse_onsite_occupancy(self, outcar_path: str, target_atom_idx: int = 1) -> float:
         """
         Parses OUTCAR to extract total d-orbital occupation of target atom from LDAUPRINT=2.
+        Matches exact VASP format: 'atom = {idx} type = {type} l = {l_val}'.
         """
         if not os.path.exists(outcar_path):
             raise FileNotFoundError(f"OUTCAR not found: {outcar_path}")
 
-        total_d_occ = 0.0
-        found_matrix = False
-
         with open(outcar_path, "r") as f:
             content = f.read()
 
-        # Look for "onsite density matrix" or "occupancies and eigenvectors"
-        # In LDAUPRINT=2, VASP writes blocks per ion
-        pattern = re.compile(
-            r"onsite density matrix.*?ion\s+" + str(target_atom_idx) + r".*?(?=onsite density matrix|total charge|$)",
-            re.DOTALL | re.IGNORECASE
-        )
-
-        matches = list(pattern.finditer(content))
+        # Primary parser: exact VASP LDAUPRINT=2 block
+        pattern = rf"atom\s*=\s*{target_atom_idx}\s+type\s*=\s*\d+\s+l\s*=\s*{self.l_val}\s*\n\s*\n\s*onsite density matrix(.*?)(?:occupancies and eigenvectors|atom\s*=|$)"
+        matches = list(re.finditer(pattern, content, re.DOTALL))
         if matches:
-            last_block = matches[-1].group(0)
-            # Find diagonal occupancy entries or total trace
-            # VASP prints matrix: lines of float numbers
-            # We can extract the diagonal elements of the 5x5 d-manifold for both spin components
-            diag_vals = []
-            for line in last_block.split("\n"):
-                parts = line.split()
-                try:
-                    floats = [float(p) for p in parts]
-                    if len(floats) == 5:
-                        # Row of 5x5 matrix
-                        diag_vals.append(floats)
-                except ValueError:
-                    continue
+            last_block = matches[-1].group(1)
+            sp1_match = re.search(r"spin component\s+1\s*\n(.*?)(?=spin component\s+2|$)", last_block, re.DOTALL)
+            sp2_match = re.search(r"spin component\s+2\s*\n(.*?)(?=occupancies|$)", last_block, re.DOTALL)
+            
+            def parse_mat(block_str):
+                if not block_str: return 0.0
+                lines = [l.strip() for l in block_str.strip().split("\n") if l.strip()]
+                diag_sum = 0.0
+                for i, l in enumerate(lines[:5]):
+                    parts = l.split()
+                    if len(parts) >= 5:
+                        diag_sum += float(parts[i])
+                return diag_sum
+                
+            s1 = parse_mat(sp1_match.group(1)) if sp1_match else 0.0
+            s2 = parse_mat(sp2_match.group(1)) if sp2_match else 0.0
+            if (s1 + s2) > 0.0:
+                return s1 + s2
 
-            if len(diag_vals) >= 5: # At least one spin channel
-                # Sum diagonals for spin 1 and spin 2
-                # If spin-polarized, diag_vals has 10 rows (5 for spin up, 5 for spin down)
-                spin1_diag = sum(diag_vals[i][i] for i in range(5))
-                spin2_diag = sum(diag_vals[5 + i][i] for i in range(5)) if len(diag_vals) >= 10 else 0.0
-                total_d_occ = spin1_diag + spin2_diag
-                found_matrix = True
+        # Fallback: Look for atomic charges from spherical harmonic decomposition (PROCAR / OUTCAR)
+        alt_pattern = re.compile(r"total charge.*?ion\s+" + str(target_atom_idx) + r".*?d\s+([\d\.]+)", re.DOTALL)
+        m = alt_pattern.search(content)
+        if m:
+            return float(m.group(1))
 
-        if not found_matrix:
-            # Fallback: Look for atomic charges from spherical harmonic decomposition (PROCAR / OUTCAR)
-            alt_pattern = re.compile(r"total charge.*?ion\s+" + str(target_atom_idx) + r".*?d\s+([\d\.]+)", re.DOTALL)
-            m = alt_pattern.search(content)
-            if m:
-                total_d_occ = float(m.group(1))
-                found_matrix = True
-
-        if not found_matrix:
-            # Mock / synthetic extractor for testing when VASP hasn't run yet
-            raise RuntimeError(f"Could not parse LDAUPRINT=2 onsite density matrix for ion {target_atom_idx} in {outcar_path}")
-
-        return total_d_occ
+        raise RuntimeError(f"Could not parse LDAUPRINT=2 onsite density matrix for ion {target_atom_idx} in {outcar_path}")
 
     def compute_linear_response(
         self,
