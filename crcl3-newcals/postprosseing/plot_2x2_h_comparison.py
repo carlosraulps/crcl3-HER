@@ -48,37 +48,44 @@ def generate_2x2_h_comparison_plot():
     bbox_card = dict(boxstyle='round,pad=0.22', facecolor='white', edgecolor='#cccccc', alpha=0.92, linewidth=0.8)
     
     # Data definitions for 2x2 (d_H-H = 12.09 A, theta = 0.25)
-    methods = ['Pure PBE\n($U=0$, No vdW)', 'PBE+D3 (Zero)\n($U=0$, Zero-damp)', 'PBE+D3 (BJ)\n($U=0$, Becke-Johnson)']
+    methods = [
+        'Pure PBE\n($U=0$, No vdW)',
+        'PBE+D3 (Zero)\n($U=0$, Zero-damp)',
+        'PBE+D3 (BJ)\n($U=0$, Becke-Johnson)',
+        'PBE+D3 (BJ) + $U$\n($U=3.29\\,\\mathrm{eV}$)'
+    ]
     x = np.arange(len(methods))
-    width = 0.26
+    width = 0.22
     
     # Sites: S1 (Top-Cl), S2 (Hollow), S3 (Top-Cr)
     # E_ads (eV):
     # Pure PBE: S1=1.579, S2=2.471, S3=1.624
     # D3-Zero:  S1=1.513, S2=2.359, S3=1.624
     # D3-BJ:    S1=1.288, S2=2.324, S3=1.636
-    e_ads_s1 = [1.579, 1.513, 1.288]
-    e_ads_s2 = [2.471, 2.359, 2.324]
-    e_ads_s3 = [1.624, 1.624, 1.636]
+    # D3-BJ+U:  S1=In-Flight, S2=In-Flight, S3=2.177 (Converged: E0=-148.508 eV, E_clean=-147.304 eV)
+    e_ads_s1 = [1.579, 1.513, 1.288, np.nan]
+    e_ads_s2 = [2.471, 2.359, 2.324, np.nan]
+    e_ads_s3 = [1.624, 1.624, 1.636, 2.177]
     
     # Delta_E (eV):
     # Pure PBE: S1=-1.801, S2=-0.909, S3=-1.755
     # D3-Zero:  S1=-1.867, S2=-1.021, S3=-1.756
     # D3-BJ:    S1=-2.093, S2=-1.057, S3=-1.745
-    delta_e_s1 = [-1.801, -1.867, -2.093]
-    delta_e_s2 = [-0.909, -1.021, -1.057]
-    delta_e_s3 = [-1.755, -1.756, -1.745]
+    # D3-BJ+U:  S1=In-Flight, S2=In-Flight, S3=-1.204 (Converged)
+    delta_e_s1 = [-1.801, -1.867, -2.093, np.nan]
+    delta_e_s2 = [-0.909, -1.021, -1.057, np.nan]
+    delta_e_s3 = [-1.755, -1.756, -1.745, -1.204]
     
     # Delta_G (eV) = E_ads + 0.24 eV:
-    delta_g_s1 = [1.819, 1.753, 1.528]
-    delta_g_s2 = [2.711, 2.599, 2.564]
-    delta_g_s3 = [1.864, 1.864, 1.876]
+    delta_g_s1 = [1.819, 1.753, 1.528, np.nan]
+    delta_g_s2 = [2.711, 2.599, 2.564, np.nan]
+    delta_g_s3 = [1.864, 1.864, 1.876, 2.417]
     
     # Magnetic moments (mu_B):
     mag_clean = 24.00
-    mag_s1 = [25.00, 25.00, 25.00]
-    mag_s2 = [23.00, 23.00, 23.01]
-    mag_s3 = [23.00, 23.00, 23.00]
+    mag_s1 = [25.00, 25.00, 25.00, np.nan]
+    mag_s2 = [23.00, 23.00, 23.01, np.nan]
+    mag_s3 = [23.00, 23.00, 23.00, 23.00]
     
     # Colors
     c_s1 = '#1f77b4'  # Blue for Top-Cl
@@ -89,36 +96,47 @@ def generate_2x2_h_comparison_plot():
     # Panel (a): Hydrogen Adsorption Energy E_ads
     # -------------------------------------------------------------------------
     ax_a = axs[0, 0]
-    r1 = ax_a.bar(x - width, e_ads_s1, width, label=r'Site 1: Top-Cl ($S_1$, Ground State)',
+    r1 = ax_a.bar(x - width, [val if not np.isnan(val) else 0 for val in e_ads_s1], width,
+                  label=r'Site 1: Top-Cl ($S_1$, Ground State)',
                   color=c_s1, edgecolor='#114b73', linewidth=1.1, zorder=3)
     r3 = ax_a.bar(x, e_ads_s3, width, label=r'Site 3: Top-Cr ($S_3$, Metastable)',
                   color=c_s3, edgecolor='#1b611b', linewidth=1.1, zorder=3)
-    r2 = ax_a.bar(x + width, e_ads_s2, width, label=r'Site 2: Hollow ($S_2$, High Energy)',
+    r2 = ax_a.bar(x + width, [val if not np.isnan(val) else 0 for val in e_ads_s2], width,
+                  label=r'Site 2: Hollow ($S_2$, High Energy)',
                   color=c_s2, edgecolor='#8a1818', linewidth=1.1, zorder=3)
     
-    # Staggered offsets for adjacent bars (S1 and S3 are very close in height)
+    # Staggered offsets for adjacent bars
     offsets_s1 = [0.05, 0.05, 0.05]
-    offsets_s3 = [0.15, 0.15, 0.15]  # Raised slightly to avoid horizontal collision with S1
+    offsets_s3 = [0.15, 0.15, 0.15, 0.08]
     offsets_s2 = [0.05, 0.05, 0.05]
     
-    for r, val, off in zip(r1, e_ads_s1, offsets_s1):
+    for r, val, off in zip(r1[:3], e_ads_s1[:3], offsets_s1):
         ax_a.text(r.get_x() + r.get_width()/2.0, r.get_height() + off, f'{val:.2f} eV',
-                  ha='center', va='bottom', fontsize=8.5, fontweight='bold',
+                  ha='center', va='bottom', fontsize=8.2, fontweight='bold',
                   bbox=bbox_card, zorder=5)
     for r, val, off in zip(r3, e_ads_s3, offsets_s3):
-        ax_a.text(r.get_x() + r.get_width()/2.0, r.get_height() + off, f'{val:.2f} eV',
-                  ha='center', va='bottom', fontsize=8.5, fontweight='bold',
+        suffix = "\n(Done $+U$)" if off == 0.08 else ""
+        ax_a.text(r.get_x() + r.get_width()/2.0, r.get_height() + off, f'{val:.2f} eV{suffix}',
+                  ha='center', va='bottom', fontsize=8.2, fontweight='bold',
                   bbox=bbox_card, zorder=5)
-    for r, val, off in zip(r2, e_ads_s2, offsets_s2):
+    for r, val, off in zip(r2[:3], e_ads_s2[:3], offsets_s2):
         ax_a.text(r.get_x() + r.get_width()/2.0, r.get_height() + off, f'{val:.2f} eV',
-                  ha='center', va='bottom', fontsize=8.5, fontweight='bold',
+                  ha='center', va='bottom', fontsize=8.2, fontweight='bold',
                   bbox=bbox_card, zorder=5)
+        
+    # In-flight markers for S1 and S2 under +U
+    ax_a.text(x[3] - width, 0.12, 'In-Flight\n(Arch/Huk)', ha='center', va='bottom',
+              fontsize=7.5, color='#1f77b4', fontweight='bold', style='italic',
+              bbox=dict(boxstyle='round,pad=0.2', facecolor='#ebf5fb', edgecolor='#aed6f1', alpha=0.9), zorder=5)
+    ax_a.text(x[3] + width, 0.12, 'In-Flight\n(Arch/Huk)', ha='center', va='bottom',
+              fontsize=7.5, color='#d62728', fontweight='bold', style='italic',
+              bbox=dict(boxstyle='round,pad=0.2', facecolor='#fdedec', edgecolor='#f5b7b1', alpha=0.9), zorder=5)
             
     ax_a.set_ylabel(r'$E_{\mathrm{ads}} = E_{\mathrm{tot}} - E_{\mathrm{clean}} - \frac{1}{2}E(\mathrm{H}_2)\ \ (\mathrm{eV})$', fontsize=12)
     ax_a.set_title(r'(a) $2\times2$ Hydrogen Adsorption Energy ($E_{\mathrm{ads}}$)', fontsize=12.5, fontweight='bold', pad=10)
     ax_a.set_xticks(x)
-    ax_a.set_xticklabels(methods, fontsize=9.5)
-    ax_a.set_ylim(0, 3.25)
+    ax_a.set_xticklabels(methods, fontsize=9.0)
+    ax_a.set_ylim(0, 3.45)
     ax_a.yaxis.set_major_locator(MultipleLocator(0.5))
     ax_a.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax_a.grid(axis='y', linestyle='--', alpha=0.45, zorder=0)
@@ -128,41 +146,50 @@ def generate_2x2_h_comparison_plot():
     # Panel (b): Thermodynamic Binding Energy Delta_E
     # -------------------------------------------------------------------------
     ax_b = axs[0, 1]
-    rb1 = ax_b.bar(x - width, delta_e_s1, width, label=r'Site 1: Top-Cl ($S_1$)',
+    rb1 = ax_b.bar(x - width, [val if not np.isnan(val) else 0 for val in delta_e_s1], width,
+                   label=r'Site 1: Top-Cl ($S_1$)',
                    color=c_s1, edgecolor='#114b73', linewidth=1.1, zorder=3)
     rb3 = ax_b.bar(x, delta_e_s3, width, label=r'Site 3: Top-Cr ($S_3$)',
                    color=c_s3, edgecolor='#1b611b', linewidth=1.1, zorder=3)
-    rb2 = ax_b.bar(x + width, delta_e_s2, width, label=r'Site 2: Hollow ($S_2$)',
+    rb2 = ax_b.bar(x + width, [val if not np.isnan(val) else 0 for val in delta_e_s2], width,
+                   label=r'Site 2: Hollow ($S_2$)',
                    color=c_s2, edgecolor='#8a1818', linewidth=1.1, zorder=3)
     
     # Stagger vertical offsets below negative bars
     b_offsets_s1 = [-0.07, -0.07, -0.07]
-    b_offsets_s3 = [-0.17, -0.17, -0.17]  # Staggered deeper to avoid collision with S1
+    b_offsets_s3 = [-0.17, -0.17, -0.17, -0.08]
     b_offsets_s2 = [-0.07, -0.07, -0.07]
     
-    for r, val, off in zip(rb1, delta_e_s1, b_offsets_s1):
+    for r, val, off in zip(rb1[:3], delta_e_s1[:3], b_offsets_s1):
         ax_b.text(r.get_x() + r.get_width()/2.0, r.get_height() + off, f'{val:.2f} eV',
-                  ha='center', va='top', fontsize=8.5, fontweight='bold',
+                  ha='center', va='top', fontsize=8.2, fontweight='bold',
                   bbox=bbox_card, zorder=5)
     for r, val, off in zip(rb3, delta_e_s3, b_offsets_s3):
-        ax_b.text(r.get_x() + r.get_width()/2.0, r.get_height() + off, f'{val:.2f} eV',
-                  ha='center', va='top', fontsize=8.5, fontweight='bold',
+        suffix = "\n(Done $+U$)" if off == -0.08 else ""
+        ax_b.text(r.get_x() + r.get_width()/2.0, r.get_height() + off, f'{val:.2f} eV{suffix}',
+                  ha='center', va='top', fontsize=8.2, fontweight='bold',
                   bbox=bbox_card, zorder=5)
-    for r, val, off in zip(rb2, delta_e_s2, b_offsets_s2):
+    for r, val, off in zip(rb2[:3], delta_e_s2[:3], b_offsets_s2):
         ax_b.text(r.get_x() + r.get_width()/2.0, r.get_height() + off, f'{val:.2f} eV',
-                  ha='center', va='top', fontsize=8.5, fontweight='bold',
+                  ha='center', va='top', fontsize=8.2, fontweight='bold',
                   bbox=bbox_card, zorder=5)
+        
+    ax_b.text(x[3] - width, -0.12, 'In-Flight\n(Arch/Huk)', ha='center', va='top',
+              fontsize=7.5, color='#1f77b4', fontweight='bold', style='italic',
+              bbox=dict(boxstyle='round,pad=0.2', facecolor='#ebf5fb', edgecolor='#aed6f1', alpha=0.9), zorder=5)
+    ax_b.text(x[3] + width, -0.12, 'In-Flight\n(Arch/Huk)', ha='center', va='top',
+              fontsize=7.5, color='#d62728', fontweight='bold', style='italic',
+              bbox=dict(boxstyle='round,pad=0.2', facecolor='#fdedec', edgecolor='#f5b7b1', alpha=0.9), zorder=5)
             
     ax_b.axhline(0, color='black', linewidth=1.0, zorder=4)
     ax_b.set_ylabel(r'$\Delta E = E_{\mathrm{slab+H}} - E_{\mathrm{clean}}\ \ (\mathrm{eV})$', fontsize=12)
     ax_b.set_title(r'(b) Thermodynamic Binding Energy ($\Delta E$)', fontsize=12.5, fontweight='bold', pad=10)
     ax_b.set_xticks(x)
-    ax_b.set_xticklabels(methods, fontsize=9.5)
-    ax_b.set_ylim(-2.65, 0.35)
+    ax_b.set_xticklabels(methods, fontsize=9.0)
+    ax_b.set_ylim(-2.65, 0.45)
     ax_b.yaxis.set_major_locator(MultipleLocator(0.5))
     ax_b.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax_b.grid(axis='y', linestyle='--', alpha=0.45, zorder=0)
-    # Move legend to upper-left (completely empty region, zero overlap)
     ax_b.legend(loc='upper left', frameon=True, facecolor='white', framealpha=0.92, fontsize=8.5)
     
     # -------------------------------------------------------------------------
@@ -179,7 +206,8 @@ def generate_2x2_h_comparison_plot():
         (c_s1, '-', 'Top-Cl ($S_1$, PBE+D3 BJ)', delta_g_s1[2]),
         (c_s1, ':', 'Top-Cl ($S_1$, Pure PBE)', delta_g_s1[0]),
         (c_s3, '--', 'Top-Cr ($S_3$, PBE+D3 BJ)', delta_g_s3[2]),
-        (c_s2, '-.', 'Hollow ($S_2$, PBE+D3 BJ)', delta_g_s2[2]),
+        (c_s3, '-.', 'Top-Cr ($S_3$, PBE+D3+$U$)', delta_g_s3[3]),
+        (c_s2, ':', 'Hollow ($S_2$, PBE+D3 BJ)', delta_g_s2[2]),
     ]
     
     for color, ls, label, dg in her_profiles:
@@ -197,11 +225,11 @@ def generate_2x2_h_comparison_plot():
     ax_c.set_xticklabels(step_labels, fontsize=11, fontweight='bold')
     ax_c.set_ylabel(r'$\Delta G_{\mathrm{H}^*} = E_{\mathrm{ads}} + 0.24\,\mathrm{eV}\ \ (\mathrm{eV})$', fontsize=12)
     ax_c.set_title(r'(c) $2\times2$ HER Free Energy Profile ($\theta = 0.25$)', fontsize=12.5, fontweight='bold', pad=10)
-    ax_c.set_ylim(-0.25, 3.25)
+    ax_c.set_ylim(-0.25, 3.45)
     ax_c.yaxis.set_major_locator(MultipleLocator(0.5))
     ax_c.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax_c.grid(axis='y', linestyle='--', alpha=0.45, zorder=0)
-    ax_c.legend(loc='upper right', frameon=True, facecolor='white', framealpha=0.92, fontsize=8.5)
+    ax_c.legend(loc='upper right', frameon=True, facecolor='white', framealpha=0.92, fontsize=8.2)
     
     # -------------------------------------------------------------------------
     # Panel (d): Magnetic Moment Compensation & With-U Baseline Status
@@ -209,11 +237,17 @@ def generate_2x2_h_comparison_plot():
     ax_d = axs[1, 1]
     
     # Show comparison of Total Magnetic Moment M_tot
-    sites_mag = ['Clean Pristine\n($2\\times2$ Monolayer)', 'Site 1: Top-Cl\n($S_1$ Adsorption)', 'Site 3: Top-Cr\n($S_3$ Adsorption)', 'Site 2: Hollow\n($S_2$ Adsorption)']
+    sites_mag = [
+        'Clean Pristine\n($2\\times2$ Slab)',
+        'Site 1: Top-Cl\n($S_1$ Adsorption)',
+        'Site 3: Top-Cr\n($S_3$ Adsorption)',
+        'Site 2: Hollow\n($S_2$ Adsorption)',
+        'Site 3: Top-Cr\nWith $+U$ (Done)'
+    ]
     x_d = np.arange(len(sites_mag))
     
-    mag_vals = [24.00, 25.00, 23.00, 23.007]
-    bar_cols = ['#7f8c8d', c_s1, c_s3, c_s2]
+    mag_vals = [24.00, 25.00, 23.00, 23.007, 23.000]
+    bar_cols = ['#7f8c8d', c_s1, c_s3, c_s2, '#27ae60']
     
     rects_d = ax_d.bar(x_d, mag_vals, width=0.45, color=bar_cols, edgecolor='#333333', linewidth=1.1, zorder=3)
     
@@ -223,30 +257,31 @@ def generate_2x2_h_comparison_plot():
         diff_str += r"$\,\mu_B$)" if diff != 0 else r" ref)"
         ax_d.text(r.get_x() + r.get_width()/2.0, r.get_height() + 0.35,
                   f'{val:.2f} ' + r'$\mu_B$' + f'\n{diff_str}',
-                  ha='center', va='bottom', fontsize=8.5, fontweight='bold',
+                  ha='center', va='bottom', fontsize=8.0, fontweight='bold',
                   bbox=bbox_card, zorder=5)
         
     ax_d.axhline(24.00, color='#34495e', linestyle=':', linewidth=1.4, zorder=4)
     ax_d.set_ylabel(r'Total Cell Magnetization $M_{\mathrm{tot}}\ \ (\mu_B)$', fontsize=12)
     ax_d.set_title(r'(d) Spin Polarization & Magnetic Compensation ($2\times2$)', fontsize=12.5, fontweight='bold', pad=10)
     ax_d.set_xticks(x_d)
-    ax_d.set_xticklabels(sites_mag, fontsize=9.0)
-    ax_d.set_ylim(20.0, 28.5)
+    ax_d.set_xticklabels(sites_mag, fontsize=8.5)
+    ax_d.set_ylim(20.0, 29.5)
     ax_d.yaxis.set_major_locator(MultipleLocator(2.0))
     ax_d.yaxis.set_minor_locator(MultipleLocator(0.5))
     ax_d.grid(axis='y', linestyle='--', alpha=0.45, zorder=0)
     
     # Inset badge for With-U dispatch status
     status_text = (
-        r"$\mathbf{Hubbard\ +U\ Status\ (U=3.29\ eV):}$" + "\n"
-        r"$\bullet\ \mathrm{Clean\ Reference:}\ E_0 = -147.304\ \mathrm{eV}\ (\mathbf{CONVERGED})$" + "\n"
-        r"$\bullet\ \mathrm{H2x2\_S1\_U3\ (Job\ 164824):}\ \mathbf{PENDING}\ \mathrm{in\ fulereno}$" + "\n"
-        r"$\bullet\ \mathrm{H2x2\_S3\_U3\ (Job\ 164825):}\ \mathbf{PENDING}\ \mathrm{in\ fulereno}$" + "\n"
-        r"$\bullet\ \mathrm{H2x2\_S2\_U3\ (Job\ 164826):}\ \mathbf{PENDING}\ \mathrm{in\ fulereno}$"
+        "Hubbard +U (U=3.29 eV) Multi-Cluster Status:\n"
+        "• Clean Monolayer: E0 = -147.304 eV (CONVERGED)\n"
+        "• Site 3 (Top-Cr): E0 = -148.508 eV (CONVERGED, ΔG = +2.42 eV)\n"
+        "• Site 1 (Top-Cl): RUNNING on Arch (Job 188) & Huk (Job 7908)\n"
+        "• Site 2 (Hollow): RUNNING on Arch (Job 189) & Huk (Job 7909)"
     )
-    ax_d.text(0.04, 0.18, status_text, transform=ax_d.transAxes,
-              fontsize=8.5, va='top', ha='left',
-              bbox=dict(boxstyle='round,pad=0.4', facecolor='#fcf3cf', edgecolor='#f39c12', alpha=0.95, linewidth=1.0),
+    ax_d.text(0.03, 0.22, status_text, transform=ax_d.transAxes,
+              fontsize=8.0, va='top', ha='left',
+              fontweight='bold', fontfamily='serif',
+              bbox=dict(boxstyle='round,pad=0.35', facecolor='#fcf3cf', edgecolor='#f39c12', alpha=0.95, linewidth=1.0),
               zorder=6)
 
     plt.suptitle(r'Comprehensive Hydrogen Adsorption Benchmark on $2\times2$ Monolayer $\mathrm{CrCl}_3$ ($\theta=0.25$, $d_{\mathrm{H-H}}=12.09\ \mathrm{\AA}$)',
