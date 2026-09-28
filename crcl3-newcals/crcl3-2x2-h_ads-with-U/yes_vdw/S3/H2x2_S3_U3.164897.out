@@ -1,0 +1,11 @@
+==========================================================
+Job Name:    H2x2_S3_U3
+Job ID:      164897
+Host:        n04
+Directory:   /home/carlos.primo/crcl3-HER/crcl3-newcals/crcl3-2x2-h_ads-with-U/yes_vdw/S3
+Start Time:  Mon Sep 28 07:25:26 -03 2026
+CPUs Alloc:  16
+Partition:   grafeno
+Time Limit:  12:00:00
+==========================================================
+VASP converged within walltime window!
