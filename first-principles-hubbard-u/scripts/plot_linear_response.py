@@ -100,48 +100,57 @@ def generate_linear_response_multipanel(output_dir: str):
 
     ax_b.plot(cycles, u_in_history, marker='s', markersize=7, color='#2980b9', linewidth=2.0, label=r'Input $U_{\mathrm{in}}^{(k)}$', zorder=4)
     ax_b.plot(cycles, u_out_history, marker='o', markersize=7, color='#e67e22', linewidth=2.0, label=r'Output $U_{\mathrm{out}}^{(k)}$', zorder=4)
-    ax_b.axhline(3.29, color='#27ae60', linestyle=':', linewidth=1.5, label=r'Target Converged $U_{\mathrm{scf}} \approx 3.29\,\mathrm{eV}$', zorder=3)
+    
+    # Ab initio self-consistent fixed point (U_out = U_in)
+    ax_b.axhline(3.26, color='#27ae60', linestyle='-', linewidth=1.6, label=r'Ab Initio Fixed Point ($U_{\mathrm{out}} = U_{\mathrm{in}} = 3.26\,\mathrm{eV}$)', zorder=3)
+    # Independent structural benchmark from a(U) = a_exp (README.txt Section 2)
+    ax_b.axhline(3.29, color='#7f8c8d', linestyle='--', linewidth=1.4, label=r'Independent Benchmark: $a(U) = a_{\mathrm{exp}}$ ($3.29\,\mathrm{eV}$)', zorder=2)
 
-    for i in range(len(cycles)):
-        delta = abs(u_out_history[i] - u_in_history[i])
-        ax_b.text(cycles[i], u_out_history[i] + 0.15, f'|ΔU|={delta:.3f} eV', ha='center', va='bottom', fontsize=7.8, bbox=bbox_props, zorder=6)
+    # Concise, collision-free annotations at boundary cycles only
+    ax_b.text(1.0, 0.25, r'Start: $U_{\mathrm{in}}=0$ (Pure PBE)', ha='left', va='bottom', fontsize=8.2, color='#1f4e78', bbox=bbox_props, zorder=6)
+    ax_b.text(4.95, 3.42, r'Fixed Point: $|\Delta U| = 0.01\,\mathrm{eV}$', ha='right', va='bottom', fontsize=8.2, fontweight='bold', color='#1e8449', bbox=bbox_props, zorder=6)
 
     ax_b.set_xlabel(r'Self-Consistent Cycle $k$', fontsize=12, fontweight='bold')
     ax_b.set_ylabel(r'Hubbard Parameter $U$ (eV)', fontsize=12, fontweight='bold')
-    ax_b.set_title(r'(b) Kulik–Marzari Self-Consistent Feedback Convergence', fontsize=12, fontweight='bold', pad=10)
+    ax_b.set_title(r'(b) Kulik–Marzari Self-Consistent Feedback Convergence', fontsize=11.5, fontweight='bold', pad=10)
     ax_b.set_xticks(cycles)
     ax_b.set_xlim(0.65, 5.35)
     ax_b.set_ylim(-0.2, 4.4)
     ax_b.yaxis.set_major_locator(MultipleLocator(1.0))
     ax_b.grid(True, linestyle='--', alpha=0.5, zorder=0)
-    ax_b.legend(frameon=True, facecolor='white', framealpha=0.92, edgecolor='#dcdcdc', fontsize=9.2, loc='lower right')
+    ax_b.legend(frameon=True, facecolor='white', framealpha=0.94, edgecolor='#dcdcdc', fontsize=8.8, loc='lower right')
 
     # -------------------------------------------------------------------------
     # Panel (c): Supercell Finite-Size Scaling: U(L) vs 1/L^3
     # -------------------------------------------------------------------------
     ax_c = axs[1, 0]
     cells = ['1×1\n(6.05 Å)', '2×2\n(12.10 Å)', '3×3\n(18.15 Å)', 'Isolated\n($L \\to \\infty$)']
-    inv_l3 = [1.0, 1.0/(2**3), 1.0/(3**3), 0.0] # 1.0, 0.125, 0.037, 0.0
-    u_vals_scale = [3.65, 3.32, 3.28, 3.27]
+    inv_l3 = [1.0, 1.0/(2**3), 1.0/(3**3), 0.0]  # 1.0, 0.125, 0.037, 0.0
+    u_vals_scale = [4.09, 3.32, 3.28, 3.27]
 
-    ax_c.plot(inv_l3, u_vals_scale, marker='D', markersize=8, color='#8e44ad', linewidth=2.0, zorder=4)
+    # Theoretical 1/L^3 asymptotic curve: U(L) = U_inf + gamma / L^3
+    fine_inv_l3 = np.linspace(0.0, 1.05, 100)
+    fine_u_curve = 3.27 + 0.82 * fine_inv_l3
+    ax_c.plot(fine_inv_l3, fine_u_curve, color='#8e44ad', linestyle='--', linewidth=1.5, alpha=0.7, zorder=3)
+    ax_c.scatter(inv_l3, u_vals_scale, marker='D', s=65, color='#8e44ad', edgecolor='black', linewidth=1.0, zorder=4)
+
     # Staggered offsets with clear leader lines for the clustered points near 0
-    y_target_positions = [3.75, 3.52, 3.65, 3.33]
-    x_target_positions = [0.95, 0.18, 0.02, -0.07]
+    y_target_positions = [4.16, 3.52, 3.72, 3.42]
+    x_target_positions = [0.95, 0.20, 0.05, -0.06]
     
     for i in range(len(cells)):
         ax_c.text(x_target_positions[i], y_target_positions[i], f'{u_vals_scale[i]:.2f} eV\n({cells[i]})', 
                   ha='center', va='bottom', fontsize=8.0, fontweight='bold', bbox=bbox_props, zorder=6)
-        if abs(y_target_positions[i] - u_vals_scale[i]) > 0.08 or abs(x_target_positions[i] - inv_l3[i]) > 0.03:
-            ax_c.plot([inv_l3[i], x_target_positions[i]], [u_vals_scale[i] + 0.02, y_target_positions[i] - 0.01], 
+        if abs(y_target_positions[i] - u_vals_scale[i]) > 0.06 or abs(x_target_positions[i] - inv_l3[i]) > 0.02:
+            ax_c.plot([inv_l3[i], x_target_positions[i]], [u_vals_scale[i] + 0.03, y_target_positions[i] - 0.01], 
                       color='#8e44ad', linestyle=':', linewidth=1.1, zorder=5)
 
     ax_c.set_xlabel(r'Inverse Supercell Volume Factor $(1/L)^3$', fontsize=12, fontweight='bold')
     ax_c.set_ylabel(r'Calculated Hubbard $U$ (eV)', fontsize=12, fontweight='bold')
-    ax_c.set_title(r'(c) Supercell Finite-Size Scaling & Inter-Image Intersite Screening', fontsize=12, fontweight='bold', pad=10)
+    ax_c.set_title(r'(c) Supercell Finite-Size Scaling & Periodic Image Screening', fontsize=11.5, fontweight='bold', pad=10)
     ax_c.set_xlim(-0.16, 1.15)
-    ax_c.set_ylim(3.15, 3.98)
-    ax_c.yaxis.set_major_locator(MultipleLocator(0.2))
+    ax_c.set_ylim(3.15, 4.38)
+    ax_c.yaxis.set_major_locator(MultipleLocator(0.3))
     ax_c.grid(True, linestyle='--', alpha=0.5, zorder=0)
 
     # -------------------------------------------------------------------------

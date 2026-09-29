@@ -159,3 +159,72 @@ class CococcioniSIESTAEngine:
         u_val = (1.0 / chi_0) - (1.0 / chi)
 
         return chi_0, chi, u_val, r2_bare, r2_inter
+
+    @staticmethod
+    def compute_kulik_analytical_fixed_point(
+        u_in_0: float,
+        u_out_0: float,
+        u_in_1: float,
+        u_out_1: float
+    ) -> Tuple[float, float, float]:
+        """
+        Computes the exact self-consistent fixed point using the Kulik-Cococcioni-Scherlis-Marzari
+        theorem (PRL 97, 103001, 2006):
+            U_out(U_in) = U_scf - U_in / m
+        where m is the effective orbital degeneracy.
+        Linear slope: s = -(U_out_1 - U_out_0) / (U_in_1 - U_in_0) = 1/m
+        Fixed point condition: U_out(U*) = U* => U* = (U_out_0 + s * U_in_0) / (1 + s)
+        
+        Returns:
+            (u_scf_fixed_point, slope_s, effective_degeneracy_m)
+        """
+        du_in = u_in_1 - u_in_0
+        du_out = u_out_1 - u_out_0
+        if abs(du_in) < 1e-6:
+            raise ValueError("Input U values must be distinct to compute Kulik feedback slope.")
+        
+        slope_s = -du_out / du_in
+        m_eff = 1.0 / slope_s if slope_s > 1e-4 else float('inf')
+        u_scf = (u_out_0 + slope_s * u_in_0) / (1.0 + slope_s)
+        return u_scf, slope_s, m_eff
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Cococcioni SIESTA Self-Consistent Hubbard U Engine")
+    parser.add_argument("--test-synthetic", action="store_true", help="Run validation against synthetic benchmark")
+    parser.add_argument("--u-true", type=float, default=3.29, help="Target U value for synthetic test (eV)")
+    args = parser.parse_args()
+
+    if args.test_synthetic:
+        print("================================================================================")
+        print("  🧪 TESTING COCOCCIONI SIESTA ENGINE WITH KULIK ANALYTICAL FIXED POINT")
+        print("================================================================================")
+        engine = CococcioniSIESTAEngine(base_dir=".")
+        # Synthetic trial runs at U_in = 0 and U_in = 2.0
+        # Simulated responses with chi_0 = -0.420
+        chi_0_val = -0.420
+        u_0 = args.u_true + 0.45 # raw GGA value overestimates slightly
+        chi_val_0 = 1.0 / ((1.0 / chi_0_val) - u_0)
+        
+        # Trial point at U_in = 2.0
+        u_in_1 = 2.0
+        # Kulik slope s = 1/m ~ 0.15 for Cr(d3)
+        s_true = 0.15
+        u_out_1 = u_0 - s_true * u_in_1
+        chi_val_1 = 1.0 / ((1.0 / chi_0_val) - u_out_1)
+
+        alphas = [-0.08, -0.04, 0.00, 0.04, 0.08]
+        bare_0 = {a: 4.15 + chi_0_val * a for a in alphas}
+        inter_0 = {a: 4.15 + chi_val_0 * a for a in alphas}
+        _, _, u_calc_0, _, _ = engine.compute_linear_response(bare_0, inter_0)
+
+        inter_1 = {a: 4.15 + chi_val_1 * a for a in alphas}
+        _, _, u_calc_1, _, _ = engine.compute_linear_response(bare_0, inter_1)
+
+        u_fixed, slope_s, m_eff = engine.compute_kulik_analytical_fixed_point(0.0, u_calc_0, u_in_1, u_calc_1)
+        print(f"Point 1 (PBE Ground State) : U_in^(1) = 0.000 eV -> U_out^(1) = {u_calc_0:.4f} eV")
+        print(f"Point 2 (Trial Step)       : U_in^(2) = {u_in_1:.3f} eV -> U_out^(2) = {u_calc_1:.4f} eV")
+        print(f"Feedback Slope s = 1/m     : s = {slope_s:.4f} (Degeneracy m = {m_eff:.2f})")
+        print(f"Analytical Fixed Point U*  : {u_fixed:.4f} eV (Target: {u_0 / (1 + s_true):.4f} eV)")
+        print("================================================================================")
+

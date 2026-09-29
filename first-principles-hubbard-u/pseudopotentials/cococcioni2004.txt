@@ -1,0 +1,1282 @@
+                                                           A linear response approach to the calculation of the effective interaction parameters
+                                                                                         in the LDA+U method
+
+                                                                                                 Matteo Cococcioni∗ and Stefano de Gironcoli
+                                                                                         SISSA – Scuola Internazionale Superiore di Studi Avanzati and
+                                                                                              INFM-DEMOCRITOS National Simulation Center,
+
+
+
+
+arXiv:cond-mat/0405160v1 [cond-mat.mtrl-sci] 7 May 2004
+                                                                                                    via Beirut 2-4, I-34014 Trieste, Italy
+                                                                                                         (Dated: November 26, 2024)
+                                                                            In this work we reexamine the LDA+U method of Anisimov and coworkers in the framework of
+                                                                         a plane-wave pseudopotential approach. A simplified rotational-invariant formulation is adopted.
+                                                                         The calculation of the Hubbard U entering the expression of the functional is discussed and a
+                                                                         linear response approach is proposed that is internally consistent with the chosen definition for
+                                                                         the occupation matrix of the relevant localized orbitals. In this way we obtain a scheme whose
+                                                                         functionality should not depend strongly on the particular implementation of the model in ab-initio
+                                                                         calculations. We demonstrate the accuracy of the method, computing structural and electronic
+                                                                         properties of a few systems including transition and rare-earth correlated metals, transition metal
+                                                                         monoxides and iron-silicate.
+
+
+                                                                               INTRODUCTION                                  in particular) that represent the ”natural” theoretical
+                                                                                                                             framework to deal with strongly correlated materials. As
+                                                                                                                             in these models, a small number of localized orbitals is
+                                                             The description and understanding of electronic prop-
+                                                                                                                             selected and the electronic correlation associated to them
+                                                          erties of strongly correlated materials is a very impor-
+                                                                                                                             is treated in a special way. The obtained results strongly
+                                                          tant and long standing problem for ab-initio calculations.
+                                                                                                                             depend on the definition of the localized orbitals and on
+                                                          Widely used approximations for the exchange and corre-
+                                                                                                                             the choice of the interaction parameters used in the cal-
+                                                          lation energy in density functional theory (DFT), mainly
+                                                                                                                             culation, that should be determined in an internally con-
+                                                          based on parametrization of (nearly) homogeneous elec-
+                                                                                                                             sistent with. This is not always done and a widespread
+                                                          tron gas, miss important features of their physical behav-
+                                                                                                                             but, in our opinion, unsatisfactory attitude is to deter-
+                                                          ior. For instance both local spin-density approximation
+                                                                                                                             mine the value of the electronic couplings by seeking a
+                                                          (LSDA) and spin-polarized generalized gradient approx-
+                                                                                                                             good agreement of the calculated properties with the ex-
+                                                          imations (σ−GGA), in their several flavors, fail in pre-
+                                                                                                                             perimental results in a semiempirical way.
+                                                          dicting the insulating behavior of many simple transition
+                                                          metal oxides (TMO), not only by severely underestimat-                In this work a critical reexamination of the LDA+U
+                                                          ing their electronic band gap but, in most cases, produc-          approach is proposed, which starting from the formula-
+                                                          ing a qualitatively wrong metallic ground state.                   tion of Anisimov and coworkers [1, 2, 3], and its further
+                                                             TMOs have represented for long time the most notable            improvements [5, 6, 7], develops a simpler approxima-
+                                                          failure of DFT. When the high-Tc superconductors en-               tion. This is, in our opinion, the ”minimal” extension
+                                                          tered the scene (their parent materials are also strongly          of the usual approximate DFT (LDA or GGA) schemes
+                                                          correlated systems) the quest for new approaches that              needed when atomic-like features are persistent in the
+                                                          could describe accurately these systems by first princi-           solid environment.
+                                                          ples received new impulse, and in the last fifteen years              In the central part of this work we describe a method,
+                                                          many methods were proposed in this direction. Among                based on a linear response approach, to calculate in
+                                                          these, LDA+U approach, first introduced by Anisimov                an internally consistent way—without aprioristic as-
+                                                          and coworkers [1, 2, 3], has allowed to study a large vari-        sumption about screening and/or basis set employed in
+                                                          ety of strongly correlated compounds with considerable             the calculation—the interaction parameters entering the
+                                                          improvement with respect to LSDA or σ−GGA results.                 LDA+U functional used. In this context our plane-wave
+                                                          The successes of the method have led to further develop-           pseudopotential (PWPP) implementation of the LDA+U
+                                                          ments during the last decade which have produced very              approach is presented and discussed in some details. We
+                                                          sophisticated theoretical approaches[4] and efficient nu-          stress however that the proposed method is basis-set in-
+                                                          merical techniques.                                                dependent.
+                                                             The formal expression of LDA+U energy functional
+                                                                                                                                Our methodology is then applied to the study of the
+                                                          is adapted from model hamiltonians (Hubbard model
+                                                                                                                             electronic properties of some real materials, chosen as
+                                                                                                                             representative of ”normal” (bulk iron) and correlated
+                                                                                                                             (bulk cerium) metals, as well as a few examples of
+                                                          ∗ present address:Massachusetts Institute of Technology, 77 Mas-   strongly correlated systems (iron oxide, nickel oxide and
+                                                          sachusetts avenue, Cambridge MA, 02139 USA.                        fayalite).
+                                                                                                                                         2
+
+    STANDARD LDA+U IMPLEMENTATION:                                                 1          X                                  F2 + F4
+                                                                         J =                            hm, m′ |V ee|m′ , mi =           ,
+                                                                               2l(2l + 1)                                           14
+                                                                                            m6=m′ ,m′
+  In order to account explicitly for the on-site Coulomb
+interaction responsible for the correlation gap in Mott in-          by assuming atomic values for F 4 /F 2 and F 6 /F 4 ratios.
+sulators and not treated faithfully within LDA, Anisimov                To obtain U and J, Anisimov and coworkers [3, 8] pro-
+and coworkers [1, 2, 3] correct the standard functional              pose to perform LMTO calculations in supercells in which
+adding an on-site Hubbard-like interaction, EHub :                   the occupation of the localized orbitals of one atom is
+                                                                     constrained. The localized orbitals of all atoms in the
+       ELDA+U [n(r)] = ELDA [n(r)] +
+                                                                     supercell are decoupled from the remainder of the basis
+                             EHub [{nIσ            Iσ
+                                     m }] − Edc [{n }]       (1)     set. This makes the treatment of the local orbitals an
+                                                                     atomic-like problem—making it easy to fix their occupa-
+where n(r) is the electronic density, and nIσ      m are the
+                                                                     tion numbers—and allows to use Janak theorem [9] to
+atomic-orbital occupations for the atom I experiencing
+                                                                     identify the shift in the corresponding eigenvalue with
+the ”Hubbard” term. The last term in the above equa-
+                                                                     the second-order derivative of the LDA total energy with
+tion is then subtracted in order to avoid double count-
+                                                                     respect to orbital occupation. It has however the effect of
+ing of the interactions contained both in EHub and, in
+                                                                     leaving a rather artificial system to perform the screen-
+some average way, in ELDA . In this term the total, spin-
+                                                                     ing, in particular when it is not completely intra-atomic.
+projected,
+        P occupation of the localized manifold is used:              In elemental metallic Iron, for instance, Anisimov and
+nIσ = m nIσ   m.
+                                                                     Gunnarsson [8] showed that only half of the screening
+   In its original definition the functional defined in Eq.
+                                                                     charge is contained in the Wigner-Seitz cell. This fact,
+1 was not invariant under rotation of the atomic-orbital
+                                                                     in addition to a sizable error due to the Atomic Sphere
+basis set used to define the occupancies nIσ  m . A rotation-
+                                                                     Approximation used [8], could be at the origin of the se-
+ally invariant formulation has then been introduced [5, 6]
+                                                                     vere overestimation of the computed on-site coulomb in-
+where the orbital dependence of EHub is borrowed from
+                                                                     teraction with respect to estimates based on comparison
+atomic Hartree-Fock with renormalized slater integrals:
+                                                                     of spectroscopic data and model calculations[10, 11].
+                     1 X
+EHub [{nImm′ }] =             {hm, m′′ |Vee |m′ , m′′′ inIσ   I−σ
+                                                         mm′ nm′′ m′′′
+                     2
+                         {m},σ,I
+                                                                     BASIS SET INDEPENDENT FORMULATION OF
+                     +(hm, m′′ |Vee |m′ , m′′′ i                                  LDA+U METHOD
+                     −hm, m′′ |Vee |m′′′ , m′ i)nIσ   Iσ
+                                                 mm′ nm′′ m′′′ }   (2)
+                                                                            Some aspects of currently used LDA+U formulation,
+with                                                                     and in particular of the determination of the parameters
+                                X2l                                      entering the model, have been so far tied to the LMTO
+    hm, m′′ |Vee |m′ , m′′′ i =     ak (m, m′ , m′′ , m′′′ )F k          approach. This is not a very pleasant situation and some
+                                k=0                                      efforts have been done recently [7, 12] to reformulate the
+where l is the angular moment of the localized (d or f )                 method for different basis sets. Here we want to elabo-
+electrons and                                                            rate further on these attempts and provide an internally
+                                                                         consistent, basis-set independent, method for the calcu-
+                                    k
+                             4π     X                                    lation of the needed parameters.
+ak (m, m′ , m′′ , m′′′ ) =              hlm|Ykq |lm′ ihlm′′ |Ykq∗
+                                                                  |lm′′′ i.
+                           2k + 1
+                                   q=−k
+
+  The double-counting term Edc is given by:                                          Localized orbital occupations
+
+                 XU
+   Edc [{nI }] =      nI (nI − 1)                                       In order to fully define how the approach works the first
+                    2                                                thing to do is to select the degrees of freedom on which
+                 I
+                 XJ                                                  “Hubbard U ” will operate and define the corresponding
+               −      [nI↑ (nI↑ − 1) + nI↓ (nI↓ − 1)]. (3)           occupation matrix, nIσ
+                    2                                                                       mm′ . Although it is usually straight-
+                     I
+                                                                     forward to identify in a given system the atomic levels to
+The radial Slater integrals F k are the parameters of the            be treated in a special way (the d electrons in transition
+model (F 0 ,F 2 and F 4 for d electrons, while also F 6 must         metals and the f ones in the rare earths and actinides
+be specified for f states) and are usually re-expressed              series) there is no unique or rigorous way to define occu-
+in terms of only two parameters, U and J, describing                 pation of localized atomic levels in a multi-atom system.
+screened on-site Coulomb and exchange interaction,                   Equally legitimate choices for nIσmm′ are i) projections on
+                                                                     normalized atomic orbitals, or ii) projections on Wannier
+           1      X
+U =             2
+                       hm, m′ |V ee|m, m′ i = F 0        (4)         functions whenever the relevant orbitals give raise to iso-
+       (2l + 1)                                                      lated band manifolds, or iii) Mulliken population or iv)
+                  m,m′
+                                                                                                                          3
+
+integrated values in (spherical) regions around the atoms        used instead of those of the neutral atom. In an early
+of the angular-momentum-decomposed charge densities.             study [19] the U parameter in La2 CuO4 varies from 6.8
+Taking into account the arbitrariness in the definition of       to 7.7 eV upon variation of the atomic sphere radius em-
+nIσ
+  mm′ no particular significance should be attached to any       ployed in the LMTO calculation. As pointed out in these
+of them (or other that could be introduced) and the use-         works it is not fruitful to compare numerical values of
+fulness and reliability of an approximate DFT+U method           U obtained by different methods but rather comparison
+(aDFT+U), and of its more recent and involved evolu-             should be made between results of complete calculations.
+tions like the aDFT+DMFT method, should be judged
+from its ability to provide a correct physical picture of
+the systems under study irrespective of the details of the        A simplified rotationally invariant scheme and the
+formulation, once all ingredients entering the calculation                           meaning of U
+are determined consistently.
+   All above mentioned definitions for the occupation ma-           In order to simplify our analysis and gaining a more
+trices can be put in the generic form                            transparent physical interpretation of the ”+U” correc-
+                       X                                         tion to standard aDFT functionals we concentrate on the
+             nIσ
+               mm′ =
+                             σ
+                            fkv   σ
+                                hψkv   I
+                                     |Pmm     σ
+                                          ′ |ψkv i      (5)      main effect associated to on-site Coulomb repulsion. We
+                         k,v                                     thus neglect the important but somehow secondary ef-
+         σ
+                                                                 fects associated to non sphericity of the electronic inter-
+where ψkv    is the valence electronic wavefunction corre-       action and the proper treatment of magnetic interaction,
+sponding to the state (kv) with spin σ of the system and         that in the currently used rotational invariant method is
+  σ                                                    I
+fkv is the corresponding occupation number. The Pmm      ′ ’s
+                                                                 dealt with assuming a screened Hartree-Fock form. [5].
+are generalized projection operators on the localized-              We are therefore going to assume in the following that
+electron manifold that satisfy the following properties:         parameter J describing these effects can be set to zero, or
+     P       I     I         I        I        I     †           alternatively that its effects can be mimicked redefining
+        m′ Pmm′ Pm′ m′′ = Pmm′′ ;   Pmm  ′ = (Pm′ m ) ;
+                                                                 the U parameter as Uef f = U − J, a practice that have
+            I
+          Pmm     I
+               ′ Pm′′ m′′′ = 0    when m′ 6= m′′ .         (6)   been sometime used in the literature [14].
+                            I                                       The Hubbard correction to the energy functional, Eqs.
+In particular P I = m Pmm
+                    P
+                                 is the projector on the com-
+                                                                 2 and 3, greatly simplifies and reads:
+plete manifold of localized states associated with atom at
+site I and therefore                                               EU [{nIσ               I               I
+                                                                         mm′ }] = EHub [{nmm′ }] − Edc [{n }]
+                                                                                  U
+              XX                             X
+                         σ    σ
+        nI =           fkv hψkv |P I |ψkv
+                                       σ
+                                          i=     nIσ       (7)
+                                                                                    X   X           X
+                                                  mm                            =           {nIσ
+                                                                                              mm −       nIσ   Iσ
+                                                                                                          mm′ nm′ m }
+               σ   k,v                      σ,m                                   2     m,σ
+                                                                                          I            ′ m
+
+is the total localized-states occupation for site I. Orthog-                        U X
+                                                                                  =     T r[nIσ (1 − nIσ )].            (9)
+onality of projectors on different sites is not assumed.                            2
+                                                                                        I,σ
+   In the applications discussed in this work we will define
+localized-level occupation matrices projecting on atomic           Choosing for the localized orbitals the representation
+pseudo-wavefunctions. The needed projector operators             that diagonalizes the occupation matrices
+are therefore simply
+                                                                                   nIσ viIσ = λIσ Iσ
+                                                                                               i vi                    (10)
+                     I        I    I
+                    Pmm ′ = |ϕm ihϕm′ |                   (8)
+                                                                 with 0 ≤ λIσ
+                                                                           i ≤ 1, the energy correction becomes
+where |ϕIm i is the valence atomic orbital with angular
+momentum component |lmi of the atom sitting at site I                                         U X X Iσ
+                                                                         EU [{nIσ
+                                                                               mm′ }] =             λi (1 − λIσ
+                                                                                                             i ).      (11)
+(the same wavefunctions are used for both spins). Since                                       2   i
+                                                                                                I,σ
+we will be using ultrasoft pseudopotentials to describe
+valence-core interaction, all scalar products between crys-      from where it appears clearly that the energy correction
+tal and atomic pseudo-wavefunctions are intended to in-          introduces a penalty, tuned by the value of the U param-
+clude the usual S matrix describing orthogonality in pres-       eter, for partial occupation of the localized orbitals and
+ence of charge augmentation [13].                                thus favors disproportionation in fully occupied (λ ≈ 1)
+   As already mentioned, other choices could be used as          or completely empty (λ ≈ 0) orbitals. This is the ba-
+well and different definitions for the occupation matrices       sic physical effect built in the aDFT+U functional and
+will require, in general, different values of the parameter      its meaning can be traced back to known deficiencies of
+entering the aDFT+U functional, as it has been pointed           LDA or GGA for atomic systems.
+out recently also by Pickett et al. [7] where, for instance,        An atom in contact with a reservoir of electrons can
+the value of Hubbard U in FeO shifts from 4.6 to 7.8 eV          exchange integer numbers of particles with its environ-
+when atomic d-orbitals for Fe2+ ionic configuration are          ment. The intermediate situation with fractional number
+                                                                                                                                       4
+
+                                                                       non-linear contribution to the total energy with respect
+                                                                       to orbital occupation (with mainly a quadratic term com-
+                                                                       ing from the Hartree energy not canceled properly in the
+                                          LDA                          exchange-correlation term).
+                                          exact                           Nevertheless, it is well known [17] that total energy dif-
+                                          LDA+U correction    E(N+2)
+                                                                       ferences between different states can be reproduced quite
+
+
+
+ Total energy
+                                                                       accurately by the LDA (or GGA) approach, if the oc-
+                                                                       cupation of the orbitals is constrained to assume integer
+                E(N-1)
+                                                                       values. As an alternative, we can recover the physical sit-
+                                                                       uation (an approximately piece-wise linear total energy
+                                                                       curve) by adding a correction to the LDA total energy
+                                                   E(N+1)              which vanishes for integer number of electrons and elim-
+                                                                       inates the curvature of the LDA energy profile in every
+                               E(N)
+                                                                       interval with fractional occupation (bottom curve of fig.
+                                                                       1). But this is exactly the kind of correction that is pro-
+                     N-1              N          N+1         N+2       vided by eq. 9 if the numerical value of the parameter U
+                                Number of electrons                    is set equal to the curvature of the LDA (GGA) energy
+                                                                       profile.
+FIG. 1: Sketch of the total energy profile as a function of               This clarifies the meaning of the interaction parame-
+number of electrons in a generic atomic system in contact              ter U as the (unphysical) curvature of the LDA energy
+with a reservoir. The bottom curve is simply the difference            as a function of N which is associated with the spuri-
+between the other two (the LDA energy and the ”exact” result           ous self-interaction of the fractional electron injected into
+for an open system).
+                                                                       the system. From this analysis it is clear that the nu-
+                                                                       merical value of U will depend in general not only, as
+                                                                       noted in the preceding section, on the definition adopted
+of electrons in this open atomic system is described not
+                                                                       for the occupation matrices but also on the particular
+by a pure state wave function, but rather by a statisti-
+                                                                       approximate exchange-correlation functional to be cor-
+cal mixture so that, for instance, the total energy of a
+                                                                       rected, and should vanish if the exact DFT functional
+system with N + ω electrons (where N is an integer and
+                                                                       were used.
+0 ≤ ω ≤ 1) is given by:
+                                                                          The situation is of course more complicated in solids
+                         En = (1 − ω)EN + ωEN +1              (12)     where fractional occupations of the atomic orbitals can
+                                                                       occur due to hybridization of the localized atomic-like
+where EN and EN +1 are the energies of the system cor-                 orbitals with the crystal environment and the unphysi-
+responding to states with N and N + 1 particles respec-                cal part of the curvature has to be extracted from the
+tively, while ω represents the statistical weight of the               total LDA/GGA energy, which contains also hybridiza-
+state with N + 1 electrons. The total energy of this open              tion effects. In the next section this problem is discussed
+atomic system is thus represented by a series of straight-             and a linear response approach to evaluate Hubbard U
+line segments joining states corresponding to integer oc-              is proposed.
+cupations of the atomic orbitals as depicted in fig. 1. The
+slope of the energy vs electron-number curve is instead
+piece-wise constant, with discontinuity for integer num-                        Internally consistent calculation of U
+ber of electrons, and corresponds to the electron affinity
+(ionization potential) of the N (N+1) electron system.                   Following previous seminal works [8, 18, 19] we com-
+   Exact DFT correctly reproduce this behavior [15, 16],               pute U by means of constrained-density-functional cal-
+which is instead not well described by the LDA or GGA                  culations [20]. What we need is the total energy as a
+approach, which produces total energy with unphysical                  function of the localized-level occupations of the ”Hub-
+curvatures for non integer occupation and spurious min-                bard” sites:
+ima in correspondence of fractional occupation of the or-
+bital of the atomic system. This leads to serious problems                                     (                               )
+when one consider the dissociation limit of hetero-polar                 E[{qI }] = min            E[n(r)] +
+                                                                                                               X
+                                                                                                                   αI (nI − qI ) ,   (13)
+molecules or an open-shell atom in front of a metallic sur-                          n(r),αI
+                                                                                                               I
+face [15, 16], and is at the heart of the LDA/GGA failure
+in the description of strongly correlated systems[1]. The              where the constraints on the site occupations, nI ’s from
+unphysical curvature is associated basically to the incor-             Eq. 7, are applied employing the Lagrange multipliers,
+rect treatment by LDA or GGA of the self-interaction                   αI ’s. From this dependence we can compute numeri-
+of the partially occupied Kohn-Sham orbital that gives a               cally the curvature of the total energy with respect to
+                                                                                                                                       5
+
+                                                      (0)
+the variation, around the unconstrained values {nI } ,         the screening from the environment is more realistically
+of the occupation of one isolated site. A supercell ap-        included. The present method was inspired by the linear
+proach is adopted in which occupation of one representa-       response scheme proposed by Pickett and coworkers [7]
+tive site in a sufficiently large supercell is changed leav-   where however the role of the non-interacting curvature
+ing unchanged all other site occupations. This curvature       was not appreciated.
+contains the energy cost associated to the localization of       In actual calculations constraining the localized orbital
+an electron on the chosen site including all screening ef-     occupations is not very practical and it is easier to pass,
+fects from the crystal environment, but it is not yet the      via a Legendre transform, to a representation where the
+Hubbard U we want to compute. In fact, had we com-             independent variables are the αI ’s
+puted the same quantity from the total energy of the non-                                (                     )
+interacting Kohn-Sham problem associated to the same                                                 X
+                                                                       E[{αI }] = min E[n(r)] +          αI nI , (17)
+system,                                                                                 n(r)
+                                                                                                              I
+                       (                                 )                                     (                               )
+                                                                                                                   X
+                                                                                                   KS
+                                                                  E   KS
+                                                                           [{αKS
+                                                                              I }]    = min E           [n(r)] +       αKS
+                                                                                                                        I nI       .
+                                      X
+ E KS [{qI }] = min E KS [n(r)] +          αKS
+                                             I (nI − qI ) ,                             n(r)
+               n(r),αI                                                                                             I
+                                       I
+                                                        (14)
+                                                               Variation of these functionals with respect to wavefunc-
+we would have obtained a non vanishing results as well
+                                                               tions shows that the effect of the αI ’s is toP add toI the
+because by varying the site occupation a rehybridization
+                                                               single particle potential  a  term,  ∆V   =      I αI P (or
+of the localized orbitals with the other degrees of freedom
+                                                               ∆V = I αKS         I
+                                                                        P
+is induced that gives rise to a non-linear change in the                     I P for the non-interacting case), where
+                                                               localized potential shifts of strength αI (αKS I ) are ap-
+energy of the system. This curvature coming from re-
+                                                               plied to the localized levels associated to site I.
+hybridization, originating from the non-interacting band
+                                                                  It is useful to introduce the (interacting and non-
+structure but present also in the interacting case, has
+                                                               interacting) density response functions of the system with
+clearly nothing to do with the Hubbard U of the inter-
+                                                               respect to these localized perturbations:
+acting system and should be subtracted from the total
+curvature:                                                                               ∂2E        ∂nI
+                                                                               χIJ =              =     ,                          (18)
+               ∂ 2 E[{qI }] ∂ 2 E KS [{qI }]                                            ∂αI ∂αJ     ∂αJ
+            U=             −                 .         (15)                               ∂ 2 E KS      ∂nI
+                   ∂qI2           ∂qI2                                         χ0IJ   =              =       .
+                                                                                        ∂αKS
+                                                                                          I    ∂αKS
+                                                                                                 J     ∂α KS
+                                                                                                          J
+   In Ref. [8] Anisimov and Gunnarsson, in order to avoid
+dealing with the above mentioned non-interacting curva-        Using this response-function language, the effective in-
+ture, exploited the peculiarities of the LMTO method,          teraction parameter U associated to site I can be recast
+used in their calculation, and decoupled the chosen lo-        as:
+calized orbitals from the remainder of the crystal by sup-
+                                                                                     ∂αKS   ∂αI
+                                                                                       I
+                                                                                                = χ−1   −1
+                                                                                                           
+pressing in the LMTO hamiltonian the corresponding                          U =+          −        0 −χ     II
+                                                                                                                                   (19)
+                                                                                      ∂qI   ∂qI
+hopping terms. This reduced the problem to the one of
+an isolated atom embedded in an artificially disconnected      that is reminiscent of the well known random-phase ap-
+charge background. Thanks to Janak theorem [9] the             proximation [21] in linear response theory giving the in-
+second order derivative of the total energy in Eq. 13 can      teracting density response in terms of the non-interacting
+then be recast as a first order derivative of the localized-   one and the Coulomb kernel. A similar result is obtained
+level eigenvalue. In our approach the role played in Refs.     within DFT linear response [22] where the interaction
+[3, 8] by the eigenvalue of the artificially isolated atom     kernel also contains an exchange-correlation part.
+is taken by the Lagrange multiplier, used to enforce level        The response functions, Eq. 18, needed in Eq. 19
+occupation[20]:                                                are computed taking numerical derivatives. We per-
+                                                               form a well converged LDA calculation for the uncon-
+    ∂E[{qJ }]             ∂ 2 E[{qJ }]    ∂αI                  strained system (αI = 0 for all sites in the supercell)
+              = −αI ,                  =−     ,        (16)
+      ∂qI                      ∂qI2       ∂qI                  and—starting from its self-consistent potential—we add
+    ∂E KS [{qJ }]              ∂ 2 E KS [{qJ }]     ∂αKS       small (positive and negative) potential shifts on each
+                  = −αKS
+                      I ,                       = −   I
+                                                         .     non equivalent ”Hubbard” site J and compute the vari-
+        ∂qI                          ∂qI2            ∂qI
+                                                               ation of the occupations, nI ’s, for all sites in the super-
+At variance with the original method of Refs. [3, 8], in       cell in two ways: i) letting the Kohn-Sham potential of
+our approach we need to compute and subtract the band-         the system readjust self-consistently to optimally screen
+structure contribution, −∂αKS
+                            I /∂qI , from the total cur-       the localized perturbation, ∆V = αJ PJ , and ii) with-
+vature, but, in return, Hubbard U is computed in exactly       out allowing this screening. This latter result is nothing
+the same system to which it is going to be applied and         but the variation computed from the first iteration in
+                                                                                                                        6
+
+the self-consistent cycle leading eventually to the former     functions is considered, the effect of this extrapolation
+(screened) results. The site-occupation derivatives calcu-     vanishes, but, as we will see in the following, this scheme
+lated according to i) and ii) give the matrices χIJ and        capture a large fraction of the system-size dependence of
+χ0IJ respectively.                                             the calculated U and it may allow to reach more rapidly
+                                                               the converged result.
+                                                                 As a final remark we notice that the electronic struc-
+                 Further considerations                        ture of a system described within the LDA+U approach
+                                                               may largely differ from the one obtained within the LDA
+   Before moving to examine some specific examples in          used to compute U . In a more refined approach one
+the next section, let’s end the present one discussing a       might seek internal consistency between the band struc-
+few additional technical points.                               ture used in the calculation of U and the one obtained
+   As mentioned earlier, Hubbard U is computed, ideally,       using it. We have not addressed this issue here, but one
+from variation of the site occupation of a single site in an   can imagine performing the same type of analysis leading
+infinite crystal and in practice adopting a supercell ap-      to the U determination for a functional already contain-
+proach where periodically repeated sites are perturbed         ing an LDA+U correction. The computed U would in
+coherently. In order to speed up the convergence of the        that case be a correction to be added to the original U
+computed U with supercell size it may result useful to         and internal consistency would be reached when the cor-
+enforce explicitly charge neutrality for the perturbation,     rection vanishes.
+that is to be introduced in the response functions, thus
+enhancing its local character and reduce the interaction
+with its periodic images. In this procedure we introduce                             EXAMPLES
+in the response functions, χ and χ0 , —in addition to
+the degrees of freedom associated to the localized sites—                     Metals: Iron and Cerium
+also a ”delocalized background” representing all other
+degrees of freedom in the system. This translates in one          In their seminal paper Anisimov and Gunnarsson [8]
+more column and row in the response matrices, whose el-        computed the effective on site Coulomb interaction be-
+ements are determined imposing overall charge neutrality       tween the localized electrons in metallic Fe and Ce. For
+ofPthe perturbedPsystem for all localized perturbations,       Ce the calculated Coulomb interaction was about 6 eV
+                        0
+( I χIJ = 0,         I χIJ = 0,   ∀J) and absence of any       in good agreement with empirical and experimental esti-
+charge density variation  upon  perturbing
+                                       P the   system with     mates ranging from 5 to 7 eV [20, 23, 24], while the result
+                                             0
+                        P
+a constant potential ( J χIJ = 0,        J IJ = 0,
+                                           χ            ∀I).   for Fe (also about 6 eV) was surprisingly high since U was
+From a mathematical point of view both χ and χ0 acquire        expected to be in the range of 1-2 eV for elemental tran-
+a null eigenvalue, corresponding to a constant potential       sition metals, with the exception of Ni [10, 11]. Let us
+shift, and the needed inversions in Eq. 19 must be taken       apply the present approach to these two system, starting
+with care. It can be shown that their singularities cancel     with Iron.
+out when computing the difference χ−1   0 − χ
+                                                −1
+                                                   and the        In its ground state elemental Iron has a ferromag-
+final result is well defined. We stress that in the limit      netic (FM) spin arrangement and a body-centered cu-
+of infinitely large supercell the coupling with the back-      bic (BCC) structure. Gradient corrected exchange-
+ground gives no contribution to the computed U , but we        correlation functional are needed in order to stabilize the
+found that this limit is approached more rapidly when          experimental structure as compared with non-magnetic
+this additional degrees of freedom is included.                face-centered cubic (FCC) structure preferred by LDA.
+   In the same spirit we found that the spatial locality       The Perdew-Burke-Ernzherof (PBE) [25] GGA func-
+of the response matrices can be rather different from the      tional was employed here. Iron ions were represented
+one of their inverse and a supercell sufficient to decou-      by ultrasoft pseudopotential and kinetic energy cutoffs
+ple the periodically repeated response may be too small        of 35 Ry and 420 Ry were adopted for wavefunction and
+to describe correctly the inverse in eq. 19. As a prac-        charge density Fourier expansion. Brillouin Zone inte-
+tical procedure, therefore, after evaluating the response      grations where performed using 8×8×8 Monkhorst and
+function matrices in a given supercell, we extrapolate the     Pack special point grids [26] using Methfessel and Paxton
+result to much larger supercells assuming that the most        smearing technique [27] with a smearing width of 0.005
+important matrix elements in χ0 and χ involve the atoms        Ry in order to smooth the Fermi distribution.
+in the few nearest coordination-shells accessible in the          The calculation of the effective Hubbard U followed the
+original supercell. The corresponding matrix elements of       procedure outlined in preceding section: a supercell was
+the larger supercell are filled with the values extracted      selected containing a number of inequivalent Iron atoms;
+from the smaller one while all other, more distant, inter-     then, after a well converged self-consistent calculation,
+actions are neglected. Again, when a sufficiently large        we applied to one of these atoms small, positive and neg-
+supercell to extract the matrix elements of the response       ative, potential shifts, ∆V = αPd (with α = ±0.2-0.5
+                                                                                                                                                                   7
+
+
+                                                                                                         2.7
+
+                                                                                                         2.6
+                     2.0
+                                                                                                         2.5
+
+
+
+
+    Hubbard U (eV)                                                                      Hubbard U (eV)
+                                                                     first n.n.                          2.4
+                                                                     second n.n.
+                                                                     third n.n.
+                                                                                                         2.3
+                     1.0
+
+                                                                                                         2.2
+
+                                                                                                         2.1
+
+                     0.0                                                                                 2.0
+                        0.0   10.0   20.0   30.0    40.0     50.0    60.0    70.0                           5.1   5.2   5.3   5.4   5.5   5.6   5.7    5.8   5.9   6.0
+                                     number of atoms per unit cell                                                            Lattice spacing (a.u.)
+
+
+
+FIG. 2: Calculated Hubbard U in metallic Iron for different                         FIG. 3: Lattice spacing dependence of the calculated Hubbard
+supercells. Lines connect results from the cell-extrapolation                       U parameter for Iron.
+procedure described in the text and different symbols corre-
+spond to inclusion of screening contributions up to the indi-
+cated shell of neighbors of the perturbed atom.
+                                                                                    brings only minor variations which are within the finite
+                                                                                    numerical accuracy that we estimate within a fraction of
+                                                                                    an eV. From this analysis our estimate for the Hubbard
+eV), where Pd is the projector on the localized d electron                          U in elemental Iron at the experimental lattice parameter
+of the selected atom. From the variation of the d-level                             is therefore 2.2 ± 0.2 eV.
+occupations of all Iron atoms in the cell one column of                                This results is in very good agreement with the exper-
+χ and χ0 response functions was extracted and all other                             imental estimates [10, 11], but disagrees with Anisimov
+matrix elements were reconstructed by symmetry, includ-                             and Gunnarsson result [8]. We can only recall here that
+ing the background as explained previously. Hubbard U                               many technical details differ in the two approaches. In
+was then calculated from Eq. 19.                                                    particular i) in the original approach the perturbed atom
+   In order to describe response for an isolated pertur-                            is disconnected from the rest of the crystal by removing
+bation four supercells were considered: i) a simple cu-                             all hopping terms, thus leaving a rather unphysical envi-
+bic (SC) cell containing two inequivalent iron atoms, the                           ronment to perform the screening, while in our approach
+perturbed atom and one of its nearest neighbors; ii)                                the actual system is allowed to screen the perturbation,
+a 2×2×2 BCC supercell containing 8 inequivalent Iron                                ii) the Atomic Sphere Approximation (ASA) was em-
+atoms, 4 in the nearest-neighbor shell of the perturbed                             ployed in the original LMTO calculation while no shape
+atom and 3 belonging to the second shell of neighbors;                              approximation is made in our case.
+iii) a 2×2×2 SC cell containing 16 atoms, including also                               In order to further test our approach on this element we
+some third nearest-neighbor atom and iv) a 4×4×4 BBC                                investigate the dependence of the Hubbard parameter on
+supercell containing 64 inequivalent Iron atoms; we used                            crystal structure. The dependence of the calculated in-
+this largest cell just to extrapolate the results from the                          teraction parameter on the lattice spacing of the unit cell
+smaller ones.                                                                       is shown in fig. 3 where a marked increase of the Hubbard
+   The convergence properties of the effective U of bulk                            U can be observed when the lattice parameter is squeezed
+iron with the size of the used supercell are shown in fig. 2.                       below its experimental value. Despite this may appear
+                                                                                    counterintuitive, as correlation effects are expected to be-
+   The Hubbard U obtained from the SC 2-atom cell,                                  come less important when atoms gets closer, one should
+once inserted in the 64-atom supercell, captures most of                            actually compare the increasing value of U with the much
+the effective interaction; second nearest neighbors shell                           steeper increase of bandwidth when reducing the inter-
+brings some significant corrections to the final extrap-                            atomic distance. Upon increase of the lattice parameter
+olated result, while third nearest neighbor shell has a                             the Hubbard parameter should approach the atomic limit
+smaller effect. We believe that contributions from fur-                             that can be estimated from all-electron atomic calcula-
+ther neighbor rapidly vanish and that an accurate value                             tions where the local neutrality of the metallic system is
+of U can be extracted from the SC supercell containing                              maintained: U = E(d8 s0 ) + E(d6 s2 ) − 2 × E(d7 s1 ) = 2.1
+16 atoms. The extrapolation from this cell to larger cells                          eV, in reasonable agreement with the results of fig. 3.
+                                                                                                                      8
+
+
+TABLE I: Comparison between the calculated lattice con-                     5
+stant (a0 ), bulk modulus (B0 ) and magnetic moment (µ0 )
+within several approximate DFT schemes and experimental
+results quoted from [28].
+
+
+                      a0 (a.u.) B0 (Mbar) µ0 (µB )
+      Expt.             5.42       1.68     2.22                            0
+
+
+
+                                                             Energy [eV]
+      LSDA              5.22      2.33      2.10
+      σ-GGA             5.42      1.45      2.46
+      LDA+U             5.53      2.12      2.60
+      LDA+U (AMF)       5.34      1.53      2.00                            -5
+
+   Using the calculated volume dependent Hubbard U pa-
+rameter we have studied the effect of the LDA+U ap-
+proximation on the structural properties of Iron. Results
+are reported in table I where they are compared with re-                   -10
+sults obtained within LSDA and σ-GGA(PBE) approxi-                               H   P   Γ      H     N P N           Γ
+mation and with experimental data. From these data it
+appears that, although simple σ-GGA(PBE) approxima-         FIG. 4: Band structure of bulk iron obtained within the AMF
+tion appears to be superior in this case, LDA+U provides    LDA+U approach. Green lines are for minority spin states,
+a reasonable description of the data, of the same qual-     black ones for majority spin levels. Photoemission results
+ity as LSDA. In weakly correlated metals it has been        from [32] are also reported for comparison.
+suggested [29] that a formulation of LDA+U in terms
+of occupancy fluctuations around the uniform occupancy
+of the localized level could be more appropriate than the   or GGA approximations do not describe the transition
+standard one. This ”around mean field” (AMF) LDA+U          and it appears that a treatment of the correlation at the
+approach has been revisited recently [30, 31] and an ”op-   DMFT level might be required [34], however a full un-
+timally mixed” scheme has also been proposed [31]. We       derstanding of the nature of the transition is still under
+don’t want to enter in this discussion here, but we men-    debate [35]. Here, we do not want to address this deli-
+tion that by following the AMF recipe the description of    cate topics but we simply want to follow Anisimov and
+structural and magnetic properties of metallic Iron im-     Gunnarsson [8] by computing the Hubbard U parameter
+proves as it is evident from table I.                       for elemental cerium in the high volume γ phase.
+   Using the calculated value of U we have obtained the        The interaction of valence-electrons with Ce nuclei and
+electronic structure of Iron at the experimental lattice    its core electrons was described by a non-local ultrasoft
+spacing. The theoretical band structure obtained using      pseudopotential [13] generated in the 5s2 5p6 5d1 4f 1 elec-
+the AMF version of LDA+U is reported in fig. 4 together     tronic configuration. Kinetic cutoffs of 30 Ry and 240 Ry
+with some experimental results [32]. The overall agree-     were adopted for wavefunction and charge density Fourier
+ment is rather good for this scheme. However, when using    expansion. The LSDA approximation was adopted for
+the standard LDA+U scheme a somehow worse agree-            the exchange and correlation functional. Brillouin Zone
+ment with experimental data was obtained, mainly due        integrations where performed using 8×8×8 Monkhorst
+to a rigid downward shift of the majority spin bands of     and Pack special point grids [26] using Methfessel and
+about 1 eV. This is an indication that LDA+U approx-        Paxton smearing technique [27] with a smearing width
+imation may still require some fine tuning in order to      of 0.05 Ry.
+describe accurately both strongly and weakly correlated        To obtain the response to an isolated perturbation we
+systems [31].                                               have perturbed a Cerium atom in three different cells: i)
+   Let us proceed to examine the Cerium case. Elemen-       the fundamental face-centered cubic (FCC) cell contain-
+tal cerium presents a very interesting phase diagram with   ing just one inequivalent atom, ii) a simple-cubic (SC)
+a peculiar isostructural α − γ phase transition between     cell containing 4 atoms (giving access to the first nearest-
+a low volume (α) and a high volume (γ) phase, both          neighbor response) and iii) a 2×2×2 FCC cell (8 in-
+FCC. This phase transition has attracted much experi-       equivalent atoms) including also the response of second-
+mental and theoretical interest and in the last 20 years    nearest neighbor atoms. The result of these calculations
+[33], many interpretations have been put forward to ex-     and their extrapolation to very large SC cells is reported
+plain its occurrence. It is clear now that standard LDA     in Fig. 5 where it can be seen that the converged value
+                                                                                                                            9
+
+                   5
+
+
+                   4
+
+
+
+
+  Hubbard U (eV)
+                                                on-site
+                   3                            first n.n.
+                                                second n.n.
+
+                   2
+
+
+                   1
+                    0   50    100     150     200       250
+                        number of atoms per unit cell
+
+FIG. 5: Calculated Hubbard U in metallic Cerium for
+different supercells. Lines connect results from the cell-
+extrapolation procedure and different symbols correspond to
+inclusion of screening contributions up to the indicated shell
+of neighbors of the perturbed atom.
+
+
+                                                                  FIG. 6: The unit cell of FeO: blue spheres represent Oxygen
+                                                                  ions, red ones are Fe ions, with arrows showing the orienta-
+for U approaches 4.5 eV.                                          tion of their magnetic moments. Ferromagnetic (111) planes
+                                                                  of iron ions alternate with opposite spins producing type II
+   The screening in metallic cerium is extremely localized,       antiferromagnetic order and rhombohedral symmetry.
+as can be seen from the fact that inclusion of the first-
+nearest neighbor response is all is needed to reach con-
+                                                                       Transition metal monoxides: FeO and NiO
+verged results. This is at variance with what we found in
+metallic Iron where third nearest-neighbor response was
+still significant (see Fig. 2). The calculated value is not          The use of the LDA+U method for studying FeO is
+far from the value (5-7 eV) expected from empirical and           mainly motivated by the attempt to reproduce the ob-
+experimental estimates [20, 23, 24], especially if we con-        served insulating behavior. In fact, as for other tran-
+sider that the parameter U we compute plays the role              sition metal oxides (TMO), standard DFT methods, as
+of U − J in the simplified rotational invariant LDA+U             LDA or GGA, produce an unphysical metallic character
+scheme adopted [14].                                              due to the fact that crystal field and electronic struc-
+                                                                  ture effects are not sufficient in this case to open a gap
+   As a check, we performed all-electron atomic calcula-          in the three-fold minority-spin t2g levels that host one
+tions for Ce+ ions where localized 4f electrons were pro-         electron per Fe2+ atom. As already addressed in quite
+moted to more delocalized 6s or 5d states and obtained            abundant literature on TMO (and FeO in particular), a
+U = E(f 3 s0 ) + E(f 1 s2 ) − 2 × E(f 2 s1 ) = 4.4 eV, or         better description of the electronic correlations is neces-
+U = E(f 2 s0 d1 ) + E(f 0 s2 d1 ) − 2 × E(f 1 s1 d1 ) = 6.4 eV,   sary to obtain the observed insulating behavior and the
+depending on the selected atomic configurations. This             structural properties of this compound at low pressure
+confirms the correct order of magnitude of our calculated         [36, 37, 38, 39]. The application of our approach to this
+value in the metal.                                               material will thus allow us to check its validity by com-
+                                                                  parison of our results with the ones from experiments and
+  The present formulation is therefore able to provide            other theoretical works.
+reasonable values for the on-site Coulomb parameter                  The unit cell of this compound is of rock-salt type,
+both in Iron and Cerium, at variance with the original            with a rhombohedral symmetry introduced by a type II
+scheme of ref. [8] where only the latter was satisfactorily       antiferromagnetic (AF) order (see fig. 6) which sets in
+described. We believe that a proper description of the            along the [111] direction below a Neél temperature of 198
+interatomic screening, rather unphysical in the original          K, at ambient pressure.
+scheme where atoms were artificially disconnected from               The calculations on this materials were all performed
+the environment, is important to obtain a correct value           in the antiferromagnetic phase starting from the cubic
+for Hubbard U parameter, especially in Iron where this            (undistorted) unit cell of fig. 6 with the experimental
+response is more long-ranged.                                     lattice spacing. We used a 40 Ry energy cut off for the
+                                                                                                                                            10
+
+
+                     5.0                                                                          5
+
+
+                                                                                                  0
+
+
+                                                                                   Energy [eV]
+                     4.0
+
+
+
+
+    Hubbard U (eV)
+                                                                         C1
+                                                                         C4
+                                                                         C16
+
+
+                     3.0                                                                          -5
+
+
+                                                                                                 -10
+                                                                                                           GGA
+                     2.0
+                        0.0   50.0       100.0       150.0       200.0    250.0                        Γ         L K     T     Γ           X
+                                     Number of Fe ions per unit cell
+
+
+                                                                                                  5
+FIG. 7: Convergence of Hubbard U parameter of FeO with
+the number of iron included in the supercell used in the ex-
+trapolation. Lines connect results including the screening con-
+tributions extracted from the indicated cell.
+                                                                                                  0
+
+
+                                                                                   Energy [eV]
+electronic wavefunctions (400 Ry for the charge density
+due to the use of ultrasoft pseudopotentials [13] both for
+Fe and O) and a small smearing width of 0.005 Ry which                                            -5
+required a 4×4×4 k-points mesh.
+   To compute the Hubbard effective interactions, we per-
+                                                                                                 -10 LDA+U
+formed GGA calculations with potential shifts on one
+Hubbard site in larger and larger unit cells, that we
+                                                                                                    Γ    L K             T     Γ           X
+named C1, C4, and C16, containing 2, 8, and 32 iron
+ions respectively, and extrapolated their results up to
+a supercell containing 256 magnetic ions (called C128).                           FIG. 8: The band structure of FeO in the undistorted (cubic)
+The result for the undistorted cubic cell at the exper-                           AF configuration at the experimental lattice spacing obtained
+imental lattice spacing is reported in fig. 7. We can                             within GGA (top panel) and LDA+U using the computed
+observe that the effective interaction obtained from C4                           Hubbard U of 4.3 eV (bottom panel). The zero of the energy
+                                                                                  is set at the top of the valence band.
+is already very well converged, when extrapolated to the
+largest cell, with respect to inclusion of screening from
+additional shells of neighborers,
+   The final result for the Hubbard U is 4.3 eV which is                          is in very good agreement with experiments (and other
+smaller than most of the values obtained (or simply as-                           theoretical results [39, 40]) where a first weak absorp-
+sumed) in other works [37, 38, 39]. If we use this value                          tion is reported between 0.5 and 2 eV and a stronger line
+in a LDA+U calculation we can obtain the observed in-                             appears around 2.4 eV [41]. The large mixing between
+sulating behavior as shown in the band structure plot of                          majority-spin Iron 3d states and the Oxygen 2p manifold
+fig. 8 where a comparison is made with GGA (metallic)                             over a wide region of energy and the finite contribution
+results.                                                                          of the Oxygen states at the top of the valence band—a
+   A gap opens around the Fermi level whose minimal                               feature not present within σ-GGA (see top panel in fig.
+width is about 2 eV. The band gap is direct and located                           9)— are also in good agreement with experiments, which
+at the Γ point. The corresponding transition, of 3d(Fe)-                          indicate for FeO a moderate charge transfer character of
+2p(O)→4s(Fe) character, should be quite weak due to                               the insulating state.
+the vanishing weight of Iron s states at the bottom of                               Despite our U is smaller than the ones used in litera-
+the valence band (fig. 9, bottom picture). We can ex-                             ture, we find a good agreement of our results about the
+pect that a stronger absorption line will appear instead                          electronic structure of the system with experiments and
+around 2.6 eV due to the transition, of 3d(Fe)-2p(O) →                            other theoretical works. These findings confirm the va-
+3d(Fe) character, among two pronounced peaks of the                               lidity of our internally consistent method to compute U .
+density of states around the Fermi level. This picture                            We now want to extend its application to the study of
+                                                                                                                                                          11
+
+                        7.0                                                                                      64
+
+
+
+
+                                                                                  Rhombohedral angle (degrees)
+                                  Fe d states (majority spin)
+                        6.0                                   GGA
+                                  Fe d states (minority spin)                                                    62
+                                                                                                                                             GGA
+                                  Fe s states                                                                                                Exp
+
+
+
+
+ DOS (states/eV/cell)
+                        5.0                                                                                      60                          LDA+U
+                                  O p states                                                                                                 LDA+U(BSP)
+                        4.0                                                                                      58
+                        3.0                                                                                      56
+                        2.0                                                                                      54
+                        1.0                                                                                      52
+                        0.0                                                                                       0   50   100       150      200     250
+                          -10.0       -5.0                  0.0           5.0                                              Pressure (kbar)
+                                              Energy (eV)
+                                                                                FIG. 10: The pressure dependence of the rhombohedral angle
+                        7.0
+                                                                                in FeO for the various approximations described in the text is
+                                                                                compared with experimental results. These latter results were
+                        6.0
+                                                                  LDA+U         extracted extrapolating the data for the non stoichiometric
+                                                                                compound Fe1−x O up to the stoichiometric composition [42,
+                                                                                43].
+
+
+
+
+ DOS (states/eV/cell)
+                        5.0
+
+                        4.0
+                                                                                structures [42].
+                        3.0
+                                                                                    We have computed the Hubbard U on a grid of possible
+                        2.0                                                     values for the rhombohedral distortion and cell parame-
+                                                                                ter and then from the corresponding total energy calcu-
+                        1.0                                                     lations we determined the rhombohedral distortion and
+                        0.0
+                                                                                the enthalpy of the system as a function of the pressure
+                          -10.0        -5.0                 0.0           5.0   up to 250 Kbar.
+                                              Energy (eV)
+                                                                                    As evident from fig. 10, while GGA overestimates the
+                                                                                rhombohedral distortion and his pressure dependence,
+FIG. 9: Projected density of states of FeO in the undis-                        LDA+U method—in the standard electronic configura-
+torted (cubic) AF configuration at the experimental lattice
+spacing obtained within GGA (top panel) and LDA+U using
+                                                                                tion examined so far–overcorrects the GGA results and
+the computed Hubbard U of 4.3 eV (bottom panel).                                introduces even larger errors with respect to experimen-
+                                                                                tal results. In fact not only we obtain a distortion with
+                                                                                the wrong sign (of compressive character along the [111]
+                                                                                direction), but also the wrong pressure dependence. The
+structural properties. This is indeed a very important                          reason for this failure can be traced back to the different
+test because a good ab-initio method should be able to                          occupation of the orbitals around the gap/Fermi level in
+describe the true ground state of a system and provide                          the two cases. Even in the undistorted cell, the rhombo-
+a complete description of both electronic and structural                        hedral symmetry, induced by the antiferromagnetic or-
+properties. Furthermore the plane-wave implementation                           der, lifts the degeneracy of the minority spin t2g states
+we use allows a straightforward calculation of Hellmann-                        of iron and split them in one state of A1g character—
+Feynman forces and stresses, thus giving easily access to                       which is essentially the m=0 (z 2 ) state along the [111]
+equilibrium crystal structure.                                                  quantization axis—and two states of eg symmetry local-
+   As observed in experiments [42], the cubic rock salt                         ized on the iron (111) planes. Within GGA, the Iron
+structure of FeO shown in fig. 6 becomes unstable un-                           minority-spin 3d electrons partially occupy the two equiv-
+der a pressure of 16 GPa (at room temperature) toward                           alent eg orbitals giving rise to two half filled bands and a
+a rhombohedral distortion. In the distorted phase the                           (wrong) metallic state which is delocalized on the (111)
+unit cell is elongated along the [111] direction with a                         plane. The system gains energy by filling the lowest half
+consequent shrinking of the interionic distances on the                         of the eg states and tends to elongate in the [111] direc-
+(111) planes. This transition is driven by the onset of the                     tion, shrinking in the plane, because this increases the
+AFII magnetic order [42] (the Neél temperature reaches                         overlap of the eg states and their bandwidth. Within
+room value at about 16 GPa) which imposes a rhombohe-                           LDA+U, fractional occupation of orbitals is energetically
+dral symmetry even in the cubic phase. Upon increasing                          disfavored and the system would like to have completely
+pressure above the threshold value the distortion of the                        filled or empty 3d states. In the standard unit-cell con-
+unit cell is observed to increase producing more elongated                      sidered so far in the literature—and used by us in the
+                                                                                                                        12
+
+  iron [111] plane
+
+
+
+
+FIG. 11: Lattice distortion in the (111) iron planes used to
+induce symmetry breaking in the electronic configuration of
+FeO.
+
+
+
+calculation above—this can be accomplished only by fill-
+ing the non-degenerate A1g level, corresponding to wave-
+functions elongated along [111], and pushing upward in
+energy the in-plane eg states, leaving them empty. As
+a consequence, the system tends to pull apart the ions         FIG. 12: The projected density of states of FeO as obtained
+on the same (111) plane, so that the bandwidth of the          in the ”standard” LDA+U ground state (top panel) and in
+                                                               the proposed broken symmetry phase (bottom panel). On the
+state in the plane is reduced, and increases instead the
+                                                               right of each DOS is a picture of the corresponding occupied
+inter-plane overlap of the A1g states. This simple picture     Fe-3d minority states.
+gives an explanation of the fact that GGA overestimates
+the elongation of the unit cell in the [111] direction, as
+well as the (wrong) compressive behavior of the standard       possible, the system is topologically frustrated and some
+LDA+U solution. We are thus left with the paradoxical          compromise is necessary.
+situation that a correct pressure dependence of the struc-        It is generally believed [45] that Heisenberg model in
+tural properties can be obtained from the wrong band           the triangular lattice, to which our system resemble in
+structure and viceversa.                                       some sense, displays a three-sublattice 120◦ Néel long-
+   We have found that it is possible to solve this para-       range order. We thus imposed a symmetry breaking to
+dox by allowing the possibility that the system partially      the system where three nearest-neighbor atoms in the
+occupies, as within GGA, the eg levels, thus maintaining       (111) plane were made inequivalent by slightly displac-
+the driving force for the right rhombohedral deformation,      ing them from the ideal positions in the way shown in
+and still opens a gap, as in standard LDA+U, by some           fig. 11. This induced the desired symmetry breaking of
+orbital ordering that breaks the equivalence of the iron       the electronic structure and opened a gap that was ro-
+ions in the (111) plane. This possibility has been some-       bust and persisted when the atoms were brought back
+times proposed in literature [39, 44] but has never been       into the ideal positions. We found, quite satisfactorily,
+clearly addressed.                                             that the new broken symmetry phase (BSP) corresponds
+   From a simple tight-binding picture one finds that the      to a lower energy minimum than the ”standard” LDA+U
+optimal broken symmetry phase would be the one where           solution and that therefore it is, to say the least, a more
+occupied eg orbitals have the highest possible hopping         consistent description of the ground state of FeO. The one
+term with unoccupied eg orbitals in nearest-neighbor           depicted in fig. 11 is, of course, only one of three equiva-
+atoms in the plane, in order to maximize the kinetic           lent distortions we could have imposed to the electronic
+energy gain coming from delocalization, and the low-           structure of the system and three symmetry related BSPs
+est possible hopping term with neighboring occupied eg         could be defined. In the actual system an effective equiv-
+orbitals, in order to minimize bandwidth that tends to         alence of the ions in the (111) planes is probably restored
+destroy the insulating state. In bipartite lattice this is     by a (dynamical) switching among equivalent states but
+simply achieved by making occupied orbitals in nearest-        considering the atoms as strictly equivalent, as in the
+neighbor sites orthogonal but, in the triangular lattice,      standard solution, leads to incorrect results.
+formed by iron atoms in (111) planes, this is not exactly         The comparison of the projected density of state in the
+                                                                                                                      13
+
+”standard” LDA+U solution and in the novel BSP phase          studied the convergence properties of U with system size
+is shown in fig. 12 where also a pictorial representation     as we did in FeO but, assuming a similar convergence
+of the occupied minority-spin orbitals in the two cases       also in this case, we performed a constrained calculation
+is shown. As we can observed, no remarkable qualita-          only in the C4 cell and then extrapolated the obtained
+tive difference in the DOS appears apart from the differ-     result to the C128 supercell. The calculated value of the
+ent ordering of the d states around the gap. In fact the      U parameter is 4.6 eV. This value is smaller than litera-
+minority-spin d electron is now accommodated on a state       ture values for the same parameter that are rather in the
+lying on the (111) plane (shown on the right panel) while     range of 7-8 eV [1], however it has been recently pointed
+the one with A1g (z 2 ) character has been pushed above       out [12, 14] that in obtaining these values self-screening
+the energy gap. The gap width and the charge transfer         of d electrons is neglected and that better agreement with
+character of the system do not change significantly and       experimental results is obtained using an effective Hub-
+are still in very good agreement with the experiments.        bard U of the order of 5-6 eV.
+   We repeated the structural calculations (according to         The magnetic moment of the Ni ions is correctly de-
+the same procedure described above) in the BSP, and           scribed within the present GGA+U approach which gives
+obtained the LDA+U (BSP) curve reported in fig. 10.           a value of 1.7 µB well within the experimental range of
+The agreement with experiments is much improved with          values ranging from 1.64 and 1.9 µB [48, 49], better than
+respect to both GGA and LDA+U ”standard” ground               the value of 1.55 µB obtained within GGA.
+states. The mechanism leading to the pressure behavior           In fig. 13 and fig. 14 the band structure and atomic-
+in BSP case is basically the same already producing the       state projected density of states of NiO obtained with this
+correct evolution of distortion in the GGA calculations.      value of U is shown, along with the results of standard
+When the unit cell elongates along the cubic diagonal         GGA, and compared with the photoemission data in the
+the iron ions in the (111) plane get closer and the hop-      ΓX direction extracted from ref. [46, 47].
+ping between nearest-neighbor orbitals increased with a          Despite the agreement with the experimental band-
+consequent lowering of the electronic kinetic energy.         dispersion is not excellent—the valence band width is
+   We therefore conclude that LDA+U, not only improves        somehow overestimated by both GGA and GGA+U
+the description of the structural and electronic properties   calculations—, GGA+U band structure reproduces well
+with respect to GGA, but that a close examination of          some features of the photoemmission spectrum for this
+both electronic and structural properties is in this case     compound and gives a much larger band gap than the
+necessary in order to describe the correct ground state of    one obtained within GGA approximation. A very im-
+the system.                                                   portant feature to be noticed in the density of states re-
+   Another classical example of TMO we want to study          ported in fig. 14 is the fact that GGA+U modifies quali-
+in order to test the present implementation of LDA+U          tatively the nature of the states at the top of the valence
+is Nickel Oxide. It is a very well studied material and       band, and hence the nature of the band gap: in GGA
+there is a good number of theoretical [12] and experi-        approximation the top of valence band is dominated by
+mental works, including some photoemission experiments        Nickel d-states while in the GGA+U calculation the Oxy-
+[46, 47], our results can be compared with. At variance       gen p-states give the most important contribution. In
+with FeO, no compositional instability is observed for        both approaches the bottom of the conduction band is
+NiO so that the stoichiometric compound is easy to study      mainly Nickel d-like and therefore the predicted band
+and is much better characterized than iron oxide. It has      gap is primarily of charge-transfer type within GGA+U,
+cubic structure with the same AF spin arrangements of         in agreement with experimental and theoretical evidence
+rhombohedral symmetry as FeO, but does not show ten-          [40, 50, 51], while it is wrongly described as of Mott-
+dencies toward geometrical distortions of any kind and is     Hubbard type according GGA approximation.
+therefore easier to study.                                       Our GGA+U value for the optical gap is ≈ 2.7 eV
+   In this case we did not perform any structural relax-      around the T point, smaller that commonly accepted
+ation and calculated the value of U at the experimental       experimental values that range from 3.7 to 4.3 eV
+lattice spacing for the cubic unit cell imposing the rhom-    [52, 53, 54, 55]. More recently however, a re-examination
+bohedral AF magnetic order which is the ground state          [56] of the best available optical absorption data [52]
+spin arrangement for this compound. The GGA approx-           pointed out that optical absorption in NiO starts at pho-
+imation (in the PBE prescription) was used in the calcu-      ton energy as low as 3.1 eV, not far from our theoretical
+lation. US pseudopotentials for Nickel and Oxygen (the        result. Indeed, Bengone and coworkers [12] reported re-
+same as in FeO) were used with the same energy cutoffs        cently an LDA+U calculation in NiO where different em-
+(of 40 and 400 Ry respectively) for both the electronic       pirical values of U were employed. When U = 5 eV was
+wavefunctions and the charge density as for FeO and also      used—a value close to our present first-principles result—
+the same 4×4×4 k-point grid for reciprocal space integra-     , they obtained an optical gap of 2.8 eV, very close to
+tions.                                                        our results, and an excellent agreement between the cal-
+   In the calculation of the Hubbard U of NiO we did not      culated and experimental [52] optical absorption spectra.
+                                                                                                                                             14
+
+                                                                                       7.0
+                5                                                                                Ni d states (majority spin)
+                                                                                       6.0       Ni d states (minority spin)         GGA
+                                                                                                 Ni s states
+
+
+
+
+                                                                DOS (states/eV/cell)
+                                                                                       5.0       O p states
+                0
+
+
+ Energy [eV]
+                                                                                       4.0
+
+                                                                                       3.0
+
+                -5                                                                     2.0
+
+                                                                                       1.0
+
+                         GGA                                                           0.0
+               -10                                                                       -10.0           -5.0                  0.0           5.0
+                     Γ         L K         T    Γ        X                                                      Energy (eV)
+
+
+                                                                                       7.0
+                5
+                                                                                       6.0                                           LDA+U
+
+
+
+                                                                DOS (states/eV/cell)
+                                                                                       5.0
+
+                0
+
+
+ Energy [eV]
+                                                                                       4.0
+
+                                                                                       3.0
+
+                                                                                       2.0
+                -5
+                                                                                       1.0
+
+                                                                                       0.0
+                     LDA+U                                                               -10.0           -5.0                  0.0           5.0
+               -10                                                                                              Energy (eV)
+                     Γ         L K         T    Γ        X
+                                                                FIG. 14: Projected density of states of NiO in the undis-
+                                                                torted AF configuration at the experimental lattice spacing
+FIG. 13:      The band structure of NiO in the undistorted
+                                                                obtained with U = 4.6 eV.
+(cubic) AF configuration at the experimental lattice spacing
+obtained within GGA (top panel) and with the computed
+Hubbard U of 4.6 eV (bottom panel). The zero of the energy
+is set at the top of the valence band. Experimental data from      From x-rays diffraction studies it is known that Fay-
+ref. [46] (empty symbols) and [47] (solid symbols) are also     alite has an orthorhombic cell, whose experimental lattice
+reported.                                                       parameters are (in atomic units) a = 19.79, b = 11.50,
+                                                                c = 9.11. The unit cell (depicted in fig. 15) contains
+                                                                four formula units, 28 atoms: 8 iron, 4 silicon, and 16
+The same calculation with the literature value of U = 8         oxygen atoms. Silicon ions are tetrahedrally coordinated
+eV, gave a larger value for the optical gap but a very poor     to oxygens, whereas iron ions occupy the centers of dis-
+agreement with the experimental absorption spectrum.            torted oxygen octahedra. The point group symmetry of
+                                                                the non magnetic crystal is mmm (D2h in the Schoenflies
+                                                                notation) and the space group is Pnma. The magnetiza-
+                           Minerals: Fayalite                   tion of iron reduces the original symmetry and only half
+                                                                of the symmetry operations survive. The general expres-
+   As a final example we want to apply the present              sion for the internal structural degrees of freedom is given
+methodology to Fayalite, the iron-rich end member of            in table II in the Wyckoff notation [58].
+(Mg,Fe)2 SiO4 olivine (orthorhombic structure), one of             Iron sites can be divided into two classes (see fig. 15
+the most abundant minerals in Earth’s upper mantle.             and tab. II): Fe1 centers which are structured in chains
+Recently [57] we showed that, although good structural          running parallel to the b, [010], side of the orthorhom-
+and magnetic properties could be obtained for this min-         bic cell, and Fe2 sites which belong to mirror planes for
+eral within LDA or GGA, its electronic properties were          the non magnetic crystal structure perpendicular to the
+incorrectly described as metallic, confirming the corre-        b side and cutting it at 1/4 and 3/4 of its length. The
+lated origin of the observed insulating behavior.               main structural units are the iron centered oxygen octa-
+                                                                                                                                                15
+
+
+                                                                                     5.0
+
+
+
+
+                                                                                     4.5
+
+
+
+
+                                                                    Hubbard U (eV)
+                                                                                                                                           U1
+ b                                                                                                                                         U2
+                                                    Fe1 sites
+
+                                                                                     4.0
+
+
+                      a
+                      Fe2 sites          Si     O
+                                                                                     3.5
+                                                                                        0.0   50.0       100.0        150.0        200.0   250.0
+                                                                                                     number of iron ions per unit cell
+
+
+
+                  b                                             FIG. 16: Convergence of Hubbard parameters of Fayalite with
+         c                                                      the number of iron included in the supercell used in the ex-
+                                                                trapolation. U1 is the value obtained for Fe1 ions, U2 the one
+                                                                for Fe2.
+
+
+                                   a
+                                                                iron-iron magnetic interaction via a superexchange mech-
+                                                                anism through oxygen p orbitals.
+                                                                   The calculation of U was performed for the experimen-
+                                                                tal geometry, in the above mentioned spin configuration.
+                                                                As the primitive unit cell of fayalite is already quite large,
+                                                                we performed the constrained calculation only in this cell
+FIG. 15: The unit cell of Fayalite. Large dark ions are Fe,     and used larger supercells only to extrapolate the results.
+small dark ions are O, light ions are Si.
+                                                                We considered three supercells in addition to the prim-
+                                                                itive one: i) a cell duplicated in the [0, 1, 0] chain direc-
+                                                                tion (a 1×2×1 supercell), containing 16 iron atoms; ii)
+TABLE II: Definition of the Wyckoff structural parameters
+                                                                a cell, containing 64 iron ions, obtained by duplicating
+appropriate for Fayalite structure
+                                                                the primitive structure in all directions (a 2×2×2 super-
+             Ion          Class         Coordinates             cell) and iii) a 4×4×2 supercell (256 iron ions). Other
+             Fe1           4a       (0,0,0), (1/2,0,1/2)        computational details where similar to those used in our
+                                  (0,1/2,0), (1/2,1/2,1/2)      previous work [57]. As GGA approximation provided a
+      Fe2, Si, O1, O2       4c          ±(u,1/4,v),             slightly better description of the system than LDA, we
+                                    ±(u+1/2,1/4,1/2-v)          assumed this functional as the starting point to be im-
+             O3            8d      ±(x,y,z), ±(x,1/2-y,z),      proved; the same pseudopotentials used in ref. [57] for
+                                   ±(x+1/2,1/2-y,1/2-z),        Fe, O and Si were adopted here; somehow larger energy
+                                     ±(x+1/2,y,1/2-z)           cutoff for the electronic wave functions and charge den-
+                                                                sity (36 and 288 Ry respectively) and a small smearing
+                                                                width of 0.005 Ry were used. A 2×4×4 Monkhorst-Pack
+hedra which are distorted from the cubic symmetry and           grid of k-points in the primitive cell was found sufficient
+tilted with respect to each other both along the chains         for the BZ integration.
+and on nearest Fe2 sites. Fayalite is known to be an anti-         The results of the U calculation for the two different
+ferromagnetic (AF) compound with slightly non collinear         families of iron sites (Fe1 and Fe2) are reported in fig.
+arrangement of spin on Fe1 iron site (this non collinear-       16 where the rapid convergence with respect supercell
+ity will not be addressed here). Magnetic moments along         dimension can be seen. The final results for the on-site
+the central and the edge Fe1 chains are antiferromagnet-        Coulomb parameters are U1 = 4.9 eV for Fe1 ions and
+ically oriented and from our previous work [57] the most        U2 = 4.6 eV for Fe2, which are in fairly good agreement
+stable spin configuration is the one in which the magne-        with the approximate (average) value of 4.5 eV obtained
+tization of Fe2 ion is parallel to the one of the closest       in ref. [57] from a rather crude estimate.
+Fe1 iron. This magnetic structure is consistent with an            The GGA+U band structure of Fayalite is shown in fig.
+                                                                                                                                                       16
+
+
+                                                                                             7.0
+                                                                                                          O p states
+                                                                                             6.0          Fe1 d states (majority spin)
+                    5
+                                                                                                          Fe1 d states (minority spin)
+                                                                                             5.0
+
+
+
+
+                                                                      DOS (states/eV/cell)
+                                                                                             4.0
+
+                                                                                             3.0
+
+                    0
+
+
+     Energy [eV]
+                                                                                             2.0
+
+                                                                                             1.0
+
+                                                                                             0.0
+                                                                                               -10.0            -5.0             0.0             5.0
+                                                                                                                        Energy (eV)
+                    -5
+
+                                                                  FIG. 18: Some atomic-projected density of states of Fayalite
+                                                                  obtained within the present LDA+U approach. Contributions
+                                                                  from majority- and minority-spin 3d states of one of the Fe1
+                                                                  iron ions and from the total 2p manifold of one oxygen ion
+                                                                  are shown.
+                   -10
+                         Γ   X   S   Y   Γ   Z   U   R   T    Z
+
+                                                                  TABLE III: Comparison of the experimental and LDA+U
+                                                                  calculated values for the Wyckoff structural parameters of
+FIG. 17: The band structure of Fayalite obtained within           Fayalite as defined in table II
+the present LDA+U approach. The zero of the energy is set                                                 Ion     u       v       x      y   z
+to the top of the valence band. Complete degeneracy among
+spin up and spin down states is present.                                                           Exp.
+                                                                                                          Fe2 0.780 0.515
+                                                                                                           Si 0.598 0.071
+                                                                                                          O1 0.593 0.731
+17 while in fig. 18 some atomic-projected density of states
+are reported. At variance with the GGA results reported                                                   O2 0.953 0.292
+in ref. [57] a band gap of about 3 eV now separates the                                                   O3              0.164 0.038 0.289
+valence manifold from the conduction one, in reasonable                                      GGA + U
+agreement with the experimental result of about 2 eV                                                      Fe2 0.779 0.515
+[59] at zero pressure.                                                                                     Si 0.597 0.072
+   The minority spin t2g manifold of iron ions, that within                                               O1 0.593 0.735
+GGA cross the Fermi energy, is split into two subgroups                                                   O2 0.951 0.289
+by the gap opening. The conduction-band states are                                                        O3              0.165 0.036 0.286
+shrunk to a narrow energy range and moved above the
+bottom of the iron s-states band which remains almost
+unaffected; the lower-energy minority-spin d-states, in-          below the top of the valence band. A finite contribu-
+stead, merge in the group of states below the Fermi level         tion of the oxygen states is present close to the top of
+where they mix strongly with states originating from              the valence manifold showing that the gap is mainly of
+Oxygen p orbitals: the two sets of states, well separated         Mott-Hubbard type with a partial charge-transfer char-
+in the GGA results, collapse into a unique block. The             acter.
+most evident consequence of the gap opening consists in              We have then relaxed the geometric structure of the
+a pronounced shrinking of the d states of iron which be-          system (both internal and cell degrees of freedom) assum-
+come flatter than in the GGA case. This is evident on             ing no dependence of U1 and U2 on the atomic configu-
+the top of the valence band, but also for states well below       ration. The resulting structural parameters (a = 20.18,
+this energy level, which thus reveal a more pronounced            b = 11.75, c = 9.29 atomic unit) as well as the internal co-
+atomic-like behavior. Beside the gap opening between              ordinates reported in table III are in very good agreement
+the two groups of the minority-spin states, a strong mix-         with the experimental results, even better than the al-
+ing occurs among the oxygen p states and the iron d               ready satisfactory agreement obtained in ref. [57] within
+levels over a rather large region extending down to 8 eV          GGA.
+                                                                                                                            17
+
+   Although we did not studied other spin-configurations,         [9] J.F. Janak, Phys. Rev. B 18, 7165 (1978).
+magnetic properties seam to improve slightly in the              [10] E. Antonides, E.C. Janse, and G.A. Sawatzky, Phys. Rev.
+GGA+U approximation. The magnetic moment on each                      B 15, 1669 (1977).
+                                                                 [11] D. van der Marel, G.A. Sawatzky, and F.U. Hillebrecht,
+iron (both Fe1 and Fe2) was found to be 3.9 µB , in closer
+                                                                      Phys. Rev. Lett. 53, 206 (1984).
+agreement with the spin-only value (4 µB ) of the exper-         [12] O. Bengone, M. Alouani, P. Blöchl, J. Hugel, Phys. Rev.
+imental result (4.4 µB ) than the one obtained by GGA                 B 62, 16392 (2000).
+only (3.8 µB ). This improvement is probably due to the          [13] D. Vanderbilt, Phys. Rev. B 41, 7892 (1990).
+enhanced atomic-like character of iron d states, which is        [14] S.L. Dudarev, G.A. Botton, S.Y. Savrasov, C.J.
+consequence of the gap opening.                                       Humphreys, and A.P. Sutton, Phys. Rev. B, 57, 1505
+   In conclusion, the GGA+U provides a quite good de-                 (1998).
+scription of structural, magnetic and electronic properties      [15] J.P. Perdew, R.G. Parr, M. Levy, and J.L. Balduz, Phys.
+                                                                      Rev. Letters 49, 1691 (1982).
+of fayalite, reproducing the observed insulating behavior        [16] J.P. Perdew, and M. Levy, in Many-body phenomena at
+with a reasonable value for its fundamental band gap.                 surfaces, D.C. Langreth and H. Suhl editors (Academic,
+                                                                      New-York, 1984).
+                                                                 [17] R.O. Jones, and O. Gunnarsson, Rev. Mod. Phys. 61, 689
+                       SUMMARY                                        (1989).
+                                                                 [18] M.S. Hybertsen, M. Schlüter, and N.E. Christensen,
+   In this work we have reexamined the LDA+U approxi-                 Phys. Rev. B 39, 9028 (1989).
+                                                                 [19] A.K. McMahan, R.M. Martin, and S. Satpathy, Phys.
+mation to DFT and a simplified rotational-invariant form
+                                                                      Rev B 38, 6650 (1988).
+of the functional was adopted. We then developed a               [20] P.H. Dederichs, S. Blügel, R. Zeller, and H. Akai, Phys.
+method, based on a linear response approach, to calculate             Rev. Letters 53, 2512 (1984).
+in an internally consistent way the interaction param-           [21] S.L. Adler, Phys. Rev. 126, 413 (1962); N. Wiser, Phys.
+eters entering the LDA+U functional, without making                   Rev. 129, 62 (1963).
+aprioristic assumption about screening and/or basis set          [22] S. Baroni, and R. Resta, Phys. Rev. B 33, 7017 (1986);
+employed in the calculation. Our methodology was then                 M.S. Hybertsen, and S.G. Louie, Phys. Rev. B 35, 5585
+                                                                      (1987).
+successfully tested on a few systems representative of nor-
+                                                                 [23] J.W. Allen, S.J. Oh, O. Gunnarsson, K. Schönhammer,
+mal and correlated metals, simple transition metal oxides             M.B. Maple, M.S. Torikachvili, and I. Lindau, Adv. Phys.
+and iron silicates. In all cases we obtained rather accu-             35, 275 (1986).
+rate results indicating that our scheme allows us to study       [24] J.F. Herbst, R.E. Watson, and J.W. Wilkins, Phys. Rev.
+both electronic and structural properties of strongly cor-            B 17, 3089 (1978).
+related material on equal footing, without resorting to          [25] J.P. Perdew, K. Burke, M. Ernzerhof, Phys. Rev. Letters
+any empirical parameter adjustment.                                   77, 3865 (1996).
+                                                                 [26] A. Baldereschi, Phys. Rev. B 7, 5212 (1973); D.J. Chadi,
+   This work has been supported by the MIUR under the
+                                                                      and M.L. Cohen, Phys. Rev. B 8, 5747 (1973); H.J.
+PRIN program and by the INFM in the framework of the                  Monkhorst, and J.D. Pack, Phys. Rev. B 13, 5188 (1976);
+Iniziativa Trasversale Calcolo Parallelo.                             J.D. Pack, and H.J. Monkhorst Phys. Rev. B 16, 1748
+                                                                      (1977).
+                                                                 [27] M. Methfessel and A.T. Paxton, Phys. Rev. B 40, 3616
+                                                                      (1989).
+                                                                 [28] E.G. Moroni, G. Kresse, J. Hafner, and J. Furthmüller,
+ [1] V.I. Anisimov, J. Zaanen, and O.K. Andersen, Phys. Rev.          Phys. Rev. B 56, 15629 (1997).
+     B 44, 943 (1991).                                           [29] M.T. Czyzyk, and G.A. Sawatzky, Phys. Rev. B 49,
+ [2] V.I. Anisimov, I.V. Solovyev, M.A. Korotin, M.T.                 14211 (1994).
+     Czyzyk, and G.A. Sawatzky, Phys. Rev. B 48, 16929           [30] P. Mohn, C. Persson, P. Blaha, K. Schwarz, P. Novak,
+     (1993).                                                          and H. Eschrig, Phys. Rev. Letters 87, 196401 (2001)
+ [3] I.V. Solovyev, P.H. Dederichs, and V.I. Anisimov, Phys.     [31] A.G. Petukhov, I.I. Mazin, L. Chioncel, and A.I. Licht-
+     Rev. B 50, 16861 (1994).                                         enstein, Phys. Rev. B 67, 153106 (2003).
+ [4] A.I. Lichtenstein, M.I. Katsnelson, Phys. Rev. B 57, 6884   [32] A.M. Turner, A.W. Donoho, and J.L. Erskine, Phys. Rev.
+     (1998); M.I. Katsnelson, and A.I. Lichtenstein, Phys.            B 29, 2986 (1984).
+     Rev. B 61, 8906 (2000); A.I. Lichtenstein, M.I. Kat-        [33] B. Johansson, Philos. Mag. 30, 469 (1976); J.W. Allen
+     snelson, and G. Kotliar, Phys. Rev. Letters 87, 067295           and R.M. Martin, Phys. Rev. Letters 49, 1106 (1982);
+     (2001).                                                          J.W. Allen and L.Z. Liu, Phys. Rev. B 46, 5047 (1992);
+ [5] A.I. Liechtenstein, V.I. Anisimov, and J. Zaanen, Phys.          I.S. Sandalov, O. Hjortstam, B. Johansson, and O. Eriks-
+     Rev. B 52, R5467 (1995).                                         son, Phys. Rev. B 51, 13987 (1995).
+ [6] V.I. Anisimov, F. Aryasetiawan, and A.I. Liechtenstein,     [34] M.B. Zolfl, I.A. Nekrasov, Th. Pruschke, V.I. Anisimov,
+     J. Phys.: Condensed Matter 9, 767 (1997).                        and J. Keller Phys. Rev. Letters 87, 276403 (2001); K.
+ [7] W.E. Pickett, S.C. Erwin, and E.C. Ethridge, Phys. Rev.          Held, A.K. McMahan, and R.T. Scalettar Phys. Rev. Let-
+     B 58, 1201 (1998).                                               ters 87, 276404 (2001).
+ [8] V.I. Anisimov, and O. Gunnarsson, Phys. Rev. B 43,          [35] I.-K. Jeong, T.W. Darling, M.J. Graf, Th. Proffen, R.H.
+     7570 (1991).                                                     Heffner, Y. Lee, T. Vogt, and J.D. Jorgensen, Phys. Rev.
+                                                                                                                           18
+
+     Letters 92, 105702 (2004).                                        Menges, Th. Mull, H.J. Freund, M. Pöhlchen, V.
+[36] D.G. Isaak, R.E. Cohen, M.J. Mehl, and D.J. Singh,                Staemmler, S. Witzel, C. Scharfschwerdt, K. Wenne-
+     Phys. Rev. B 47, 7720 (1993).                                     mann, T. Liedtke, and M. Neumann, Phys. Rev. B 43,
+[37] Z. Fang, I.V. Solovyev, H. Sawada, and K. Terakura,               1969 (1991).
+     Phys. Rev. B 59, 762 (1999).                                 [48] H.A. Alperin, J. Phys. Soc. Jpn. 17, 12 (1962).
+[38] Z. Fang, K. Terakura, H. Sawada, T. Miyazaki, and I.         [49] A.K. Cheetham, and D.A. Hope, Phys. Rev. B 27, 6964
+     Solovyev, Phys. Rev. Letters 81, 1027 (1998).                     (1983).
+[39] I.I. Mazin, and V.I. Anisimov, Phys. Rev. B 55, 12822        [50] G. Lee, and S.J. Oh, Phys. Rev. B 43, 14674 (1991).
+     (1997).                                                      [51] G.A. Sawatzky, and J.W. Allen, Phys. Rev. Letters 53,
+[40] P. Wei, and Z.Q. Qi, Phys. Rev. B 49, 10864 (1994).               2339 (1984).
+[41] I. Balberg, and H.L. Pinch, J. Magn. Magn. Mater. 7, 12      [52] R.J. Powell, and W.E. Spicer, Phys. Rev. B 2, 2182
+     (1978).                                                           (1970).
+[42] T. Yagi, T. Suzuki, and S. Akimoto, J. Geophys. Res.         [53] D. Adler, and J. Feinleib, Phys. Rev. B 2, 3112 (1970).
+     90, 8784-8788 (1985).                                        [54] J. McNatt, Phys. Rev. Letters 23, 915 (1969).
+[43] B. T. M. Willis, H. P. Rooksby, Acta Cryst. 6, 827 (1953).   [55] S. Hüfner, and T. Riesterer, Phys. Rev. B 33, 7267
+[44] R.E. Cohen, S. Gramsh, G. Steinle-Neumann and L.                  (1986).
+     Stixrude, in International School of Physics ”Enrico         [56] S. Hüfner, P. Steiner, I. Sander, F. Reinert, and H.
+     Fermi” (couse 147, Varenna 2001); High pressure Phe-              Schmitt, Z. Phys. B: Condens. Matter 86, 207 (1992)
+     nomena, R.J. Hemley and G.L. Chiarotti editors (IOS          [57] M. Cococcioni, A. Dal Corso, and S. de Gironcoli, Phys.
+     Press, Amsterdam, 2002), p. 215.                                  Rev. B 67, 094106 (2003).
+[45] B. Bernu, C. Lhuillier, and L. Pierre, Phys. Rev. Let-       [58] R.W.G. Wyckoff, Crystal Structures, 2nd ed. (Krieger,
+     ters 69, 2590 (1992); L. Capriotti, A.E. Trumper, and S.          Florida , 1981), Vol. 3, chapter VIII,b10.
+     Sorella, Phys. Rev. Letters 82,3899 (1999).                  [59] Q. Williams, E. Knittle, R. Reichlin, S. Martin, and R.
+[46] Z.X. Shen, C.K. Shih, O. Jepsen, W.E. Spicer, I. Lindau,          Jeanloz, J. Geophys. Res. 95, 21549 (1990).
+     and J.W. Allen, Phys. Rev. Letters 64, 2442 (1990).
+[47] H. Kuhlenbeck, G. Odörfer, R. Jaeger, G. Illing, M.
+
