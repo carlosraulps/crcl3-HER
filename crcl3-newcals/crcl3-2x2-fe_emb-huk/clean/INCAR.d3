@@ -1,0 +1,16 @@
+# Phase 1: Embedded Fe Clean (PBE + D3 BJ)
+PREC     = Accurate
+ENCUT    = 400.0
+EDIFF    = 1.0E-06
+NELM     = 100
+ISMEAR   = 0
+SIGMA    = 0.05
+ISPIN    = 2
+MAGMOM   = 8*3.0 24*0.0 1*4.0
+LREAL    = Auto
+NCORE    = 6
+IVDW     = 12
+IBRION   = 2
+POTIM    = 0.3
+NSW      = 80
+EDIFFG   = -0.025

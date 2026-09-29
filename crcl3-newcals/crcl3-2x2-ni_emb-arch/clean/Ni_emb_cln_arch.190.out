@@ -1,0 +1,10 @@
+==========================================================
+Job Name:    Ni_emb_cln_arch
+Job ID:      190
+Host:        carlos
+Directory:   /home/cr/simulations/crcl3-HER/crcl3-newcals/crcl3-2x2-ni_emb-arch/clean
+Start Time:  Tue Sep 29 11:38:59 AM UTC 2026
+CPUs Alloc:  16 (Partition: batch, Local Arch)
+Time Limit:  24:00:00 (In-Allocation Pipeline D3 -> +U)
+==========================================================
+[Tue Sep 29 11:38:59 AM UTC 2026] Starting Phase 1: PBE + D3 (BJ)...
