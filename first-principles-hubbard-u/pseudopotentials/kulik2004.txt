@@ -1,0 +1,297 @@
+                                                       Density functional theory in transition-metal chemistry: a self-consistent Hubbard U
+                                                                                              approach
+
+                                                                         Heather J. Kulik, Matteo Cococcioni, Damian A. Scherlis,∗ and Nicola Marzari
+                                                                                             Department of Materials Science and Engineering,
+                                                                                      Massachusetts Institute of Technology, Cambridge, MA 02139, USA
+                                                                                                          (Dated: November 26, 2024)
+
+
+
+
+arXiv:cond-mat/0608285v1 [cond-mat.soft] 12 Aug 2006
+                                                                       Transition-metal centers are the active sites for many biological and inorganic chemical reac-
+                                                                    tions. Notwithstanding this central importance, density-functional theory calculations based on
+                                                                    generalized-gradient approximations often fail to describe energetics, multiplet structures, reaction
+                                                                    barriers, and geometries around the active sites. We suggest here an alternative approach, derived
+                                                                    from the Hubbard U correction to solid-state problems, that provides an excellent agreement with
+                                                                    correlated-electron quantum chemistry calculations in test cases that range from the ground state
+                                                                                                                                                 +
+                                                                    of Fe2 and Fe− 2 to the addition-elimination of molecular hydrogen on FeO . The Hubbard U is
+                                                                    determined with a novel self-consistent procedure based on a linear-response approach.
+
+
+                                                          Transition metals are central to our understanding of         The first term represents the contribution already con-
+                                                       many fundamental reactions, as active sites in naturally-        tained in the standard GGA functional, modeled here
+                                                       existing or synthetic molecules that range from metallo-         as a double-counting term, while the second term is the
+                                                       porphyrins and oxidoreductases [1] to alkene metathesis          customary “+U” correction. Therefore, Uscf represents
+                                                       catalysts [2] to light-harvesting photosynthetic complexes       the effective on-site electron-electron interaction already
+                                                       [3]. Despite this relevance, most electronic-structure           present in the GGA energy functional for the GGA+U
+                                                       approaches fail to describe consistently or accurately           ground state when U is chosen to be Uin . Consistency
+                                                       transition-metal centers. Examples include neutral and           is enforced by choosing Uin to be equal to Uscf . The U
+                                                       charged iron dimers [4], FeO+ [5], Mn(salen) epoxidation         obtained from linear-response[12] (labeled here Uout ) is
+                                                       catalysts [6], or hemeproteins [7].                              also obtained by differentiating Eq. 1 with respect to λIT :
+                                                          In this Letter, we argue that generalized gradient
+                                                       approximations (GGA)[8] augmented by a Hubbard U                                        d2 Equad          Uin
+                                                                                                                                      Uout =       I 2
+                                                                                                                                                        = Uscf −     ,             (2)
+                                                       term[9], already very successful in the solid state [10,                                d(λT )            m
+                                                       11], also greatly improve single-site or few-site energies,
+                                                                                                                        where m = 1/ i (aIi )2 can be interpreted as an effective
+                                                                                                                                      P
+                                                       thanks to a more accurate description of self- and intra-
+                                                       atomic interactions. Nevertheless, U is not a fitting pa-        degeneracy of the orbitals whose population is changing
+                                                       rameter, but an intrinsic response property: as shown            during the perturbation (to linear order, δλIi = aIi δλIT
+                                                                                                                                               2                      2
+                                                                                                                        with i ali = 1 and d(λdI )2 = ij aIi aIj dλdI dλI ). Even if in
+                                                                                                                             P                       P
+                                                       by Cococcioni and de Gironcoli [12], U measures the
+                                                                                                                                                 T                   i   j
+                                                       spurious curvature of the GGA energy functional as a             principle Uscf depends on Uin , we find it to be constant
+                                                       function of occupations, and GGA+U largely recovers              over a broad interval, as apparent from Fig. 1: Uout
+                                                       the piecewise-linear behavior of the exact ground-state          is linear in Uin for the relevant range of Uin ∼ Uscf .
+                                                       energy. U is determined by the difference between the            Thus, from few linear-response calculations for different
+                                                       screened and bare second derivativeP    of the energy with       Uin ground states we are able to extract the Uscf that
+                                                       respect to on-site occupations λIT = i λIi (i is the spin-       should be used.
+                                                       orbital, and I the atomic site)[12]. While in the origi-            We employ this formulation in the study of the Fe−    2
+                                                       nal derivation U was calculated from the GGA ground              and Fe2 dimers and the addition-elimination reaction
+                                                       state, we argue here that U should be consistently ob-           of molecular hydrogen on FeO+ : these are paradig-
+                                                       tained from the GGA+U ground state itself. This be-              matic cases of the challenges for first principles meth-
+                                                       comes especially relevant when GGA and GGA+U differ              ods to accurately reproduce the many low-lying mul-
+                                                       qualitatively (metal vs. insulator in the solid state, dif-      tiplet potential energy surfaces associated with transi-
+                                                       ferent symmetry in a molecule). To clarify our approach,         tion metals. It has been argued that spin density func-
+                                                       we first identify in the GGA+U functional the electronic         tional theory can describe the lowest lying state of a
+                                                       terms that have quadratic dependence on the occupa-              given spatial and spin symmetry [13, 14], but difficul-
+                                                       tions:                                                           ties remain in obtaining accurate multiplet splittings[15].
+                                                                                                                    Our GGA or GGA+U calculations have been per-
+                                                                           Uscf X X I X I                             formed with Quantum-ESPRESSO [16]; coupled clus-
+                                                              Equad =                    λi      λj − 1
+                                                                            2                                           ter (CCSD(T)) and B3LYP calculations have been per-
+                                                                                  I    i      j
+                                                                                                                        formed with Gaussian03 [18].
+                                                                       Uin X X I                                           The iron dimer has been investigated both theoret-
+                                                                     +         λi (1 − λIi ).                   (1)
+                                                                        2    i                                          ically [4, 19, 20, 21] and experimentally [22, 23, 24].
+                                                                              I
+                                                                                                                                           2
+
+                                                                               State B3LYP GGA +U0 +Uscf CCSD(T) MRCIa
+                                                                                                 (2eV) (3eV)
+                                                                               8 −
+                                                                                 Σg   0.00 0.00 0.00 0.00    0.00 0.00
+                                                                               8
+                                                                                 ∆g   0.14 -0.52 0.04 0.38   0.40 0.45
+                                                                               9
+                                                                                 Σ−
+                                                                                  g   0.00     0.00    0.00    0.00    0.00      0.00
+                                                                               7
+                                                                                 Σ−
+                                                                                  g   0.34     0.65    0.66    0.60    0.55      0.62
+                                                                               7
+                                                                                 ∆u   0.18     -0.12   0.48    0.72    0.86      0.69
+                                                                               9
+                                                                                 ∆g   0.36     0.28    0.36    0.41    0.38      0.45
+
+                                                                         TABLE I: Multiplet splittings (in eV) for Fe−
+                                                                                                                     2 and Fe2 at
+                                                                         several levels of theory. (a) Ref. [20].
+
+FIG. 1: Linear-response Uout calculated from the GGA+Uin
+                                                                          State GGA GGA+Uscf CCSD(T) MRCIa Expt.b
+ground state of 7 ∆u Fe2 , together with the extrapolated Uscf .          8 −
+U0 is Uout calculated for Uin =0.                                           Σg 2.20, 305 2.20, 301 2.24, 276 2.23, 272 2.1, 250
+                                                                          8
+                                                                            ∆g 2.07, 360 2.08, 355 2.12, 321 2.4, –        –
+                                                                           9
+                                                                             Σ−
+                                                                              g    2.11, 339   2.13, 335      2.17, 296 2.18,299 2.0,300
+The experimental photoelectron spectrum of Fe−                  2 be-      7
+                                                                             Σ−    2.10, 335   2.12, 331      2.16, 304 2.17,310 2.0,300
+                                                                              g
+low 2 eV is remarkably simple - there are only two                         7
+                                                                             ∆u    1.99, 413   2.00, 419      2.00, 404 2.25,195    –
+prominent peaks, one at 1.0 eV and a second peak                           9
+                                                                             ∆g    2.26, 285   2.26, 280      2.28, 220 2.35, –     –
+0.53 eV above it, corresponding to two allowed transi-
+tions to different neutral Fe2 states[23]. A recent multi-               TABLE II: Bond lengths ( Å ) and harmonic frequencies,
+reference configuration-interaction (MRCI) study[20] has                 ωe , (cm−1 ) for Fe−
+                                                                                            2 and Fe2 , compared to experiment (here,
+assigned the three experimental electronic states involved               fundamental frequencies, ω0 ). (a) Ref. [20]. (b) Ref. [23].
+as 8 Σ−        −         9 −          7 −
+       u for Fe2 and Σg and Σg for Fe2 ; more recently,
+CCSD(T) has been shown to be in overall agreement[21].
+Importantly, these electronic states are consistent with                 (3d13 4s3 ) which result from the loss of σu∗ (4s) and σg (3d)
+the experimental measurements for the anion (funda-                      electrons, respectively. In addition, these two states have
+mental frequency ω0 =250±20 cm−1 and bond length                         differing bond lengths (Re of 1.99 and 2.26 Å ) and fre-
+Re =2.10±0.04 Å ), and the two neutral Fe2 states,                      quencies (ωe of 413 cm−1 and 285 cm−1 ), and thus are
+which display similar properties (ω0 =300±15 cm−1 and                    not compatible with experiment[4, 23].
+Re =2.02±0.02 Å )[23].                                                     Our second test case explores the potential energy
+   We first apply our approach to Fe2 and Fe−           2 . We obtain    surfaces of the highly exothermic (∆H < −1.6 eV )
+a U0 of 2 eV (i.e. when calculated from the GGA ground                   addition-elimination reaction of molecular hydrogen on
+state) and a Uscf of 3 eV (since energies at different U                 bare FeO+ . This spin-allowed reaction occurs with ex-
+are not directly comparable, we average U0 and Uscf over                 ceedingly low efficiency (1 in every 100-1000 gas-phase
+all states considered). GGA+Uscf shows a striking and                    collisions results in products), yet when it does proceed
+consistent agreement with MRCI[20] and our CCSD(T)                       it is observed to be barrierless[25, 26, 27]. This ap-
+results, correctly identifying both the lowest anion state               parent contradiction has been explained by a two-state-
+ Σu (3d: σg2 πu4 δg2 πg∗,2 δu2 σu∗,1 4s: σg2 σu∗,2 ) and the first ex-
+8 −
+                                                                         reactivity model [5, 28, 29], wherein the steep reaction
+cited state, 8 ∆g , 0.38 eV above. The lowest, singly ion-               barriers along the spin surface of the reactants and prod-
+ized neutral states, which differ from Fe−             2 only by the     ucts (sextets in both cases) preclude an efficient, exother-
+loss of the spin down or spin up σu∗ (4s) orbital, are 9 Σ−         g    mic reaction. Instead, the reaction must occur along
+and 7 Σ−         9 −           7 −
+         g . The Σg → Σg GGA+Uscf splitting of 0.6                       a shallow but excited spin surface (here, the quartet),
+eV compares very well with theoretical results (MRCI                     and the reaction bottleneck is the coupling of the two
+and CCSD(T)) and the experimental splitting (0.53 eV)                    surfaces which permits the necessary spin-inversion at
+in Table I. The structure of these two states (see Table                 the entrance and exit channels. For several exchange-
+II) is also consistent with experimentally observed close                correlation functionals, (including B3LYP)[5, 29], the re-
+similarity of Re and ω0 for the two neutral states and the               action coordinates have failed to agree qualitatively with
+modest decrease in Re (0.08 Å ) and increase in ω0 (∼                   experiments[25, 26, 27], higher level correlated-electron
+50 cm−1 ) with respect to Fe−        2 [32].                             calculations[28, 30], or with the established paradigm of
+   In stark contrast with MRCI, CCSD(T) and                              a two-state model[29].
+GGA+Uscf , GGA favors the 8 ∆g Fe−                    2 state (3d :
+                                                                   14
+                                                                            For the bare FeO+ reactant, GGA predicts a 6 Σ+
+  2 4 3 ∗,2 2 ∗,1         3     2 ∗
+σg πu δg πg δu σu , 4s : σg σu ) by as much as 0.9 eV rela-              ground state and two nearly degenerate low-lying quartet
+tive to other methods. Neutral states arising from single                states, 4 ∆ and 4 Φ, 0.84 eV above. GGA+Uscf (5.5 eV)
+ionization of the 8 ∆g state are 7 ∆u (3d14 4s2 ) and 9 ∆g               preferentially stabilizes 4 Φ FeO+ and yields a 6 Σ+ → 4 Φ
+                                                                                                                          3
+
+                       6
+                      FeO+        4
+                                    FeO+
+          Method Re ωe ωe xe Re ωe ωe xe
+           GGA 1.62 901 328 1.56 1038 332
+         GGA+U 1.66 749 432 1.75 612 172
+         CCSD(T) 1.66 724 434 1.70 633 188
+
+TABLE III: Equilibrium bond lengths, Re (Å), harmonic fre-
+quencies, ωe (cm−1 ), and anharmonicities, ωe xe (cm−1 ) for
+the 6 Σ+ and 4 Φ states of FeO+ .
+
+
+
+
+                                                               FIG. 3: Potential energy surface and geometries for the FeO+
+                                                               + H2 reaction using GGA+U (5 eV) (blue) as compared
+                                                               against a CCSD(T) reference (black). Solid indicates sextet
+                                                               while dashed indicates quartet, as in Fig. 2. (Color online.)
+
+
+                                                                           ∆E6→4 GGA GGA+U CCSD(T)
+                                                                           FeO+ 0.84       0.54    0.57
+                                                                            Int-1 0.20     0.38    0.43
+                                                                            Int-2 -0.05    0.03    0.05
+                                                                            Int-3 -0.09 0.19(0.12) 0.09
+FIG. 2: Potential energy surface and geometries for the                      Fe+  0.25     0.22    0.18
+FeO+ + H2 reaction using GGA (blue) as compared against
+a CCSD(T) reference (black). Solid indicates sextet while      TABLE IV: Multiplet splittings (in eV) using GGA, GGA+U
+dashed indicates quartet. (Color online.)                      (U = 5 eV except in parentheses, UInt−3,av = 3.5 eV) and
+                                                               CCSD(T).
+
+splitting of 0.54 eV in quantitative agreement with the
+symmetry and splitting (0.57 eV) predicted by CCSD(T).            With GGA+U (5 eV), we obtain consistency with
+The U correction also reduces the 3d character of minor-       CCSD(T), as shown in Fig. 3. The reactant FeO+ split-
+ity spin π molecular orbitals which dramatically improves      ting is reduced, the splitting at Int-1 increases, corre-
+bond lengths, harmonic frequencies, and anharmonici-           sponding to a shallow quartet reaction coordinate, and
+ties, as shown in Table III.                                   the exothermicity and spin crossover near the products
+   We thus proceed to study the full sextet and quar-          are in good agreement with experiment and theoretical
+tet potential energy surfaces (PES) for this reaction.         paradigm[5]. The quantitative accuracy of GGA+U be-
+We stress that, as is commonly found for open-shell            comes fully evident in the intermediate splittings (Table
+transition-metal molecules, several low-lying PES exist        IV), forward and back reaction barriers (Table V), and
+for each multiplicity and we present results for the lowest-   overall mean absolute errors (MAE) in multiplet split-
+lying symmetry of each multiplicity. The Uscf applied in       tings that are reduced (with respect to CCSD(T) ref-
+this global PES is 5 eV, very close to the average of the      erence) from 0.20 eV for GGA to 0.04 eV for GGA+U.
+Uscf (4.93 eV) calculated for the quartet (5.02 eV) and        Geometries are also improved: the MAE for bond lengths
+sextet (4.84 eV) at each stationary point; the values of
+U0 are similar (quartet = 4.71 eV; sextet = 4.76 eV).
+Although most states possess a Uscf close to the global                  Forward Reaction        Back Reaction
+average, the few deviations will be highlighted later.         ∆Ea GGA GGA+U CCSD(T) GGA GGA+U CCSD(T)
+   Our GGA results for the intermediates (Int) and tran-       TS-14 0.39    0.22      0.25 1.43   1.64      1.60
+sition states (TS) along the reaction coordinate confirm       TS-16 0.99    0.96      1.03 1.60   2.02      1.99
+the previously noted failures. Aside from the overesti-        TS-24 0.54    0.13      0.19 1.34   2.15      2.01
+mate of FeO+ splittings, the most notable deviations are       TS-26 1.22 0.82(1.16)   1.11 2.01   3.01      2.98
+unusually steep barriers (0.54 eV) along the quartet sur-
+face, lack of spin-crossing near the products, and a a dra-    TABLE V: Comparison of GGA, GGA+U (U = 5 eV except
+matic underestimate in the exothermicity, as depicted in       in parentheses, U4s = U3d = 4 eV) and CCSD(T) forward
+Fig. 2[33].                                                    and back reaction barriers (in eV).
+                                                                                                                               4
+
+are reduced from 4.3 pm (GGA) to 2.2 pm (GGA+U).                   [3] P. Jordan et al., Nature 411, 909 (2001).
+[34]. The GGA+U and CCSD(T) states also possess con-               [4] D. G. Leopold et al., J. Chem. Phys. 88, 3780 (1988).
+sistent orbital occupations and symmetry.                          [5] S. Shaik and M. Filatov, J. Phys. Chem. A 102, 3835
+                                                                       (1998).
+   The few examples of Uscf deviating from 5 eV are pri-
+                                                                   [6] L. Cavallo and H. Jacobsen, J. Phys. Chem. A 107, 5466
+marily at the exit channel, where large changes in hy-                 (2003).
+bridization occur. The quartet Int-3 is the only case for          [7] C. Rovira et al., Biophys. J. 81, 435 (2001).
+which we obtain a low Uscf (2 eV) which originates from            [8] J. P. Perdew, K. Burke, and M. Ernzerhof, Phys. Rev.
+the reduced hybridization of Fe 3d states. We chose to                 Lett. 77, 3865 (1996).
+recalculate the splitting with a Uscf,av that was a lo-            [9] V. I. Anisimov, J. Zaanen, and O. K. Andersen, Phys.
+cal average on the Int-3 states. With this U of 3.5 eV,                Rev. B 44 943(1991).
+                                                                  [10] F. Zhou et al., Phys. Rev. B 70, 235121 (2004).
+we obtain a splitting of 0.12 eV, in even closer agree-
+                                                                  [11] A. I. Liechtenstein, V. I. Anisimov, and J. Zaanen Phys.
+ment with CCSD(T). While this reduced hybridization                    Rev. B 52, R5467 (1995).
+of the 3d states is unusual, we stress that it is consis-         [12] M. Cococcioni and S. de Gironcoli, Phys. Rev. B 71,
+tently predicted in our linear-response approach. Along                035105 (2005).
+the sextet surface, the iron valence occupations corre-           [13] T. Ziegler, A. Rauk and E. J. Baerends, Theor. Chim.
+spond to 3d6 4s1 , and we find that the the interplay of 3d            Acta. 43, 261 (1977).
+and 4s states to be critical for describing the second bar-       [14] O. Gunnarsson and B. I. Lundqvist, Phys. Rev. B 13,
+                                                                       4274(1976); U. von Barth, Phys. Rev. A 20, 1693(1979).
+rier along the sextet reaction surface. A matrix extension
+                                                                  [15] Multiplets are defined by their spin component along
+of our formalism[12] considers also the response of the 4s             the z-axis and are thus not eigenstates of the square of
+orbitals, and we obtain U4s,scf = 4.0 eV and U3d,scf =4.0              the spin operator. Consequences and alternatives are dis-
+eV around the barrier (U4s is instead found to be nearly               cussed more fully in M. Filatov and S. Shaik, J. Chem.
+zero elsewhere). Inclusion of the 4s response for both sex-            Phys. 110, 116(1999) and references therein.
+tets Int-2 and Int-3 increases the forward reaction barrier       [16] S. Baroni et al., http://www.quantum-espresso.org. Cal-
+to 1.16 eV while the backward barrier remains unchanged                culations are completed in the Perdew Burke Ernzer-
+                                                                       hof (GGA) approximation[8] using ultrasoft pseudopo-
+- in accordance with CCSD(T).
+                                                                       tentials with a plane wave cutoff of 40 Ry and density
+   In conclusion, we have shown how a self-consistent                  cutoff of 480 Ry; transition states are obtained with the
+GGA+U approach can provide a dramatic improvement                      nudged elastic band method[17].
+to the description of multiplet potential energy surfaces         [17] G. Henkelman, B. P. Uberuaga, and H. Jonsson, J. Chem.
+for transition-metal complexes that are otherwise poorly               Phys. 113, 9901 (2000).
+described by common exchange-correlation functionals,             [18] M. J. Frisch et al., Gaussian, Inc. (2004). Hybrid func-
+while preserving the very favorable computational costs                tional B3LYP (Becke’s 3-parameter exchange and Lee,
+                                                                       Yang, and Parr’s correlation) and CCSD(T) calculations
+and scaling of local density-based functionals. These
+                                                                       use the 6-311++G(3df,3pd) basis set.
+improvements include spin energetics, state symmetries,           [19] S. Dhar and N. R. Kestner, Phys. Rev. A. 38, 1111
+and quantitative description of complex reaction coordi-               (1988).
+nates. U has been treated as an intrinsic, non-empirical          [20] O. Hubner and J. Sauer, Chem. Phys. Lett. 358, 442
+property of the system considered, and never as a fit-                 (2002) and references therein.
+ting parameter, and it has been obtained through a self-          [21] A. Irigoras et al., Chem. Phys. Lett. 376, 310 (2003).
+consistent extension to the linear-response formulation           [22] T. McNab, H. Micklitz, and P. Barrett, Phys. Rev. B 4,
+                                                                       3787 (1971).
+of Cococcioni and de Gironcoli[12]. Such development
+                                                                  [23] D. Leopold and W. Lineberger, J. Chem. Phys 85, 51
+will allow large-scale and accurate calculations[31] on                (1986).
+transition-metal complexes, with applications in the field        [24] E. A. Rohlfing et al., J. Chem. Phys. 81, 3846 (1984).
+of catalysis, biochemistry, and environmental science.            [25] D. E. Clemmer et al., J. Phys. Chem. 98, 6522 (1994).
+   We thank F. de Angelis for pointing out the H2 on              [26] D. Schroeder et al., Int. J. Mass. Spec. 161, 175 (1997).
+FeO+ reaction and S. de Gironcoli for helpful discussions         [27] J. M. Mercero et al., Int. J. Mass. Spec. 240, 37 (2005)
+on Uscf . This work was supported by an NSF graduate                   and references therein.
+                                                                  [28] A. Fiedler et al., J. Am. Chem. Soc. 116, 10734 (1994).
+fellowship and ARO-MURI DAAD-19-03-1-0169. Com-
+                                                                  [29] D. Danovich and S. Shaik, J. Am. Chem. Soc. 119, 1773
+putational facilities were provided through NSF grant                  (1997).
+DMR-0414849 and PNNL grant EMSL-UP-9597.                          [30] A. Irigoras, J. Fowler, and J. Ugalde, J. Am. Chem. Soc.
+                                                                       121, 8549 (1999).
+                                                                  [31] P. Giannozzi, F. De Angelis, and R. Car, J. Chem. Phys.
+                                                                       120, 5903 (2004).
+                                                                  [32] The ωe are obtained with a power law fit following Hollas,
+  ∗
+     Current Address: Departamento de Química Inorgánica,            High Resolution Spectroscopy, Wiley, 1998. Anharmonic-
+     Analítica y Química Física, Universidad de Buenos Aires        ity prevents direct comparison to the experimental ω0 .
+ [1] A. C. Rosenzweig et al., Nature 366, 537 (1993).             [33] The PES of Figs. 2 and 3 have been aligned at 6 Int-1.
+ [2] R. R. Schrock and J. A. Osborn, J. Am. Chem. Soc. 98,        [34] CCSD(T) geometries are from an 0.01 Å interpolation in
+     2134 (1976).                                                      each degree of freedom (up to five) in total as much as
+                                                           5
+
+800 for a structure. The states considered are reactants
+and intermediates for each quartet and sextet PES.
+

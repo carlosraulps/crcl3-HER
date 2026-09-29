@@ -8,7 +8,7 @@
 PREC     = Accurate
 ENCUT    = 400.0
 EDIFF    = 1.0E-06
-NELM     = 100
+NELM     = 120
 
 # --- Spin Polarization & Magnetic Initialization ---
 ISPIN    = 2
