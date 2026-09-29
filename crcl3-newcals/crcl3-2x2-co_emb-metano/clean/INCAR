@@ -13,3 +13,13 @@ IVDW     = 12
 IBRION   = 2
 NSW      = 80
 EDIFFG   = -0.025
+
+# Phase 2 (+U) Add-On Tags
+LDAU     = .TRUE.
+LDAUTYPE = 2
+LDAUL    = 2 -1 -1
+LDAUU    = 3.29 0.0 0.0
+LDAUJ    = 0.0 0.0 0.0
+LMAXMIX  = 4
+ISTART   = 1
+NSW      = 60
