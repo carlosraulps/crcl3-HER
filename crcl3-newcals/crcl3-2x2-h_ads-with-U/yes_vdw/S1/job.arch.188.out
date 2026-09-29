@@ -1,0 +1,11 @@
+708950 (process ID) old priority 0, new priority 15
+==========================================================
+Starting Slurm Job on Arch: H2x2_S1_U3_arch (188)
+Executing on Host         : carlos
+Working Directory         : /home/cr/simulations/crcl3-HER/crcl3-newcals/crcl3-2x2-h_ads-with-U/yes_vdw/S1
+Start Timestamp           : Mon Sep 28 01:38:17 PM UTC 2026
+==========================================================
+==========================================================
+Execution finished at Mon Sep 28 08:19:31 PM UTC 2026 with exit code: 1
+>>> STATUS: VASP CALCULATION CONVERGED SUCCESSFULLY <<<
+==========================================================
