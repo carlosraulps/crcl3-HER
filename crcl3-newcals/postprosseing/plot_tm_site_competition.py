@@ -239,28 +239,40 @@ def plot_multipanel_tm_comparison(df):
             vals.append(val)
             
         pos = x + (idx - 1) * width
-        rects = ax_b.bar(pos, vals, width, label=s_name, color=color, edgecolor='black', linewidth=0.9, alpha=0.9, zorder=3)
+        # For ground-state values (0.0), draw a subtle mini-pedestal of 0.04 eV height with hatch so the bar is clearly visible
+        plot_vals = [0.05 if (not np.isnan(v) and abs(v) < 1e-3) else v for v in vals]
+        rects = ax_b.bar(pos, plot_vals, width, label=s_name, color=color, edgecolor='black', linewidth=0.9, alpha=0.9, zorder=3)
         
-        for r in rects:
-            h = r.get_height()
-            if not np.isnan(h):
-                lbl = "GS" if abs(h) < 1e-3 else f'+{h:.2f}'
-                y_off = 0.05 if idx != 1 else 0.20
-                ax_b.text(r.get_x() + r.get_width()/2.0, h + y_off, lbl,
-                          ha='center', va='bottom', fontsize=7.5, fontweight='bold', fontfamily='serif',
-                          rotation=90,
-                          bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='none', alpha=0.85),
-                          zorder=5)
+        for r_idx, r in enumerate(rects):
+            orig_val = vals[r_idx]
+            if not np.isnan(orig_val):
+                if abs(orig_val) < 1e-3:
+                    # Ground State visual marker
+                    r.set_hatch('///')
+                    r.set_edgecolor('black')
+                    ax_b.text(r.get_x() + r.get_width()/2.0, 0.12, 'GS (0.00)',
+                              ha='center', va='bottom', fontsize=7.2, fontweight='bold', fontfamily='serif',
+                              rotation=90,
+                              bbox=dict(boxstyle='round,pad=0.12', facecolor='white', edgecolor=color, linewidth=1.0, alpha=0.95),
+                              zorder=6)
+                else:
+                    h = orig_val
+                    y_off = 0.08
+                    ax_b.text(r.get_x() + r.get_width()/2.0, h + y_off, f'+{h:.2f}',
+                              ha='center', va='bottom', fontsize=7.5, fontweight='bold', fontfamily='serif',
+                              rotation=90,
+                              bbox=dict(boxstyle='square,pad=0.08', facecolor='white', edgecolor='#cccccc', linewidth=0.6, alpha=0.90),
+                              zorder=5)
 
     ax_b.set_xticks(x)
     ax_b.set_xticklabels([c[2] for c in conditions], fontsize=9.0, rotation=25, ha='right')
     ax_b.set_ylabel(r'$\Delta E - \Delta E_{\mathrm{min}}\ \ (\mathrm{eV})$', fontsize=13)
     ax_b.set_title(r'(b) Relative Site Preference & Metastability Penalty', fontsize=12, fontweight='bold', pad=10)
-    ax_b.set_ylim(-0.05, 3.8)
+    ax_b.set_ylim(-0.05, 4.0)
     ax_b.yaxis.set_major_locator(MultipleLocator(0.5))
     ax_b.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax_b.grid(axis='y', linestyle='--', alpha=0.5, zorder=0)
-    ax_b.legend(frameon=True, facecolor='white', framealpha=0.92, fontsize=9.0, loc='upper left')
+    ax_b.legend(frameon=True, facecolor='white', framealpha=0.92, edgecolor='#cccccc', fontsize=9.0, loc='upper left')
 
     # -------------------------------------------------------------
     # Panel (c): Dispersion Energy Contribution (D3 - PBE)
@@ -352,7 +364,7 @@ def plot_multipanel_tm_comparison(df):
 
 def plot_presentation_summary(df):
     """Generates focused grouped presentation bar chart."""
-    fig, ax = plt.subplots(figsize=(13.0, 6.0))
+    fig, ax = plt.subplots(figsize=(14.5, 6.2))
     
     groups = [
         ('Co', 'no_vdw', 'Co (PBE)'),
@@ -362,6 +374,7 @@ def plot_presentation_summary(df):
         ('Fe', 'yes_vdw', 'Fe (PBE+D3)'),
         ('Ni', 'no_vdw', 'Ni (PBE)'),
         ('Ni', 'yes_vdw', 'Ni (PBE+D3)'),
+        ('Ni', 'yes_vdw_u', 'Ni (PBE+D3+U)'),
     ]
     
     sites = [
