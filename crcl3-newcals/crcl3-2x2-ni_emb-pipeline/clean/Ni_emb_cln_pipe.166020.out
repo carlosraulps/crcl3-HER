@@ -1,0 +1,11 @@
+==========================================================
+Job Name:    Ni_emb_cln_pipe
+Job ID:      166020
+Host:        n14
+Directory:   /home/carlos.primo/crcl3-HER/crcl3-newcals/crcl3-2x2-ni_emb-pipeline/clean
+Start Time:  Wed Sep 30 12:49:17 -03 2026
+CPUs Alloc:  32 (Partition: nanotubo)
+Time Limit:  04:00:00 (In-Allocation Pipeline D3 -> +U)
+==========================================================
+[Wed Sep 30 12:49:18 -03 2026] Phase 1 (D3) already converged. Proceeding to Phase 2...
+[Wed Sep 30 12:49:18 -03 2026] Starting Phase 2: PBE + D3(BJ) + U...

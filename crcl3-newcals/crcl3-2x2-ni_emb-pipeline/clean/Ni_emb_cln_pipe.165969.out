@@ -1,0 +1,12 @@
+==========================================================
+Job Name:    
+Job ID:      
+Host:        carlos
+Directory:   /home/cr/simulations/crcl3-HER
+Start Time:  Wed Sep 30 10:40:23 AM UTC 2026
+CPUs Alloc:   (Partition: nanotubo)
+Time Limit:  04:00:00
+==========================================================
+[Wed Sep 30 10:40:23 AM UTC 2026] Running Phase 2 (+U)...
+[Wed Sep 30 10:40:23 AM UTC 2026] Phase 2 checkpointing...
+Submitted batch job 165973

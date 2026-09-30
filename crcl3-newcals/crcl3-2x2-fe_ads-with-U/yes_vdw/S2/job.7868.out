@@ -1,0 +1,13 @@
+==========================================================
+Starting Slurm Job : Fe_S2_U3 (7868)
+Executing on Host  : huk128
+Partition Selected : normal
+Allocated Node(s)  : huk128
+Allocated CPUs     : 24
+Working Directory  : /home/carlos/crcl3-newcals/crcl3-2x2-fe_ads-with-U/yes_vdw/S2
+Start Timestamp    : Sun Sep 27 09:57:36 UTC 2026
+==========================================================
+Running VASP with 24 MPI processes (NCORE=4)...
+==========================================================
+Execution finished at Sun Sep 27 23:31:05 UTC 2026 with exit code: 1
+==========================================================

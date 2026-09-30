@@ -1,3 +1,22 @@
+ running   16 mpi-ranks, with    1 threads/rank, on    1 nodes
+ distrk:  each k-point on   16 cores,    1 groups
+ distr:  one band on    4 cores,    4 groups
+ vasp.6.6.1 17Jul2026 (build Sep  1 2026 13:17:54) complex                       
+ POSCAR found type information on POSCAR CrClNi
+ POSCAR found :  3 types and      33 ions
+ Reading from existing POTCAR
+ scaLAPACK will be used
+ Reading from existing POTCAR
+ LDA part: xc-table for (Slater+PW92), standard interpolation
+ found WAVECAR, reading the header
+ POSCAR, INCAR and KPOINTS ok, starting setup
+ FFT: planning ... GRIDC
+ FFT: planning ... GRID_SOFT
+ FFT: planning ... GRID
+ reading WAVECAR
+ the WAVECAR file was read successfully
+ initial charge from wavefunction
+ entering main loop
        N       E                     dE             d eps       ncg     rms          rms(c)
 DAV:   1    -0.144672342331E+03   -0.14467E+03   -0.33004E+00 11388   0.980E+00    0.365E+00
 RMM:   2    -0.144962453054E+03   -0.29011E+00   -0.21472E+00  8088   0.462E+00    0.102E+01
@@ -25,3 +44,16 @@ RMM:  23    -0.144765614906E+03   -0.10819E-05   -0.23159E-06  5337   0.342E-03 
 RMM:  24    -0.144765607872E+03    0.70346E-05   -0.69722E-07  4470   0.289E-03    0.172E-03
 RMM:  25    -0.144765608111E+03   -0.23979E-06   -0.40718E-07  4080   0.168E-03
    1 F= -.15093274E+03 E0= -.15092444E+03  d E =-.150933E+03  mag=    24.0000
+ curvature:   0.00 expect dE= 0.000E+00 dE for cont linesearch  0.000E+00
+ trial: gam= 0.00000 g(F)=  0.884E-01 g(S)=  0.000E+00 ort = 0.000E+00 (trialstep = 0.100E+01)
+ search vector abs. value=  0.884E-01
+ bond charge predicted
+       N       E                     dE             d eps       ncg     rms          rms(c)
+DAV:   1    -0.144817557714E+03   -0.51950E-01   -0.49603E+00  7924   0.454E+00    0.170E+00
+RMM:   2    -0.144850129524E+03   -0.32572E-01   -0.28085E-01  7798   0.241E+00    0.308E+00
+RMM:   3    -0.144865099950E+03   -0.14970E-01   -0.19298E-01  9965   0.121E+00    0.305E+00
+RMM:   4    -0.144849859987E+03    0.15240E-01   -0.30685E-02  8330   0.626E-01    0.798E-01
+RMM:   5    -0.144852772513E+03   -0.29125E-02   -0.46654E-03  9193   0.213E-01    0.555E-01
+RMM:   6    -0.144852076645E+03    0.69587E-03   -0.87825E-04  8869   0.925E-02    0.451E-01
+RMM:   7    -0.144851364675E+03    0.71197E-03   -0.23701E-03  9235   0.977E-02    0.305E-01
+RMM:   8    -0.144851482935E+03   -0.11826E-03   -0.38463E-03  9930   0.125E-01    0.135E-01
