@@ -65,8 +65,12 @@ fi
 # -------------------------------------------------------------
 # PHASE 2: PBE + D3(BJ) + U (U_Cr = 3.29 eV) CONTINUATION
 # -------------------------------------------------------------
-echo "[$(date)] Starting Phase 2: PBE + D3(BJ) + U (Immediate In-Allocation Continuation)..."
-cp d3_converged/CONTCAR POSCAR
+echo "[$(date)] Starting Phase 2: PBE + D3(BJ) + U..."
+# Only seed from d3_converged if Phase 2 has not produced steps yet
+if [ ! -s CONTCAR ] || ! grep -q "LDAU" OUTCAR 2>/dev/null; then
+    cp d3_converged/CONTCAR POSCAR
+fi
+
 cp INCAR.d3 INCAR
 cat INCAR.u >> INCAR
 
@@ -86,8 +90,12 @@ if grep -q "reached required accuracy" OUTCAR 2>/dev/null; then
     exit 0
 else
     echo "[$(date)] Phase 2 checkpointing for final steps..."
-    if [ -s CONTCAR ] && [ "$(wc -l < CONTCAR)" -ge 8 ]; then
+    # Only resubmit if VASP actually ran and CONTCAR is non-empty
+    if [ -s CONTCAR ] && [ "$(wc -l < CONTCAR)" -ge 8 ] && grep -q "Iteration" OUTCAR 2>/dev/null; then
         cp CONTCAR POSCAR
         sbatch job_carbono.sh
+    else
+        echo "ERROR: VASP failed or produced no output. Aborting resubmission." >&2
+        exit 1
     fi
 fi
