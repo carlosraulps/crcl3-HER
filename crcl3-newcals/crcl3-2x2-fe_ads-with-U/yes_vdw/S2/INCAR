@@ -26,7 +26,8 @@ LREAL    = Auto
 IVDW     = 12
 
 # --- Ionic Relaxation ---
-IBRION   = 2
+IBRION   = 1
+POTIM    = 0.20
 NSW      = 100
 EDIFFG   = -0.025
 
