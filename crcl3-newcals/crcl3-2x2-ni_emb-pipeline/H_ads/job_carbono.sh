@@ -33,6 +33,22 @@ export OMPI_MCA_mtl=^ofi,psm2
 export OMPI_MCA_osc=^ucx
 export UCX_TLS=sm,self
 
+# Trap SIGUSR1 from Slurm (sent at T_walltime - 300s)
+checkpoint_and_resubmit() {
+    echo "[$(date)] Caught SIGUSR1 (walltime approaching)! Checkpointing..."
+    killall -TERM vasp_std 2>/dev/null || true
+    sleep 5
+    if [ -s CONTCAR ] && [ "$(wc -l < CONTCAR)" -ge 8 ] && grep -q "Iteration" OUTCAR 2>/dev/null; then
+        echo "[$(date)] Updating POSCAR from CONTCAR and submitting next micro-batch..."
+        cp CONTCAR POSCAR
+        sbatch job_carbono.sh
+    else
+        echo "ERROR: No valid CONTCAR/Iteration found on USR1 checkpoint." >&2
+    fi
+    exit 0
+}
+trap checkpoint_and_resubmit USR1
+
 # -------------------------------------------------------------
 # PHASE 1: PBE + D3 (BJ) RELAXATION
 # -------------------------------------------------------------

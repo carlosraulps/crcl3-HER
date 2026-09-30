@@ -364,7 +364,7 @@ def plot_multipanel_tm_comparison(df):
 
 def plot_presentation_summary(df):
     """Generates focused grouped presentation bar chart."""
-    fig, ax = plt.subplots(figsize=(14.5, 6.2))
+    fig, ax = plt.subplots(figsize=(15.8, 6.2))
     
     groups = [
         ('Co', 'no_vdw', 'Co (PBE)'),
@@ -372,6 +372,7 @@ def plot_presentation_summary(df):
         ('Co', 'yes_vdw_u', 'Co (PBE+D3+U)'),
         ('Fe', 'no_vdw', 'Fe (PBE)'),
         ('Fe', 'yes_vdw', 'Fe (PBE+D3)'),
+        ('Fe', 'yes_vdw_u', 'Fe (PBE+D3+U)'),
         ('Ni', 'no_vdw', 'Ni (PBE)'),
         ('Ni', 'yes_vdw', 'Ni (PBE+D3)'),
         ('Ni', 'yes_vdw_u', 'Ni (PBE+D3+U)'),
