@@ -1,0 +1,18 @@
+==========================================================
+Job Name:    Co_emb_H_met
+Job ID:      165536
+Host:        gn01
+Directory:   /home/carlos.primo/crcl3-HER/crcl3-newcals/crcl3-2x2-co_emb-metano/H_ads
+Start Time:  Tue Sep 29 14:40:03 -03 2026
+CPUs Alloc:  32 (Partition: metano)
+GPU Alloc:   0
+Time Limit:  24:00:00 (In-Allocation Pipeline D3 -> +U)
+==========================================================
+[Tue Sep 29 14:40:03 -03 2026] Starting Phase 1: PBE + D3 (BJ)...
+[Tue Sep 29 17:32:43 -03 2026] Phase 1 (D3) CONVERGED successfully!
+[Tue Sep 29 17:32:43 -03 2026] Starting Phase 2: PBE + D3(BJ) + U (Immediate In-Allocation Continuation)...
+[Wed Sep 30 13:46:45 -03 2026] Phase 2 (+U) CONVERGED successfully!
+==========================================================
+ ALL PIPELINE PHASES (D3 AND +U) COMPLETED IN SINGLE JOB!
+ Finished At: Wed Sep 30 13:46:46 -03 2026
+==========================================================
