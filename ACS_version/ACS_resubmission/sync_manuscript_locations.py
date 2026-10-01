@@ -170,6 +170,13 @@ comment_locations = {
     "Reviewer 5 --- Comment 5": (tag_locations["StabilityHierarchy"]["pdf_loc"], tag_locations["StabilityHierarchy"]["tex_line"]),
 }
 
+# Automatically inherit Reviewer 4 locations for Reviewer 6
+for i in range(1, 21):
+    r4_key = f"Reviewer 4 --- Comment {i}"
+    r6_key = f"Reviewer 6 --- Comment {i}"
+    if r4_key in comment_locations:
+        comment_locations[r6_key] = comment_locations[r4_key]
+
 # 3. Read response_letter.tex
 print(">>> Step 3: Updating response_letter.tex...")
 with open("response_letter.tex", "r") as f:
