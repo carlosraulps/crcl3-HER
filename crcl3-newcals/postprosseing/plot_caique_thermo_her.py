@@ -198,9 +198,9 @@ systems_data = [
         # PBE+D3 (BJ)
         'dE_ads_d3': 1.1065,
         'status_d3': 'Converged',
-        # PBE+D3+U (Live from Huk Job 7980, Step 13: E0 = -156.560 eV)
-        'dE_ads_u': 0.9230,
-        'status_u': 'In-Flight (Step 13)',
+        # PBE+D3+U (Converged at Step 34 on Huk: E0 = -156.629 eV)
+        'dE_ads_u': 0.8535,
+        'status_u': 'Converged',
     },
     {
         'key': 'ni_emb',
@@ -213,12 +213,12 @@ systems_data = [
         # Pure PBE
         'dE_ads_pbe': 1.6477,
         'status_pbe': 'Converged',
-        # PBE+D3 (BJ)
-        'dE_ads_d3': 1.5800,
+        # PBE+D3 (BJ) (Converged on Carbono: E = -168.151 eV)
+        'dE_ads_d3': 0.7270,
         'status_d3': 'Converged',
-        # PBE+D3+U (In-Flight: Arch Job 195 & Carbono Job 166360)
-        'dE_ads_u': 1.3000,
-        'status_u': 'In-Flight (Arch/Carbono)',
+        # PBE+D3+U (Live from Carbono Job 166360, Step 38: E0 = -153.946 eV)
+        'dE_ads_u': 0.6546,
+        'status_u': 'In-Flight (Step 38)',
     }
 ]
 
@@ -439,13 +439,13 @@ def plot_multipanel():
 
     # HPC Cluster Live Status Box
     telemetry_text = (
-        "HPC Cluster Live Telemetry (server-info):\n"
-        "• Fe_emb_H (+U): In-Flight (Huk Job 7980)\n"
-        r"   Ionic Step 13, $E_0 = -156.560\,\mathrm{eV} \rightarrow \Delta G_{\mathrm{H}^*} = \mathbf{+1.183\,\mathrm{eV}}$" + "\n"
-        "• Ni_emb_c (+U): In-Flight (Huk Job 7984)\n"
-        r"   Phase 2 RMM-DIIS, $E_0 = -144.766\,\mathrm{eV}$ (seeded from Step 7)" + "\n"
-        "• Ni_emb_H (+U): In-Flight (Arch Job 195 & Carbono 166360)\n"
-        r"   Step 20+ continuation, projected $\Delta G_{\mathrm{H}^*} \approx \mathbf{+1.50\,\mathrm{eV}}$"
+        "HPC Cluster Telemetry (server-info):\n"
+        "• Fe_emb_H (+U): CONVERGED (Huk Job 7980, Step 34)\n"
+        r"   $E_0 = -156.629\,\mathrm{eV} \rightarrow \Delta G_{\mathrm{H}^*} = \mathbf{+1.114\,\mathrm{eV}}$" + "\n"
+        "• Ni_emb_c (+U): CONVERGED (Carbono Job 166359)\n"
+        r"   $E_0 = -151.219\,\mathrm{eV}$ (Clean ground state)" + "\n"
+        "• Ni_emb_H (+U): IN-FLIGHT (Carbono Job 166360, n14)\n"
+        r"   Step 38, $E_0 = -153.946\,\mathrm{eV} \rightarrow \Delta G_{\mathrm{H}^*} = \mathbf{+0.855\,\mathrm{eV}}$"
     )
     ax_d.text(0.03, 0.96, telemetry_text, transform=ax_d.transAxes, verticalalignment='top',
               fontsize=8.6, family='sans-serif', bbox=dict(boxstyle='round,pad=0.4', facecolor='#eaf2f8', edgecolor='#2980b9', alpha=0.95, linewidth=1.0),

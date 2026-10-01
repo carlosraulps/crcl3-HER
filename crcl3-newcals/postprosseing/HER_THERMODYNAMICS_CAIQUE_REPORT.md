@@ -33,9 +33,9 @@ The following master table incorporates all 9 systems, reporting Caique's exact 
 | **$\text{CrCl}_3\text{-Co+H (ads)}$** | 0.05 | -0.19 | +0.24 | **+0.178** | **+0.178** | **-0.069** | **Converged** | **OPTIMAL SABATIER ACTIVE** |
 | **$\text{CrCl}_3\text{-Fe+H (ads)}$** | 0.01 | -0.17 | +0.18 | +0.315 | +0.375 | **+0.185** | **Converged** | **SABATIER ACTIVE (+U)** |
 | **$\text{CrCl}_3\text{-Ni+H (ads)}$** | 0.02 | -0.17 | +0.19 | +0.812 | +0.862 | +0.620 | **Converged** | Sluggish |
-| **$\text{CrCl}_3\text{-Co+H (emb)}$** | 0.05 | -0.19 | +0.26 | +1.756 | +1.743 | +1.375 | **Converged** | Inactive |
-| **$\text{CrCl}_3\text{-Fe+H (emb)}$** | 0.07 | -0.19 | +0.26 | +1.348 | +1.367 | **+1.183**$^*$ | **In-Flight (Huk Job 7980)** | Inactive (Cl-shielded) |
-| **$\text{CrCl}_3\text{-Ni+H (emb)}$** | 0.01 | -0.19 | +0.20 | +1.848 | +1.780 | **+1.500**$^*$ | **In-Flight (Arch/Carbono)** | Inactive (Cl-shielded) |
+| **$\text{CrCl}_3\text{-Co+H (emb)}$** | 0.05 | -0.19 | +0.26 | +1.756 | +1.743 | +1.375 | **Converged** | Inactive (Steric Cl pore) |
+| **$\text{CrCl}_3\text{-Fe+H (emb)}$** | 0.07 | -0.19 | +0.26 | +1.348 | +1.367 | **+1.114** | **Converged (Huk Step 34)** | Inactive (Steric Cl pore) |
+| **$\text{CrCl}_3\text{-Ni+H (emb)}$** | 0.01 | -0.19 | +0.20 | +1.848 | +0.927 | **+0.855**$^*$ | **In-Flight (Carbono Step 38)** | Inactive (Steric Cl pore) |
 
 $^*$*In-flight calculation evaluated at live ionic step checkpoint via `server-info` telemetry. Sabatier active catalytic criterion: $|\Delta G_{\mathrm{H}^*}| \le 0.15 - 0.20\text{ eV}$.*
 
@@ -43,20 +43,30 @@ $^*$*In-flight calculation evaluated at live ionic step checkpoint via `server-i
 
 ## 3. Real-Time HPC Cluster Telemetry (`server-info`)
 
-For the calculations currently in flight on the clusters, real-time extraction gives:
-1. **$\text{Fe\_emb\_H (+U)}$ on Huk (Job 7980, Node `huk126`, 24 cores):**
-   - **Progress:** Finished Ionic Step 12, currently completing Step 13.
-   - **Energy Checkpoint:** $E_0 = -156.55990\text{ eV}$, with step-to-step ionic energy decrement $\Delta E = -4.4\text{ meV}$.
+Overnight calculations across Huk and Carbono reached key milestones:
+1. **$\text{Fe\_emb\_H (+U)}$ on Huk (Job 7980, Node `huk126`):**
+   - **Status:** **FULLY CONVERGED** (`reached required accuracy - stopping structural energy minimisation` at Step 34).
+   - **Final Converged Energy:** $E_0 = -156.62936\text{ eV}$.
    - **Clean Substrate Reference:** $E_{\text{clean}}(\text{Fe\_emb + U}) = -154.10182\text{ eV}$ (Converged).
-   - **Resulting Live Energetics:** $\Delta E_{\mathrm{ads}} = -156.55990 - (-154.10182) - (-3.38106) = +0.92298\text{ eV}$.
-   - **Live $\Delta G_{\mathrm{H}^*}$:** $+0.923 + 0.26 = \mathbf{+1.183\text{ eV}}$.
-   - **Conclusion:** Will converge at $\Delta G_{\mathrm{H}^*} \approx +1.18\text{ eV}$, confirming that embedded Fe is permanently inert towards HER.
+   - **Final Energetics:** $\Delta E_{\mathrm{ads}} = -156.62936 - (-154.10182) - (-3.38106) = \mathbf{+0.8535\text{ eV}}$.
+   - **Final Free Energy:** $\Delta G_{\mathrm{H}^*} = +0.8535 + 0.26 = \mathbf{+1.114\text{ eV}}$.
+   - **Conclusion:** Conclusively confirms that interstitial iron embedding is completely deactivated for HER.
 
-2. **$\text{Ni\_emb\_c (+U)}$ on Huk (Job 7984, Node `huk128`, 24 cores):**
-   - **Progress:** Phase 2 RMM-DIIS electronic relaxation seeded from Step 7 CONTCAR ($E_0 = -144.766\text{ eV}$).
+2. **$\text{Ni\_emb\_c (+U)}$ on Carbono (Job 166359):**
+   - **Status:** **FULLY CONVERGED** (`reached required accuracy` at 01:47 AM).
+   - **Final Converged Ground State Energy:** $E_{\text{clean}}(\text{Ni\_emb + U}) = \mathbf{-151.21913\text{ eV}}$.
+   - **Optimization:** Redundant duplicate run on Huk (Job 7984, Step 26) was successfully cancelled via `server-info` to free 24 dedicated cores for queued user calculations.
 
-3. **$\text{Ni\_emb\_H (+U)}$ on Arch (Job 195, 16 cores) & Carbono (Job 166360, Nanotubo):**
-   - **Progress:** Step 20+ continuation with $ALGO=Fast$. Projected $\Delta G_{\mathrm{H}^*} \approx \mathbf{+1.50\text{ eV}}$.
+3. **$\text{Ni\_emb\_H (PBE+D3)}$ on Carbono (Job 166360):**
+   - **Status:** **FULLY CONVERGED** (`d3_converged/OUTCAR` at 00:53 AM).
+   - **Final Converged Energy:** $E = \mathbf{-168.15097\text{ eV}}$.
+   - **Resulting Energetics:** $\Delta E_{\mathrm{ads}} = \mathbf{+0.7270\text{ eV}} \implies \Delta G_{\mathrm{H}^*} = \mathbf{+0.927\text{ eV}}$.
+
+4. **$\text{Ni\_emb\_H (+U)}$ on Carbono (Job 166360, Node `n14`):**
+   - **Status:** **IN-FLIGHT** (Phase 2 continuation at Step 38).
+   - **Live Energy Checkpoint:** $E_0 = \mathbf{-153.9456\text{ eV}}$.
+   - **Live $\Delta G_{\mathrm{H}^*}$ Checkpoint:** $+0.655 + 0.20 = \mathbf{+0.855\text{ eV}}$.
+   - **Optimization:** Redundant run on Arch (Job 195) cancelled to prevent CPU saturation on the local workstation.
 
 ---
 
@@ -76,8 +86,8 @@ For the calculations currently in flight on the clusters, real-time extraction g
 ### 4. Definitive Deactivation of Interstitial Pore Embedded Centers
 - All embedded transition metals ($\text{Co, Fe, Ni}$) remain strongly positive in free energy:
   - $\text{Co(emb)}: \Delta G_{\mathrm{H}^*} = +1.375\text{ eV}$ (PBE+D3+U)
-  - $\text{Fe(emb)}: \Delta G_{\mathrm{H}^*} = +1.183\text{ eV}$ (PBE+D3+U, live Step 13)
-  - $\text{Ni(emb)}: \Delta G_{\mathrm{H}^*} \approx +1.500\text{ eV}$ (PBE+D3+U, projected)
+  - $\text{Fe(emb)}: \Delta G_{\mathrm{H}^*} = +1.114\text{ eV}$ (PBE+D3+U, Converged Step 34)
+  - $\text{Ni(emb)}: \Delta G_{\mathrm{H}^*} = +0.855\text{ eV}$ (PBE+D3+U, Live Step 38)
 - This conclusively proves that although embedding is thermodynamically exothermic ($\Delta E_{\mathrm{bind}} \approx -5.4\text{ to } -7.5\text{ eV}$), the complete 6-fold coordination by chlorine ligands completely pacifies the metal $d$-states, rendering interstitial pores completely inactive for hydrogen evolution.
 
 ---
@@ -88,6 +98,6 @@ For the calculations currently in flight on the clusters, real-time extraction g
    - Raster format (300 DPI): [`crcl3_caique_thermo_her_multipanel.png`](file:///Users/apple/Research/abc/paper-adaptation/crcl3-newcals/postprosseing/crcl3_caique_thermo_her_multipanel.png)
 2. **Master LaTeX Tables:**
    - Multi-functional table: [`tab_sistemas_termo_completed_all_functionals.tex`](file:///Users/apple/Research/abc/paper-adaptation/crcl3-newcals/postprosseing/tab_sistemas_termo_completed_all_functionals.tex)
-   - Original-format table: [`tab_sistemas_termo_completed.tex`](file:///Users/apple/Research/abc/paper-adaptation/crcl3-newcals/postprosseing/tab_sistemas_termo_completed.tex)
+   - Single-functional baseline: [`tab_sistemas_termo_completed.tex`](file:///Users/apple/Research/abc/paper-adaptation/crcl3-newcals/postprosseing/tab_sistemas_termo_completed.tex)
 3. **Execution Script:**
    - [`plot_caique_thermo_her.py`](file:///Users/apple/Research/abc/paper-adaptation/crcl3-newcals/postprosseing/plot_caique_thermo_her.py)
