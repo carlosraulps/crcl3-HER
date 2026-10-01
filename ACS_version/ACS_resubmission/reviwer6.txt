@@ -1,0 +1,151 @@
+Reviewer 6
+
+Report by Reviewer:
+This manuscript presents a spin-polarized DFT and ab initio molecular dynamics (AIMD) investigation
+of Co-, Fe-, and Ni-functionalized monolayer CrCl3, with particular emphasis on the influence of local
+coordination on hydrogen adsorption. The comparison between surface-adsorbed threefold-coordinated
+and embedded sixfold-coordinated transition-metal centers is interesting and, in my view, potentially
+
+significant. The combination of adsorption thermodynamics, charge transfer, magnetic moments, spin-
+resolved electronic structure, PDOS, COHP analysis, d-band-center analysis, AIMD simulations, and
+
+distortion–interaction energy decomposition provides a reasonably comprehensive picture of the
+proposed structure-property relationship. The central observation that strong transition-metal anchoring
+does not necessarily translate into favorable H adsorption is supported by the calculated trends: Ni
+exhibits the strongest interaction with the CrCl3 substrate, whereas surface-adsorbed Co gives the most
+favorable H adsorption free energy.
+Nevertheless, it seems that the manuscript requires major revision before it can be considered for
+publication. The principal concerns relate to the reliability of the electronic-structure treatment for
+magnetic CrCl3, the thermodynamic relevance of the proposed surface configurations, the completeness
+of the adsorption analysis, and several inconsistencies that need to be resolved.
+The following comments and questions below should be answered before publication.
+1. Plain PBE has been used throughout for a system in which correlation matters. CrCl3 is
+a correlated 3d magnetic insulator, and the reported PBE gap of 1.50 eV is well below
+
+the experimentally reported optical gap of roughly 3 eV. Self-interaction error in semi-
+local GGA is known to misplace 3d levels, and this directly affects (a) the position of
+
+the TM-derived in-gap states in Figure 5, (b) the occupied d-band center used as a
+descriptor in Figure 8, (c) the local magnetic moments, and (d) ΔGads itself. Why was
+DFT+U (or a hybrid functional) not employed, at least as a benchmark?
+2. No van der Waals correction is mentioned anywhere in Computational Methods.
+Dispersion is not negligible for a metal adatom on a chloride surface, and it is decisive
+for the pristine reference case in Figure 2(b), where H relaxes to 3.42 Å, a separation at
+which the interaction is essentially dispersive and at which plain PBE gives almost no
+binding by construction. Please state explicitly that no dispersion scheme was applied
+and justify that choice or add DFT-D3 (or equivalent) checks for the pristine H case
+and for the TM binding energies.
+3. The binding energies are referenced to isolated spin-polarized transition-metal atoms,
+which is the most favorable possible reference state. The manuscript acknowledges on
+p. 15 that this does not establish stability against clustering but then does not follow up.
+The PBE cohesive energies of bulk Co, Fe, and Ni (roughly 4.9–5.5 eV/atom) exceed
+the reported |Ebind| for every adsorbed configuration, which means aggregation into
+metal clusters is thermodynamically downhill. Please quantify this by reporting Ebind
+minus Ecoh, or better, by computing the binding energy of a TM dimer or trimer on the
+surface and state the implication for isolated-site dispersion explicitly.
+4. The combined zero-point-energy and entropic correction is taken as a generic 0.24 eV
+for all systems. Given that the TM-H distances span 1.43−1.57 Å across chemically
+very different centers, this correction is not transferable. Please compute the vibrational
+frequencies of the adsorbed H for each configuration and use system-specific ΔEZPE −
+TΔS values.
+
+5. The electrical conductivity of the support is not addressed, although it is the key applied
+question for this journal. Pristine CrCl3 is a wide-gap semiconductor (1.50 eV in the
+present PBE description, larger experimentally), so delivery of electrons to the active
+site under HER conditions is a serious concern. Do the TM-derived in-gap states shown
+in Figure 5 form a continuous conduction channel at realistic dopant concentrations, or
+are they localized? The manuscript itself describes them as weakly dispersive and
+localized around the functionalizing center, which would argue against efficient charge
+transport. Please discuss this explicitly and, if possible, comment on what dopant
+density or supporting electrode would be required.
+6. It appears that only one collinear magnetic solution was converged per system. The
+antiparallel Ni moment (-0.76 μB adsorbed, -1.02 μB embedded) is unusual and strongly
+suggests a competing magnetic configuration. Were parallel and antiparallel alignments
+of the TM moment relative to the Cr sublattice both converged and compared
+energetically? Please report the energy difference between the two solutions for each
+metal and each coordination motif. A different magnetic ground state would change the
+PDOS, the occupied d-band center, and ΔGads, so this is not a cosmetic point.
+7. The AIMD computational details is not properly specified. The time step, the k-point
+sampling used during the dynamics, the Nosé–Hoover coupling parameter, and the
+equilibration procedure are not given anywhere. In addition, a single 5 ps trajectory per
+metal is thin evidence for the claim that Ni tends toward deeper incorporation while Co
+and Fe do not, particularly since the distinction rests on the behaviour of one degree of
+freedom. Please add the missing numerical details and, if computationally feasible, two
+or three independent trajectories with different velocity seeds per system.
+8. In Figure S3 the total energy varies by roughly 4 eV over the course of the trajectories
+and shows numerous sharp downward spikes. Please clarify whether these spikes are
+physical, or plotting and SCF-convergence artefacts, and state the electronic
+convergence criterion applied during the dynamics.
+9. Details and sign conventions of the Bader analysis need clarification. Define the
+direction of the reported charge transfer; the values 0.77|e|, 0.94|e|, and 0.59|e| are
+quoted as magnitudes, so the reader cannot tell whether the metal donates or accepts
+electrons. Relatedly, the color-bar label in Figure 4(d-f) reads Δ|Qe| but is used with
+negative values, which is contradictory notation; use ΔQ (e).
+10. The electronic interpretation of the Ni case deserves more than the observation that the
+trends do not correlate. Ni shows the smallest charge transfer, the strongest binding,
+and an antiparallel local moment. Please provide clearer rationalization in terms of
+formal occupation, crystal-field splitting in the threefold and sixfold environments, and
+
+low-spin versus high-spin configurations, ideally supported by the site- and orbital-
+resolved PDOS.
+
+11. The manuscript contains no tables at all. For a computational paper reporting this many
+quantities, this is a significant presentation weakness: the reader is required to extract
+E_bind, ΔE_emb−ads, ΔG_ads, E_int(H), E_def, μ_TM, Bader charges, ICOHP
+values, and the occupied d-band centers from running text and bar charts. Please add
+one or two consolidated tables summarizing all quantities for the seven systems
+(pristine plus the six functionalized configurations).
+
+12. Notation is not uniform. The manuscript uses ΔG_ads in the text and in Figures 7 and
+S5, ΔG_H in Figure 8, and G_ads in the bar-chart legends of Figure 7. Similarly, H*,
+H adsorption, and hydrogen adsorption are used interchangeably. Please unify the
+notation throughout the manuscript, the figures, and the Supporting Information.
+13. The reference list needs substantial correction; it does not follow ACS Applied Energy
+Materials format. Specific problems include the following. Reference 46 reads Sholl,
+
+D. S.; Steckel, J. A. Physical Review E; Wiley: Hoboken, NJ, USA, 2009; Vol. 82; p
+031708, which conflates the Sholl and Steckel textbook (Density Functional Theory: A
+Practical Introduction, Wiley, 2009) with an unrelated journal article. Reference 47
+appears as Martin, R. M. Director; Cambridge University Press, 2004, instead of
+Electronic Structure: Basic Theory and Practical Methods. Reference 31 contains a
+duplicated and garbled title string. References 13, 14, and 25 use et al. rather than
+complete author lists, which ACS does not permit. References 11 and 19 lack volume
+and page numbers. Reference 20 contains a broken chemical formula (CrC l3).
+Chemical formulae in references 16, 18, 20–23, 31, 38–40, and 60 are not subscripted.
+Reference 10 is an arXiv preprint and should be updated if it has since appeared in a
+journal. Please check every entry against the ACS style guide.
+14. Can the authors provide further justification for using ΔGads as the primary descriptor for HER
+activity? Since HER is a multistep electrochemical process involving H adsorption,
+proton/electron transfer, H diffusion, and H2 formation, and the present study considers only H
+adsorption thermodynamics, to what extent can ΔGads alone be used to infer HER activity?
+15. Have the authors considered the thermodynamic stability of isolated Co, Fe, and Ni atoms on
+CrCl3 against metal clustering or bulk-metal formation? Since the calculated TM binding
+energies are referenced to isolated atoms and do not establish the stability of isolated sites,
+could the authors compare the corresponding binding energies with the cohesive energies of
+the bulk metals and/or the energies of possible TM-TM clustered configurations?
+
+16. Why was the PBE functional without a Hubbard U correction selected for the strongly spin-
+polarized Cr/Co/Fe/Ni 3d systems? Considering that electron correlation can substantially
+
+influence the magnetic moments, electronic structures, and adsorption energetics of localized
+3d states, have the authors assessed whether the relative ordering of Co, Fe, and Ni in terms of
+ΔGads is robust with respect to the treatment of localized d electrons?
+17. Have the authors systematically investigated other possible adsorption sites for Co, Fe, and Ni
+besides the hollow site? For example, were top-Cr, top-Cl, bridge, or other non-equivalent sites
+considered, and can the authors establish that the investigated hollow configurations represent
+the relevant low-energy and experimentally accessible structures?
+18. Can the authors distinguish more clearly between the thermodynamic and kinetic accessibility
+of the embedded and surface-adsorbed configurations? Since the calculated energy difference
+between these configurations does not establish the kinetic pathway connecting them, have the
+authors considered whether a significant energy barrier exists for TM incorporation, and how
+might such a barrier influence the population of catalytically accessible surface sites under
+operating conditions?
+19. How relevant are the calculated adsorption properties of the proposed Co-CrCl3 catalyst under
+realistic electrochemical conditions? Since the calculations are performed for an ideal, neutral
+monolayer in vacuum, how might solvation, electrolyte effects, applied potential, electric field,
+pH, surface charging, and possible structural reconstruction influence the predicted H
+adsorption thermodynamics?
+20. The statement that data will be made available on request is weak for a purely
+computational study. Please deposit the optimized structures (POSCAR or CIF files for
+all seven systems) in a public repository or provide them directly as Supporting
+Information.
