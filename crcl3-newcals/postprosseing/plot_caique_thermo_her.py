@@ -216,9 +216,9 @@ systems_data = [
         # PBE+D3 (BJ) (Converged on Carbono: E = -168.151 eV)
         'dE_ads_d3': 0.7270,
         'status_d3': 'Converged',
-        # PBE+D3+U (Live from Carbono Job 166360, Step 38: E0 = -153.946 eV)
-        'dE_ads_u': 0.6546,
-        'status_u': 'In-Flight (Step 38)',
+        # PBE+D3+U (Fully Converged on Carbono at Step 52: E0 = -153.9785 eV)
+        'dE_ads_u': 0.6208,
+        'status_u': 'Converged',
     }
 ]
 

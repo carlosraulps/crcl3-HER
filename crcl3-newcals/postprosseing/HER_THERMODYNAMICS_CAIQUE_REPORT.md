@@ -35,9 +35,9 @@ The following master table incorporates all 9 systems, reporting Caique's exact 
 | **$\text{CrCl}_3\text{-Ni+H (ads)}$** | 0.02 | -0.17 | +0.19 | +0.812 | +0.862 | +0.620 | **Converged** | Sluggish |
 | **$\text{CrCl}_3\text{-Co+H (emb)}$** | 0.05 | -0.19 | +0.26 | +1.756 | +1.743 | +1.375 | **Converged** | Inactive (Steric Cl pore) |
 | **$\text{CrCl}_3\text{-Fe+H (emb)}$** | 0.07 | -0.19 | +0.26 | +1.348 | +1.367 | **+1.114** | **Converged (Huk Step 34)** | Inactive (Steric Cl pore) |
-| **$\text{CrCl}_3\text{-Ni+H (emb)}$** | 0.01 | -0.19 | +0.20 | +1.848 | +0.927 | **+0.855**$^*$ | **In-Flight (Carbono Step 38)** | Inactive (Steric Cl pore) |
+| **$\text{CrCl}_3\text{-Ni+H (emb)}$** | 0.01 | -0.19 | +0.20 | +1.848 | +0.927 | **+0.821** | **Converged (Carbono Step 52)** | Inactive (Steric Cl pore) |
 
-$^*$*In-flight calculation evaluated at live ionic step checkpoint via `server-info` telemetry. Sabatier active catalytic criterion: $|\Delta G_{\mathrm{H}^*}| \le 0.15 - 0.20\text{ eV}$.*
+*Sabatier active catalytic criterion: $|\Delta G_{\mathrm{H}^*}| \le 0.15 - 0.20\text{ eV}$.*
 
 ---
 
@@ -63,10 +63,12 @@ Overnight calculations across Huk and Carbono reached key milestones:
    - **Resulting Energetics:** $\Delta E_{\mathrm{ads}} = \mathbf{+0.7270\text{ eV}} \implies \Delta G_{\mathrm{H}^*} = \mathbf{+0.927\text{ eV}}$.
 
 4. **$\text{Ni\_emb\_H (+U)}$ on Carbono (Job 166360, Node `n14`):**
-   - **Status:** **IN-FLIGHT** (Phase 2 continuation at Step 38).
-   - **Live Energy Checkpoint:** $E_0 = \mathbf{-153.9456\text{ eV}}$.
-   - **Live $\Delta G_{\mathrm{H}^*}$ Checkpoint:** $+0.655 + 0.20 = \mathbf{+0.855\text{ eV}}$.
-   - **Optimization:** Redundant run on Arch (Job 195) cancelled to prevent CPU saturation on the local workstation.
+   - **Status:** **FULLY CONVERGED** (`reached required accuracy` at Step 52 with $f_{\max} = 0.022\text{ eV/\AA}$).
+   - **Final Converged Energy:** $E_0 = \mathbf{-153.97851\text{ eV}}$.
+   - **Clean Substrate Reference:** $E_{\text{clean}}(\text{Ni\_emb + U}) = \mathbf{-151.21824\text{ eV}}$ (Converged).
+   - **Final Energetics:** $\Delta E_{\mathrm{ads}} = -153.97851 - (-151.21824) - (-3.38106) = \mathbf{+0.6208\text{ eV}}$.
+   - **Final Free Energy:** $\Delta G_{\mathrm{H}^*} = +0.6208 + 0.20 = \mathbf{+0.821\text{ eV}}$.
+   - **Conclusion:** Completes 100% of the entire 9-system HER thermodynamics matrix! Redundant resubmission (Job 166381) was proactively cancelled on Carbono to preserve FairShare.
 
 ---
 

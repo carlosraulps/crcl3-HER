@@ -1,0 +1,15 @@
+==========================================================
+Job Name:    Ni_emb_H_pipe
+Job ID:      166360
+Host:        n14
+Directory:   /home/carlos.primo/crcl3-HER/crcl3-newcals/crcl3-2x2-ni_emb-pipeline/H_ads
+Start Time:  Wed Sep 30 21:11:36 -03 2026
+CPUs Alloc:  32 (Partition: nanotubo)
+Time Limit:  12:00:00 (In-Allocation Pipeline D3 -> +U)
+==========================================================
+[Wed Sep 30 21:11:36 -03 2026] Starting Phase 1: PBE + D3 (BJ)...
+[Thu Oct  1 00:53:05 -03 2026] Phase 1 (D3) CONVERGED successfully!
+[Thu Oct  1 00:53:06 -03 2026] Starting Phase 2: PBE + D3(BJ) + U (Fast & Damped)...
+[Thu Oct  1 09:06:19 -03 2026] Caught SIGUSR1 (walltime approaching)! Checkpointing...
+[Thu Oct  1 09:06:24 -03 2026] Updating POSCAR from CONTCAR and submitting next batch...
+Submitted batch job 166381
