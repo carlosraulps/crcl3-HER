@@ -599,16 +599,16 @@ Key findings from this benchmark include:
   \item \textbf{Band Gap Opening and Regimes:} Increasing $U$ systematically opens the direct majority-spin band gap from $1.82\text{ eV}$ ($U=0$) up to $2.59\text{ eV}$ ($U=4\text{ eV}$), approaching the experimental optical gap ($\sim 3\text{ eV}$), accompanied by increased spin localization on Cr ($2.91 \to 3.17\,\mu_{\mathrm{B}}$).
   \item \textbf{Optimal Parameter Determination ($U^* = 3.25\text{ eV}$):} By analyzing the exact intersection of the relaxed in-plane lattice constant $a(U)$ with the established literature benchmark of $a = 6.056\text{ \AA}$ (Webster et al., 2018; Luo et al., 2020), we identify $U^* \approx 3.25\text{ eV}$ as the physically optimal Hubbard correction for monolayer $\text{CrCl}_3$.
   \item \textbf{Convergence of Explicit PBE+D3+$U$ Calculations for Functionalized Systems:} To definitively answer the Reviewer's inquiry, we have now fully converged explicit PBE+D3+$U$ calculations ($U_{\text{eff}} = 3.29\text{ eV}$ on Cr-$3d$ via the Dudarev formulation with Grimme D3(BJ) dispersion) across all functionalized systems, in conjunction with Caique's exact vibrational free-energy corrections ($\Delta E_{\text{ZPE}} - T\Delta S$). The multi-level thermodynamic comparison reveals:
-  \begin{itemize}[leftmargin=1.2em, itemsep=0.1em]
-    \item \textbf{Surface-Adsorbed Co:} $\Delta G_{\mathrm{H}^*}$ shifts from $+0.178\text{ eV}$ (Pure PBE) to an optimal near-thermoneutral $\mathbf{-0.069\text{ eV}}$ (PBE+D3+$U$), placing single-atom Co squarely within the ideal Sabatier sweet spot ($|\Delta G_{\mathrm{H}^*}| < 0.1\text{ eV}$) for peak HER performance.
-    \item \textbf{Surface-Adsorbed Fe:} $\Delta G_{\mathrm{H}^*}$ decreases from $+0.315\text{ eV}$ (Pure PBE) to $\mathbf{+0.185\text{ eV}}$ (PBE+D3+$U$), demonstrating substantially enhanced HER activity.
-    \item \textbf{Surface-Adsorbed Ni:} $\Delta G_{\mathrm{H}^*}$ is $+0.620\text{ eV}$ (PBE+D3+$U$), confirming moderate activity.
-    \item \textbf{Embedded Configurations:} Remain severely endergonic ($\text{Co} = +1.375\text{ eV}$, $\text{Fe} = +1.114\text{ eV}$, $\text{Ni} = +0.855\text{ eV}$), rigorously proving that site burial and sixfold coordination saturation universally degrade catalytic performance regardless of correlation level.
-    \item \textbf{Strict Invariance of Catalytic Ranking:} Across all rungs of theory (Pure PBE, PBE+D3, and PBE+D3+$U$), the volcano reactivity hierarchy remains invariant:
-    \[
-      \text{Co (surface)} \ll \text{Fe (surface)} < \text{Ni (surface)} \ll \text{Embedded centers} \approx \text{Pristine host}.
-    \]
-  \end{itemize}
+        \begin{itemize}[leftmargin=1.2em, itemsep=0.1em]
+          \item \textbf{Surface-Adsorbed Co:} $\Delta G_{\mathrm{H}^*}$ shifts from $+0.178\text{ eV}$ (Pure PBE) to an optimal near-thermoneutral $\mathbf{-0.069\text{ eV}}$ (PBE+D3+$U$), placing single-atom Co squarely within the ideal Sabatier sweet spot ($|\Delta G_{\mathrm{H}^*}| < 0.1\text{ eV}$) for peak HER performance.
+          \item \textbf{Surface-Adsorbed Fe:} $\Delta G_{\mathrm{H}^*}$ decreases from $+0.315\text{ eV}$ (Pure PBE) to $\mathbf{+0.185\text{ eV}}$ (PBE+D3+$U$), demonstrating substantially enhanced HER activity.
+          \item \textbf{Surface-Adsorbed Ni:} $\Delta G_{\mathrm{H}^*}$ is $+0.620\text{ eV}$ (PBE+D3+$U$), confirming moderate activity.
+          \item \textbf{Embedded Configurations:} Remain severely endergonic ($\text{Co} = +1.375\text{ eV}$, $\text{Fe} = +1.114\text{ eV}$, $\text{Ni} = +0.855\text{ eV}$), rigorously proving that site burial and sixfold coordination saturation universally degrade catalytic performance regardless of correlation level.
+          \item \textbf{Strict Invariance of Catalytic Ranking:} Across all rungs of theory (Pure PBE, PBE+D3, and PBE+D3+$U$), the volcano reactivity hierarchy remains invariant:
+                \[
+                  \text{Co (surface)} \ll \text{Fe (surface)} < \text{Ni (surface)} \ll \text{Embedded centers} \approx \text{Pristine host}.
+                \]
+        \end{itemize}
 \end{enumerate}
 
 \manuscriptchange{\textbf{[Location: \textit{manuscript\_marked.pdf: Page 6, Line 116} \textbar\ \textit{manuscript\_marked.tex: Line 186}]}\\ A new paragraph incorporating the Hubbard $U$ benchmark results has been added to Section~2 (highlighted in blue): ``{\itshape \ExecuteMetaData[manuscript_marked.tex]{PBEHubbardU}}''}
@@ -706,19 +706,19 @@ The resulting system-specific corrections and free energies across functional hi
   \small
   \begin{tabular}{l c c c c c c}
     \toprule
-    \textbf{System} & $\boldsymbol{\Delta E_{\text{ZPE}}}$ & $\boldsymbol{T \Delta S}$ & $\boldsymbol{\Delta E_{\text{ZPE}} - T\Delta S}$ & \multicolumn{3}{c}{$\boldsymbol{\Delta G_{\text{H}^*}}$ \textbf{(eV)}} \\
+    \textbf{System}                      & $\boldsymbol{\Delta E_{\text{ZPE}}}$ & $\boldsymbol{T \Delta S}$ & $\boldsymbol{\Delta E_{\text{ZPE}} - T\Delta S}$ & \multicolumn{3}{c}{$\boldsymbol{\Delta G_{\text{H}^*}}$ \textbf{(eV)}}                                       \\
     \cmidrule(lr){5-7}
-    & \textbf{(eV)} & \textbf{(eV)} & \textbf{(eV)} & \textbf{Pure PBE} & \textbf{PBE+D3} & \textbf{PBE+D3+U} \\
+                                         & \textbf{(eV)}                        & \textbf{(eV)}             & \textbf{(eV)}                                    & \textbf{Pure PBE}                                                      & \textbf{PBE+D3} & \textbf{PBE+D3+U} \\
     \midrule
-    $\text{CrCl}_3\text{+H (S1 Top-Cl)}$ & 0.03 & -0.18 & 0.21 & +1.789 & +1.498 & +1.125 \\
-    $\text{CrCl}_3\text{+H (S2 Hollow)}$ & 0.03 & -0.18 & 0.21 & +2.681 & +2.534 & +2.040 \\
-    $\text{CrCl}_3\text{+H (S3 Top-Cr)}$ & 0.06 & -0.18 & 0.26 & +1.884 & +1.896 & +2.436 \\
-    $\text{CrCl}_3\text{-Co+H (ads)}$     & 0.05 & -0.19 & 0.24 & +0.178 & +0.178 & \textbf{-0.069} \\
-    $\text{CrCl}_3\text{-Fe+H (ads)}$     & 0.01 & -0.17 & 0.18 & +0.315 & +0.375 & \textbf{+0.185} \\
-    $\text{CrCl}_3\text{-Ni+H (ads)}$     & 0.02 & -0.17 & 0.19 & +0.812 & +0.862 & +0.620 \\
-    $\text{CrCl}_3\text{-Co+H (emb)}$     & 0.05 & -0.19 & 0.26 & +1.756 & +1.743 & +1.375 \\
-    $\text{CrCl}_3\text{-Fe+H (emb)}$     & 0.07 & -0.19 & 0.26 & +1.348 & +1.367 & +1.114 \\
-    $\text{CrCl}_3\text{-Ni+H (emb)}$     & 0.01 & -0.19 & 0.20 & +1.848 & +0.927 & +0.855 \\
+    $\text{CrCl}_3\text{+H (S1 Top-Cl)}$ & 0.03                                 & -0.18                     & 0.21                                             & +1.789                                                                 & +1.498          & +1.125            \\
+    $\text{CrCl}_3\text{+H (S2 Hollow)}$ & 0.03                                 & -0.18                     & 0.21                                             & +2.681                                                                 & +2.534          & +2.040            \\
+    $\text{CrCl}_3\text{+H (S3 Top-Cr)}$ & 0.06                                 & -0.18                     & 0.26                                             & +1.884                                                                 & +1.896          & +2.436            \\
+    $\text{CrCl}_3\text{-Co+H (ads)}$    & 0.05                                 & -0.19                     & 0.24                                             & +0.178                                                                 & +0.178          & \textbf{-0.069}   \\
+    $\text{CrCl}_3\text{-Fe+H (ads)}$    & 0.01                                 & -0.17                     & 0.18                                             & +0.315                                                                 & +0.375          & \textbf{+0.185}   \\
+    $\text{CrCl}_3\text{-Ni+H (ads)}$    & 0.02                                 & -0.17                     & 0.19                                             & +0.812                                                                 & +0.862          & +0.620            \\
+    $\text{CrCl}_3\text{-Co+H (emb)}$    & 0.05                                 & -0.19                     & 0.26                                             & +1.756                                                                 & +1.743          & +1.375            \\
+    $\text{CrCl}_3\text{-Fe+H (emb)}$    & 0.07                                 & -0.19                     & 0.26                                             & +1.348                                                                 & +1.367          & +1.114            \\
+    $\text{CrCl}_3\text{-Ni+H (emb)}$    & 0.01                                 & -0.19                     & 0.20                                             & +1.848                                                                 & +0.927          & +0.855            \\
     \bottomrule
   \end{tabular}
 \end{center}
