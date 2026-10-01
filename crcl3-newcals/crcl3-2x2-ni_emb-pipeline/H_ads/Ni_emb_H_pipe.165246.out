@@ -1,0 +1,10 @@
+==========================================================
+Job Name:    Ni_emb_H_pipe
+Job ID:      165246
+Host:        n08
+Directory:   /home/carlos.primo/crcl3-HER/crcl3-newcals/crcl3-2x2-ni_emb-pipeline/H_ads
+Start Time:  Tue Sep 29 15:09:49 -03 2026
+CPUs Alloc:  32 (Partition: nanotubo)
+Time Limit:  04:00:00 (In-Allocation Pipeline D3 -> +U)
+==========================================================
+[Tue Sep 29 15:09:49 -03 2026] Starting Phase 1: PBE + D3 (BJ)...

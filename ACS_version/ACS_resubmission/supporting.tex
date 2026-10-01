@@ -200,66 +200,76 @@
     {\footnotesize $^{*}$Placeholder zero-point energy ($\Delta\text{ZPE} = +0.040$~eV) and entropic ($-T\Delta S = +0.200$~eV at $298.15$~K) values represent the standard computational hydrogen electrode (CHE) reference terms ($\Delta G = \Delta E_{\text{ads}} + 0.24$~eV). These explicit columns are formatted to receive the full explicit phonon/vibrational frequency mode calculations upon completion by the co-authors.}
   \end{table}
 
+  \clearpage
   \subsection*{Table S2: Transition-Metal Functionalization on Monolayer $\text{CrCl}_3$ ($2\times2$ Supercell)}
 
-  \begin{table}[htbp]
+  \begin{table}[!htbp]
     \centering
-    \small
-    \caption*{Table S2. Structural energetics, magnetic states, and relative stabilities of transition-metal adatoms (Co, Fe, Ni) functionalized on monolayer $\text{CrCl}_3$ in a $2\times2$ supercell. Configurations include surface sites: Site 1 (S1, top-Cl, 1-fold coordinated), Site 2 (S2, hollow, 3-fold coordinated), Site 3 (S3, top-Cr, 3-fold coordinated directly above lower Cr), and the embedded configuration (6-fold octahedral coordination in a Cr vacancy). Calculations evaluate standard PBE, PBE+D3(BJ) ($U=0$), and DFT+U ($U_{\text{eff}} = 3.29$~eV applied exclusively to Cr $3d$). Interaction energy is defined as $E_{\text{int}} = E_{\text{tot}} - E_{\text{host}}$.}
+    \footnotesize
+    \renewcommand{\arraystretch}{1.04}
+    \caption*{Table S2. Structural energetics, magnetic states, and relative site stabilities of transition-metal adatoms (Co, Fe, Ni) functionalized on monolayer $\text{CrCl}_3$ ($2\times2$ supercell). Evaluated across Pure PBE ($E_{\text{host}} = -156.287$~eV), PBE+D3(BJ) ($E_{\text{host}} = -162.107$~eV), and DFT+U ($U_{\text{eff}} = 3.29$~eV applied exclusively to Cr $3d$, $E_{\text{host}} = -147.304$~eV). Interaction energy is $E_{\text{int}} = E_{\text{tot}} - E_{\text{host}}$; relative site penalty is $\Delta E_{\text{rel}} = E_{\text{tot}} - E_{\text{tot,GS}}$. Bond distance $d_{\text{TM-X}}$ reflects coordination to nearest ligand Cl (S1, S2, Emb) or underlying Cr (S3). Ground state configurations within each functional tier are highlighted in bold.}
     \label{tab:tm_functionalization_crcl3}
     \begin{adjustbox}{max width=\linewidth}
-      \begin{tabular}{llcccccccl}
+      \begin{tabular}{llcccccc}
         \toprule
-        \textbf{Metal (TM)} & \textbf{Site / Coord.} & \textbf{Coord. No.} & \textbf{Level of Theory} & $E_{\text{host}}$ (eV) & $E_{\text{tot}}$ (eV) & $E_{\text{int}}$ (eV) & $\mu_{\text{tot}}$ ($\mu_{\text{B}}$) & \textbf{Relative Rank} & \textbf{Integrity / Notes} \\
+        \textbf{Theory} & \textbf{Site (Coordination)} & $\boldsymbol{E_{\text{tot}}}$ \textbf{(eV)} & $\boldsymbol{E_{\text{int}}}$ \textbf{(eV)} & $\boldsymbol{\Delta E_{\text{rel}}}$ \textbf{(eV)} & $\boldsymbol{\mu_{\text{tot}}}$ ($\boldsymbol{\mu_{\text{B}}}$) & $\boldsymbol{d_{\text{TM-X}}}$ \textbf{(\AA)} & \textbf{Thermodynamic State} \\
         \midrule
-        \multirow{9}{*}{\textbf{Cobalt (Co)}}
-        & S1 (Top-Cl)  & 1 & PBE (no vdW)    & $-156.2868$ & $-161.0147$ & $-4.728$ & $23.00$ & Metastable ($\Delta E = +0.00\text{ eV}$) & Chemisorbed ($d_{\text{Co-Cl}} = 2.14$~\AA) \\
-        & S2 (Hollow)  & 3 & PBE (no vdW)    & $-156.2868$ & $-161.0131$ & $-4.726$ & $23.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Co-Cl}} = 2.24$~\AA) \\
-        & S3 (Top-Cr)  & 3 & PBE (no vdW)    & $-156.2868$ & $-160.3660$ & $-4.079$ & $23.00$ & Metastable ($\Delta E = +0.65\text{ eV}$) & Chemisorbed ($d_{\text{Co-Cr}} = 2.59$~\AA) \\
-        & Embedded     & 6 & PBE (no vdW)    & $-156.2868$ & $-160.8042$ & $-4.517$ & $27.12$ & Embedded ground state                    & Octahedral ($d_{\text{Co-Cl}} = 2.31$~\AA) \\
-        \cmidrule(lr){2-10}
-        & S1 (Top-Cl)  & 1 & PBE+D3 (BJ)     & $-162.1068$ & $-166.9422$ & $-4.836$ & $27.00$ & Metastable ($\Delta E = +0.22\text{ eV}$) & Chemisorbed ($d_{\text{Co-Cl}} = 2.13$~\AA) \\
-        & S2 (Hollow)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-167.1638$ & $-5.057$ & $23.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Co-Cl}} = 2.23$~\AA) \\
-        & S3 (Top-Cr)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-166.4536$ & $-4.347$ & $23.00$ & Metastable ($\Delta E = +0.71\text{ eV}$) & Chemisorbed ($d_{\text{Co-Cr}} = 2.58$~\AA) \\
-        \cmidrule(lr){2-10}
-        & S1 (Top-Cl)  & 1 & PBE+D3+U (3.29) & $-147.3038$ & $-150.5731^{\dagger}$ & $-3.269$ & $27.00$ & Metastable ($\Delta E = +1.67\text{ eV}$) & Chemisorbed ($d_{\text{Co-Cl}} = 2.16$~\AA) \\
-        & S2 (Hollow)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & $-152.2452^{\dagger}$ & $-4.941$ & $27.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Co-Cl}} = 2.22$~\AA) \\
-        & S3 (Top-Cr)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & $-151.7732$ & $-4.469$ & $27.00$ & Metastable ($\Delta E = +0.47\text{ eV}$) & Coaxial Cr-Co ferromagnetic ($d_{\text{Co-Cr}} = 2.58$~\AA) \\
+        \multicolumn{8}{l}{\textit{\textbf{A. Cobalt Functionalization ($\text{CrCl}_3\text{--Co}$)}}} \\
+        \multirow{4}{*}{Pure PBE}
+        & S1 (Top-Cl, 1-fold) & $-161.015$ & $-4.728$ & $\mathbf{0.000}$ & $23.00$ & $2.14$ (Cl) & \textbf{Ground State (surface)} \\
+        & S2 (Hollow, 3-fold) & $-161.013$ & $-4.726$ & $+0.002$ & $23.00$ & $2.24$ (Cl) & Metastable \\
+        & S3 (Top-Cr, 3-fold) & $-160.366$ & $-4.079$ & $+0.649$ & $23.00$ & $2.59$ (Cr) & Metastable \\
+        & Embedded (6-fold)    & $-160.804$ & $-4.517$ & $+0.211$ & $27.12$ & $2.31$ (Cl) & Embedded pore \\
+        \cmidrule(lr){1-8}
+        \multirow{3}{*}{PBE+D3 (BJ)}
+        & S1 (Top-Cl, 1-fold) & $-166.942$ & $-4.835$ & $+0.222$ & $27.00$ & $2.13$ (Cl) & Metastable \\
+        & S2 (Hollow, 3-fold) & $-167.164$ & $-5.057$ & $\mathbf{0.000}$ & $23.00$ & $2.23$ (Cl) & \textbf{Ground State (surface)} \\
+        & S3 (Top-Cr, 3-fold) & $-166.454$ & $-4.347$ & $+0.710$ & $23.00$ & $2.58$ (Cr) & Metastable \\
+        \cmidrule(lr){1-8}
+        \multirow{3}{*}{PBE+D3+$U$ (3.29)}
+        & S1 (Top-Cl, 1-fold) & $-152.444$ & $-5.141$ & $\mathbf{0.000}$ & $27.03$ & $2.20$ (Cl) & \textbf{Ground State (surface)} \\
+        & S2 (Hollow, 3-fold) & $-152.368$ & $-5.064$ & $+0.076$ & $27.00$ & $2.21$ (Cl) & Metastable \\
+        & S3 (Top-Cr, 3-fold) & $-151.773$ & $-4.469$ & $+0.671$ & $27.00$ & $2.58$ (Cr) & Metastable \\
         \midrule
-        \multirow{9}{*}{\textbf{Iron (Fe)}}
-        & S1 (Top-Cl)  & 1 & PBE (no vdW)    & $-156.2868$ & $-161.9051$ & $-5.618$ & $28.41$ & Metastable ($\Delta E = +0.71\text{ eV}$) & Chemisorbed ($d_{\text{Fe-Cl}} = 2.16$~\AA) \\
-        & S2 (Hollow)  & 3 & PBE (no vdW)    & $-156.2868$ & $-162.6198$ & $-6.333$ & $28.44$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Fe-Cl}} = 2.28$~\AA) \\
-        & S3 (Top-Cr)  & 3 & PBE (no vdW)    & $-156.2868$ & $-161.3136$ & $-5.027$ & $21.65$ & Metastable ($\Delta E = +1.31\text{ eV}$) & Chemisorbed ($d_{\text{Fe-Cr}} = 2.62$~\AA) \\
-        & Embedded     & 6 & PBE (no vdW)    & $-156.2868$ & $-162.1081$ & $-5.821$ & $28.96$ & Embedded ground state                    & Octahedral ($d_{\text{Fe-Cl}} = 2.36$~\AA) \\
-        \cmidrule(lr){2-10}
-        & S1 (Top-Cl)  & 1 & PBE+D3 (BJ)     & $-162.1068$ & $-168.9135$ & $-6.807$ & $22.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Fe-Cl}} = 2.14$~\AA) \\
-        & S2 (Hollow)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-168.1160$ & $-6.009$ & $28.39$ & Metastable ($\Delta E = +0.80\text{ eV}$) & Chemisorbed ($d_{\text{Fe-Cl}} = 2.26$~\AA) \\
-        & S3 (Top-Cr)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-165.9127$ & $-3.806$ & $24.18$ & Metastable ($\Delta E = +3.00\text{ eV}$) & Chemisorbed ($d_{\text{Fe-Cr}} = 2.61$~\AA) \\
-        \cmidrule(lr){2-10}
-        & S1 (Top-Cl)  & 1 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
-        & S2 (Hollow)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
-        & S3 (Top-Cr)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
+        \multicolumn{8}{l}{\textit{\textbf{B. Iron Functionalization ($\text{CrCl}_3\text{--Fe}$)}}} \\
+        \multirow{4}{*}{Pure PBE}
+        & S1 (Top-Cl, 1-fold) & $-161.905$ & $-5.618$ & $+0.715$ & $28.41$ & $2.16$ (Cl) & Metastable \\
+        & S2 (Hollow, 3-fold) & $-162.620$ & $-6.333$ & $\mathbf{0.000}$ & $28.44$ & $2.28$ (Cl) & \textbf{Ground State (surface)} \\
+        & S3 (Top-Cr, 3-fold) & $-161.314$ & $-5.027$ & $+1.306$ & $21.65$ & $2.62$ (Cr) & Metastable \\
+        & Embedded (6-fold)    & $-162.108$ & $-5.821$ & $+0.512$ & $28.96$ & $2.36$ (Cl) & Embedded pore \\
+        \cmidrule(lr){1-8}
+        \multirow{3}{*}{PBE+D3 (BJ)}
+        & S1 (Top-Cl, 1-fold) & $-168.914$ & $-6.807$ & $\mathbf{0.000}$ & $22.00$ & $2.14$ (Cl) & \textbf{Ground State (surface)} \\
+        & S2 (Hollow, 3-fold) & $-168.116$ & $-6.009$ & $+0.797$ & $28.39$ & $2.26$ (Cl) & Metastable \\
+        & S3 (Top-Cr, 3-fold) & $-165.913$ & $-3.806$ & $+3.001$ & $24.18$ & $2.61$ (Cr) & Metastable \\
+        \cmidrule(lr){1-8}
+        \multirow{3}{*}{PBE+D3+$U$ (3.29)}
+        & S1 (Top-Cl, 1-fold) & $-154.834$ & $-7.531$ & $\mathbf{0.000}$ & $29.97$ & $2.40$ (Cl) & \textbf{Ground State (surface)} \\
+        & S2 (Hollow, 3-fold) & $-153.430$ & $-6.126$ & $+1.405$ & $29.29$ & $2.25$ (Cl) & Metastable \\
+        & S3 (Top-Cr, 3-fold) & $-152.932$ & $-5.628$ & $+1.902$ & $29.44$ & $2.65$ (Cr) & Metastable \\
         \midrule
-        \multirow{9}{*}{\textbf{Nickel (Ni)}}
-        & S1 (Top-Cl)  & 1 & PBE (no vdW)    & $-156.2868$ & $-159.7885$ & $-3.502$ & $24.00$ & Metastable ($\Delta E = +0.29\text{ eV}$) & Chemisorbed ($d_{\text{Ni-Cl}} = 2.12$~\AA) \\
-        & S2 (Hollow)  & 3 & PBE (no vdW)    & $-156.2868$ & $-160.0785$ & $-3.792$ & $24.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Ni-Cl}} = 2.21$~\AA) \\
-        & S3 (Top-Cr)  & 3 & PBE (no vdW)    & $-156.2868$ & $-159.2846$ & $-2.998$ & $24.00$ & Metastable ($\Delta E = +0.79\text{ eV}$) & Chemisorbed ($d_{\text{Ni-Cr}} = 2.55$~\AA) \\
-        & Embedded     & 6 & PBE (no vdW)    & $-156.2868$ & $-159.3190$ & $-3.032$ & $24.00$ & Embedded ground state                    & Octahedral ($d_{\text{Ni-Cl}} = 2.28$~\AA) \\
-        \cmidrule(lr){2-10}
-        & S1 (Top-Cl)  & 1 & PBE+D3 (BJ)     & $-162.1068$ & $-165.9142$ & $-3.807$ & $24.00$ & Metastable ($\Delta E = +0.39\text{ eV}$) & Chemisorbed ($d_{\text{Ni-Cl}} = 2.11$~\AA) \\
-        & S2 (Hollow)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-166.3062$ & $-4.199$ & $24.00$ & Ground State (surface)                   & Chemisorbed ($d_{\text{Ni-Cl}} = 2.20$~\AA) \\
-        & S3 (Top-Cr)  & 3 & PBE+D3 (BJ)     & $-162.1068$ & $-165.2844$ & $-3.178$ & $24.00$ & Metastable ($\Delta E = +1.02\text{ eV}$) & Chemisorbed ($d_{\text{Ni-Cr}} = 2.54$~\AA) \\
-        \cmidrule(lr){2-10}
-        & S1 (Top-Cl)  & 1 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
-        & S2 (Hollow)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
-        & S3 (Top-Cr)  & 3 & PBE+D3+U (3.29) & $-147.3038$ & [In Queue]  & --- & --- & Staged / In Queue & Auto-monitored \\
+        \multicolumn{8}{l}{\textit{\textbf{C. Nickel Functionalization ($\text{CrCl}_3\text{--Ni}$)}}} \\
+        \multirow{4}{*}{Pure PBE}
+        & S1 (Top-Cl, 1-fold) & $-159.789$ & $-3.502$ & $+0.290$ & $24.00$ & $2.12$ (Cl) & Metastable \\
+        & S2 (Hollow, 3-fold) & $-160.078$ & $-3.792$ & $\mathbf{0.000}$ & $24.00$ & $2.21$ (Cl) & \textbf{Ground State (surface)} \\
+        & S3 (Top-Cr, 3-fold) & $-159.285$ & $-2.998$ & $+0.794$ & $24.00$ & $2.55$ (Cr) & Metastable \\
+        & Embedded (6-fold)    & $-159.319$ & $-3.032$ & $+0.760$ & $24.00$ & $2.28$ (Cl) & Embedded pore \\
+        \cmidrule(lr){1-8}
+        \multirow{3}{*}{PBE+D3 (BJ)}
+        & S1 (Top-Cl, 1-fold) & $-165.914$ & $-3.807$ & $+0.392$ & $24.00$ & $2.11$ (Cl) & Metastable \\
+        & S2 (Hollow, 3-fold) & $-166.306$ & $-4.199$ & $\mathbf{0.000}$ & $24.00$ & $2.20$ (Cl) & \textbf{Ground State (surface)} \\
+        & S3 (Top-Cr, 3-fold) & $-165.284$ & $-3.178$ & $+1.022$ & $24.00$ & $2.54$ (Cr) & Metastable \\
+        \cmidrule(lr){1-8}
+        \multirow{3}{*}{PBE+D3+$U$ (3.29)}
+        & S1 (Top-Cl, 1-fold) & $-151.461$ & $-4.157$ & $+0.215$ & $24.00$ & $2.18$ (Cl) & Metastable \\
+        & S2 (Hollow, 3-fold) & $-151.676$ & $-4.372$ & $\mathbf{0.000}$ & $24.00$ & $2.16$ (Cl) & \textbf{Ground State (surface)} \\
+        & S3 (Top-Cr, 3-fold) & $-150.752$ & $-3.448$ & $+0.924$ & $24.00$ & $2.64$ (Cr) & Metastable \\
         \bottomrule
       \end{tabular}
     \end{adjustbox}
-    \vspace{1ex}
-    {\footnotesize $^{\dagger}$Intermediate relaxation values undergoing final micro-batch convergence.}
   \end{table}
 
+  \clearpage
   \subsection*{Table S3: Hydrogen Evolution Reaction (HER) Adsorption Thermodynamics on TM-Functionalized $\text{CrCl}_3$}
 
   \begin{table}[htbp]
@@ -287,7 +297,7 @@
         \multicolumn{9}{l}{\textit{\textbf{C. Embedded Transition Metals (6-fold Octahedral Pore Site)}}} \\
         $\text{CrCl}_3\text{--Co}$ (emb) & Atop Co & $+0.05$ & $+0.19$ & $+0.26$ & $+1.756$ & $+1.743$ & $+1.375$ & $1.375$ \\
         $\text{CrCl}_3\text{--Fe}$ (emb) & Atop Fe & $+0.07$ & $+0.19$ & $+0.26$ & $+1.348$ & $+1.367$ & $+1.114$ & $1.114$ \\
-        $\text{CrCl}_3\text{--Ni}$ (emb) & Atop Ni & $+0.01$ & $+0.19$ & $+0.20$ & $+1.848$ & $+0.927$ & $+0.855$ & $0.855$ \\
+        $\text{CrCl}_3\text{--Ni}$ (emb) & Atop Ni & $+0.01$ & $+0.19$ & $+0.20$ & $+1.848$ & $+0.927$ & $\mathbf{+0.821}$ & $\mathbf{0.821}$ \\
         \bottomrule
       \end{tabular}
     \end{adjustbox}
