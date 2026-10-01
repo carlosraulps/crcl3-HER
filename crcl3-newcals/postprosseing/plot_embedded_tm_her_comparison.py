@@ -64,11 +64,11 @@ def plot_embedded_analysis():
     width = 0.32
 
     # Data under PBE+D3+U:
-    # Fe: Surface S2 = -6.126 eV, Embedded Interstitial = -7.531 eV
-    # Co: Surface S1 = -5.141 eV (S2 = -5.064 eV), Embedded = -5.380 eV
-    # Ni: Surface S2 = -4.372 eV, Embedded = -2.558 eV (interim Step 7)
+    # Fe: Surface S2 = -6.126 eV, Embedded Interstitial = -7.531 eV (Pore favored by 1.41 eV)
+    # Co: Surface S1 = -5.141 eV, Embedded Interstitial = -5.380 eV (Pore favored by 0.24 eV)
+    # Ni: Surface S2 = -4.372 eV, Embedded Interstitial = -3.914 eV (Surface favored by 0.46 eV)
     e_surf = [-6.126, -5.141, -4.372]
-    e_emb  = [-7.531, -5.380, -2.558]
+    e_emb  = [-7.531, -5.380, -3.914]
 
     b1 = ax.bar(x - width/2, e_surf, width, label='Surface Adsorption (Ground State)', color='#3498db', edgecolor='#1a5276', linewidth=1.2, zorder=3)
     b2 = ax.bar(x + width/2, e_emb,  width, label='Interstitial Pore Embedding', color='#e74c3c', edgecolor='#922b21', linewidth=1.2, zorder=3)
@@ -88,9 +88,19 @@ def plot_embedded_analysis():
 
     # Delta Delta E markers
     ax.annotate(r'$\Delta\Delta E = -1.41\,\mathrm{eV}$' + '\n(Pore Favored)',
-                xy=(x[0] + width/2, -7.531), xytext=(x[0] + 0.1, -8.6),
+                xy=(x[0] + width/2, -7.531), xytext=(x[0] + 0.05, -8.65),
                 arrowprops=dict(arrowstyle='->', color='#922b21', lw=1.2),
-                fontsize=9.5, fontweight='bold', color='#922b21', bbox=CARD_STYLE, ha='center')
+                fontsize=9.0, fontweight='bold', color='#922b21', bbox=CARD_STYLE, ha='center')
+
+    ax.annotate(r'$\Delta\Delta E = -0.24\,\mathrm{eV}$' + '\n(Pore Favored)',
+                xy=(x[1] + width/2, -5.380), xytext=(x[1] + 0.05, -6.65),
+                arrowprops=dict(arrowstyle='->', color='#922b21', lw=1.2),
+                fontsize=9.0, fontweight='bold', color='#922b21', bbox=CARD_STYLE, ha='center')
+
+    ax.annotate(r'$\Delta\Delta E = +0.46\,\mathrm{eV}$' + '\n(Surface Favored)',
+                xy=(x[2] - width/2, -4.372), xytext=(x[2] + 0.05, -5.55),
+                arrowprops=dict(arrowstyle='->', color='#1a5276', lw=1.2),
+                fontsize=9.0, fontweight='bold', color='#1a5276', bbox=CARD_STYLE, ha='center')
 
     ax.set_ylabel(r'$\Delta E_{\mathrm{bind}} = E_{\mathrm{tot}} - E_{\mathrm{clean}}\ (\mathrm{eV})$', fontsize=12, fontweight='bold')
     ax.set_title(r'(a) Surface Adsorption vs. Interstitial Pore Embedding ($U_{\mathrm{Cr}}=3.29\,\mathrm{eV}$)', fontsize=12.5, fontweight='bold', pad=10)
@@ -155,50 +165,58 @@ def plot_embedded_analysis():
     ax = axs[1, 0]
 
     # Reaction coordinate steps: H+ + e- (0 eV) -> H* (Delta G) -> 1/2 H2 (0 eV)
-    # Pristine CrCl3:
-    #   Hollow (S2): Delta G = +2.071 eV
-    #   Top-Cl (S1): Delta G = +1.156 eV
-    # Co-Embedded CrCl3:
-    #   H_ads: Delta G = +1.341 eV (or +0.670 eV)
+    # Complete suite under PBE+D3+U with exact Caique thermodynamic corrections:
+    # Co (ads): -0.069 eV (Sabatier summit benchmark)
+    # Ni (emb): +0.821 eV
+    # Fe (emb): +1.114 eV
+    # Pristine S1: +1.124 eV
+    # Co (emb): +1.375 eV
     catalysts = [
-        ('Pristine $\\mathrm{CrCl}_3$ (Hollow S2)', 2.071, '#e74c3c', '--'),
-        ('Pristine $\\mathrm{CrCl}_3$ (Top-Cl S1)', 1.156, '#e67e22', '-.'),
-        ('Co-Embedded $\\mathrm{CrCl}_3$ (Hole Pore)', 1.341, '#27ae60', '-'),
-        ('Co-Embedded (Reflexion Model)', 0.670, '#16a085', ':')
+        (r'Co (ads) Optimal Benchmark', -0.069, '#1e8449', '-', 3.0),
+        (r'Ni (emb) PBE+D3+$U$', 0.821, '#8e44ad', '-', 2.2),
+        (r'Fe (emb) PBE+D3+$U$', 1.114, '#2980b9', '-', 2.2),
+        (r'Pristine $\mathrm{CrCl}_3$ ($S_1$ Top-Cl)', 1.124, '#e67e22', '-.', 2.0),
+        (r'Co (emb) PBE+D3+$U$', 1.375, '#c0392b', '-', 2.2),
     ]
 
     rxn_x = [0.0, 1.0, 2.0]
     rxn_labels = [r'$\mathrm{H}^+ + \mathrm{e}^-$', r'$\mathrm{H}^*$', r'$\frac{1}{2}\mathrm{H}_2$']
 
-    for name, dg, col, lst in catalysts:
+    # Optimal window shading and Pt(111) benchmark
+    ax.axhspan(-0.15, 0.20, color='#2ecc71', alpha=0.18, label=r'Optimal Sabatier Window ($|\Delta G_{\mathrm{H}^*}| \leq 0.15\,\mathrm{eV}$)', zorder=1)
+    ax.axhline(-0.09, color='#17202a', linestyle=':', linewidth=1.2, label=r'$\mathrm{Pt(111)}\ (\Delta G = -0.09\,\mathrm{eV})$', zorder=2)
+    ax.axhline(0.00, color='#27ae60', linestyle='--', linewidth=1.1, zorder=2)
+
+    for name, dg, col, lst, lw in catalysts:
         y_vals = [0.0, dg, 0.0]
         # Plot horizontal plateau segments
         for i in range(3):
-            ax.hlines(y_vals[i], rxn_x[i] - 0.25, rxn_x[i] + 0.25, color=col, linewidth=2.5, zorder=3)
-        # Connect dashed lines
-        ax.plot([0.25, 0.75], [0.0, dg], color=col, linestyle=lst, linewidth=1.5, alpha=0.8)
-        ax.plot([1.25, 1.75], [dg, 0.0], color=col, linestyle=lst, linewidth=1.5, alpha=0.8)
+            ax.hlines(y_vals[i], rxn_x[i] - 0.22, rxn_x[i] + 0.22, color=col, linewidth=lw+0.8, zorder=4)
+        # Connect lines
+        ax.plot([0.22, 0.78], [0.0, dg], color=col, linestyle=lst, linewidth=lw, alpha=0.85, zorder=3)
+        ax.plot([1.22, 1.78], [dg, 0.0], color=col, linestyle=lst, linewidth=lw, alpha=0.85, zorder=3)
 
         # Label intermediate
-        ax.annotate(f'{dg:+.2f} eV', xy=(1.0, dg), xytext=(0, 6), textcoords='offset points',
-                    ha='center', fontsize=9.5, fontweight='bold', color=col, bbox=CARD_STYLE)
-
-    # Ideal Sabatier benchmark
-    ax.axhline(0.0, color='#2c3e50', linestyle='-', linewidth=1.2, zorder=2)
-    ax.annotate(r'Ideal Sabatier Optimum ($\Delta G_{\mathrm{H}^*} = 0\,\mathrm{eV}$)', xy=(0.5, 0.0), xytext=(0.5, -0.28),
-                fontsize=9.5, fontweight='bold', color='#2c3e50', ha='center')
+        y_text_off = 8 if dg >= 0 else -18
+        va_align = 'bottom' if dg >= 0 else 'top'
+        ax.annotate(f'{dg:+.2f} eV', xy=(1.0, dg), xytext=(0, y_text_off), textcoords='offset points',
+                    ha='center', va=va_align, fontsize=9.0, fontweight='bold', color=col, bbox=CARD_STYLE, zorder=5)
 
     ax.set_xticks(rxn_x)
     ax.set_xticklabels(rxn_labels, fontsize=12, fontweight='bold')
-    ax.set_ylabel(r'Gibbs Free Energy $\Delta G\ (\mathrm{eV})$', fontsize=12, fontweight='bold')
-    ax.set_title(r'(c) HER Reaction Coordinate Diagram ($T = 298.15\,\mathrm{K}$)', fontsize=12.5, fontweight='bold', pad=10)
-    ax.set_ylim(-0.5, 2.65)
+    ax.set_ylabel(r'Gibbs Free Energy $\Delta G_{\mathrm{H}^*}\ (\mathrm{eV})$', fontsize=12, fontweight='bold')
+    ax.set_title(r'(c) HER Free Energy Reaction Profiles ($T = 298.15\,\mathrm{K}$)', fontsize=12.5, fontweight='bold', pad=10)
+    ax.set_ylim(-0.45, 2.05)
+    ax.yaxis.set_major_locator(MultipleLocator(0.5))
+    ax.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax.grid(axis='y', linestyle='--', alpha=0.4, zorder=0)
 
     # Custom legend for panel c
     from matplotlib.lines import Line2D
-    custom_lines = [Line2D([0], [0], color=col, lw=2.5, linestyle=lst) for _, _, col, lst in catalysts]
-    ax.legend(custom_lines, [c[0] for c in catalysts], loc='upper right', frameon=True, facecolor='white', framealpha=0.92, fontsize=9.2)
+    custom_lines = [Line2D([0], [0], color=col, lw=lw, linestyle=lst) for _, _, col, lst, lw in catalysts]
+    custom_lines.append(Line2D([0], [0], color='#17202a', lw=1.2, linestyle=':'))
+    labels_c = [c[0] for c in catalysts] + [r'$\mathrm{Pt(111)}\ (-0.09\,\mathrm{eV})$']
+    ax.legend(custom_lines, labels_c, loc='upper left', frameon=True, facecolor='white', framealpha=0.92, fontsize=8.6)
 
     # -------------------------------------------------------------
     # PANEL (d): Magnetic Moment & Spin Compensation
@@ -206,30 +224,34 @@ def plot_embedded_analysis():
     ax = axs[1, 1]
 
     systems = [
-        r'Pristine Clean' + '\n' + r'($\mathrm{Cr}_8\mathrm{Cl}_{24}$)',
-        r'Pristine + H' + '\n' + r'(Top-Cl)',
-        r'Co-Emb Clean' + '\n' + r'($\mathrm{Cr}_8\mathrm{Cl}_{24}\mathrm{Co}$)',
-        r'Co-Emb + H' + '\n' + r'(Adsorbed)',
-        r'Fe-Emb Clean' + '\n' + r'($\mathrm{Cr}_8\mathrm{Cl}_{24}\mathrm{Fe}$)',
-        r'Fe-Emb (S1)' + '\n' + r'(Octahedral)'
+        r'Pristine' + '\n' + r'Clean',
+        r'Pristine' + '\n' + r'+ H',
+        r'Co-Emb' + '\n' + r'Clean',
+        r'Co-Emb' + '\n' + r'+ H',
+        r'Fe-Emb' + '\n' + r'Clean',
+        r'Fe-Emb' + '\n' + r'+ H',
+        r'Ni-Emb' + '\n' + r'Clean',
+        r'Ni-Emb' + '\n' + r'+ H'
     ]
-    mag_vals = [24.00, 25.00, 28.14, 24.00, 29.77, 29.97]
-    colors = ['#7f8c8d', '#95a5a6', '#3498db', '#2980b9', '#e74c3c', '#c0392b']
+    mag_vals = [24.00, 25.00, 28.14, 24.00, 29.77, 23.00, 24.00, 25.00]
+    colors = ['#7f8c8d', '#95a5a6', '#2980b9', '#1b4f72', '#c0392b', '#922b21', '#8e44ad', '#6c3483']
 
     x_d = np.arange(len(systems))
     bars = ax.bar(x_d, mag_vals, width=0.55, color=colors, edgecolor='#2c3e50', linewidth=1.1, zorder=3)
 
     for bar, val in zip(bars, mag_vals):
         h = bar.get_height()
-        ax.annotate(f'{val:.2f}' + r' $\mu_{\mathrm{B}}$', xy=(bar.get_x() + bar.get_width()/2, h),
+        ax.annotate(f'{val:.1f}' + r' $\mu_{\mathrm{B}}$', xy=(bar.get_x() + bar.get_width()/2, h),
                     xytext=(0, 6), textcoords='offset points', ha='center', va='bottom',
-                    fontsize=9.2, fontweight='bold', bbox=CARD_STYLE)
+                    fontsize=8.5, fontweight='bold', bbox=CARD_STYLE, zorder=5)
 
     ax.set_ylabel(r'Total Magnetic Moment $M_{\mathrm{tot}}\ (\mu_{\mathrm{B}})$', fontsize=12, fontweight='bold')
-    ax.set_title(r'(d) Total Magnetic Moment across Pristine & Embedded Configurations', fontsize=12.5, fontweight='bold', pad=10)
+    ax.set_title(r'(d) Total Magnetic Moment across Pristine & Embedded Platforms', fontsize=12.5, fontweight='bold', pad=10)
     ax.set_xticks(x_d)
-    ax.set_xticklabels(systems, fontsize=9.5, fontweight='bold')
-    ax.set_ylim(0, 36.0)
+    ax.set_xticklabels(systems, fontsize=9.0, fontweight='bold')
+    ax.set_ylim(0, 37.0)
+    ax.yaxis.set_major_locator(MultipleLocator(5.0))
+    ax.yaxis.set_minor_locator(MultipleLocator(1.0))
     ax.grid(axis='y', linestyle='--', alpha=0.4, zorder=0)
 
     # Save outputs

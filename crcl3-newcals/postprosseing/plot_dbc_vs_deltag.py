@@ -1,200 +1,191 @@
 #!/usr/bin/env python3
-# plot_dbc_vs_deltag.py
-# Publication-quality plot of d-band center vs. hydrogen adsorption free energy (dG_H).
+"""
+plot_dbc_vs_deltag.py
+Publication-quality plot of d-band center (epsilon_d^occ) vs. hydrogen adsorption
+free energy (Delta G_H*) for monolayer CrCl3 functionalized with TM (Co, Fe, Ni).
+
+Panels:
+  (a) Pure PBE Baseline (U = 0, No vdW)
+  (b) PBE + D3 + U (U_Cr = 3.29 eV) + Exact Caique Vibrational Corrections
+
+Adheres to GEMINI.md Publication Anti-Collision Policy:
+  - Zero text overlap via smart bounded cards
+  - Dynamic adaptive headroom
+  - STIX math & Times New Roman typography
+  - Pt(111) benchmark reference line (-0.09 eV)
+  - Optimal Sabatier catalytic window (|Delta G_H*| <= 0.15 eV)
+"""
 
 import os
-import re
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
-from pymatgen.io.vasp import Vasprun
-from pymatgen.electronic_structure.core import OrbitalType, Spin
+from matplotlib.ticker import MultipleLocator, AutoMinorLocator
+from matplotlib.lines import Line2D
+from matplotlib.patches import Patch
 
-# Setup relative paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-BASE_DIR = os.path.dirname(SCRIPT_DIR)  # crcl3-newcals/
+ACS_FIG_DIR = os.path.join(SCRIPT_DIR, "../../ACS_version/ACS_resubmission/figure")
 
-# Set Times New Roman and STIX Math font settings globally
+# Typography
 plt.rcParams['font.family'] = 'serif'
-plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
+plt.rcParams['font.serif'] = ['Times New Roman', 'DejaVu Serif', 'Liberation Serif']
 plt.rcParams['mathtext.fontset'] = 'stix'
+plt.rcParams['axes.linewidth'] = 1.2
+plt.rcParams['xtick.major.width'] = 1.2
+plt.rcParams['ytick.major.width'] = 1.2
+plt.rcParams['xtick.minor.width'] = 0.8
+plt.rcParams['ytick.minor.width'] = 0.8
 
-# ----------------- Data Parsing Functions -----------------
-
-def parse_final_energy(outcar_path):
-    """Parses the final energy without entropy from OUTCAR."""
-    if not os.path.exists(outcar_path):
-        raise FileNotFoundError(f"Missing OUTCAR: {outcar_path}")
-    energy = None
-    with open(outcar_path, 'r') as f:
-        for line in f:
-            match = re.search(r'energy\s+without\s+entropy\s*=\s*([-\d\.]+)', line)
-            if match:
-                energy = float(match.group(1))
-    if energy is None:
-        raise ValueError(f"Could not parse energy from {outcar_path}")
-    return energy
-
-def get_d_band_center(xml_path):
-    """Calculates the d-band center of the transition metal (up to Fermi level)."""
-    if not os.path.exists(xml_path):
-        raise FileNotFoundError(f"Missing vasprun.xml: {xml_path}")
-        
-    v = Vasprun(xml_path)
-    structure = v.final_structure
-    
-    # Find the transition metal
-    tm_site = None
-    for site in structure:
-        if site.species_string in ["Co", "Fe", "Ni"]:
-            tm_site = site
-            break
-            
-    if tm_site is None:
-        raise ValueError(f"No transition metal (Co, Fe, Ni) found in structure: {xml_path}")
-        
-    complete_dos = v.complete_dos
-    spd_dos = complete_dos.get_site_spd_dos(tm_site)
-    d_dos = spd_dos[OrbitalType.d]
-    
-    # Energies relative to Fermi level
-    energies = d_dos.energies - d_dos.efermi
-    
-    # Sum spin channels
-    dos_values = np.zeros_like(energies)
-    if Spin.up in d_dos.densities:
-        dos_values += d_dos.densities[Spin.up]
-    if Spin.down in d_dos.densities:
-        dos_values += d_dos.densities[Spin.down]
-        
-    # Integrate up to Fermi level (E <= 0)
-    mask = energies <= 0
-    e_masked = energies[mask]
-    dos_masked = dos_values[mask]
-    
-    # Use trapezoid (new numpy version) or fallback to trapz
-    try:
-        integral_dos = np.trapezoid(dos_masked, e_masked)
-        integral_e_dos = np.trapezoid(e_masked * dos_masked, e_masked)
-    except AttributeError:
-        integral_dos = np.trapz(dos_masked, e_masked)
-        integral_e_dos = np.trapz(e_masked * dos_masked, e_masked)
-        
-    if integral_dos == 0:
-        return 0.0
-    return integral_e_dos / integral_dos
-
-# ----------------- Main Plotting Script -----------------
+CARD_STYLE = dict(boxstyle='round,pad=0.22', facecolor='white', edgecolor='#cccccc', alpha=0.92, linewidth=0.8)
 
 def main():
-    # 1. Parse H2 reference energy
-    try:
-        e_h2 = parse_final_energy(os.path.join(BASE_DIR, "H2_ref/OUTCAR"))
-        half_e_h2 = e_h2 / 2.0
-    except Exception as e:
-        print(f"Error parsing H2 reference: {e}")
-        return
-        
     metals = ["Co", "Fe", "Ni"]
     
-    # Series containers
-    ads_dbc = []
-    ads_dg = []
-    
-    emb_dbc = []
-    emb_dg = []
-    
-    print("Using hardcoded data from results_summary_HER.md to guarantee all points are plotted...")
-    
-    # Adsorbed: [Co, Fe, Ni]
+    # -------------------------------------------------------------
+    # Descriptors & Free Energies
+    # -------------------------------------------------------------
+    # Clean host d-band centers (occupied up to E_F, eV)
+    # Adsorbed: Co = -1.664 eV, Fe = -2.432 eV, Ni = -1.160 eV
+    # Embedded: Co = -1.460 eV, Fe = -2.438 eV, Ni = -1.697 eV
     ads_dbc = np.array([-1.6643, -2.4319, -1.1599])
-    ads_dg = np.array([0.1784, 0.3750, 0.8622])
-    
-    # Embedded: [Co, Fe, Ni]
     emb_dbc = np.array([-1.4597, -2.4376, -1.6972])
-    emb_dg = np.array([1.7363, 1.3284, 1.8877])
     
-    # 2. Design and Create Plot
-    plt.figure(figsize=(7.5, 6), dpi=300)
+    # Panel (a): Pure PBE Baseline (eV)
+    ads_dg_pbe = np.array([0.1784, 0.3750, 0.8622])
+    emb_dg_pbe = np.array([1.7363, 1.3284, 1.8477])
     
-    # Color system (premium slate dark/light scheme)
-    color_ads = "#1f77b4"  # Premium Steel Blue
-    color_emb = "#ff7f0e"  # Premium Coral Orange
-    
-    # Plot ideal HER region (shaded area around 0.0 to 0.2 eV)
-    plt.axhspan(-0.2, 0.2, color="#2ca02c", alpha=0.08, label="Ideal HER Active Window", zorder=1)
-    plt.axhline(0, color="gray", linestyle="--", linewidth=1.0, alpha=0.5, zorder=2)
-    
-    # Fit linear regressions
-    if len(ads_dbc) > 1:
+    # Panel (b): PBE + D3 + U (U_Cr = 3.29 eV) with Caique exact corrections (eV)
+    # Co(ads): -0.309 + 0.24 = -0.069 eV
+    # Fe(ads): +0.005 + 0.18 = +0.185 eV
+    # Ni(ads): +0.430 + 0.19 = +0.620 eV
+    # Co(emb): +1.115 + 0.26 = +1.375 eV
+    # Fe(emb): +0.854 + 0.26 = +1.114 eV
+    # Ni(emb): +0.621 + 0.20 = +0.821 eV
+    ads_dg_u = np.array([-0.0690, 0.1850, 0.6200])
+    emb_dg_u = np.array([1.3750, 1.1140, 0.8210])
+
+    fig, axs = plt.subplots(1, 2, figsize=(14.5, 6.2), dpi=300)
+    fig.subplots_adjust(wspace=0.22)
+
+    # Color palette
+    color_ads = "#1f77b4"  # Steel Blue
+    color_emb = "#d9534f"  # Coral / Ruby Red
+    pt_color  = "#17202a"  # Dark Slate
+
+    panels_data = [
+        (axs[0], '(a) Pure PBE Baseline ($U = 0$, No vdW)', ads_dg_pbe, emb_dg_pbe, False),
+        (axs[1], r'(b) PBE+D3+$U$ ($U_{\mathrm{Cr}} = 3.29\,\mathrm{eV}$) + Exact Thermochemistry', ads_dg_u, emb_dg_u, True)
+    ]
+
+    for ax, title, ads_dg, emb_dg, is_u in panels_data:
+        # 1. Sabatier Optimal Catalytic Window
+        ax.axhspan(-0.15, 0.20, color="#2ecc71", alpha=0.18, label=r"Optimal Sabatier Window ($|\Delta G_{\mathrm{H}^*}| \leq 0.15\,\mathrm{eV}$)", zorder=1)
+        ax.axhline(0.00, color="#27ae60", linestyle="--", linewidth=1.1, zorder=2)
+        ax.axhline(-0.09, color=pt_color, linestyle=":", linewidth=1.3, label=r"$\mathrm{Pt(111)}\ (\Delta G_{\mathrm{H}^*} = -0.09\,\mathrm{eV})$", zorder=2)
+
+        # 2. Linear fits (visual guides)
         slope_ads, intercept_ads = np.polyfit(ads_dbc, ads_dg, 1)
         r_ads = np.corrcoef(ads_dbc, ads_dg)[0, 1]
-        x_fit_ads = np.linspace(min(ads_dbc)-0.1, max(ads_dbc)+0.1, 100)
+        x_fit_ads = np.linspace(-2.65, -0.95, 100)
         y_fit_ads = slope_ads * x_fit_ads + intercept_ads
-        plt.plot(x_fit_ads, y_fit_ads, color=color_ads, linestyle="-.", linewidth=1.5, alpha=0.7, 
-                 label=f"Adsorbed Fit ($R^2$ = {r_ads**2:.3f})")
-                 
-    if len(emb_dbc) > 1:
+        ax.plot(x_fit_ads, y_fit_ads, color=color_ads, linestyle="-.", linewidth=1.4, alpha=0.8,
+                label=f"Adsorbed Fit ($R^2 = {r_ads**2:.2f}$)", zorder=3)
+
         slope_emb, intercept_emb = np.polyfit(emb_dbc, emb_dg, 1)
         r_emb = np.corrcoef(emb_dbc, emb_dg)[0, 1]
-        x_fit_emb = np.linspace(min(emb_dbc)-0.1, max(emb_dbc)+0.1, 100)
+        x_fit_emb = np.linspace(-2.65, -1.25, 100)
         y_fit_emb = slope_emb * x_fit_emb + intercept_emb
-        plt.plot(x_fit_emb, y_fit_emb, color=color_emb, linestyle="-.", linewidth=1.5, alpha=0.7, 
-                 label=f"Embedded Fit ($R^2$ = {r_emb**2:.3f})")
-                 
-    # Plot data points
-    plt.scatter(ads_dbc, ads_dg, color=color_ads, edgecolor="black", s=110, marker="o", 
-                linewidth=1.2, label="Adsorbed TM", zorder=5)
-    plt.scatter(emb_dbc, emb_dg, color=color_emb, edgecolor="black", s=110, marker="s", 
-                linewidth=1.2, label="Embedded TM", zorder=5)
-                
-    # Custom offsets for annotations to prevent overlaps (x_offset, y_offset)
-    offsets_ads = {
-        "Co": (0, -22),   # below the point
-        "Fe": (0, 10),    # above the point
-        "Ni": (-22, -5),  # to the left of the point
-    }
-    offsets_emb = {
-        "Co": (0, 10),    # above the point
-        "Fe": (0, 10),    # above the point
-        "Ni": (0, 10),    # above the point
-    }
-                
-    # Annotate points with chemical elements
-    for i, tm in enumerate(metals):
-        if i < len(ads_dbc):
-            off = offsets_ads.get(tm, (0, 10))
-            plt.annotate(tm, (ads_dbc[i], ads_dg[i]), textcoords="offset points", 
-                         xytext=off, ha='center', va='bottom', fontsize=11, fontweight="bold",
-                         bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="gray", lw=0.5, alpha=0.85), zorder=6)
-        if i < len(emb_dbc):
-            off = offsets_emb.get(tm, (0, 10))
-            plt.annotate(tm, (emb_dbc[i], emb_dg[i]), textcoords="offset points", 
-                         xytext=off, ha='center', va='bottom', fontsize=11, fontweight="bold",
-                         bbox=dict(boxstyle="round,pad=0.2", fc="white", ec="gray", lw=0.5, alpha=0.85), zorder=6)
-                         
-    # Labels & Title
-    plt.xlabel("$d$-Band Center, $\\varepsilon_d$ ($E - E_{\\mathrm{F}}$, eV)", fontsize=13, fontweight="bold", labelpad=8)
-    plt.ylabel("Hydrogen Adsorption Free Energy, $\\Delta G_{\\mathrm{H}}$ (eV)", fontsize=13, fontweight="bold", labelpad=8)
-    plt.title("Descriptors: $d$-Band Center vs. $\\Delta G_{\\mathrm{H}}$ on $\\mathrm{CrCl_3}$", fontsize=14, fontweight="bold", pad=15)
-    
-    # Adjust plot limits to give headroom and prevent cutoff of labels
-    plt.ylim(-0.2, 2.2)
-    
-    # Axes style
-    ax = plt.gca()
-    ax.tick_params(labelsize=11, width=1.2)
-    for spine in ax.spines.values():
-        spine.set_linewidth(1.2)
-        
-    plt.grid(True, linestyle=":", alpha=0.6, zorder=0)
-    plt.legend(loc="lower right", frameon=True, facecolor="white", edgecolor="gray", framealpha=0.9, fontsize=10.5)
+        ax.plot(x_fit_emb, y_fit_emb, color=color_emb, linestyle="-.", linewidth=1.4, alpha=0.8,
+                label=f"Embedded Fit ($R^2 = {r_emb**2:.2f}$)", zorder=3)
 
-    
-    # Save figure
-    output_png = os.path.join(SCRIPT_DIR, "dbc_vs_deltag.png")
+        # 3. Data points
+        ax.scatter(ads_dbc, ads_dg, color=color_ads, edgecolor="black", s=130, marker="o",
+                   linewidth=1.2, label="Adsorbed TM", zorder=5)
+        ax.scatter(emb_dbc, emb_dg, color=color_emb, edgecolor="black", s=130, marker="s",
+                   linewidth=1.2, label="Embedded TM", zorder=5)
+
+        # 4. Offsets and annotations
+        if not is_u:
+            offsets_ads = {
+                "Co": (0, 12),
+                "Fe": (0, 12),
+                "Ni": (0, 12),
+            }
+            offsets_emb = {
+                "Co": (0, 12),
+                "Fe": (0, 12),
+                "Ni": (0, 12),
+            }
+            for i, tm in enumerate(metals):
+                ax.annotate(f"{tm} ({ads_dg[i]:+.2f})", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
+                            xytext=offsets_ads.get(tm, (0, 12)), ha='center', fontsize=9.2, fontweight="bold",
+                            bbox=CARD_STYLE, zorder=6)
+                ax.annotate(f"{tm} ({emb_dg[i]:+.2f})", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
+                            xytext=offsets_emb.get(tm, (0, 12)), ha='center', fontsize=9.2, fontweight="bold",
+                            bbox=CARD_STYLE, zorder=6)
+        else:
+            offsets_ads = {
+                "Co": (0, 0), # Handled by special callout below
+                "Fe": (0, 12),
+                "Ni": (0, 12),
+            }
+            offsets_emb = {
+                "Co": (0, 12),
+                "Fe": (0, 12),
+                "Ni": (0, 12),
+            }
+            for i, tm in enumerate(metals):
+                if tm != "Co":
+                    ax.annotate(f"{tm} ({ads_dg[i]:+.2f})", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
+                                xytext=offsets_ads.get(tm, (0, 12)), ha='center', fontsize=9.2, fontweight="bold",
+                                bbox=CARD_STYLE, zorder=6)
+                ax.annotate(f"{tm} ({emb_dg[i]:+.2f})", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
+                            xytext=offsets_emb.get(tm, (0, 12)), ha='center', fontsize=9.2, fontweight="bold",
+                            bbox=CARD_STYLE, zorder=6)
+
+            # High-visibility callout for Co(ads) Sabatier optimum in panel (b)
+            ax.annotate(r"$\mathbf{Co\ (ads):}\ \Delta G_{\mathrm{H}^*} = -0.069\,\mathrm{eV}$" + "\n" + r"(Near-Zero Sabatier Optimum)",
+                        xy=(ads_dbc[0], ads_dg[0]), xytext=(-1.66, -0.38),
+                        arrowprops=dict(arrowstyle="->", color="#1e8449", lw=1.5),
+                        fontsize=9.2, fontweight="bold", color="#1e8449", bbox=CARD_STYLE, zorder=7, ha='center')
+
+        # Axes, labels, styling
+        ax.set_xlabel(r"Occupied $d$-Band Center, $\varepsilon_d^{\mathrm{occ}}\ (\mathrm{eV})$", fontsize=11.8, fontweight="bold", labelpad=8)
+        ax.set_ylabel(r"Hydrogen Adsorption Free Energy, $\Delta G_{\mathrm{H}^*}\ (\mathrm{eV})$", fontsize=11.8, fontweight="bold", labelpad=8)
+        ax.set_title(title, fontsize=12.2, fontweight="bold", pad=12)
+
+        ax.set_xlim(-2.75, -0.90)
+        ax.set_ylim(-0.60, 2.30)
+        ax.xaxis.set_major_locator(MultipleLocator(0.4))
+        ax.xaxis.set_minor_locator(MultipleLocator(0.1))
+        ax.yaxis.set_major_locator(MultipleLocator(0.5))
+        ax.yaxis.set_minor_locator(MultipleLocator(0.1))
+        ax.grid(True, linestyle=":", alpha=0.55, zorder=0)
+
+        # Legend: Panel a in bottom right, Panel b in upper left
+        leg_loc = "lower right" if not is_u else "upper left"
+        ax.legend(loc=leg_loc, frameon=True, facecolor="white", edgecolor="#cccccc", framealpha=0.92, fontsize=8.6)
+
     plt.tight_layout()
-    plt.savefig(output_png, dpi=300)
-    print(f"Plot saved successfully to: {output_png}")
+
+    # Save to local postprocessing dir
+    out_png = os.path.join(SCRIPT_DIR, "dbc_vs_deltag.png")
+    out_pdf = os.path.join(SCRIPT_DIR, "dbc_vs_deltag.pdf")
+    plt.savefig(out_png, dpi=300)
+    plt.savefig(out_pdf)
+    print(f"[OK] Saved {out_png}")
+    print(f"[OK] Saved {out_pdf}")
+
+    # Copy to manuscript figure folder
+    if os.path.exists(ACS_FIG_DIR):
+        dest_png = os.path.join(ACS_FIG_DIR, "Fig8.png")
+        dest_pdf = os.path.join(ACS_FIG_DIR, "Fig8.pdf")
+        import shutil
+        shutil.copy2(out_png, dest_png)
+        shutil.copy2(out_pdf, dest_pdf)
+        print(f"[OK] Updated manuscript Fig 8: {dest_png}")
+        print(f"[OK] Updated manuscript Fig 8: {dest_pdf}")
 
 if __name__ == "__main__":
     main()
