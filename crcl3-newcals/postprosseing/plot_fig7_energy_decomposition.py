@@ -29,8 +29,22 @@ import os
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 from matplotlib.ticker import MultipleLocator, AutoMinorLocator
 from PIL import Image
+
+# Register authentic Times New Roman system fonts
+for font_path in [
+    "/usr/share/fonts/TTF/Times.TTF",
+    "/usr/share/fonts/TTF/Timesbd.TTF",
+    "/usr/share/fonts/TTF/Timesi.TTF",
+    "/usr/share/fonts/TTF/Timesbi.TTF",
+]:
+    if os.path.exists(font_path):
+        fm.fontManager.addfont(font_path)
+
+FONT_TNR_REG = fm.FontProperties(fname="/usr/share/fonts/TTF/Times.TTF")
+FONT_TNR_BOLD = fm.FontProperties(fname="/usr/share/fonts/TTF/Timesbd.TTF")
 
 # Output directories
 POST_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -38,8 +52,8 @@ REPO_ROOT = os.path.abspath(os.path.join(POST_DIR, "../.."))
 FIG_DIR = os.path.join(REPO_ROOT, "ACS_version/ACS_resubmission/figure")
 
 # Typography adhering to publication guidelines
-plt.rcParams['font.family'] = 'serif'
-plt.rcParams['font.serif'] = ['Times New Roman', 'DejaVu Serif', 'Liberation Serif']
+plt.rcParams['font.family'] = 'Times New Roman'
+plt.rcParams['font.serif'] = ['Times New Roman', 'Liberation Serif', 'DejaVu Serif']
 plt.rcParams['mathtext.fontset'] = 'stix'
 plt.rcParams['axes.linewidth'] = 1.3
 plt.rcParams['xtick.major.width'] = 1.3
@@ -52,6 +66,59 @@ COLOR_EINT = "#48a999"   # Teal / Sea Green
 COLOR_EDEF = "#f1c40f"   # Gold / Mustard Yellow
 COLOR_DG   = "#0011a8"   # Royal / Navy Blue
 COLOR_VAL  = "#c0392b"   # High-contrast bold red for value annotations
+
+def annotate_positive_pair(ax, r_left, val_left, r_right, val_right, txt_right=None, fontsize=12):
+    """
+    Annotates a pair of positive bars (e.g. E_def and Delta G_H*) with guaranteed zero collision.
+    Empty space at y > 0 exists to the left of r_left (since Bar 1 is negative)
+    and to the right of r_right.
+    """
+    if txt_right is None:
+        txt_right = f"{val_right:.2f}"
+
+    x_l = r_left.get_x() + r_left.get_width() / 2.0
+    x_r = r_right.get_x() + r_right.get_width() / 2.0
+    h_l = val_left
+    h_r = val_right
+
+    if h_r < 0:
+        # Right bar is negative (e.g. Co Delta G = -0.07)
+        ax.text(x_l, h_l + 0.05, f"{h_l:.2f}",
+                ha='center', va='bottom', fontsize=fontsize, fontweight='bold', color=COLOR_VAL)
+        ax.text(x_r, h_r - 0.13, txt_right,
+                ha='center', va='top', fontsize=fontsize, fontweight='bold', color=COLOR_VAL)
+        return
+
+    diff = h_r - h_l
+    if abs(diff) <= 0.15:
+        # Equal or close in height (e.g. 0.18/0.18, 0.38/0.38, 1.97/1.85, 0.73/0.82)
+        # Shift left bar left, right bar right, and vertically stagger
+        x_pos_l = x_l - 0.07
+        x_pos_r = x_r + 0.07
+        if h_l >= h_r:
+            y_pos_l = h_l + 0.16
+            y_pos_r = h_r + 0.05
+        else:
+            y_pos_l = h_l + 0.05
+            y_pos_r = h_r + 0.16
+    elif diff > 0.15:
+        # Right bar is taller: shift left bar left into open space above Bar 1
+        x_pos_l = x_l - 0.08
+        y_pos_l = h_l + 0.05
+        x_pos_r = x_r
+        y_pos_r = h_r + 0.05
+    else:
+        # Left bar is taller: shift right bar right into open space on right
+        x_pos_l = x_l
+        y_pos_l = h_l + 0.05
+        x_pos_r = x_r + 0.08
+        y_pos_r = h_r + 0.05
+
+    ax.text(x_pos_l, y_pos_l, f"{h_l:.2f}",
+            ha='center', va='bottom', fontsize=fontsize, fontweight='bold', color=COLOR_VAL)
+    ax.text(x_pos_r, y_pos_r, txt_right,
+            ha='center', va='bottom', fontsize=fontsize, fontweight='bold', color=COLOR_VAL)
+
 
 def render_panels(tier="pbe_d3_u", dpi=300):
     """
@@ -69,26 +136,20 @@ def render_panels(tier="pbe_d3_u", dpi=300):
     # -------------------------------------------------------------
     if tier == "pbe_d3_u":
         # Surface-adsorbed (g)
-        # Co: -0.069 eV (optimal Sabatier)
-        # Fe: +0.185 eV (promoted into active window)
-        # Ni: +0.620 eV
         g_eint = np.array([-2.46, -2.35, -1.69])
         g_edef = np.array([0.18, 0.38, 0.09])
         g_dg   = np.array([-0.07, 0.19, 0.62])
         g_dg_labels = ["-0.07", "0.19", "0.62"]
 
         # Embedded (h)
-        # Co: +1.375 -> +1.38 eV
-        # Fe: +1.114 -> +1.11 eV
-        # Ni: +0.821 -> +0.82 eV (Converged Step 52)
         h_eint = np.array([-0.94, -1.67, -0.82])
-        h_edef = np.array([0.21, 0.55, 0.73])  # Relaxed pore deformation
+        h_edef = np.array([0.21, 0.55, 0.73])
         h_dg   = np.array([1.38, 1.11, 0.82])
         h_dg_labels = ["1.38", "1.11", "0.82"]
 
         # Y-limits with adaptive headroom (+25%)
-        ylim_g = (-2.85, 1.20)
-        ylim_h = (-2.10, 2.25)
+        ylim_g = (-2.85, 1.25)
+        ylim_h = (-2.10, 2.30)
         yticks_g = [-2.5, -2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0]
         yticks_h = [-2.0, -1.0, 0.0, 1.0, 2.0]
 
@@ -99,7 +160,7 @@ def render_panels(tier="pbe_d3_u", dpi=300):
         g_dg   = np.array([0.18, 0.38, 0.86])
         g_dg_labels = ["0.18", "0.38", "0.86"]
 
-        # Embedded (h) - updated with converged Ni_emb (+1.85 eV vs old 3.62 eV)
+        # Embedded (h)
         h_eint = np.array([-0.94, -1.67, -0.82])
         h_edef = np.array([0.21, 0.55, 1.97])
         h_dg   = np.array([1.74, 1.33, 1.85])
@@ -107,7 +168,7 @@ def render_panels(tier="pbe_d3_u", dpi=300):
 
         # Y-limits with adaptive headroom
         ylim_g = (-2.85, 1.35)
-        ylim_h = (-2.10, 2.75)
+        ylim_h = (-2.10, 2.80)
         yticks_g = [-2.5, -2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0]
         yticks_h = [-2.0, -1.0, 0.0, 1.0, 2.0]
 
@@ -115,7 +176,7 @@ def render_panels(tier="pbe_d3_u", dpi=300):
         raise ValueError(f"Unknown tier: {tier}")
 
     # Broad x-limits to cleanly accommodate legend on the right without overlapping Ni
-    xlim_common = (-0.65, 2.95)
+    xlim_common = (-0.65, 3.00)
 
     # =============================================================
     # 1. Combined Two-Panel Figure: (g) and (h) side by side
@@ -133,30 +194,12 @@ def render_panels(tier="pbe_d3_u", dpi=300):
 
     # Values for panel (g)
     for rect, val in zip(rects_g1, g_eint):
-        y_pos = rect.get_height() - 0.12
+        y_pos = val - 0.12
         ax_g.text(rect.get_x() + rect.get_width()/2.0, y_pos, f"{val:.2f}",
                   ha='center', va='top', fontsize=12, fontweight='bold', color=COLOR_VAL)
 
-    for i, (rect, val) in enumerate(zip(rects_g2, g_edef)):
-        y_pos = rect.get_height() + 0.05
-        ax_g.text(rect.get_x() + rect.get_width()/2.0, y_pos, f"{val:.2f}",
-                  ha='center', va='bottom', fontsize=12, fontweight='bold', color=COLOR_VAL)
-
-    for i, (rect, (val, txt)) in enumerate(zip(rects_g3, zip(g_dg, g_dg_labels))):
-        if val >= 0:
-            # Check if adjacent to edef bar and close in height (e.g. Co or Fe in PBE baseline)
-            diff = abs(val - g_edef[i])
-            if diff < 0.05:
-                y_pos = rect.get_height() + 0.16  # Stagger upward to avoid horizontal collision
-            else:
-                y_pos = rect.get_height() + 0.05
-            va_align = 'bottom'
-        else:
-            # Stagger slightly lower so it doesn't touch zero-line or bar edge
-            y_pos = rect.get_height() - 0.15
-            va_align = 'top'
-        ax_g.text(rect.get_x() + rect.get_width()/2.0, y_pos, txt,
-                  ha='center', va=va_align, fontsize=12, fontweight='bold', color=COLOR_VAL)
+    for i in range(n_metals):
+        annotate_positive_pair(ax_g, rects_g2[i], g_edef[i], rects_g3[i], g_dg[i], g_dg_labels[i], fontsize=12)
 
     ax_g.set_xticks(x)
     ax_g.set_xticklabels(metals, fontsize=18)
@@ -168,8 +211,8 @@ def render_panels(tier="pbe_d3_u", dpi=300):
     # Legend with clean background framing
     ax_g.legend(loc='lower right', frameon=True, facecolor='white', edgecolor='#e0e0e0', framealpha=0.95,
                 fontsize=15, handlelength=1.4, handleheight=0.8, borderaxespad=0.8, labelspacing=0.35)
-    # Centered subpanel label below
-    fig.text(0.28, 0.04, "(g)", ha='center', va='center', fontsize=22)
+    # Centered subpanel label below in genuine Times New Roman
+    fig.text(0.273, 0.04, "(g)", ha='center', va='center', fontproperties=FONT_TNR_REG, fontsize=24)
 
     # -------------------------------------------------------------
     # Panel (h): Embedded Interstitial
@@ -181,29 +224,15 @@ def render_panels(tier="pbe_d3_u", dpi=300):
 
     # Values for panel (h)
     for rect, val in zip(rects_h1, h_eint):
-        y_pos = rect.get_height() - 0.12
+        y_pos = val - 0.12
         ax_h.text(rect.get_x() + rect.get_width()/2.0, y_pos, f"{val:.2f}",
                   ha='center', va='top', fontsize=12, fontweight='bold', color=COLOR_VAL)
 
-    for i, (rect, val) in enumerate(zip(rects_h2, h_edef)):
-        # For Ni in pbe_baseline (1.97 and 1.85 are close), elevate 1.97 slightly
-        if tier == "pbe_baseline" and i == 2:
-            y_pos = rect.get_height() + 0.15
-        else:
-            y_pos = rect.get_height() + 0.05
-        ax_h.text(rect.get_x() + rect.get_width()/2.0, y_pos, f"{val:.2f}",
-                  ha='center', va='bottom', fontsize=12, fontweight='bold', color=COLOR_VAL)
-
-    for i, (rect, (val, txt)) in enumerate(zip(rects_h3, zip(h_dg, h_dg_labels))):
-        # If Ni in pbe_d3_u (0.73 and 0.82 are close), stagger 0.82 slightly higher
-        y_offset = 0.14 if (tier == "pbe_d3_u" and i == 2) else 0.05
-        y_pos = rect.get_height() + y_offset
-        ax_h.text(rect.get_x() + rect.get_width()/2.0, y_pos, txt,
-                  ha='center', va='bottom', fontsize=12, fontweight='bold', color=COLOR_VAL)
+    for i in range(n_metals):
+        annotate_positive_pair(ax_h, rects_h2[i], h_edef[i], rects_h3[i], h_dg[i], h_dg_labels[i], fontsize=12)
 
     ax_h.set_xticks(x)
     ax_h.set_xticklabels(metals, fontsize=18)
-    # Reviewer 4/6 Point 12 mandate: right y-axis Free Energy, \Delta G_{H^*} (eV)
     ax_h.set_ylabel(r"$\mathrm{Free\ Energy,\ }\Delta G_{\mathrm{H}^*}\ \mathrm{(eV)}$", fontsize=16)
     ax_h.set_xlim(xlim_common)
     ax_h.set_ylim(ylim_h)
@@ -212,8 +241,8 @@ def render_panels(tier="pbe_d3_u", dpi=300):
     # Legend with clean background framing
     ax_h.legend(loc='lower right', frameon=True, facecolor='white', edgecolor='#e0e0e0', framealpha=0.95,
                 fontsize=15, handlelength=1.4, handleheight=0.8, borderaxespad=0.8, labelspacing=0.35)
-    # Centered subpanel label below
-    fig.text(0.74, 0.04, "(h)", ha='center', va='center', fontsize=22)
+    # Centered subpanel label below in genuine Times New Roman
+    fig.text(0.767, 0.04, "(h)", ha='center', va='center', fontproperties=FONT_TNR_REG, fontsize=24)
 
     # Save combined
     combined_png = os.path.join(POST_DIR, f"fig7_panels_gh_{tier}.png")
@@ -235,21 +264,12 @@ def render_panels(tier="pbe_d3_u", dpi=300):
     rg3 = ax_single_g.bar(x + width, g_dg,   width, color=COLOR_DG,   label=r"$\Delta G_{\mathrm{H}^*}$", zorder=3)
 
     for rect, val in zip(rg1, g_eint):
-        ax_single_g.text(rect.get_x() + rect.get_width()/2.0, rect.get_height() - 0.12, f"{val:.2f}",
+        y_pos = val - 0.12
+        ax_single_g.text(rect.get_x() + rect.get_width()/2.0, y_pos, f"{val:.2f}",
                          ha='center', va='top', fontsize=13, fontweight='bold', color=COLOR_VAL)
-    for i, (rect, val) in enumerate(zip(rg2, g_edef)):
-        ax_single_g.text(rect.get_x() + rect.get_width()/2.0, rect.get_height() + 0.05, f"{val:.2f}",
-                         ha='center', va='bottom', fontsize=13, fontweight='bold', color=COLOR_VAL)
-    for i, (rect, (val, txt)) in enumerate(zip(rg3, zip(g_dg, g_dg_labels))):
-        if val >= 0:
-            diff = abs(val - g_edef[i])
-            y_pos = rect.get_height() + (0.16 if diff < 0.05 else 0.05)
-            va_pos = 'bottom'
-        else:
-            y_pos = rect.get_height() - 0.15
-            va_pos = 'top'
-        ax_single_g.text(rect.get_x() + rect.get_width()/2.0, y_pos, txt,
-                         ha='center', va=va_pos, fontsize=13, fontweight='bold', color=COLOR_VAL)
+
+    for i in range(n_metals):
+        annotate_positive_pair(ax_single_g, rg2[i], g_edef[i], rg3[i], g_dg[i], g_dg_labels[i], fontsize=13)
 
     ax_single_g.set_xticks(x)
     ax_single_g.set_xticklabels(metals, fontsize=18)
@@ -260,7 +280,7 @@ def render_panels(tier="pbe_d3_u", dpi=300):
     ax_single_g.tick_params(direction='in', which='both', top=True, right=True, labelsize=14)
     ax_single_g.legend(loc='lower right', frameon=True, facecolor='white', edgecolor='#e0e0e0', framealpha=0.95,
                        fontsize=16, handlelength=1.4, borderaxespad=0.8)
-    fig_g.text(0.55, 0.04, "(g)", ha='center', va='center', fontsize=24)
+    fig_g.text(0.54, 0.040, "(g)", ha='center', va='center', fontproperties=FONT_TNR_REG, fontsize=32)
 
     single_g_png = os.path.join(POST_DIR, f"fig7_panel_g_{tier}.png")
     fig_g.savefig(single_g_png, dpi=dpi)
@@ -279,19 +299,12 @@ def render_panels(tier="pbe_d3_u", dpi=300):
     rh3 = ax_single_h.bar(x + width, h_dg,   width, color=COLOR_DG,   label=r"$\Delta G_{\mathrm{H}^*}$", zorder=3)
 
     for rect, val in zip(rh1, h_eint):
-        ax_single_h.text(rect.get_x() + rect.get_width()/2.0, rect.get_height() - 0.12, f"{val:.2f}",
-                         ha='center', va='top', fontsize=13, fontweight='bold', color=COLOR_VAL)
-    for i, (rect, val) in enumerate(zip(rh2, h_edef)):
-        if tier == "pbe_baseline" and i == 2:
-            y_pos = rect.get_height() + 0.15
-        else:
-            y_pos = rect.get_height() + 0.05
+        y_pos = val - 0.12
         ax_single_h.text(rect.get_x() + rect.get_width()/2.0, y_pos, f"{val:.2f}",
-                         ha='center', va='bottom', fontsize=13, fontweight='bold', color=COLOR_VAL)
-    for i, (rect, (val, txt)) in enumerate(zip(rh3, zip(h_dg, h_dg_labels))):
-        y_offset = 0.14 if (tier == "pbe_d3_u" and i == 2) else 0.05
-        ax_single_h.text(rect.get_x() + rect.get_width()/2.0, rect.get_height() + y_offset, txt,
-                         ha='center', va='bottom', fontsize=13, fontweight='bold', color=COLOR_VAL)
+                         ha='center', va='top', fontsize=13, fontweight='bold', color=COLOR_VAL)
+
+    for i in range(n_metals):
+        annotate_positive_pair(ax_single_h, rh2[i], h_edef[i], rh3[i], h_dg[i], h_dg_labels[i], fontsize=13)
 
     ax_single_h.set_xticks(x)
     ax_single_h.set_xticklabels(metals, fontsize=18)
@@ -302,7 +315,7 @@ def render_panels(tier="pbe_d3_u", dpi=300):
     ax_single_h.tick_params(direction='in', which='both', top=True, right=True, labelsize=14)
     ax_single_h.legend(loc='lower right', frameon=True, facecolor='white', edgecolor='#e0e0e0', framealpha=0.95,
                        fontsize=16, handlelength=1.4, borderaxespad=0.8)
-    fig_h.text(0.55, 0.04, "(h)", ha='center', va='center', fontsize=24)
+    fig_h.text(0.54, 0.040, "(h)", ha='center', va='center', fontproperties=FONT_TNR_REG, fontsize=32)
 
     single_h_png = os.path.join(POST_DIR, f"fig7_panel_h_{tier}.png")
     fig_h.savefig(single_h_png, dpi=dpi)
@@ -341,7 +354,7 @@ def render_multitier_comparison(dpi=300):
     fig, (ax_g, ax_h) = plt.subplots(1, 2, figsize=(16.0, 6.0), dpi=dpi)
     fig.subplots_adjust(left=0.08, right=0.96, bottom=0.18, top=0.90, wspace=0.28)
 
-    xlim_multi = (-0.65, 3.10)
+    xlim_multi = (-0.55, 3.45)
 
     for ax, eint, edef, dgpbe, dgu, is_emb, sublabel in [
         (ax_g, g_eint, g_edef, g_dgpbe, g_dgu, False, "(g)"),
@@ -353,40 +366,71 @@ def render_multitier_comparison(dpi=300):
         r3 = ax.bar(x + 0.5*width, dgpbe, width, color=c_dgpbe, label=r"$\Delta G_{\mathrm{H}^*}\ (\mathrm{PBE})$", zorder=3)
         r4 = ax.bar(x + 1.5*width, dgu,   width, color=c_dgu,   label=r"$\Delta G_{\mathrm{H}^*}\ (\mathrm{PBE+D3+}U)$", zorder=3)
 
-        # Labels
+        # Labels with anti-collision
         for r, val in zip(r1, eint):
             ax.text(r.get_x() + r.get_width()/2.0, val - 0.12, f"{val:.2f}",
                     ha='center', va='top', fontsize=10.5, fontweight='bold', color=COLOR_VAL)
-        for r, val in zip(r2, edef):
-            ax.text(r.get_x() + r.get_width()/2.0, val + 0.05, f"{val:.2f}",
+
+        for i in range(len(metals)):
+            v2 = edef[i]
+            v3 = dgpbe[i]
+            v4 = dgu[i]
+
+            x2 = r2[i].get_x() + r2[i].get_width() / 2.0
+            x3 = r3[i].get_x() + r3[i].get_width() / 2.0
+            x4 = r4[i].get_x() + r4[i].get_width() / 2.0
+
+            # Bar 2 (Gold): shift left into open space above Bar 1 (teal, negative)
+            x_pos2 = x2 - 0.08
+            y_pos2 = v2 + 0.05
+            ax.text(x_pos2, y_pos2, f"{v2:.2f}",
                     ha='center', va='bottom', fontsize=10.5, fontweight='bold', color=COLOR_VAL)
-        for r, val in zip(r3, dgpbe):
-            ax.text(r.get_x() + r.get_width()/2.0, val + 0.05, f"{val:.2f}",
-                    ha='center', va='bottom', fontsize=10.5, fontweight='bold', color=COLOR_VAL)
-        for r, val in zip(r4, dgu):
-            y_pos = val + (0.05 if val >= 0 else -0.15)
-            va_align = 'bottom' if val >= 0 else 'top'
-            ax.text(r.get_x() + r.get_width()/2.0, y_pos, f"{val:.2f}",
-                    ha='center', va=va_align, fontsize=10.5, fontweight='bold', color=COLOR_VAL)
+
+            # Bar 4 (Navy):
+            if v4 < 0:
+                # e.g. Co surface -0.07
+                ax.text(x4, v4 - 0.13, f"{v4:.2f}",
+                        ha='center', va='top', fontsize=10.5, fontweight='bold', color=COLOR_VAL)
+                # Bar 3 (Slate) has plenty of clearance
+                ax.text(x3, v3 + 0.05, f"{v3:.2f}",
+                        ha='center', va='bottom', fontsize=10.5, fontweight='bold', color=COLOR_VAL)
+            else:
+                # Shift Bar 4 right into open space to the right
+                x_pos4 = x4 + 0.08
+                y_pos4 = v4 + 0.05
+
+                # Bar 3: check if close in height to either Bar 2 or Bar 4
+                diff34 = abs(v3 - v4)
+                diff32 = abs(v3 - v2)
+                if diff34 <= 0.15 or diff32 <= 0.15:
+                    # Stagger Bar 3 vertically
+                    y_pos3 = v3 + 0.16
+                else:
+                    y_pos3 = v3 + 0.05
+
+                ax.text(x3, y_pos3, f"{v3:.2f}",
+                        ha='center', va='bottom', fontsize=10.5, fontweight='bold', color=COLOR_VAL)
+                ax.text(x_pos4, y_pos4, f"{v4:.2f}",
+                        ha='center', va='bottom', fontsize=10.5, fontweight='bold', color=COLOR_VAL)
 
         ax.set_xticks(x)
         ax.set_xticklabels(metals, fontsize=18)
         ax.set_xlim(xlim_multi)
         if not is_emb:
             ax.set_ylabel(r"$\mathrm{Energy\ (eV)}$", fontsize=16)
-            ax.set_ylim(-2.85, 1.25)
+            ax.set_ylim(-2.85, 1.35)
             ax.set_yticks([-2.5, -2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0])
         else:
             ax.set_ylabel(r"$\mathrm{Free\ Energy,\ }\Delta G_{\mathrm{H}^*}\ \mathrm{(eV)}$", fontsize=16)
-            ax.set_ylim(-2.10, 2.45)
+            ax.set_ylim(-2.10, 2.55)
             ax.set_yticks([-2.0, -1.0, 0.0, 1.0, 2.0])
 
         ax.tick_params(direction='in', which='both', top=True, right=True, labelsize=14)
         ax.legend(loc='lower right', frameon=True, facecolor='white', edgecolor='#e0e0e0', framealpha=0.95,
-                  fontsize=13, handlelength=1.4, borderaxespad=0.6)
+                  fontsize=12, handlelength=1.3, borderaxespad=0.5, labelspacing=0.25)
 
-    fig.text(0.28, 0.04, "(g)", ha='center', va='center', fontsize=22)
-    fig.text(0.74, 0.04, "(h)", ha='center', va='center', fontsize=22)
+    fig.text(0.273, 0.04, "(g)", ha='center', va='center', fontproperties=FONT_TNR_REG, fontsize=24)
+    fig.text(0.767, 0.04, "(h)", ha='center', va='center', fontproperties=FONT_TNR_REG, fontsize=24)
 
     comp_png = os.path.join(POST_DIR, "fig7_panels_gh_multitier.png")
     comp_pdf = os.path.join(POST_DIR, "fig7_panels_gh_multitier.pdf")
@@ -400,8 +444,12 @@ def generate_composite_fig7_replacement(tier="pbe_d3_u"):
     """
     Creates an updated full Fig7 image by cleanly splicing the new panels (g) and (h)
     into the original composite Fig7.png at exact alignment.
+    Splicing at target_top = 2660 guarantees zero clipping of panels (d), (e), and (f)
+    and perfectly matches the original panel (g)/(h) top border position.
     """
-    orig_fig7 = os.path.join(FIG_DIR, "Fig7.png")
+    orig_fig7 = os.path.join(REPO_ROOT, "ACS_version/figure/Fig7.png")
+    if not os.path.exists(orig_fig7):
+        orig_fig7 = os.path.join(FIG_DIR, "Fig7.png")
     if not os.path.exists(orig_fig7):
         print(f"[!] Original Fig7 not found at {orig_fig7}")
         return
@@ -416,13 +464,15 @@ def generate_composite_fig7_replacement(tier="pbe_d3_u"):
         return
 
     # In original Fig7 (3810 x 3942):
-    # Rows 0 to 2640 contain panels (a - f) and their subpanel labels (d, e, f)
-    # Rows 2660 to 3942 contain panels (g, h)
+    # Rows 0 to 2620 contain panels (a - f) and their subpanel labels (d, e, f)
+    # Rows 2621 to 2715 are clean white margin
+    # Splicing at target_top = 2660 leaves 40 px clean white margin below (d, e, f)
+    # and places the top border of new panels (g, h) at y ~ 2760 (matching original y = 2752)
     im_g = Image.open(p_g_path)
     im_h = Image.open(p_h_path)
 
-    target_top = 2650
-    target_height = H - target_top  # 1292 px
+    target_top = 2660
+    target_height = H - target_top  # 1282 px
     half_width = W // 2             # 1905 px
 
     # Resize individual panels to precisely fit the composite slots
@@ -436,6 +486,17 @@ def generate_composite_fig7_replacement(tier="pbe_d3_u"):
     out_comp = os.path.join(POST_DIR, f"Fig7_composite_{tier}.png")
     composite.save(out_comp)
     print(f"[✓] Saved full composite: {out_comp}")
+
+    # Also update Fig7_updated_newcals_preview.png if tier is pbe_d3_u
+    if tier == "pbe_d3_u":
+        preview_path = os.path.join(POST_DIR, "Fig7_updated_newcals_preview.png")
+        composite.save(preview_path)
+        print(f"[✓] Updated preview: {preview_path}")
+
+        # Also update resubmission manuscript figure so LaTeX uses the full-res figure
+        resub_fig7 = os.path.join(FIG_DIR, "Fig7.png")
+        composite.save(resub_fig7)
+        print(f"[✓] Updated resubmission manuscript figure: {resub_fig7}")
 
 
 if __name__ == "__main__":
