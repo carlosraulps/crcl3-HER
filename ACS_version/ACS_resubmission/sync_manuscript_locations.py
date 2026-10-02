@@ -12,7 +12,7 @@ import subprocess
 import unicodedata
 import pypdf
 
-WORK_DIR = "/Users/apple/Research/abc/paper-adaptation/ACS_version/ACS_resubmission"
+WORK_DIR = os.path.dirname(os.path.abspath(__file__))
 os.chdir(WORK_DIR)
 
 def clean_str(s):
