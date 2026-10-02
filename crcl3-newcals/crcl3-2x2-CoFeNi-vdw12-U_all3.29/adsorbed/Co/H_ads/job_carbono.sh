@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -J Co_ads_H_Uall
-#SBATCH -p fulereno,nanotubo,grafeno
+#SBATCH -p nanotubo
 #SBATCH --nodes=1
 #SBATCH --ntasks=32
 #SBATCH --cpus-per-task=1

@@ -171,36 +171,54 @@ systems = [
 ]
 
 def make_incar(sys_dict):
-    incar = f"""# CrCl3 (2x2) Monolayer + {sys_dict['tm']} ({sys_dict['mode']}, {sys_dict['state']})
-# Multi-Site DFT+U: U(Cr) = 3.29 eV, U({sys_dict['tm']}) = 3.29 eV | PBE + D3(BJ)
+    incar = f"""# =========================================================================
+# VASP INCAR: CrCl3 2x2 + {sys_dict['tm']} ({sys_dict['mode']}, {sys_dict['state']}) (PBE+D3(BJ) + U_all=3.29eV)
+# Ground-state geometry with Hubbard U correction on Cr 3d and {sys_dict['tm']} 3d
+# =========================================================================
+
+# --- Electronic Minimization & Plane-Wave Basis ---
 PREC     = Accurate
-ENCUT    = 500.0
+ENCUT    = 400.0
 EDIFF    = 1.0E-06
 NELM     = 100
-ISMEAR   = 0
-SIGMA    = 0.02
+
+# --- Spin Polarization & Magnetic Initialization ---
 ISPIN    = 2
 MAGMOM   = {sys_dict['magmom']}
-LREAL    = Auto
-NCORE    = 4
 
-# Dispersion Correction
+# --- Brillouin Zone & Smearing ---
+ISMEAR   = 0
+SIGMA    = 0.05
+
+# --- Parallelization & Performance ---
+NCORE    = 4
+LREAL    = Auto
+
+# --- Dispersion Correction (Becke-Johnson Damping) ---
 IVDW     = 12
 
-# Ionic Relaxation
+# --- Ionic Relaxation ---
 IBRION   = 2
 NSW      = 100
-EDIFFG   = -0.02
-ISIF     = 2
+EDIFFG   = -0.025
 
-# Dudarev Multi-Site DFT+U (Cr + {sys_dict['tm']})
+# --- PAW & Density Mixing for d-Electrons ---
+LASPH    = .TRUE.
+LMAXMIX  = 4
+
+# --- Hubbard U Correction (Cr 3d and {sys_dict['tm']} 3d Dudarev Formulation) ---
 LDAU     = .TRUE.
-LDAUTYPE = 2
 LDAUL    = {sys_dict['ldau_l']}
 LDAUU    = {sys_dict['ldau_u']}
-LDAUJ    = {sys_dict['ldau_j']}
-LMAXMIX  = 4
-LDAUPRINT= 1
+
+# --- Dipole Correction ---
+LDIPOL   = .TRUE.
+IDIPOL   = 3
+DIPOL    = 0.5 0.5 0.5
+
+# --- Wavefunction & Charge Output Management ---
+LWAVE    = .FALSE.
+LCHARG   = .FALSE.
 """
     return incar
 
@@ -215,7 +233,7 @@ Gamma
 def make_job_carbono(sys_dict):
     return f"""#!/bin/bash
 #SBATCH -J {sys_dict['job_name']}
-#SBATCH -p fulereno,nanotubo,grafeno
+#SBATCH -p nanotubo
 #SBATCH --nodes=1
 #SBATCH --ntasks=32
 #SBATCH --cpus-per-task=1
