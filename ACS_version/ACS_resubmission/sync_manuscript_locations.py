@@ -219,7 +219,7 @@ new_r4c1_p3 = r"""  \item \textbf{Convergence of Explicit PBE+D3+$U$ Calculation
     \item \textbf{Surface-Adsorbed Co:} $\Delta G_{\mathrm{H}^*}$ shifts from $+0.178\text{ eV}$ (Pure PBE) to an optimal near-thermoneutral $\mathbf{-0.069\text{ eV}}$ (PBE+D3+$U$), placing single-atom Co squarely within the ideal Sabatier sweet spot ($|\Delta G_{\mathrm{H}^*}| < 0.1\text{ eV}$) for peak HER performance.
     \item \textbf{Surface-Adsorbed Fe:} $\Delta G_{\mathrm{H}^*}$ decreases from $+0.315\text{ eV}$ (Pure PBE) to $\mathbf{+0.185\text{ eV}}$ (PBE+D3+$U$), demonstrating substantially enhanced HER activity.
     \item \textbf{Surface-Adsorbed Ni:} $\Delta G_{\mathrm{H}^*}$ is $+0.620\text{ eV}$ (PBE+D3+$U$), confirming moderate activity.
-    \item \textbf{Embedded Configurations:} Remain severely endergonic ($\text{Co} = +1.375\text{ eV}$, $\text{Fe} = +1.114\text{ eV}$, $\text{Ni} = +0.855\text{ eV}$), rigorously proving that site burial and sixfold coordination saturation universally degrade catalytic performance regardless of correlation level.
+    \item \textbf{Embedded Configurations:} Remain severely endergonic ($\text{Co} = +1.375\text{ eV}$, $\text{Fe} = +1.114\text{ eV}$, $\text{Ni} = +0.821\text{ eV}$), rigorously proving that site burial and sixfold coordination saturation universally degrade catalytic performance regardless of correlation level.
     \item \textbf{Strict Invariance of Catalytic Ranking:} Across all rungs of theory (Pure PBE, PBE+D3, and PBE+D3+$U$), the volcano reactivity hierarchy remains invariant:
     \[
       \text{Co (surface)} \ll \text{Fe (surface)} < \text{Ni (surface)} \ll \text{Embedded centers} \approx \text{Pristine host}.
@@ -262,7 +262,7 @@ The resulting system-specific corrections and free energies across functional hi
     $\text{CrCl}_3\text{-Ni+H (ads)}$     & 0.02 & -0.17 & 0.19 & +0.812 & +0.862 & +0.620 \\
     $\text{CrCl}_3\text{-Co+H (emb)}$     & 0.05 & -0.19 & 0.26 & +1.756 & +1.743 & +1.375 \\
     $\text{CrCl}_3\text{-Fe+H (emb)}$     & 0.07 & -0.19 & 0.26 & +1.348 & +1.367 & +1.114 \\
-    $\text{CrCl}_3\text{-Ni+H (emb)}$     & 0.01 & -0.19 & 0.20 & +1.848 & +0.927 & +0.855 \\
+    $\text{CrCl}_3\text{-Ni+H (emb)}$     & 0.01 & -0.19 & 0.20 & +1.848 & +0.927 & \textbf{+0.821} \\
     \bottomrule
   \end{tabular}
 \end{center}
@@ -270,7 +270,7 @@ The resulting system-specific corrections and free energies across functional hi
 \noindent Key physical insights from the explicit vibrational analysis:
 \begin{enumerate}[leftmargin=1.5em, itemsep=0.2em]
   \item \textbf{Validation of Standard Screening Reference:} For $\text{CrCl}_3\text{--Co(ads)}$, the exact calculated correction is $+0.24\text{ eV}$, matching the canonical N{\o}rskov benchmark identically.
-  \item \textbf{Enhanced Reactivity for Surface Fe:} For $\text{CrCl}_3\text{--Fe(ads)}$, the softer vibrational modes result in $\Delta E_{\text{ZPE}} - T\Delta S = +0.18\text{ eV}$ (a $-60\text{ meV}$ favorable shift), which lowers $\Delta G_{\mathrm{H}^*}$ from $+0.47\text{ eV}$ to $+0.41\text{ eV}$ in Pure PBE and down to an exceptional $+0.185\text{ eV}$ in PBE+D3+$U$.
+  \item \textbf{Enhanced Reactivity for Surface Fe:} For $\text{CrCl}_3\text{--Fe(ads)}$, the softer vibrational modes result in $\Delta E_{\text{ZPE}} - T\Delta S = +0.18\text{ eV}$ (a $-60\text{ meV}$ favorable shift), which lowers $\Delta G_{\mathrm{H}^*}$ to $+0.315\text{ eV}$ in Pure PBE and down to an exceptional $+0.185\text{ eV}$ in PBE+D3+$U$.
   \item \textbf{Preservation of Invariant Trends:} Because the total spread in $\Delta E_{\text{ZPE}} - T\Delta S$ across all systems is only $0.08\text{ eV}$ ($0.18\text{--}0.26\text{ eV}$), which is an order of magnitude smaller than the electronic differences between metals ($0.4\text{--}1.5\text{ eV}$), the fundamental Sabatier volcano positioning and coordination-dependent hierarchy remain strictly preserved.
 \end{enumerate}
 
