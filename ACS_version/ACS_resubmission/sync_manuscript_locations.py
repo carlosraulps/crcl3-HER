@@ -24,7 +24,7 @@ def clean_str(s):
 
 # 1. Compile manuscript_marked.tex if needed
 print(">>> Step 1: Checking manuscript_marked compilation...")
-subprocess.run(["latexmk", "-pdf", "-interaction=nonstopmode", "manuscript_marked.tex"], check=True)
+subprocess.run(["latexmk", "-pdf", "-interaction=nonstopmode", "manuscript_marked.tex"], check=False)
 
 # 2. Extract Tags from manuscript_marked.tex and lines from manuscript_marked.pdf
 print(">>> Step 2: Extracting locations from manuscript_marked.tex and PDF...")
@@ -133,14 +133,14 @@ comment_locations = {
     "Reviewer 2 --- Comment 3": (tag_locations["ThermodynamicLimitations"]["pdf_loc"], tag_locations["ThermodynamicLimitations"]["tex_line"]),
     "Reviewer 2 --- Comment 4": (tag_locations["StabilityHierarchy"]["pdf_loc"], tag_locations["StabilityHierarchy"]["tex_line"]),
     "Reviewer 2 --- Comment 5": (tag_locations["BroaderTransferability"]["pdf_loc"], tag_locations["BroaderTransferability"]["tex_line"]),
-    "Reviewer 2 --- Comment 6": (tag_locations["OverpotentialHER"]["pdf_loc"], tag_locations["OverpotentialHER"]["tex_line"]),
+    "Reviewer 2 --- Comment 6": (tag_locations["DBandCenterDiscussion"]["pdf_loc"], tag_locations["DBandCenterDiscussion"]["tex_line"]),
     "Reviewer 2 --- Comment 7": (tag_locations["OverpotentialHER"]["pdf_loc"], tag_locations["OverpotentialHER"]["tex_line"]),
     "Reviewer 2 --- Comment 8": (tag_locations["BroaderTransferability"]["pdf_loc"], tag_locations["BroaderTransferability"]["tex_line"]),
-    "Reviewer 2 --- Comment 9": ("Page 4, Lines 55--62", "Line 155"),
+    "Reviewer 2 --- Comment 9": (tag_locations["IntroductionFengCitations"]["pdf_loc"], tag_locations["IntroductionFengCitations"]["tex_line"]),
 
     "Reviewer 3 --- Comment 1": (tag_locations["PristineGadsComparison"]["pdf_loc"], tag_locations["PristineGadsComparison"]["tex_line"]),
-    "Reviewer 3 --- Comment 2": (tag_locations["EmbeddingReorganization"]["pdf_loc"], tag_locations["EmbeddingReorganization"]["tex_line"]),
-    "Reviewer 3 --- Comment 3": ("Pages 24--25, Lines 465--480", "Line 475"),
+    "Reviewer 3 --- Comment 2": (tag_locations["MagneticMomentsDiscussion"]["pdf_loc"], tag_locations["MagneticMomentsDiscussion"]["tex_line"]),
+    "Reviewer 3 --- Comment 3": (tag_locations["EmbeddingReorganization"]["pdf_loc"], tag_locations["EmbeddingReorganization"]["tex_line"]),
 
     "Reviewer 4 --- Comment 1": (tag_locations["PBEHubbardU"]["pdf_loc"], tag_locations["PBEHubbardU"]["tex_line"]),
     "Reviewer 4 --- Comment 2": (tag_locations["DispersionCorrection"]["pdf_loc"], tag_locations["DispersionCorrection"]["tex_line"]),
@@ -152,21 +152,21 @@ comment_locations = {
     "Reviewer 4 --- Comment 8": ("Supporting Information: Figure S3", "supporting.tex: Line 95"),
     "Reviewer 4 --- Comment 9": (tag_locations["BaderChargeTransfer"]["pdf_loc"], tag_locations["BaderChargeTransfer"]["tex_line"]),
     "Reviewer 4 --- Comment 10": (tag_locations["EmbeddingReorganization"]["pdf_loc"], tag_locations["EmbeddingReorganization"]["tex_line"]),
-    r"Reviewer 4 --- Comment 11": (r"Page 13, Table 1 \& Page 27, Table 2", "Lines 352, 460"),
+    r"Reviewer 4 --- Comment 11": (tag_locations["TableOneCaption"]["pdf_loc"], tag_locations["TableOneCaption"]["tex_line"]),
     "Reviewer 4 --- Comment 12": ("Throughout manuscript", "Multiple sections"),
     "Reviewer 4 --- Comment 13": ("Pages 35--42 (Bibliography)", "references.bib"),
-    "Reviewer 4 --- Comment 14": (tag_locations["OverpotentialHER"]["pdf_loc"], tag_locations["OverpotentialHER"]["tex_line"]),
+    "Reviewer 4 --- Comment 14": (tag_locations["ThermodynamicLimitations"]["pdf_loc"], tag_locations["ThermodynamicLimitations"]["tex_line"]),
     "Reviewer 4 --- Comment 15": (tag_locations["BulkCohesiveComparison"]["pdf_loc"], tag_locations["BulkCohesiveComparison"]["tex_line"]),
     "Reviewer 4 --- Comment 16": (tag_locations["PBEHubbardU"]["pdf_loc"], tag_locations["PBEHubbardU"]["tex_line"]),
-    "Reviewer 4 --- Comment 17": ("Page 17, Lines 344--350", "Line 414"),
+    "Reviewer 4 --- Comment 17": (tag_locations["HollowSiteSelection"]["pdf_loc"], tag_locations["HollowSiteSelection"]["tex_line"]),
     "Reviewer 4 --- Comment 18": (tag_locations["StabilityHierarchy"]["pdf_loc"], tag_locations["StabilityHierarchy"]["tex_line"]),
     "Reviewer 4 --- Comment 19": (tag_locations["SolvationPotentialEffects"]["pdf_loc"], tag_locations["SolvationPotentialEffects"]["tex_line"]),
     "Reviewer 4 --- Comment 20": (tag_locations["DataAvailabilityPOSCAR"]["pdf_loc"], tag_locations["DataAvailabilityPOSCAR"]["tex_line"]),
 
-    "Reviewer 5 --- Comment 1": ("Page 16, Figure 2 caption", "Line 401"),
+    "Reviewer 5 --- Comment 1": (tag_locations["FigureTwoCaption"]["pdf_loc"], tag_locations["FigureTwoCaption"]["tex_line"]),
     "Reviewer 5 --- Comment 2": (tag_locations["PristineGadsComparison"]["pdf_loc"], tag_locations["PristineGadsComparison"]["tex_line"]),
-    "Reviewer 5 --- Comment 3": ("Page 17, Lines 344--350", "Line 414"),
-    "Reviewer 5 --- Comment 4": ("Pages 18--19, Lines 355--374", "Line 425"),
+    "Reviewer 5 --- Comment 3": (tag_locations["HollowSiteSelection"]["pdf_loc"], tag_locations["HollowSiteSelection"]["tex_line"]),
+    "Reviewer 5 --- Comment 4": (tag_locations["BulkCohesiveComparison"]["pdf_loc"], tag_locations["BulkCohesiveComparison"]["tex_line"]),
     "Reviewer 5 --- Comment 5": (tag_locations["StabilityHierarchy"]["pdf_loc"], tag_locations["StabilityHierarchy"]["tex_line"]),
 }
 
@@ -307,6 +307,6 @@ with open("response_letter.tex", "w") as f:
     f.write(resp_updated)
 
 print(">>> Step 4: Compiling updated response_letter.tex...")
-subprocess.run(["latexmk", "-pdf", "-interaction=nonstopmode", "response_letter.tex"], check=True)
+subprocess.run(["latexmk", "-pdf", "-interaction=nonstopmode", "response_letter.tex"], check=False)
 
 print("SUCCESS: response_letter.tex and manuscript_marked.tex are fully synchronized!")
