@@ -1,5 +1,5 @@
 
-# Phase 2 (+U) Add-On Tags
+# Phase 2 (+U) Add-On Tags (Council Reconciled - Fast & Damped)
 LDAU     = .TRUE.
 LDAUTYPE = 2
 LDAUL    = 2 -1 -1
@@ -7,4 +7,9 @@ LDAUU    = 3.29 0.0 0.0
 LDAUJ    = 0.0 0.0 0.0
 LMAXMIX  = 4
 ISTART   = 1
+ALGO     = Fast
+NELMIN   = 4
+TIME     = 0.4
+POTIM    = 0.25
 NSW      = 60
+EDIFFG   = -0.025

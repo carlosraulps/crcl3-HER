@@ -144,8 +144,8 @@
   {\color{revcolor}%<*AbstractFull>
     Developing cost-effective two-dimensional (2D) magnetic catalysts for the hydrogen evolution reaction (HER) requires precise control over spin polarization, active-site exposure, and local chemical environments. Here, using spin-polarized density functional theory encompassing Hubbard $U$ ($U_{\text{Cr}} = 3.29$~eV), empirical dispersion, explicit vibrational and entropic thermochemistry, and \textit{ab initio} molecular dynamics (AIMD) at 300~K, we investigate how transition-metal ($\text{TM} = \text{Co}$, $\text{Fe}$, $\text{Ni}$) functionalization and site coordination govern hydrogen adsorption on monolayer $\text{CrCl}_3$. While pristine $\text{CrCl}_3$ exhibits highly unfavorable thermodynamics ($\Delta G_{\text{H}^*} = +1.12$~eV for top-Cl and $+2.04$~eV for hollow sites), surface-adsorbed transition metals introduce localized, spin-polarized $3d$ states that dramatically enhance HER propensity.
     {\color{revcolor}%<*AbstractTradeoff>
-    We identify a coordination-controlled trade-off: strong substrate anchoring does not guarantee optimal catalytic performance. Surface-adsorbed Co achieves near-thermoneutral Sabatier performance ($\Delta G_{\text{H}^*} = -0.069$~eV under PBE+D3+$U$), outperforming the benchmark Pt(111) terrace ($-0.09$~eV), while surface-adsorbed Fe also enters the active window ($\Delta G_{\text{H}^*} = +0.185$~eV).
-    %</AbstractTradeoff>
+      We identify a coordination-controlled trade-off: strong substrate anchoring does not guarantee optimal catalytic performance. Surface-adsorbed Co achieves near-thermoneutral Sabatier performance ($\Delta G_{\text{H}^*} = -0.069$~eV under PBE+D3+$U$), outperforming the benchmark Pt(111) terrace ($-0.09$~eV), while surface-adsorbed Fe also enters the active window ($\Delta G_{\text{H}^*} = +0.185$~eV).
+      %</AbstractTradeoff>
     }
     Transitioning from threefold surface sites to sixfold octahedral embedded configurations systematically suppresses H binding ($\Delta G_{\text{H}^*}$ increasing to $+0.82$, $+1.11$, and $+1.38$~eV for Ni, Fe, and Co, respectively), as complete chlorine coordination shields the TM-$3d$ active manifold and incurs steric penalties. Although interstitial embedding is thermodynamically favored for Fe ($\Delta E_{\mathrm{emb-ads}} = -1.41$~eV) and Co ($\Delta E_{\mathrm{emb-ads}} = -0.24$~eV), AIMD demonstrates that surface-adsorbed Co and Fe remain kinetically trapped in exposed, highly active surface states at room temperature. Furthermore, occupied $d$-band centers and local spin moments correlate non-monotonically with $\Delta G_{\text{H}^*}$ across both baseline PBE and PBE+D3+$U$ hierarchies, demonstrating that spin polarization and structural exposure jointly dictate reactivity. These findings establish coordination engineering in 2D magnetic semiconductors as a robust route toward noble-metal-free electrocatalysis.
     %</AbstractFull>
@@ -159,8 +159,8 @@
 \section{Introduction}
 
 \noindent Green hydrogen (H$_2$), produced through water electrolysis, holds considerable potential for the decarbonization of hard-to-abate sectors owing to its versatility in clean and renewable energy conversion and storage \cite{ZAINAL2024113941, SAKTHIMURUGAN2025104849}. Beyond its relevance to the energy transition, H$_2$ is also in high demand across several industrial sectors, including fertilizer and steel production and transportation \cite{pr12020315, ROPER2025687}. However, the large-scale implementation of H$_2$-based technologies remains limited by several factors \cite{SAKTHIMURUGAN2025104849, Odenweller2025}, including the need for efficient, stable, and low-cost electrocatalysts for the hydrogen evolution reaction (HER) \cite{Liao2022,Ipaves2025,doi:10.1021/acsaem.6c00060,doi:10.1021/acsomega.5c07529,quispe2026controllingactivitystabilitygamma}. In this context, two-dimensional (2D) materials have attracted considerable attention because their reduced dimensionality, high surface-to-volume ratio, and chemically accessible active sites provide favorable characteristics for catalytic applications \cite{doi:10.1021/acsaem.6c00060, DEYACSAPPENERMATER2026}. {\color{revcolor}%<*IntroductionFengCitations>
-Emerging two-dimensional materials such as graphdiyne, biphenylene, and transition-metal chalcogenides have similarly shown that coordination engineering and confinement can tune catalytic pathways for hydrogen and related conversions~\cite{Feng2021IJHE,Feng2022IJHE,Feng2026JAC}.
-%</IntroductionFengCitations>
+  Emerging two-dimensional materials such as graphdiyne, biphenylene, and transition-metal chalcogenides have similarly shown that coordination engineering and confinement can tune catalytic pathways for hydrogen and related conversions~\cite{Feng2021IJHE,Feng2022IJHE,Feng2026JAC}.
+  %</IntroductionFengCitations>
 }
 
 Beyond conventional nonmagnetic 2D systems, intrinsic 2D magnetic materials introduce an additional degree of freedom for catalyst design, since their spin-polarized electronic structures can influence charge transfer, orbital hybridization, adsorption energetics, and surface reactivity \cite{Ipaves2025,doi:10.1021/acscatal.2c06319,Sun2023,Duan2021}. Among these materials, chromium trihalides, CrX$_3$ (X = Cl, Br, I), constitute a particularly versatile family owing to the interplay between their electronic structure, magnetic ordering, anisotropy, and response to external perturbations \cite{Soriano2020,Besbes2019,Lee2026,Kvashnin2020,GarridoAldea2025}.
@@ -207,8 +207,14 @@ the valence electrons and the ionic cores were described using the projector aug
 A $2 \times 2 \times 1$ supercell of monolayer CrCl$_3$, containing eight Cr and twenty-four Cl atoms, was modeled using periodic boundary conditions. A vacuum region of 15~\AA\ was introduced along the out-of-plane direction to minimize spurious interactions between periodically repeated images. Structural optimizations were performed using a $\Gamma$-centered $5 \times 5 \times 1$ \textit{k}-point mesh. The ionic positions were relaxed using the conjugate-gradient algorithm while keeping the lattice vectors fixed. The relaxations were continued until the residual Hellmann--Feynman force on every atom was smaller than 0.025~eV/\AA, while the electronic self-consistency threshold was set to $10^{-6}$~eV.
 
 All calculations were spin-polarized. For the H-free transition-metal-functionalized supercells, initial magnetic moments of $3.0~\mu_{\mathrm{B}}$ were assigned to each Cr atom, while values of $3.0$, $4.0$, and $2.0~\mu_{\mathrm{B}}$ were assigned to the Co, Fe, and Ni atoms, respectively. The Cl atoms were initialized with zero magnetic moment. These values were used only as initial magnetic-moment seeds, and the local and total magnetic moments were subsequently determined self-consistently without imposing any constraint on the total magnetization.
+{\color{revcolor} %<*r4c7>
+  Ab Initio Molecular Dynamics (AIMD) simulations were performed to understand the interactions of the transition metals with the host $CrCl_3$ lattice. All AIMD simulations were performed in the NVT (canonical) ensemble at T = $300$~K, employing the Nosé-Hoover thermostat (MDALGO 2) \cite{NOSE1, NOSE2, NOSE3} at timesteps of 1~fs ($10^{-15}$~s) integrating to a total of 5~ps ($10^{-12}$~s). A Nosé mass equivalent of 40~ps was employed. The self-consistency threshold was kept to $10^{-6}$ eV and k-point sampling was set to $3$~$\times$~$3$~$\times$~$1$.
+  %</r4c7>
+}
 
-Pristine CrCl$_3$ and the Co-, Fe-, and Ni-functionalized systems were fully relaxed in both the surface-adsorbed and embedded configurations. Hydrogen adsorption was subsequently examined by placing one H atom at the selected adsorption sites and fully relaxing the corresponding H/surface structures using the same convergence criteria. The electronic band structures were calculated non-self-consistently from a previously converged charge density. The bands were evaluated along the high-symmetry path $\Gamma$--M--K--$\Gamma$ of the hexagonal Brillouin zone, using 20 \textit{k} points per path segment.
+{\color{revcolor} %<*r1r3>
+  The pristine CrCl$_3$ with Co-, Fe-, and Ni-functionalized systems were fully relaxed in both the surface-adsorbed and embedded configurations.%</r1r3>
+} Hydrogen adsorption was subsequently examined by placing one H atom at the selected adsorption sites and fully relaxing the corresponding H/surface structures using the same convergence criteria. The electronic band structures were calculated non-self-consistently from a previously converged charge density.  The bands were evaluated along the high-symmetry path $\Gamma$--M--K--$\Gamma$ of the hexagonal Brillouin zone, using 20 \textit{k} points per path segment.
 
 The projected densities of states (PDOS) were obtained from non-self-consistent static calculations using the previously converged charge density and a $\Gamma$-centered $5 \times 5 \times 1$ \textit{k}-point mesh. Brillouin-zone integrations were performed using the tetrahedron method with Blöchl corrections. The energy scale of each electronic-structure calculation was shifted such that the corresponding Fermi energy was set to zero.
 
@@ -251,25 +257,45 @@ Within the computational hydrogen electrode framework \cite{NORSKOV2004}, the hy
   T\Delta S,
   \label{eq:Gads}
 \end{equation}
-where $E_{\mathrm{surf+H}}$ is the total energy of the fully relaxed surface with one adsorbed H atom, $E_{\mathrm{surf}}$ is the total energy of the corresponding relaxed H-free surface, and $E_{\mathrm{H_2}}$ is the total energy of an isolated gas-phase H$_2$ molecule. $\Delta E_{\mathrm{ZPE}}$ and $-T\Delta S$ are the zero-point-energy and entropic contributions, respectively. At $T=298.15$~K, their combined contribution was approximated as 0.24~eV \cite{Norskov_2005}, yielding:
-\begin{equation}
-  \Delta G_{\mathrm{ads}}
-  =
-  E_{\mathrm{surf+H}}
-  -
-  E_{\mathrm{surf}}
-  -
-  \frac{1}{2}E_{\mathrm{H_2}}
-  +
-  0.24~\mathrm{eV}.
-  \label{eq:Gads_approx}
-\end{equation}
-Values of $\Delta G_{\mathrm{ads}}$ close to zero indicate thermodynamically favorable hydrogen adsorption under the considered computational hydrogen electrode reference conditions.
+where $E_{\mathrm{surf+H}}$ is the total energy of the fully relaxed surface with one adsorbed H atom, $E_{\mathrm{surf}}$ is the total energy of the corresponding relaxed H-free surface, and $E_{\mathrm{H_2}}$ is the total energy of an isolated gas-phase H$_2$ molecule. $\Delta E_{\mathrm{ZPE}}$ and $-T\Delta S$ are the zero-point-energy and entropic contributions, respectively.
 
 {\color{revcolor}%<*ZPECorrectionUncertainty>
-  While the standard benchmark correction of $+0.24\text{ eV}$ \cite{Norskov_2005} is widely applied for computational screening across transition-metal and 2D electrocatalysts, variations in local coordination environment and TM--H bond lengths (spanning 1.43--1.57~\AA) introduce slight differences in the net zero-point and vibrational entropic contributions ($\Delta E_{\mathrm{ZPE}} - T\Delta S$). Explicit vibrational frequency calculations (\texttt{IBRION = 5}) across all pristine, adsorbed, and embedded configurations yield system-specific corrections ranging from $+0.18\text{ eV}$ for $\text{CrCl}_3\text{--Fe(ads)}$ to $+0.26\text{ eV}$ for $\text{CrCl}_3\text{--Co/Fe(emb)}$ (detailed in Supporting Information Table~S3 and Figure~S6). These quantitative corrections demonstrate that the comparative catalytic trends and volcano-plot hierarchy ($\text{Co} \ll \text{Fe} < \text{Ni}$) are preserved, with specific vibrational corrections further shifting $\Delta G_{\mathrm{H}^*}$ of the surface-adsorbed Fe site favorably toward thermoneutrality by $60\text{ meV}$.
+  %<*ZPEDScorrections>
+  In this work, these vibrational and entropic contributions were calculated within the frozen-slab approximation by fixing all of the substrate atoms in the structure and only allowing the displacement of the adsorbates (\texttt{IBRION = 5}). The zero-point energy variation is given by:
+  \begin{equation}
+    \Delta E_{\mathrm{ZPE}}(\mathrm{H}^{*}) = E_{\mathrm{ZPE}}(\mathrm{H}^{*}) - \frac{1}{2}E_{\mathrm{ZPE}}(\mathrm{H}_{2})
+    \label{eq:EZPE_def}
+  \end{equation}
+  where the zero-point energies were obtained by summing all real positive vibrational frequencies ($\nu_i$):
+  \begin{equation}
+    E_{\mathrm{ZPE}} = \frac{1}{2} \sum_{i}h\nu_{i}
+    \label{eq:EZPE_sum}
+  \end{equation}
+  with $h$ being Planck's constant. The entropy change is given by:
+  \begin{equation}
+    \Delta S = S(\mathrm{H}^{*}) - \frac{1}{2}S^{0}(\mathrm{H}_{2})
+    \label{eq:DeltaS_def}
+  \end{equation}
+  where $S^{0}(\mathrm{H}_{2})$ represents the standard entropy of $\mathrm{H}_2$ in the gas phase at $T=298.15$~K, evaluated as $1.35 \times 10^{-3}$~eV/K in close agreement with experimental literature \cite{ZUTTEL200324,Norskov_2005}, while $S(\mathrm{H}^{*})$ was evaluated from the vibrational partition function within the harmonic approximation.
+
+  While a constant benchmark correction of $\Delta E_{\mathrm{ZPE}} - T\Delta S \approx +0.24\text{ eV}$ \cite{Norskov_2005} is widely applied for computational screening across transition-metal and 2D electrocatalysts, variations in local coordination environments and TM--H bond lengths (spanning 1.43--1.57~\AA) introduce subtle differences in the net zero-point and vibrational entropic contributions. Explicit vibrational frequency calculations across all pristine, adsorbed, and embedded configurations yield system-specific corrections ranging from $+0.18\text{ eV}$ for $\text{CrCl}_3\text{--Fe(ads)}$ to $+0.26\text{ eV}$ for $\text{CrCl}_3\text{--Co/Fe(emb)}$ (detailed in Supporting Information Table~S3 and Figure~S6). For $\text{CrCl}_3\text{--Co(ads)}$, the calculated correction is $+0.24\text{ eV}$, matching the canonical benchmark identically, whereas the softer vibrational modes on $\text{CrCl}_3\text{--Fe(ads)}$ shift $\Delta G_{\mathrm{H}^*}$ favorably toward thermoneutrality by $60\text{ meV}$ (yielding $\Delta G_{\mathrm{H}^*} = +0.185\text{ eV}$ under PBE+D3+$U$). These quantitative corrections demonstrate that the comparative catalytic trends and volcano-plot hierarchy ($\text{Co} \ll \text{Fe} < \text{Ni}$) are strictly preserved.
+  %</ZPEDScorrections>
   %</ZPECorrectionUncertainty>
 \par}
+% \begin{equation}
+%     \Delta G_{\mathrm{ads}}
+%     =
+%     E_{\mathrm{surf+H}}
+%     -
+%     E_{\mathrm{surf}}
+%     -
+%     \frac{1}{2}E_{\mathrm{H_2}}
+%     +
+%     0.24~\mathrm{eV}.
+%     \label{eq:Gads_approx}
+% \end{equation}
+
+Values of $\Delta G_{\mathrm{ads}}$ close to zero indicate thermodynamically favorable hydrogen adsorption under the considered computational hydrogen electrode reference conditions.
 
 To distinguish the intrinsic H--surface binding interaction from the
 energetic penalty associated with structural deformation, we adopt a
@@ -411,9 +437,9 @@ Hydrogen adsorption on the pristine basal plane was evaluated at the top-Cl ($S_
   \centering
   \includegraphics[width=1.0\textwidth]{figure/Fig2.png}
   \caption{Hydrogen adsorption on pristine monolayer CrCl$_3$. (a) Initial top-Cl ($S_1$), hollow ($S_2$), and top-Cr ($S_3$) adsorption sites. (b--d) Relaxed configurations obtained from $S_1$, $S_2$, and $S_3$, respectively. {\color{revcolor}%<*FigureTwoCaption>
-H is not retained at the top-Cl or hollow positions, whereas the top-Cr configuration forms a local H--Cr contact of 1.55~\AA\ but remains thermodynamically unfavorable, with $\Delta G_{\mathrm{ads}}=1.82$~eV.
-%</FigureTwoCaption>
-}}
+      H is not retained at the top-Cl or hollow positions, whereas the top-Cr configuration forms a local H--Cr contact of 1.55~\AA\ but remains thermodynamically unfavorable, with $\Delta G_{\mathrm{ads}}=1.82$~eV.
+      %</FigureTwoCaption>
+  }}
   \label{fig:Fig2}
 \end{figure}
 
@@ -427,11 +453,11 @@ These results establish the reference behavior of the ideal basal plane: the out
 \subsection{Transition-metal functionalization: local coordination and finite-temperature behavior}
 
 \noindent {\color{revcolor}%<*HollowSiteSelection>
-The hollow region highlighted in Figure~\ref{fig:Fig1}(b) provides two chemically distinct coordination motifs and has previously been identified as an accessible adsorption region for Li and O on monolayer CrCl$_3$~\cite{Luo2020,Mastrippolito2022}. In the surface-adsorbed geometry, the transition-metal atom remains exposed above the monolayer and interacts primarily with three Cl neighbors, whereas in the embedded geometry it penetrates the Cl-terminated surface and becomes coordinated by Cl atoms from both sides of the layer. This comparison isolates the effect of increased TM--Cl coordination and reduced geometrical exposure of the metal center.
-%</HollowSiteSelection>
+  The hollow region highlighted in Figure~\ref{fig:Fig1}(b) provides two chemically distinct coordination motifs and has previously been identified as an accessible adsorption region for Li and O on monolayer CrCl$_3$~\cite{Luo2020,Mastrippolito2022}. In the surface-adsorbed geometry, the transition-metal atom remains exposed above the monolayer and interacts primarily with three Cl neighbors, whereas in the embedded geometry it penetrates the Cl-terminated surface and becomes coordinated by Cl atoms from both sides of the layer. This comparison isolates the effect of increased TM--Cl coordination and reduced geometrical exposure of the metal center.
+  %</HollowSiteSelection>
 }
 
-The optimized surface-adsorbed structures are shown in Figure~\ref{fig:Fig3}(a--c). Co, Fe, and Ni remain anchored at the hollow region without global reconstruction of the CrCl$_3$ framework. Their vertical distances from the average Cr plane are 1.92, 1.76, and 1.44~\AA, respectively, establishing a progressive reduction in site exposure from Co to Ni. The corresponding atom-referenced binding energies are $-2.82$, $-2.60$, and $-3.38$~eV. Ni therefore combines the deepest accommodation with the strongest local interaction with the substrate, whereas Co and Fe remain more exposed while retaining favorable anchoring.
+The optimized surface-adsorbed structures are shown in Figure~\ref{fig:Fig3}(a--c). Co, Fe, and Ni remain anchored at the hollow region without global reconstruction of the CrCl$_3$ framework. Their vertical distances from the average Cr plane are 1.92, 1.76, and 1.44~\AA, respectively, establishing a progressive reduction in site exposure from Co to Ni. The corresponding atom-referenced binding energies are $-2.82$, $-2.60$, and $-3.38$~eV. Ni therefore combines the deepest accommodation with the strongest local interaction with the substrate, whereas Co and Fe remain more exposed while retaining favorable  anchoring.
 
 \begin{figure}[H]
   \centering
@@ -463,7 +489,12 @@ The embedded structures in Figure~\ref{fig:Fig3}(d--f) adopt distorted sixfold e
 
 The strongly metal-dependent local spin response is consistent with earlier transition-metal-doping studies, in which Ni and Mo incorporation produced substantial changes in the spin-resolved electronic structure, magnetic coupling, and local moments of CrCl$_3$\cite{Wang2019,Safi2023}.
 
-The persistence of the surface-adsorbed motifs at finite temperature was examined by 5~ps AIMD simulations at 300~K. Co undergoes an initial vertical relaxation and then fluctuates predominantly above the average Cr plane [Figure~\ref{fig:Fig3}(g)]. Fe exhibits a similar adjustment and remains slightly surface exposed [Figure~\ref{fig:Fig3}(h)]. No rapid vertical desorption is observed for either metal within the simulated time window.
+{\color{revcolor}%<*AIMDREV2>
+  To understand the behavior of the adsorbed species at finite temperature, AIMD simulations were conducted for 5~ps ($10^{-12}$~s) at 300~K according to the computational details discussed above. These simulations provide fundamental insights into the adsorption and interaction of Co, Fe, and Ni species and can help to understand the different mechanisms of adsorption for each element, providing details on energetics and positions. We emphasize, however, that this analysis is limited by the total simulation length and the following discussions are a combination of previous results for considering stability and reversibility of foreign atom insertion on the host CrCl3 lattice.
+  %</AIMDREV2>
+\par}The persistence of the surface-adsorbed motifs at finite temperature was examined by 5~ps AIMD simulations at 300~K.
+
+Co undergoes an initial vertical relaxation and then fluctuates predominantly above the average Cr plane [Figure~\ref{fig:Fig3}(g)]. Fe exhibits a similar adjustment and remains slightly surface exposed [Figure~\ref{fig:Fig3}(h)]. No rapid vertical desorption is observed for either metal within the simulated time window.
 
 Ni behaves differently: its vertical coordinate decreases continuously during the early trajectory, crosses the average Cr plane, and subsequently fluctuates within the monolayer interior [Figure~\ref{fig:Fig3}(i)]. The analogous trajectory of an additional Cr atom in Figure~S2 supports the interpretation that this motion represents loss of surface exposure and incipient incorporation rather than ordinary vibrations around the initial adsorption height. The temperature profiles in Figure~S3 fluctuate around 300~K after the initial thermostatting transient, indicating that the contrasting TM trajectories are sampled under comparable thermal conditions.
 
@@ -478,9 +509,9 @@ Ni behaves differently: its vertical coordinate decreases continuously during th
     \captionsetup{font={color=revcolor}}
     \arrayrulecolor{revcolor}
     \caption{{\color{revcolor}%<*TableOneCaption>
-Consolidated structural, electronic, magnetic, and catalytic properties of pristine monolayer $\text{CrCl}_3$ and single-atom transition-metal (Co, Fe, Ni) functionalized systems in surface-adsorbed and interstitial pore embedded motifs. Energetics are benchmarked across functional tiers: pure PBE, PBE+D3(BJ), and PBE+D3+$U$ ($U_{\text{Cr}} = 3.29$~eV) with explicit vibrational zero-point and entropic corrections.
-%</TableOneCaption>
-}}
+        Consolidated structural, electronic, magnetic, and catalytic properties of pristine monolayer $\text{CrCl}_3$ and single-atom transition-metal (Co, Fe, Ni) functionalized systems in surface-adsorbed and interstitial pore embedded motifs. Energetics are benchmarked across functional tiers: pure PBE, PBE+D3(BJ), and PBE+D3+$U$ ($U_{\text{Cr}} = 3.29$~eV) with explicit vibrational zero-point and entropic corrections.
+        %</TableOneCaption>
+    }}
     \label{tab:consolidated_properties}
     \vspace{0.2cm}
     \begin{adjustbox}{max width=\textwidth}
@@ -507,7 +538,7 @@ Consolidated structural, electronic, magnetic, and catalytic properties of prist
     \vspace{1ex}
     \begin{minipage}{0.98\textwidth}
       \footnotesize\color{revcolor}
-      $E_{\text{bind}}$ for Pure PBE is referenced to isolated spin-polarized gas-phase transition metal atoms ($E_{\text{tot}} - E_{\text{host}} - E_{\text{TM}}$); for PBE+D3 and PBE+D3+$U$, values denote substrate interaction energy ($E_{\text{int}} = E_{\text{tot}} - E_{\text{host}}$). $\Delta G_{\text{H}^*}$ includes explicit zero-point energy and entropic corrections ($T = 298.15$~K) evaluated from vibrational calculations by Caique Campos de Oliveira (Table~S3). Bold values indicate systems lying within the optimal Sabatier catalytic window ($|\Delta G_{\text{H}^*}| \le 0.15$~eV) or near Pt(111) ($-0.09$~eV). $M_{\text{tot}}$ is listed for the clean functionalized substrate with the value after hydrogen adsorption given in parentheses. Positive $\Delta Q_{\text{Bader}}$ denotes net electron donation from the transition metal to the $\text{CrCl}_3$ substrate.
+      $E_{\text{bind}}$ for Pure PBE is referenced to isolated spin-polarized gas-phase transition metal atoms ($E_{\text{tot}} - E_{\text{host}} - E_{\text{TM}}$); for PBE+D3 and PBE+D3+$U$, values denote substrate interaction energy ($E_{\text{int}} = E_{\text{tot}} - E_{\text{host}}$). $\Delta G_{\text{H}^*}$ includes explicit zero-point energy and entropic corrections ($T = 298.15$~K) evaluated from vibrational calculations (Table~S3). Bold values indicate systems lying within the optimal Sabatier catalytic window ($|\Delta G_{\text{H}^*}| \le 0.15$~eV) or near Pt(111) ($-0.09$~eV). $M_{\text{tot}}$ is listed for the clean functionalized substrate with the value after hydrogen adsorption given in parentheses. Positive $\Delta Q_{\text{Bader}}$ denotes net electron donation from the transition metal to the $\text{CrCl}_3$ substrate.
     \end{minipage}
   \end{table*}
 \par}
@@ -556,35 +587,35 @@ This apparent discrepancy is not contradictory because ICOHP isolates the orbita
 \noindent Hydrogen binds directly above the functionalizing metal in every relaxed configuration shown in Figure~\ref{fig:Fig7}, confirming that Co, Fe, and Ni act as the primary H-binding centers. The TM--H distances are 1.44, 1.57, and 1.46~\AA\ for surface-adsorbed Co, Fe, and Ni, and 1.47, 1.49, and 1.43~\AA\ for the embedded counterparts. Their narrow range contrasts with the large variation in adsorption free energy, demonstrating that the equilibrium bond length is not a sufficient descriptor of H-binding thermodynamics.
 
 {\color{revcolor}%<*SurfaceThermodynamicsPBEU>
-For surface-adsorbed Co, Fe, and Ni, the calculated $\Delta G_{\mathrm{H}^*}$ values under PBE+D3+$U$ with explicit vibrational corrections are $-0.07$, $+0.19$, and $+0.62$~eV, respectively [Figure~\ref{fig:Fig7}(g)] ($+0.18$, $+0.32$, and $+0.81$~eV under Pure PBE; see Table~\ref{tab:consolidated_properties}). All three metals improve H$^*$ formation relative to pristine CrCl$_3$ ($\Delta G_{\mathrm{H}^*} \ge +1.12$~eV), with Co achieving an optimal near-thermoneutral Sabatier sweet spot ($\Delta G_{\mathrm{H}^*} = -0.069$~eV) and Fe also entering the active catalytic window ($+0.185$~eV). Within the computational hydrogen electrode framework, this near-zero condition represents the optimal thermodynamic balance between hydrogen adsorption and subsequent hydrogen release, rather than a complete measure of the kinetics of the HER pathway \cite{Norskov_2005,Liao2022}. The decomposition into interaction and deformation contributions explains the metal dependence. Co combines the most stabilizing H--surface interaction, $E_{\mathrm{int}}^{\mathrm H}=-2.46$~eV, with a small deformation penalty of 0.18~eV. Fe retains a comparably strong interaction ($-2.35$~eV) but requires a larger deformation energy of 0.38~eV. Ni has the lowest deformation cost (0.09~eV), yet its weaker interaction with H ($-1.69$~eV) limits the thermodynamic improvement.
-%</SurfaceThermodynamicsPBEU>
+  For surface-adsorbed Co, Fe, and Ni, the calculated $\Delta G_{\mathrm{H}^*}$ values under PBE+D3+$U$ with explicit vibrational corrections are $-0.07$, $+0.19$, and $+0.62$~eV, respectively [Figure~\ref{fig:Fig7}(g)] ($+0.18$, $+0.32$, and $+0.81$~eV under Pure PBE; see Table~\ref{tab:consolidated_properties}). All three metals improve H$^*$ formation relative to pristine CrCl$_3$ ($\Delta G_{\mathrm{H}^*} \ge +1.12$~eV), with Co achieving an optimal near-thermoneutral Sabatier sweet spot ($\Delta G_{\mathrm{H}^*} = -0.069$~eV) and Fe also entering the active catalytic window ($+0.185$~eV). Within the computational hydrogen electrode framework, this near-zero condition represents the optimal thermodynamic balance between hydrogen adsorption and subsequent hydrogen release, rather than a complete measure of the kinetics of the HER pathway \cite{Norskov_2005,Liao2022}. The decomposition into interaction and deformation contributions explains the metal dependence. Co combines the most stabilizing H--surface interaction, $E_{\mathrm{int}}^{\mathrm H}=-2.46$~eV, with a small deformation penalty of 0.18~eV. Fe retains a comparably strong interaction ($-2.35$~eV) but requires a larger deformation energy of 0.38~eV. Ni has the lowest deformation cost (0.09~eV), yet its weaker interaction with H ($-1.69$~eV) limits the thermodynamic improvement.
+  %</SurfaceThermodynamicsPBEU>
 \par}
 
 This ordering separates metal anchoring from H binding. Surface-adsorbed Ni has the strongest interaction with CrCl$_3$ and produces the largest reconstruction of the host electronic structure, but it binds H less effectively than Co or Fe. Strong TM--substrate coupling can therefore stabilize the functionalizing atom while reducing the electronic availability of the metal center for TM--H bond formation. Co provides the most favorable balance between substrate anchoring, site exposure, and direct interaction with H.
 
 {\color{revcolor}%<*EmbeddedThermodynamicsPBEU>
-Embedding shifts all three systems toward substantially less favorable H adsorption, with $\Delta G_{\mathrm{H}^*}=+1.38$, $+1.11$, and $+0.82$~eV for Co, Fe, and Ni under PBE+D3+$U$, respectively [Figure~\ref{fig:Fig7}(h)] ($+1.76$, $+1.35$, and $+1.85$~eV under Pure PBE; Table~\ref{tab:consolidated_properties}). The interaction energies weaken to $-0.94$, $-1.67$, and $-0.82$~eV, showing that sixfold coordination suppresses the capacity of the embedded centers to stabilize H. Co and Fe incur moderate deformation penalties of 0.21 and 0.55~eV, respectively. Embedded Ni exhibits a fully relaxed internal deformation energy of $0.73$~eV (with unrelaxed distortion penalties reaching up to $1.97$~eV), while its H--surface interaction is the weakest of the embedded series ($-0.82$~eV). Its endergonic $\Delta G_{\mathrm{H}^*}$ therefore arises from the simultaneous loss of interaction strength and the high cost of reorganizing the constrained, coordination-saturated Ni--Cl environment.
-%</EmbeddedThermodynamicsPBEU>
+  Embedding shifts all three systems toward substantially less favorable H adsorption, with $\Delta G_{\mathrm{H}^*}=+1.38$, $+1.11$, and $+0.82$~eV for Co, Fe, and Ni under PBE+D3+$U$, respectively [Figure~\ref{fig:Fig7}(h)] ($+1.76$, $+1.35$, and $+1.85$~eV under Pure PBE; Table~\ref{tab:consolidated_properties}). The interaction energies weaken to $-0.94$, $-1.67$, and $-0.82$~eV, showing that sixfold coordination suppresses the capacity of the embedded centers to stabilize H. Co and Fe incur moderate deformation penalties of 0.21 and 0.55~eV, respectively. Embedded Ni exhibits a fully relaxed internal deformation energy of $0.73$~eV (with unrelaxed distortion penalties reaching up to $1.97$~eV), while its H--surface interaction is the weakest of the embedded series ($-0.82$~eV). Its endergonic $\Delta G_{\mathrm{H}^*}$ therefore arises from the simultaneous loss of interaction strength and the high cost of reorganizing the constrained, coordination-saturated Ni--Cl environment.
+  %</EmbeddedThermodynamicsPBEU>
 \par}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=1.0\textwidth]{figure/Fig7.png}
   \caption{{\color{revcolor}%<*FigureSevenCaption>
-Optimized H-adsorption geometries and energetic decomposition for transition-metal-functionalized monolayer CrCl$_3$. (a--c) Surface-adsorbed Co, Fe, and Ni after H adsorption. (d--f) Corresponding embedded configurations. Selected TM--H and local interatomic distances are indicated. (g,h) Atomic-H-referenced interaction energy, $E_{\mathrm{int}}^{\mathrm H}$, deformation energy, $E_{\mathrm{def}}$, and H adsorption free energy, $\Delta G_{\mathrm{H}^*}$, for the surface-adsorbed and embedded structures.
-%</FigureSevenCaption>
-}}
+      Optimized H-adsorption geometries and energetic decomposition for transition-metal-functionalized monolayer CrCl$_3$. (a--c) Surface-adsorbed Co, Fe, and Ni after H adsorption. (d--f) Corresponding embedded configurations. Selected TM--H and local interatomic distances are indicated. (g,h) Atomic-H-referenced interaction energy, $E_{\mathrm{int}}^{\mathrm H}$, deformation energy, $E_{\mathrm{def}}$, and H adsorption free energy, $\Delta G_{\mathrm{H}^*}$, for the surface-adsorbed and embedded structures.
+      %</FigureSevenCaption>
+  }}
   \label{fig:Fig7}
 \end{figure}
 
 {\color{revcolor}%<*EnergeticPartitionReference>
-The reference states of the energetic quantities remain distinct. $E_{\mathrm{int}}^{\mathrm H}+E_{\mathrm{def}}$ yields the atomic-H-referenced adsorption energy, whereas $\Delta G_{\mathrm{H}^*}$ is referenced to $\tfrac{1}{2}\mathrm{H}_2$ and includes the zero-point-energy and entropic correction. Because the same H/$\mathrm{H}_2$ reference offset applies to all configurations, the decomposition preserves the relative ordering and identifies whether an unfavorable $\Delta G_{\mathrm{H}^*}$ originates primarily from weak H--surface interaction, structural deformation, or both.
-%</EnergeticPartitionReference>
+  The reference states of the energetic quantities remain distinct. $E_{\mathrm{int}}^{\mathrm H}+E_{\mathrm{def}}$ yields the atomic-H-referenced adsorption energy, whereas $\Delta G_{\mathrm{H}^*}$ is referenced to $\tfrac{1}{2}\mathrm{H}_2$ and includes the zero-point-energy and entropic correction. Because the same H/$\mathrm{H}_2$ reference offset applies to all configurations, the decomposition preserves the relative ordering and identifies whether an unfavorable $\Delta G_{\mathrm{H}^*}$ originates primarily from weak H--surface interaction, structural deformation, or both.
+  %</EnergeticPartitionReference>
 \par}
 
 {\color{revcolor}%<*CoordinationTradeoffSynthesis>
-The central trend is therefore controlled by coordination. Surface-exposed metals retain sufficient orbital and geometrical accessibility to bind H, whereas embedding increases TM--Cl coordination at the expense of H stabilization. Surface-adsorbed Co achieves the best compromise, with strong H interaction, limited deformation, and $\Delta G_{\mathrm{H}^*}=-0.069$~eV under PBE+D3+$U$ ($+0.18$~eV under Pure PBE). Within the configurations and coverage examined here, it is the most favorable motif for H adsorption, although the calculated free energy alone does not establish the kinetics of the full HER pathway.
-%</CoordinationTradeoffSynthesis>
+  The central trend is therefore controlled by coordination. Surface-exposed metals retain sufficient orbital and geometrical accessibility to bind H, whereas embedding increases TM--Cl coordination at the expense of H stabilization. Surface-adsorbed Co achieves the best compromise, with strong H interaction, limited deformation, and $\Delta G_{\mathrm{H}^*}=-0.069$~eV under PBE+D3+$U$ ($+0.18$~eV under Pure PBE). Within the configurations and coverage examined here, it is the most favorable motif for H adsorption, although the calculated free energy alone does not establish the kinetics of the full HER pathway.
+  %</CoordinationTradeoffSynthesis>
 \par}
 
 {\color{revcolor}%<*OverpotentialHER>
@@ -595,19 +626,21 @@ The central trend is therefore controlled by coordination. Surface-exposed metal
 The coordination dependence identified here is broadly consistent with previous studies showing that magnetic ordering and local electronic reconstruction can activate water-splitting sites in single-atom and atomically thin catalysts \cite{Sun2023,Duan2021}. Although those systems are chemically distinct from TM-functionalized CrCl$_3$, they support the general picture that spin polarization and coordination can jointly modify the electronic environment of hydrogen-binding centers. The present results further show that neither contribution should be considered independently of the structural response of the active site.
 
 {\color{revcolor}%<*DBandCenterDiscussion>
-Figure~\ref{fig:Fig8} tests whether the occupied TM $d$-band center, $\varepsilon_d^{\mathrm{occ}}$, can rationalize the adsorption sequence using the electronic structure of the relaxed H-free systems across both (a) pure PBE and (b) PBE+D3+$U$ with explicit thermochemical corrections. For the surface configurations, $\varepsilon_d^{\mathrm{occ}}$ shifts toward the Fermi level from Fe to Co and Ni, but $\Delta G_{\mathrm{H}^*}$ follows the nonmonotonic order Co $<$ Fe $<$ Ni. Ni consequently has the occupied $d$-band center closest to $E_{\mathrm F}$ but the least favorable H adsorption within the surface family. The embedded systems are likewise nonmonotonic: Fe has the deepest occupied $d$-band center and the lowest $\Delta G_{\mathrm{H}^*}$ of the embedded series, while Ni exhibits an intermediate $\varepsilon_d^{\mathrm{occ}}$ and the largest adsorption penalty.
+  Figure~\ref{fig:Fig8} tests whether the occupied TM $d$-band center, $\varepsilon_d^{\mathrm{occ}}$, can rationalize the adsorption sequence using the electronic structure of the relaxed H-free systems across both (a) pure PBE and (b) PBE+D3+$U$ with explicit thermochemical corrections. For the surface configurations, $\varepsilon_d^{\mathrm{occ}}$ shifts toward the Fermi level from Fe to Co and Ni, but $\Delta G_{\mathrm{H}^*}$ follows the nonmonotonic order Co $<$ Fe $<$ Ni. Ni consequently has the occupied $d$-band center closest to $E_{\mathrm F}$ but the least favorable H adsorption within the surface family. The embedded systems are likewise nonmonotonic: Fe has the deepest occupied $d$-band center and the lowest $\Delta G_{\mathrm{H}^*}$ of the embedded series, while Ni exhibits an intermediate $\varepsilon_d^{\mathrm{occ}}$ and the largest adsorption penalty.
 
-The limited descriptor performance is consistent with the complexity of the spin-polarized TM-$3d$ manifolds. A spin-summed first moment does not retain the separate spin channels, orbital symmetry, crystal-field splitting, occupation of bonding and antibonding states, or the structural response induced by H adsorption. Moreover, each fitted family contains only three metals; the corresponding linear fits and $R^2$ values should therefore be interpreted as visual summaries rather than statistically predictive relationships. For the six configurations considered here, $\varepsilon_d^{\mathrm{occ}}$ is a complementary electronic indicator, not an independent predictor of $\Delta G_{\mathrm{H}^*}$. Importantly, inclusion of Hubbard $U$ and empirical dispersion [Figure~\ref{fig:Fig8}(b)] brings surface-adsorbed Co directly into the optimal Sabatier catalytic window ($\Delta G_{\mathrm{H}^*} = -0.069$~eV), comparable to the Pt(111) benchmark ($-0.09$~eV), while preserving the descriptor nonmonotonicity across both coordination families.
-%</DBandCenterDiscussion>
+  The limited descriptor performance is consistent with the complexity of the spin-polarized TM-$3d$ manifolds. A spin-summed first moment does not retain the separate spin channels, orbital symmetry, crystal-field splitting, occupation of bonding and antibonding states, or the structural response induced by H adsorption. Moreover, each fitted family contains only three metals; the corresponding linear fits and $R^2$ values should therefore be interpreted as visual summaries rather than statistically predictive relationships. For the six configurations considered here, $\varepsilon_d^{\mathrm{occ}}$ is a complementary electronic indicator, not an independent predictor of $\Delta G_{\mathrm{H}^*}$.
+
+  Importantly, inclusion of Hubbard $U$ and empirical dispersion [Figure~\ref{fig:Fig8}(b)] brings surface-adsorbed Co directly into the optimal Sabatier catalytic window ($\Delta G_{\mathrm{H}^*} = -0.069$~eV), comparable to the Pt(111) benchmark ($-0.09$~eV), while preserving the descriptor nonmonotonicity across both coordination families.
+  %</DBandCenterDiscussion>
 \par}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=1.0\linewidth]{figure/Fig8.png}
   \caption{{\color{revcolor}%<*NotationUnification>
-Occupied $d$-band center, $\varepsilon_d^{\mathrm{occ}}$, versus hydrogen adsorption free energy, $\Delta G_{\mathrm{H}^*}$, for surface-adsorbed and embedded Co, Fe, and Ni centers in monolayer CrCl$_3$ under (a) pure PBE baseline and (b) PBE+D3+$U$ ($U_{\mathrm{Cr}} = 3.29$~eV) with explicit vibrational zero-point and entropic corrections. Linear fits are included only as visual guides because each coordination family contains three data points. Shaded green bands denote the optimal Sabatier catalytic window ($|\Delta G_{\mathrm{H}^*}| \leq 0.15$~eV) with the Pt(111) benchmark ($-0.09$~eV) indicated by dotted horizontal lines.
-%</NotationUnification>
-}}
+      Occupied $d$-band center, $\varepsilon_d^{\mathrm{occ}}$, versus hydrogen adsorption free energy, $\Delta G_{\mathrm{H}^*}$, for surface-adsorbed and embedded Co, Fe, and Ni centers in monolayer CrCl$_3$ under (a) pure PBE baseline and (b) PBE+D3+$U$ ($U_{\mathrm{Cr}} = 3.29$~eV) with explicit vibrational zero-point and entropic corrections. Linear fits are included only as visual guides because each coordination family contains three data points. Shaded green bands denote the optimal Sabatier catalytic window ($|\Delta G_{\mathrm{H}^*}| \leq 0.15$~eV) with the Pt(111) benchmark ($-0.09$~eV) indicated by dotted horizontal lines.
+      %</NotationUnification>
+  }}
   \label{fig:Fig8}
 \end{figure}
 
@@ -623,23 +656,25 @@ Taken together, the structural, electronic, and energetic analyses show that H a
 \section{Conclusions}
 
 {\color{revcolor}%<*ConclusionsSabatierPerformance>
-Spin-polarized first-principles calculations demonstrate that transition-metal functionalization selectively modifies the hydrogen-adsorption thermodynamics of monolayer CrCl$_3$. The pristine Cl-terminated basal plane is unfavorable for H$^*$ formation, with the locally retained adsorption configurations exhibiting $\Delta G_{\mathrm{H}^*} \ge +1.12$~eV ($+1.82$~eV in Pure PBE). Surface-adsorbed Co, Fe, and Ni introduce exposed, spin-polarized $3d$ centers and reduce this thermodynamic penalty, with Co providing the optimal near-thermoneutral Sabatier performance ($\Delta G_{\mathrm{H}^*}=-0.069$~eV under PBE+D3+$U$ and $+0.18$~eV under Pure PBE), outperforming Pt(111). Notably, Ni interacts most strongly with the CrCl$_3$ substrate and shows a finite-temperature tendency toward deeper incorporation, but does not yield the strongest H binding. The combined structural, electronic, COHP, and energetic analyses reveal a coordination-controlled trade-off: increasing TM--Cl coordination enhances the integration of the metal center into the host lattice, while reducing its geometrical and orbital availability for interaction with H. Consequently, the embedded configurations exhibit substantially less favorable adsorption thermodynamics, particularly embedded Ni, for which weak H--surface interaction is accompanied by a large deformation penalty. Neither the occupied $d$-band center nor the local magnetic moment alone rationalizes the adsorption sequence, indicating that H binding is governed by the combined effects of local coordination, site exposure, electronic structure, and structural relaxation. These results identify surface-adsorbed Co as the most favorable H-binding motif among the configurations examined and establish coordination engineering as a promising strategy for tuning the reactivity of magnetic two-dimensional materials.
-%</ConclusionsSabatierPerformance>
+  Spin-polarized first-principles calculations demonstrate that transition-metal functionalization selectively modifies the hydrogen-adsorption thermodynamics of monolayer CrCl$_3$. The pristine Cl-terminated basal plane is unfavorable for H$^*$ formation, with the locally retained adsorption configurations exhibiting $\Delta G_{\mathrm{H}^*} \ge +1.12$~eV ($+1.82$~eV in Pure PBE). Surface-adsorbed Co, Fe, and Ni introduce exposed, spin-polarized $3d$ centers and reduce this thermodynamic penalty, with Co providing the optimal near-thermoneutral Sabatier performance ($\Delta G_{\mathrm{H}^*}=-0.069$~eV under PBE+D3+$U$ and $+0.18$~eV under Pure PBE), outperforming Pt(111).
+
+  Notably, Ni interacts most strongly with the CrCl$_3$ substrate and shows a finite-temperature tendency toward deeper incorporation, but does not yield the strongest H binding. The combined structural, electronic, COHP, and energetic analyses reveal a coordination-controlled trade-off: increasing TM--Cl coordination enhances the integration of the metal center into the host lattice, while reducing its geometrical and orbital availability for interaction with H. Consequently, the embedded configurations exhibit substantially less favorable adsorption thermodynamics, particularly embedded Ni, for which weak H--surface interaction is accompanied by a large deformation penalty. Neither the occupied $d$-band center nor the local magnetic moment alone rationalizes the adsorption sequence, indicating that H binding is governed by the combined effects of local coordination, site exposure, electronic structure, and structural relaxation. These results identify surface-adsorbed Co as the most favorable H-binding motif among the configurations examined and establish coordination engineering as a promising strategy for tuning the reactivity of magnetic two-dimensional materials.
+  %</ConclusionsSabatierPerformance>
 \par}
 
 {\color{revcolor}%<*ThermodynamicLimitations>
   The present analysis is restricted to thermodynamic descriptors within the computational hydrogen electrode framework, in which $\Delta G_{\mathrm{ads}}$ serves as the primary volcano-plot descriptor for the rate-limiting Volmer step. Full kinetic characterization via transition-state calculations (Volmer and Tafel barriers) and coverage-dependent free energy profiles represent critical directions for future work.
-%</ThermodynamicLimitations>
+  %</ThermodynamicLimitations>
 \par}
 
 {\color{revcolor}%<*SolvationPotentialEffects>
   Additionally, the calculations are performed for an ideal neutral monolayer in vacuum; solvation, applied potential, electrolyte effects, and surface reconstruction under realistic electrochemical conditions may shift the absolute $\Delta G_{\mathrm{ads}}$ values, and their inclusion via implicit-solvent or constant-potential DFT methods is identified as a further extension.
-%</SolvationPotentialEffects>
+  %</SolvationPotentialEffects>
 \par}
 
 {\color{revcolor}%<*BroaderTransferability>
   Extension of the coordination engineering approach to the heavier CrX$_3$ homologs (X~=~Br, I) and to TM-functionalized MXenes, transition-metal dichalcogenides, and carbon-based supports would further establish the generality of the coordination-controlled trade-off identified here.
-%</BroaderTransferability>
+  %</BroaderTransferability>
 \par}
 
 \section*{CRediT authorship contribution statement}

@@ -1,0 +1,30 @@
+# CrCl3 (2x2) Monolayer + Fe (adsorbed, H_ads)
+# Multi-Site DFT+U: U(Cr) = 3.29 eV, U(Fe) = 3.29 eV | PBE + D3(BJ)
+PREC     = Accurate
+ENCUT    = 500.0
+EDIFF    = 1.0E-06
+NELM     = 100
+ISMEAR   = 0
+SIGMA    = 0.02
+ISPIN    = 2
+MAGMOM   = 8*3.0 24*0.0 1*4.0 1*0.0
+LREAL    = Auto
+NCORE    = 4
+
+# Dispersion Correction
+IVDW     = 12
+
+# Ionic Relaxation
+IBRION   = 2
+NSW      = 100
+EDIFFG   = -0.02
+ISIF     = 2
+
+# Dudarev Multi-Site DFT+U (Cr + Fe)
+LDAU     = .TRUE.
+LDAUTYPE = 2
+LDAUL    = 2 -1 2 -1
+LDAUU    = 3.29 0.00 3.29 0.00
+LDAUJ    = 0.00 0.00 0.00 0.00
+LMAXMIX  = 4
+LDAUPRINT= 1

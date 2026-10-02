@@ -27,6 +27,11 @@
 \def\newlabel#1#2{}
 \InputIfFileExists{manuscript_marked.aux}{}{}
 \let\newlabel\orig@newlabel
+% Suppress \label re-definitions from ExecuteMetaData-extracted equation blocks
+% (labels are already loaded from manuscript_marked.aux; redefining them causes
+% "multiply defined" warnings with no benefit since this letter has no \ref calls
+% for equation numbers).
+\AtBeginDocument{\let\label\@gobble}
 
 % Fallback definitions for Overleaf (when manuscript_marked.aux is not generated in the same build)
 \providecommand{\fallbackref}[2]{\@ifundefined{r@#1}{\@namedef{r@#1}{{#2}{}}}{}}

@@ -1,0 +1,54 @@
+#!/bin/bash
+#SBATCH -J Co_ads_c_Uall
+#SBATCH -p medio,normal
+#SBATCH --nodes=1
+#SBATCH --ntasks=28
+#SBATCH --cpus-per-task=1
+#SBATCH --time=04:00:00
+#SBATCH --signal=B:USR1@300
+#SBATCH --requeue
+#SBATCH -o %x.%j.out
+#SBATCH -e %x.%j.err
+
+echo "=========================================================="
+echo "Job Name:    $SLURM_JOB_NAME"
+echo "Job ID:      $SLURM_JOB_ID"
+echo "Host:        $(hostname)"
+echo "Directory:   $(pwd)"
+echo "Start Time:  $(date)"
+echo "=========================================================="
+
+ulimit -s unlimited 2>/dev/null || true
+export OMP_NUM_THREADS=1
+
+module purge
+module load vasp/6.3.0 2>/dev/null || module load vasp/6.2.0 2>/dev/null || true
+
+ckpt_handler() {
+    echo "[$(date)] SIGUSR1 received! Checkpointing calculation..."
+    if [ ! -s OUTCAR ] || ! grep -q "Iteration" OUTCAR 2>/dev/null; then
+        echo "ERROR: Calculation failed to start or produced no output! Aborting resubmission loop." >&2
+        exit 1
+    fi
+    if [ -s CONTCAR ] && [ "$(wc -l < CONTCAR)" -ge 8 ]; then
+        cp CONTCAR POSCAR
+        sbatch job_huk.sh
+    fi
+    exit 0
+}
+trap 'ckpt_handler' USR1
+
+mpirun -np $SLURM_NTASKS vasp_std > vasp.out 2>&1
+
+if grep -q "reached required accuracy" OUTCAR 2>/dev/null; then
+    echo "[$(date)] VASP calculation CONVERGED successfully!"
+else
+    if [ ! -s OUTCAR ] || ! grep -q "Iteration" OUTCAR 2>/dev/null; then
+        echo "ERROR: Calculation failed to start or produced no output! Aborting resubmission loop." >&2
+        exit 1
+    fi
+    if [ -s CONTCAR ] && [ "$(wc -l < CONTCAR)" -ge 8 ]; then
+        cp CONTCAR POSCAR
+        sbatch job_huk.sh
+    fi
+fi
