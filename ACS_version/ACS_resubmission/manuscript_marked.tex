@@ -264,17 +264,14 @@ where $E_{\mathrm{surf+H}}$ is the total energy of the fully relaxed surface wit
   In this work, these vibrational and entropic contributions were calculated within the frozen-slab approximation by fixing all of the substrate atoms in the structure and only allowing the displacement of the adsorbates (\texttt{IBRION = 5}). The zero-point energy variation is given by:
   \begin{equation}
     \Delta E_{\mathrm{ZPE}}(\mathrm{H}^{*}) = E_{\mathrm{ZPE}}(\mathrm{H}^{*}) - \frac{1}{2}E_{\mathrm{ZPE}}(\mathrm{H}_{2})
-    \label{eq:EZPE_def}
   \end{equation}
   where the zero-point energies were obtained by summing all real positive vibrational frequencies ($\nu_i$):
   \begin{equation}
     E_{\mathrm{ZPE}} = \frac{1}{2} \sum_{i}h\nu_{i}
-    \label{eq:EZPE_sum}
   \end{equation}
   with $h$ being Planck's constant. The entropy change is given by:
   \begin{equation}
     \Delta S = S(\mathrm{H}^{*}) - \frac{1}{2}S^{0}(\mathrm{H}_{2})
-    \label{eq:DeltaS_def}
   \end{equation}
   where $S^{0}(\mathrm{H}_{2})$ represents the standard entropy of $\mathrm{H}_2$ in the gas phase at $T=298.15$~K, evaluated as $1.35 \times 10^{-3}$~eV/K in close agreement with experimental literature \cite{ZUTTEL200324,Norskov_2005}, while $S(\mathrm{H}^{*})$ was evaluated from the vibrational partition function within the harmonic approximation.
 
