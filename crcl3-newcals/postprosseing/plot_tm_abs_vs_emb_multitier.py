@@ -47,6 +47,63 @@ CARD_STYLE = dict(boxstyle='round,pad=0.20', facecolor='white', edgecolor='#cccc
 RUNNING_CARD = dict(boxstyle='round,pad=0.20', facecolor='#fef9e7', edgecolor='#f39c12', alpha=0.94, linewidth=0.9)
 QUEUED_CARD = dict(boxstyle='round,pad=0.20', facecolor='#f2f4f4', edgecolor='#bdc3c7', alpha=0.94, linewidth=0.8)
 
+
+def resolve_vertical_overlaps(fig, ax, pad_px=3.0, max_iter=3000):
+    """Push overlapping value cards apart vertically (zero-overlap mandate).
+
+    Data-coordinate labels are movable; annotations and axes-fraction texts
+    (e.g. the provenance badge) are fixed obstacles. Labels move away from y=0.
+    """
+    from matplotlib.text import Annotation
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+    movable, fixed = [], []
+    for t in ax.texts:
+        (fixed if isinstance(t, Annotation) or t.get_transform() != ax.transData else movable).append(t)
+
+    fixed_ext = {}
+    for t in fixed:
+        patch = t.get_bbox_patch()
+        fixed_ext[id(t)] = patch.get_window_extent(renderer) if patch is not None else t.get_window_extent(renderer)
+
+    def ext(t):
+        if id(t) in fixed_ext:
+            return fixed_ext[id(t)]
+        card_pad = 0.25 * t.get_fontsize() * fig.dpi / 72.0  # matches round,pad=0.20 cards
+        return t.get_window_extent(renderer).padded(card_pad)
+
+    y0_px = ax.transData.transform((0, 0))[1]
+    inv = ax.transData.inverted()
+    for _ in range(max_iter):
+        moved = False
+        boxes = {id(t): ext(t) for t in movable + fixed}
+        for a in movable:
+            ba = boxes[id(a)]
+            for b in movable + fixed:
+                if a is b:
+                    continue
+                bb = boxes[id(b)]
+                if ba.x0 < bb.x1 and ba.x1 > bb.x0 and ba.y0 < bb.y1 + pad_px and ba.y1 > bb.y0 - pad_px:
+                    # move `a` only if it is the outer label (farther from zero) or b is fixed
+                    a_c, b_c = (ba.y0 + ba.y1) / 2, (bb.y0 + bb.y1) / 2
+                    outward_up = a_c >= y0_px
+                    if b in movable:
+                        da, db = abs(a_c - y0_px), abs(b_c - y0_px)
+                        if da < db or (da == db and id(a) < id(b)):
+                            continue
+                    if b in fixed:
+                        outward_up = a_c >= b_c
+                    shift = (bb.y1 + pad_px - ba.y0) if outward_up else -(ba.y1 - bb.y0 + pad_px)
+                    x, y = a.get_position()
+                    y_new = inv.transform((0, ax.transData.transform((0, y))[1] + shift))[1]
+                    a.set_position((x, y_new))
+                    moved = True
+                    break
+            if moved:
+                break
+        if not moved:
+            return
+
 def generate_multitier_comparison_plot():
     fig, axs = plt.subplots(2, 2, figsize=(16.5, 13.0))
     fig.subplots_adjust(top=0.885, bottom=0.065, hspace=0.32, wspace=0.24)
@@ -73,9 +130,9 @@ def generate_multitier_comparison_plot():
     dg_emb_ucr  = [1.375, 1.114, 0.821]   # Converged (+U_Cr)
     # Co_emb (clean: -152.311 eV, +H: -154.564 eV) -> Delta G = +1.389 eV!
     # Fe_emb (clean: -153.791 eV, +H: -155.610 eV) -> Delta G = +1.821 eV!
-    # Ni_emb clean (Step 15) and +H (Step 2) are running on Carbono
-    dg_emb_uall = [1.389, 1.821, np.nan]
-    label_emb_uall = ['1.39', '1.82', '[Running]']
+    # Ni_emb (clean: -150.788 eV [Job 167940], +H: -153.406 eV [Job 167941]) -> Delta G = +1.024 eV
+    dg_emb_uall = [1.389, 1.821, 1.024]
+    label_emb_uall = ['1.39', '1.82', '1.02']
 
     # E_ads (eV)
     # Adsorbed:
@@ -86,7 +143,8 @@ def generate_multitier_comparison_plot():
     # Embedded:
     eads_emb_vdw  = [1.483, 1.107, 0.727]
     eads_emb_ucr  = [1.115, 0.854, 0.621]
-    eads_emb_uall = [1.133, 1.561, np.nan]
+    # Fe_emb: -155.610 - (-153.791) + 3.386 = 1.566 eV (previous 1.561 was a transcription slip)
+    eads_emb_uall = [1.133, 1.566, 0.768]
 
     # Delta E_bind (eV)
     # Adsorbed:
@@ -99,7 +157,8 @@ def generate_multitier_comparison_plot():
     ebind_emb_vdw  = [-6.192, -6.693, -6.044]
     ebind_emb_ucr  = [-5.380, -7.531, -3.914]
     # Co_emb clean converged (-152.311 eV) -> -5.008 eV; Fe_emb clean converged (-153.791 eV) -> -6.487 eV
-    ebind_emb_uall = [-5.008, -6.487, np.nan]
+    # Ni_emb clean converged (-150.788 eV) -> -3.484 eV (same convention: E_clean - E_pristine(-147.304 eV))
+    ebind_emb_uall = [-5.008, -6.487, -3.484]
 
     # Total Cell Magnetization (mu_B)
     mag_ads_vdw  = [24.00, 28.42, 25.00]
@@ -108,7 +167,7 @@ def generate_multitier_comparison_plot():
 
     mag_emb_vdw  = [24.00, 27.37, 25.00]
     mag_emb_ucr  = [24.00, 27.37, 25.00]
-    mag_emb_uall = [29.00, 30.00, np.nan] # Co_emb clean: 29.0 (+H: 28.0); Fe_emb clean: 30.0 (+H: 29.0)
+    mag_emb_uall = [29.00, 30.00, 28.00] # Co_emb 29.0 (+H 28.0); Fe_emb 30.0 (+H 29.0); Ni_emb 28.0 (+H 27.0)
 
     # Color definitions:
     c_ads_vdw  = '#5dade2'
@@ -432,10 +491,10 @@ def generate_multitier_comparison_plot():
         r"$\bullet$ Tier 1 (vdW): PBE+D3(BJ) [100% Converged, 12/12 Systems]" + "\n"
         r"$\bullet$ Tier 2 (+$U_{\mathrm{Cr}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV}$ [100% Converged, Caique Dataset]" + "\n"
         r"$\bullet$ Tier 3 (+$U_{\mathrm{all}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV},\ U_{\mathrm{TM}}=3.29\,\mathrm{eV}$ [Active Suite]" + "\n"
-        r"  - Converged Pairs: Co(ads) [$\Delta G = +0.07\,\mathrm{eV}$], Co(emb) [$+1.39\,\mathrm{eV}$], Fe(emb) [$+1.82\,\mathrm{eV}$]" + "\n"
-        r"  - Running on Huk: Fe(ads)+H (Step 28), Ni(ads) clean (Step 12)" + "\n"
-        r"  - Running on Carbono: Ni(emb) clean (Step 15), Ni(emb)+H (Step 2)" + "\n"
-        r"  - Milestone: Fe(ads) clean & Ni(ads)+H are fully converged" + "\n"
+        r"  - Converged: Co(ads) [$\Delta G = +0.07\,\mathrm{eV}$]; Emb Co/Fe/Ni [$+1.39/+1.82/+1.02\,\mathrm{eV}$]" + "\n"
+        r"  - Carbono: all 8 assigned systems converged (Emb 6/6, Co(ads) 2/2)" + "\n"
+        r"  - Huk (last known): Fe(ads)+H and Ni(ads) clean relaxing" + "\n"
+        r"  - Fe(ads) clean & Ni(ads)+H converged; pairs pending" + "\n"
         r"$\bullet$ Hatched boxes denote in-progress calculations (zero invented data)."
     )
     ax_d.text(0.03, 0.95, status_text, transform=ax_d.transAxes,
@@ -450,6 +509,10 @@ def generate_multitier_comparison_plot():
 
     out_png = os.path.join(SCRIPT_DIR, "crcl3_tm_abs_vs_emb_multitier.png")
     out_pdf = os.path.join(SCRIPT_DIR, "crcl3_tm_abs_vs_emb_multitier.pdf")
+
+    ax_d.set_ylim(20.0, 41.0)  # headroom so the provenance badge clears the bar labels
+    for ax in axs.flat:
+        resolve_vertical_overlaps(fig, ax)
 
     plt.savefig(out_png, dpi=300, bbox_inches='tight')
     plt.savefig(out_pdf, bbox_inches='tight')
