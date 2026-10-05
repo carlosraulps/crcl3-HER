@@ -1,0 +1,10 @@
+# ChkTeX Configuration for Scientific Beamer Presentations
+
+CmdLine
+{
+  -n1
+  -n8
+  -n13
+  -n24
+  -n36
+}

@@ -1,3 +1,6 @@
+%!TEX program = pdflatex
+%!TEX encoding = UTF-8 Unicode
+%!TEX root = manuscript.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% This is a (brief) model paper using the achemso class
 %% The document class accepts keyval options, which should include
@@ -10,8 +13,9 @@
 \usepackage{adjustbox}
 \usepackage{longtable}
 \usepackage{xcolor}
-\usepackage[normalem]{ulem} 
-\usepackage{amsmath} 
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\raggedbottom 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Place any additional packages needed here.  Only include packages
 %% which are essential, to avoid problems later. Do NOT use any
@@ -111,7 +115,9 @@ Coordination-Dependent Hydrogen Adsorption on Co-, Fe-, and Ni-Functionalized Mo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tocentry}
     \centering
+    \vfill
     \includegraphics[scale=0.625]{figure/toc.png}
+    \vfill
 \end{tocentry}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -162,7 +168,7 @@ Pristine CrCl$_3$ and the Co-, Fe-, and Ni-functionalized systems were fully rel
 
 The projected densities of states (PDOS) were obtained from non-self-consistent static calculations using the previously converged charge density and a $\Gamma$-centered $5 \times 5 \times 1$ \textit{k}-point mesh. Brillouin-zone integrations were performed using the tetrahedron method with Blöchl corrections. The energy scale of each electronic-structure calculation was shifted such that the corresponding Fermi energy was set to zero.
 
-The binding energy of a transition-metal atom on monolayer CrCl$_3$ was calculated as \cite{Liao2022,Sholl2009DensityTheory,Martin2004ElectronicMethods}:
+The binding energy of a transition-metal atom on the CrCl$_3$ monolayer was calculated as \cite{Liao2022,Sholl2009DensityTheory,Martin2004ElectronicMethods}:
 \begin{equation}
     E_{\mathrm{bind}}^{\mathrm{TM}}
     =
@@ -401,7 +407,7 @@ For the surface-adsorbed systems [Figure~\ref{fig:Fig5}(a--f)], Co and Fe genera
 
 Embedding reorganizes the TM-$3d$ manifold through the change from threefold to distorted sixfold coordination [Figure~\ref{fig:Fig5}(g--l)]. Embedded Co and Ni display several narrow occupied states below the Fermi level, while embedded Fe retains a localized feature close to $E_{\mathrm F}$. The enhanced crystal-field splitting and redistribution of spectral weight reflect stronger integration of the metal center into the surrounding Cl coordination shell. Nevertheless, neither the magnitude of the host electronic reconstruction nor the presence of states near $E_{\mathrm F}$ alone anticipates the H-adsorption sequence: Ni perturbs the substrate most strongly but does not provide the most favorable $\Delta G_{\mathrm{ads}}$.
 
-Such coordination-induced reorganization of the TM-$3d$ manifold is consistent with ligand-field arguments and with previous calculations showing that reduced coordination at CrCl$_3$ edges and transition-metal substitution modify the ordering and occupation of the spin-resolved $d$ states, together with the associated local magnetic moments \cite{Soriano2020,Nharangatt2022,Wang2019,Safi2023}.
+This coordination-induced reorganization of TM-$3d$ states is consistent with ligand-field arguments and earlier calculations showing that reduced coordination at CrCl$_3$ edges and transition-metal substitution modify the ordering and occupation of spin-resolved $d$ states, along with associated local magnetic moments~\cite{Soriano2020,Nharangatt2022,Wang2019,Safi2023}.
 
 \begin{figure}[H]
     \centering
@@ -419,7 +425,7 @@ The chemical origin of TM anchoring is resolved by the $-\mathrm{COHP}$ curves i
     \label{fig:Fig6}
 \end{figure}
 
-In the threefold surface geometries, Co--Cl and Fe--Cl interactions are predominantly bonding at low energies, with comparatively small antibonding contributions near $E_{\mathrm F}$. Surface-adsorbed Ni retains substantial low-energy bonding character but exhibits more pronounced occupied antibonding weight close to the Fermi level. In the embedded structures, distortion of the sixfold environment separates the TM--Cl interactions into nonequivalent groups. This effect is most evident for Ni, where several bonds exhibit appreciable occupied antibonding contributions between approximately $-2$ and $-1$~eV. Increasing coordination therefore redistributes the bonding over a larger, chemically heterogeneous shell rather than uniformly strengthening every TM--Cl contact.
+In the threefold surface geometries, Co--Cl and Fe--Cl interactions are predominantly bonding at low energies, with modest antibonding contributions near $E_{\mathrm F}$. Surface-adsorbed Ni retains substantial low-energy bonding character but exhibits more pronounced occupied antibonding weight close to the Fermi level. In the embedded structures, distortion of the sixfold environment separates the TM--Cl interactions into nonequivalent groups. This effect is most evident for Ni, where several bonds exhibit appreciable occupied antibonding contributions between approximately $-2$ and $-1$~eV. Increasing coordination therefore redistributes the bonding over a larger, chemically heterogeneous shell rather than uniformly strengthening every TM--Cl contact.
 
 The integrated values in Figure~S4 quantify this distinction. The average ICOHP values per bond are $-2.23$, $-2.28$, and $-2.06$~eV for surface-adsorbed Co, Fe, and Ni, but $-1.87$, $-1.90$, and $-1.67$~eV for the corresponding embedded configurations. Individual TM--Cl bonds are thus stronger on average in the threefold surface motifs. The cumulative ICOHP values, however, become more negative upon embedding, changing from $-6.70$, $-6.84$, and $-6.18$~eV to $-11.22$, $-11.40$, and $-10.01$~eV for Co, Fe, and Ni, respectively. The larger cumulative contribution of the embedded structures originates from the doubled coordination number, not from stronger individual bonds.
 
@@ -482,7 +488,9 @@ The authors declare that they have no known competing financial interests or per
 
 \section*{Acknowledgments}
 
-C. C. O. acknowledges the S\~ao Paulo Research Foundation (FAPESP, process no. 2024/11376-6). P. A. S. A. acknowledges the Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'ivel Superior (CAPES, Finance Code 001), CNPq (grant no. 307390/2026-8), and the National Institute of Science and Technology on Materials Informatics (grant no. 371610/2023-0). This research was also supported by the Universidad Nacional Mayor de San Marcos under RR N$^\circ$ 011632-2024-R/UNMSM, through projects B2413006m and B2410003m. C. R. A. acknowledges PROCIENCIA--E041-2025-01 (contract no. PE501094353-2025). C. C. O., J. G. Q., and P. A. S. A. acknowledge the UFABC Computation Multiuser Center (CCM) for the computational resources provided. C. R. P. S., J. G. Q., and C. R. A. also acknowledge the LMSC-GMCAN laboratory for providing computational resources.
+\begin{sloppypar}
+C. C. O. acknowledges the S\~ao Paulo Research Foundation (FAPESP, process no. 2024/11376-6). P. A. S. A. acknowledges the Coordena\c{c}\~ao de Aperfei\c{c}oamento de Pessoal de N\'{\i}vel Superior (CAPES, Finance Code 001), CNPq (grant no. 307390/2026-8), and the National Institute of Science and Technology on Materials Informatics (grant no. 371610/2023-0). This research was also supported by the Universidad Nacional Mayor de San Marcos under RR N$^\circ$ 011632-2024-R/UNMSM, through projects B2413006m and B2410003m. C. R. A. acknowledges PROCIENCIA--E041-2025-01 (contract no. PE501094353-2025). C. C. O., J. G. Q., and P. A. S. A. acknowledge the UFABC Computation Multiuser Center (CCM) for the computational resources provided. C. R. P. S., J. G. Q., and C. R. A. also acknowledge the LMSC-GMCAN laboratory for providing computational resources.
+\end{sloppypar}
 
 \section*{Data availability}
 
