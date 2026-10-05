@@ -451,29 +451,30 @@ def generate_multitier_comparison_plot():
             ax_d.text(x_pos, y_stub, label_emb_uall[m_idx], ha='center', va='bottom',
                       fontsize=6.2, fontweight='bold', bbox=QUEUED_CARD, zorder=5)
 
-    # Label Co and Fe Tier 1 & Tier 2 bars
-    for g_idx, (actual_bars, vals) in enumerate([(b_d1, mag_ads_vdw), (b_d2, mag_ads_ucr), (b_d4, mag_emb_vdw), (b_d5, mag_emb_ucr)]):
-        y_stagger = 0.35 if (g_idx % 2 == 0) else 1.25
-        for m_idx in [0, 1]:  # Co and Fe only
-            bar = actual_bars[m_idx]
-            val = vals[m_idx]
-            diff = val - 24.00
-            diff_str = f"({diff:+.0f}" if abs(diff - round(diff)) < 0.05 else f"({diff:+.1f}"
-            diff_str += r"$\,\mu_B$)" if diff != 0 else r" ref)"
-            ax_d.text(bar.get_x() + bar.get_width()/2.0, val + y_stagger,
-                      f'{val:.1f}\n{diff_str}',
-                      ha='center', va='bottom', fontsize=6.5, fontweight='bold',
-                      bbox=CARD_STYLE, zorder=5)
+    # Systematically label grouped Tier 1 & Tier 2 bars across all transition metals (Zero-collision)
+    # 1. Cobalt (Co):
+    ax_d.text(x[0] - 2.0*width, 24.0 + 0.45,
+              r'$\mathbf{24.0\,\mu_B}$' + '\n' + r'$(+0\ \mathrm{ref})$' + '\n' + r'Ads (v/U)',
+              ha='center', va='bottom', fontsize=6.8, fontweight='bold', bbox=CARD_STYLE, zorder=5)
+    ax_d.text(x[0] + 1.0*width, 24.0 + 0.45,
+              r'$\mathbf{24.0\,\mu_B}$' + '\n' + r'$(+0\ \mathrm{ref})$' + '\n' + r'Emb (v/U)',
+              ha='center', va='bottom', fontsize=6.8, fontweight='bold', bbox=CARD_STYLE, zorder=5)
 
-    # For Nickel Tier 1 & 2, show clean grouped cards
+    # 2. Iron (Fe):
+    ax_d.text(x[1] - 2.0*width, 28.42 + 0.45,
+              r'$\mathbf{28.4\,\mu_B}$' + '\n' + r'$(+4.4\,\mu_B)$' + '\n' + r'Ads (v/U)',
+              ha='center', va='bottom', fontsize=6.8, fontweight='bold', bbox=CARD_STYLE, zorder=5)
+    ax_d.text(x[1] + 1.0*width, 27.37 + 0.45,
+              r'$\mathbf{27.4\,\mu_B}$' + '\n' + r'$(+3.4\,\mu_B)$' + '\n' + r'Emb (v/U)',
+              ha='center', va='bottom', fontsize=6.8, fontweight='bold', bbox=CARD_STYLE, zorder=5)
+
+    # 3. Nickel (Ni):
     ax_d.text(x[2] - 2.0*width, 25.0 + 0.45,
               r'$\mathbf{25.0\,\mu_B}$' + '\n' + r'$(+1\,\mu_B)$' + '\n' + r'Ads (v/U)',
-              ha='center', va='bottom', fontsize=6.8, fontweight='bold',
-              bbox=CARD_STYLE, zorder=5)
+              ha='center', va='bottom', fontsize=6.8, fontweight='bold', bbox=CARD_STYLE, zorder=5)
     ax_d.text(x[2] + 1.0*width, 25.0 + 0.45,
               r'$\mathbf{25.0\,\mu_B}$' + '\n' + r'$(+1\,\mu_B)$' + '\n' + r'Emb (v/U)',
-              ha='center', va='bottom', fontsize=6.8, fontweight='bold',
-              bbox=CARD_STYLE, zorder=5)
+              ha='center', va='bottom', fontsize=6.8, fontweight='bold', bbox=CARD_STYLE, zorder=5)
 
     ax_d.set_ylabel(r'Total Cell Magnetization $M_{\mathrm{tot}}\ \ (\mu_B)$', fontsize=11.5)
     ax_d.set_title(r'(d) Spin Polarization & Magnetic Moment Trends ($2\times2$ Supercell)', fontsize=12.5, fontweight='bold', pad=10)
