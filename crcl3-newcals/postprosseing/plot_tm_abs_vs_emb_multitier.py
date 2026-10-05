@@ -63,33 +63,37 @@ def generate_multitier_comparison_plot():
     # Adsorbed:
     dg_ads_vdw  = [0.178, 0.375, 0.862]   # Converged (vdW)
     dg_ads_ucr  = [-0.069, 0.185, 0.620] # Converged (+U_Cr)
-    dg_ads_uall = [np.nan, np.nan, np.nan] # Fe_ads+H running on Huk; Co_ads clean queued on Carbono; Ni queued
-    label_ads_uall = ['[Queued]', '[Running]', '[Queued]']
+    # Co_ads is 100% converged in Tier 3 (clean: -150.583 eV, +H: -154.160 eV) -> Delta G = +0.065 eV!
+    # Fe_ads clean converged (-153.947 eV), +H running on Huk; Ni_ads +H converged (-152.740 eV), clean running on Huk
+    dg_ads_uall = [0.065, np.nan, np.nan]
+    label_ads_uall = ['+0.06', '[Running]', '[Running]']
 
     # Embedded:
     dg_emb_vdw  = [1.743, 1.367, 0.927]   # Converged (vdW)
     dg_emb_ucr  = [1.375, 1.114, 0.821]   # Converged (+U_Cr)
-    # Fe_emb is 100% converged in Tier 3 (clean: -153.79 eV, +H: -155.61 eV) -> Delta G = +1.821 eV!
-    dg_emb_uall = [np.nan, 1.821, np.nan]
-    label_emb_uall = ['[Queued]', '1.82', '[Queued]']
+    # Co_emb (clean: -152.311 eV, +H: -154.564 eV) -> Delta G = +1.389 eV!
+    # Fe_emb (clean: -153.791 eV, +H: -155.610 eV) -> Delta G = +1.821 eV!
+    # Ni_emb clean (Step 15) and +H (Step 2) are running on Carbono
+    dg_emb_uall = [1.389, 1.821, np.nan]
+    label_emb_uall = ['1.39', '1.82', '[Running]']
 
     # E_ads (eV)
     # Adsorbed:
     eads_ads_vdw  = [-0.062, 0.195, 0.672]
     eads_ads_ucr  = [-0.309, 0.005, 0.430]
-    eads_ads_uall = [np.nan, np.nan, np.nan]
+    eads_ads_uall = [-0.191, np.nan, np.nan]
 
     # Embedded:
     eads_emb_vdw  = [1.483, 1.107, 0.727]
     eads_emb_ucr  = [1.115, 0.854, 0.621]
-    eads_emb_uall = [np.nan, 1.561, np.nan]
+    eads_emb_uall = [1.133, 1.561, np.nan]
 
     # Delta E_bind (eV)
     # Adsorbed:
     ebind_ads_vdw  = [-5.467, -5.845, -4.112]
     ebind_ads_ucr  = [-5.141, -6.126, -4.372]
-    # Fe_ads clean converged (-153.947 eV) -> Delta E_bind = -6.643 eV
-    ebind_ads_uall = [np.nan, -6.643, np.nan]
+    # Co_ads clean converged (-150.583 eV) -> -3.279 eV; Fe_ads clean converged (-153.947 eV) -> -6.643 eV
+    ebind_ads_uall = [-3.279, -6.643, np.nan]
 
     # Embedded:
     ebind_emb_vdw  = [-6.192, -6.693, -6.044]
@@ -100,11 +104,11 @@ def generate_multitier_comparison_plot():
     # Total Cell Magnetization (mu_B)
     mag_ads_vdw  = [24.00, 28.42, 25.00]
     mag_ads_ucr  = [24.00, 28.42, 25.00]
-    mag_ads_uall = [28.00, 30.00, np.nan] # Co_ads+H: 28.0 mu_B; Fe_ads clean: 30.0 mu_B
+    mag_ads_uall = [27.00, 30.00, np.nan] # Co_ads clean: 27.0 (+H: 28.0); Fe_ads clean: 30.0 mu_B
 
     mag_emb_vdw  = [24.00, 27.37, 25.00]
     mag_emb_ucr  = [24.00, 27.37, 25.00]
-    mag_emb_uall = [29.00, 29.00, np.nan] # Co_emb clean: 29.0 mu_B; Fe_emb (+H): 29.0 mu_B (clean: 30.0)
+    mag_emb_uall = [29.00, 30.00, np.nan] # Co_emb clean: 29.0 (+H: 28.0); Fe_emb clean: 30.0 (+H: 29.0)
 
     # Color definitions:
     c_ads_vdw  = '#5dade2'
@@ -146,14 +150,25 @@ def generate_multitier_comparison_plot():
     # Plot Bars
     b_a1 = ax_a.bar(x + offsets[0], dg_ads_vdw,  width, color=c_ads_vdw,  edgecolor='#1a5276', linewidth=0.9, zorder=3)
     b_a2 = ax_a.bar(x + offsets[1], dg_ads_ucr,  width, color=c_ads_ucr,  edgecolor='#1a5276', linewidth=0.9, zorder=3)
-    # Tier 3 Adsorbed: all 3 pairs in progress/queued
+    # Tier 3 Adsorbed: Co_ads converged (+0.065 eV); Fe and Ni in progress
     for m_idx in range(3):
         x_pos = x[m_idx] + offsets[2]
-        ax_a.bar(x_pos, 0.08, width, bottom=0.0, fill=False, edgecolor=c_ads_uall,
-                 linestyle='--', hatch='///', linewidth=0.9, zorder=3)
-        ax_a.text(x_pos, 0.14, label_ads_uall[m_idx], ha='center', va='bottom',
-                  fontsize=6.2, fontweight='bold',
-                  bbox=RUNNING_CARD if 'Run' in label_ads_uall[m_idx] else QUEUED_CARD, zorder=5)
+        val = dg_ads_uall[m_idx]
+        if not np.isnan(val):
+            ax_a.bar(x_pos, val, width, color=c_ads_uall, edgecolor='#0e2f44', linewidth=0.9, zorder=3)
+            va_align = 'bottom' if val >= 0 else 'top'
+            y_pos = val + 0.05 if val >= 0 else val - 0.06
+            txt = f'{val:+.2f}' if abs(val) < 1.0 else f'{val:.2f}'
+            if abs(val - 0.065) < 0.01:
+                txt = f'{val:+.2f}\n$\\star$ Apex'
+            ax_a.text(x_pos, y_pos, txt, ha='center', va=va_align,
+                      fontsize=7.0, fontweight='bold', bbox=CARD_STYLE, zorder=5)
+        else:
+            ax_a.bar(x_pos, 0.08, width, bottom=0.0, fill=False, edgecolor=c_ads_uall,
+                     linestyle='--', hatch='///', linewidth=0.9, zorder=3)
+            ax_a.text(x_pos, 0.14, label_ads_uall[m_idx], ha='center', va='bottom',
+                      fontsize=6.2, fontweight='bold',
+                      bbox=RUNNING_CARD if 'Run' in label_ads_uall[m_idx] else QUEUED_CARD, zorder=5)
 
     b_a4 = ax_a.bar(x + offsets[3], dg_emb_vdw,  width, color=c_emb_vdw,  edgecolor='#935116', linewidth=0.9, zorder=3)
     b_a5 = ax_a.bar(x + offsets[4], dg_emb_ucr,  width, color=c_emb_ucr,  edgecolor='#935116', linewidth=0.9, zorder=3)
@@ -204,14 +219,24 @@ def generate_multitier_comparison_plot():
 
     b_b1 = ax_b.bar(x + offsets[0], eads_ads_vdw,  width, color=c_ads_vdw,  edgecolor='#1a5276', linewidth=0.9, zorder=3)
     b_b2 = ax_b.bar(x + offsets[1], eads_ads_ucr,  width, color=c_ads_ucr,  edgecolor='#1a5276', linewidth=0.9, zorder=3)
+    # Tier 3 Adsorbed: Co_ads converged (-0.191 eV); Fe and Ni in progress
     for m_idx in range(3):
         x_pos = x[m_idx] + offsets[2]
-        ax_b.bar(x_pos, 0.08, width, bottom=0.0, fill=False, edgecolor=c_ads_uall,
-                 linestyle='--', hatch='///', linewidth=0.9, zorder=3)
-        y_label = 0.26 if m_idx == 1 else 0.16
-        ax_b.text(x_pos, y_label, label_ads_uall[m_idx], ha='center', va='bottom',
-                  fontsize=6.2, fontweight='bold',
-                  bbox=RUNNING_CARD if 'Run' in label_ads_uall[m_idx] else QUEUED_CARD, zorder=5)
+        val = eads_ads_uall[m_idx]
+        if not np.isnan(val):
+            ax_b.bar(x_pos, val, width, color=c_ads_uall, edgecolor='#0e2f44', linewidth=0.9, zorder=3)
+            va_align = 'bottom' if val >= 0 else 'top'
+            y_pos = val + 0.05 if val >= 0 else val - 0.06
+            txt = f'{val:+.2f}' if abs(val) < 1.0 else f'{val:.2f}'
+            ax_b.text(x_pos, y_pos, txt, ha='center', va=va_align,
+                      fontsize=7.0, fontweight='bold', bbox=CARD_STYLE, zorder=5)
+        else:
+            ax_b.bar(x_pos, 0.08, width, bottom=0.0, fill=False, edgecolor=c_ads_uall,
+                     linestyle='--', hatch='///', linewidth=0.9, zorder=3)
+            y_label = 0.26 if m_idx == 1 else 0.16
+            ax_b.text(x_pos, y_label, label_ads_uall[m_idx], ha='center', va='bottom',
+                      fontsize=6.2, fontweight='bold',
+                      bbox=RUNNING_CARD if 'Run' in label_ads_uall[m_idx] else QUEUED_CARD, zorder=5)
 
     b_b4 = ax_b.bar(x + offsets[3], eads_emb_vdw,  width, color=c_emb_vdw,  edgecolor='#935116', linewidth=0.9, zorder=3)
     b_b5 = ax_b.bar(x + offsets[4], eads_emb_ucr,  width, color=c_emb_ucr,  edgecolor='#935116', linewidth=0.9, zorder=3)
@@ -407,10 +432,11 @@ def generate_multitier_comparison_plot():
         r"$\bullet$ Tier 1 (vdW): PBE+D3(BJ) [100% Converged, 12/12 Systems]" + "\n"
         r"$\bullet$ Tier 2 (+$U_{\mathrm{Cr}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV}$ [100% Converged, Caique Dataset]" + "\n"
         r"$\bullet$ Tier 3 (+$U_{\mathrm{all}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV},\ U_{\mathrm{TM}}=3.29\,\mathrm{eV}$ [Active Suite]" + "\n"
-        r"  - Converged Pair: Fe(emb) [$\Delta G = +1.82\,\mathrm{eV}$, $E_{\mathrm{ads}} = +1.56\,\mathrm{eV}$]" + "\n"
-        r"  - Running on Huk: Fe(ads)+H (Job 8051, Step 3), Ni(ads) clean (Job 8052)" + "\n"
-        r"  - Queued on Carbono/Huk: Co(ads) clean, Co(emb)+H, Ni systems (5 jobs)" + "\n"
-        r"$\bullet$ Hatched boxes denote in-progress/queued calculations (zero invented data)."
+        r"  - Converged Pairs: Co(ads) [$\Delta G = +0.07\,\mathrm{eV}$], Co(emb) [$+1.39\,\mathrm{eV}$], Fe(emb) [$+1.82\,\mathrm{eV}$]" + "\n"
+        r"  - Running on Huk: Fe(ads)+H (Step 28), Ni(ads) clean (Step 12)" + "\n"
+        r"  - Running on Carbono: Ni(emb) clean (Step 15), Ni(emb)+H (Step 2)" + "\n"
+        r"  - Milestone: Fe(ads) clean & Ni(ads)+H are fully converged" + "\n"
+        r"$\bullet$ Hatched boxes denote in-progress calculations (zero invented data)."
     )
     ax_d.text(0.03, 0.95, status_text, transform=ax_d.transAxes,
               fontsize=7.0, va='top', ha='left',
