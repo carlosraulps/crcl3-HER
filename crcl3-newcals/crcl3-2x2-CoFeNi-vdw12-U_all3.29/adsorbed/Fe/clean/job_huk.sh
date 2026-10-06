@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=28
 #SBATCH --cpus-per-task=1
-#SBATCH --time=48:00:00
+#SBATCH --time=04:00:00
 #SBATCH --signal=B:USR1@300
 #SBATCH --requeue
 #SBATCH -o %x.%j.out
