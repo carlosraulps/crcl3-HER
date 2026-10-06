@@ -18,6 +18,7 @@ PROCAR*
 PROOUT*
 XDATCAR*
 vasprun*.xml
+*.h5
 *.cube
 *.vesta
 vasp_run.log

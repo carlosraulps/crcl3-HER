@@ -1,0 +1,65 @@
+ running   16 mpi-ranks, with    1 threads/rank, on    1 nodes
+ distrk:  each k-point on   16 cores,    1 groups
+ distr:  one band on    4 cores,    4 groups
+ vasp.6.6.1 17Jul2026 (build Sep  1 2026 13:17:54) complex                       
+ POSCAR found type information on POSCAR CrCl
+ POSCAR found :  2 types and      32 ions
+ Reading from existing POTCAR
+ -----------------------------------------------------------------------------
+|                                                                             |
+|           W    W    AA    RRRRR   N    N  II  N    N   GGGG   !!!           |
+|           W    W   A  A   R    R  NN   N  II  NN   N  G    G  !!!           |
+|           W    W  A    A  R    R  N N  N  II  N N  N  G       !!!           |
+|           W WW W  AAAAAA  RRRRR   N  N N  II  N  N N  G  GGG   !            |
+|           WW  WW  A    A  R   R   N   NN  II  N   NN  G    G                |
+|           W    W  A    A  R    R  N    N  II  N    N   GGGG   !!!           |
+|                                                                             |
+|     You requested a magnetic or noncollinear calculation, but did not       |
+|     specify the initial magnetic moment with the MAGMOM tag. Note that      |
+|     a default of 1 will be used for all atoms. This ferromagnetic setup     |
+|     may break the symmetry of the crystal, in particular it may rule        |
+|     out finding an antiferromagnetic solution. Thence, we recommend         |
+|     setting the initial magnetic moment manually or verifying carefully     |
+|     that this magnetic setup is desired.                                    |
+|                                                                             |
+ -----------------------------------------------------------------------------
+
+ scaLAPACK will be used
+ Reading from existing POTCAR
+ -----------------------------------------------------------------------------
+|                                                                             |
+|               ----> ADVICE to this user running VASP <----                  |
+|                                                                             |
+|     You have a (more or less) 'large supercell' and for larger cells it     |
+|     might be more efficient to use real-space projection operators.         |
+|     Therefore, try LREAL= Auto in the INCAR file.                           |
+|     Mind: For very accurate calculation, you might also keep the            |
+|     reciprocal projection scheme (i.e. LREAL=.FALSE.).                      |
+|                                                                             |
+ -----------------------------------------------------------------------------
+
+ LDA part: xc-table for (Slater+PW92), standard interpolation
+ found WAVECAR, reading the header
+  number of bands has changed, file:   144 present:   148
+  trying to continue reading WAVECAR, but it might fail
+  number of k-points has changed, file:     5 present:    75
+  trying to continue reading WAVECAR, but it might fail
+ WARNING: stress and forces are not correct
+ POSCAR, INCAR and KPOINTS ok, starting setup
+ FFT: planning ... GRIDC
+ FFT: planning ... GRID_SOFT
+ FFT: planning ... GRID
+ reading WAVECAR
+ random initialization beyond band          144
+ the WAVECAR file was read successfully
+ charge density read from file: CHGCAR, unknown                                 
+magnetization read from file: component  1
+ entering main loop
+       N       E                     dE             d eps       ncg     rms          rms(c)
+DAV:   1    -0.140262213602E+03   -0.14026E+03   -0.13171E+02 48024   0.174E+01
+DAV:   2    -0.141470788766E+03   -0.12086E+01   -0.12076E+01 59160   0.897E+00
+DAV:   3    -0.141498021063E+03   -0.27232E-01   -0.27222E-01 66836   0.135E+00
+DAV:   4    -0.141498690391E+03   -0.66933E-03   -0.66912E-03 62812   0.204E-01
+DAV:   5    -0.141498718061E+03   -0.27669E-04   -0.27667E-04 59336   0.363E-02
+DAV:   6    -0.141498718885E+03   -0.82464E-06   -0.82429E-06 42376   0.640E-03
+   1 F= -.14729243E+03 E0= -.14729243E+03  d E =-.250950E-15  mag=    24.0000

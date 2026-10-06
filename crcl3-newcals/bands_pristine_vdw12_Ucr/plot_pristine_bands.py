@@ -234,7 +234,7 @@ def plot_pristine(workdir, output_png, output_pdf):
     print(f"VBM: {vbm:.3f} eV, CBM: {cbm:.3f} eV, Band Gap: {direct_or_indirect_gap:.3f} eV")
 
     # Set up Figure: 2-panel layout (Bands on left, PDOS on right)
-    fig, (ax_band, ax_dos) = plt.subplots(1, 2, figsize=(5, 5.0), gridspec_kw={'width_ratios': [2.2, 1.2]}, sharey=True)
+    fig, (ax_band, ax_dos) = plt.subplots(1, 2, figsize=(8.5, 5.0), gridspec_kw={'width_ratios': [2.2, 1.2]}, sharey=True)
 
     # Energy window
     e_min, e_max = -4.0, 4.0
@@ -247,7 +247,7 @@ def plot_pristine(workdir, output_png, output_pdf):
     if ispin == 2:
         for ib in range(bands_dn.shape[1]):
             label_dn = "Spin Down" if ib == 0 else ""
-            ax_band.plot(k_dist, bands_dn[:, ib], color='#d62728', lw=1.2, ls='-', alpha=0.85, label=label_dn)
+            ax_band.plot(k_dist, bands_dn[:, ib], color='#d62728', lw=1.2, ls='--', alpha=0.85, label=label_dn)
 
     # Vertical lines at high symmetry points
     for node in k_nodes:
@@ -262,12 +262,12 @@ def plot_pristine(workdir, output_png, output_pdf):
     ax_band.set_xticklabels(k_labels, fontsize=12)
     ax_band.set_ylabel(r'$E - E_{\mathrm{F}}\ (\mathrm{eV})$', fontsize=12)
     ax_band.set_ylim(e_min, e_max)
-    ax_band.set_title(r'$\mathbf{(a)}$ $2x2x1$ $\mathrm{CrCl}_3$ ($+U_{\mathrm{Cr}}$, vdW-D3)', fontsize=12, pad=10)
+    ax_band.set_title(r'$\mathbf{(a)}$ Monolayer $\mathrm{CrCl}_3$ ($+U_{\mathrm{Cr}}$, vdW-D3)', fontsize=12, pad=10)
 
     # Smart bounding card for band gap annotation (Zero-Overlap Mandate)
     gap_card = dict(boxstyle='round,pad=0.4', facecolor='white', alpha=0.92, edgecolor='#cccccc', lw=1.0)
     ax_band.text(0.05, 0.92, f"$E_g = {direct_or_indirect_gap:.2f}$ eV\n$U_{{\\mathrm{{Cr}}}} = 3.29$ eV", 
-                 transform=ax_band.transAxes, verticalalignment='top', horizontalalignment='right', fontsize=10, bbox=gap_card)
+                 transform=ax_band.transAxes, verticalalignment='top', fontsize=10, bbox=gap_card)
 
     ax_band.legend(loc='lower left', framealpha=0.9, edgecolor='#cccccc', fontsize=10)
 
@@ -288,8 +288,7 @@ def plot_pristine(workdir, output_png, output_pdf):
         # Adaptive x-limits for PDOS
         max_dos = max(np.max(dos_data['cr_d_up'][mask]), np.max(dos_data['cl_p_up'][mask]), 1.0)
         headroom = max_dos * 1.25
-        #ax_dos.set_xlim(-headroom, headroom)
-        ax_dos.set_xlim(-40, 40)
+        ax_dos.set_xlim(-headroom, headroom)
         ax_dos.set_xlabel('PDOS (states/eV)', fontsize=11)
         ax_dos.set_title(r'$\mathbf{(b)}$ Projected DOS', fontsize=12, pad=10)
         ax_dos.legend(loc='upper right', framealpha=0.9, edgecolor='#cccccc', fontsize=8.5)
