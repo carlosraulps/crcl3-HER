@@ -121,9 +121,10 @@ def generate_multitier_comparison_plot():
     dg_ads_vdw  = [0.178, 0.375, 0.862]   # Converged (vdW)
     dg_ads_ucr  = [-0.069, 0.185, 0.620] # Converged (+U_Cr)
     # Co_ads is 100% converged in Tier 3 (clean: -150.583 eV, +H: -154.160 eV) -> Delta G = +0.065 eV!
-    # Fe_ads clean converged (-153.947 eV), +H running on Huk; Ni_ads +H converged (-152.740 eV), clean running on Huk
-    dg_ads_uall = [0.065, np.nan, np.nan]
-    label_ads_uall = ['+0.06', '[Running]', '[Running]']
+    # Fe_ads is 100% converged in Tier 3 (clean: -153.947 eV, +H: -155.751 eV) -> Delta G = +1.837 eV!
+    # Ni_ads +H converged (-152.740 eV), clean relaxing on Huk (Job 8087)
+    dg_ads_uall = [0.065, 1.837, np.nan]
+    label_ads_uall = ['+0.06', '+1.84', '[Running]']
 
     # Embedded:
     dg_emb_vdw  = [1.743, 1.367, 0.927]   # Converged (vdW)
@@ -138,7 +139,7 @@ def generate_multitier_comparison_plot():
     # Adsorbed:
     eads_ads_vdw  = [-0.062, 0.195, 0.672]
     eads_ads_ucr  = [-0.309, 0.005, 0.430]
-    eads_ads_uall = [-0.191, np.nan, np.nan]
+    eads_ads_uall = [-0.191, 1.581, np.nan]
 
     # Embedded:
     eads_emb_vdw  = [1.483, 1.107, 0.727]
@@ -491,11 +492,10 @@ def generate_multitier_comparison_plot():
         "Scientific Provenance & HPC Calculation Status:\n"
         r"$\bullet$ Tier 1 (vdW): PBE+D3(BJ) [100% Converged, 12/12 Systems]" + "\n"
         r"$\bullet$ Tier 2 (+$U_{\mathrm{Cr}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV}$ [100% Converged, Caique Dataset]" + "\n"
-        r"$\bullet$ Tier 3 (+$U_{\mathrm{all}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV},\ U_{\mathrm{TM}}=3.29\,\mathrm{eV}$ [Active Suite]" + "\n"
-        r"  - Converged: Co(ads) [$\Delta G = +0.07\,\mathrm{eV}$]; Emb Co/Fe/Ni [$+1.39/+1.82/+1.02\,\mathrm{eV}$]" + "\n"
-        r"  - Carbono: all 8 assigned systems converged (Emb 6/6, Co(ads) 2/2)" + "\n"
-        r"  - Huk (last known): Fe(ads)+H and Ni(ads) clean relaxing" + "\n"
-        r"  - Fe(ads) clean & Ni(ads)+H converged; pairs pending" + "\n"
+        r"$\bullet$ Tier 3 (+$U_{\mathrm{all}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV},\ U_{\mathrm{TM}}=3.29\,\mathrm{eV}$ [11/12 Converged (92%)]" + "\n"
+        r"  - Converged: Co(ads) [$\Delta G = +0.07\,\mathrm{eV}$]; Fe(ads) [$\Delta G = +1.84\,\mathrm{eV}$]" + "\n"
+        r"  - Converged: Emb Co/Fe/Ni [$\Delta G = +1.39 / +1.82 / +1.02\,\mathrm{eV}$]" + "\n"
+        r"  - Active Job: Ni(ads) clean relaxing on Huk (Job 8087, huk125)" + "\n"
         r"$\bullet$ Hatched boxes denote in-progress calculations (zero invented data)."
     )
     ax_d.text(0.03, 0.95, status_text, transform=ax_d.transAxes,
