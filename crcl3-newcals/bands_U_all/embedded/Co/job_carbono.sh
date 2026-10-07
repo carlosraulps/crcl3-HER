@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=Co_emb_band
-#SBATCH --output=Co_embedded_band.%j.out
-#SBATCH --error=Co_embedded_band.%j.err
+#SBATCH --job-name=Co_emb_b_Uall
+#SBATCH --output=%x.%j.out
+#SBATCH --error=%x.%j.err
 #SBATCH --partition=nanotubo
 #SBATCH --nodes=1
 #SBATCH --ntasks=32
@@ -9,9 +9,14 @@
 #SBATCH --signal=B:USR1@300
 
 module purge
-module load vasp/6.4.2-intel2021.4 2>/dev/null || module load vasp 2>/dev/null || true
+module load gnu12 openmpi4 vasp/6.2.0
 
+export OMPI_MCA_pml=ob1
+export OMPI_MCA_btl=vader,self,tcp
+export OMPI_MCA_mtl=^ofi,psm2
+export OMPI_MCA_osc=^ucx
+export UCX_TLS=sm,self
 export OMP_NUM_THREADS=1
-ulimit -s unlimited
+ulimit -s unlimited 2>/dev/null || true
 
 bash ./run_bands.sh
