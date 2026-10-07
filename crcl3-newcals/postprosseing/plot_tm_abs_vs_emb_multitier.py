@@ -63,10 +63,9 @@ def generate_multitier_comparison_plot():
     # Adsorbed:
     dg_ads_vdw  = [0.178, 0.375, 0.862]   # Converged (vdW)
     dg_ads_ucr  = [-0.069, 0.185, 0.620] # Converged (+U_Cr)
-    # Co_ads (clean: -150.583, +H: -154.160 -> +0.065 eV) & Fe_ads (clean: -153.947, +H: -155.751 -> +1.837 eV) converged!
-    # Ni_ads +H converged (-152.740 eV); clean is computing on Huk (Job 8073) / Carbono (169656)
-    dg_ads_uall = [0.065, 1.837, np.nan]
-    label_ads_uall = ['+0.06', '1.84', '[Running]']
+    # Co_ads (+0.065 eV), Fe_ads (+1.837 eV), and Ni_ads (clean: -150.283, +H: -152.740 -> +1.184 eV) 100% Converged!
+    dg_ads_uall = [0.065, 1.837, 1.184]
+    label_ads_uall = ['+0.06', '1.84', '1.18']
 
     # Embedded:
     dg_emb_vdw  = [1.743, 1.367, 0.927]   # Converged (vdW)
@@ -79,7 +78,7 @@ def generate_multitier_comparison_plot():
     # Adsorbed:
     eads_ads_vdw  = [-0.062, 0.195, 0.672]
     eads_ads_ucr  = [-0.309, 0.005, 0.430]
-    eads_ads_uall = [-0.191, 1.581, np.nan]
+    eads_ads_uall = [-0.191, 1.581, 0.928]
 
     # Embedded:
     eads_emb_vdw  = [1.483, 1.107, 0.727]
@@ -90,8 +89,8 @@ def generate_multitier_comparison_plot():
     # Adsorbed:
     ebind_ads_vdw  = [-5.467, -5.845, -4.112]
     ebind_ads_ucr  = [-5.141, -6.126, -4.372]
-    # Co_ads clean: -3.279 eV; Fe_ads clean: -6.643 eV converged
-    ebind_ads_uall = [-3.279, -6.643, np.nan]
+    # Co_ads clean: -3.279 eV; Fe_ads clean: -6.643 eV; Ni_ads clean: -2.979 eV converged!
+    ebind_ads_uall = [-3.279, -6.643, -2.979]
 
     # Embedded:
     ebind_emb_vdw  = [-6.192, -6.693, -6.044]
@@ -102,7 +101,7 @@ def generate_multitier_comparison_plot():
     # Total Cell Magnetization (mu_B)
     mag_ads_vdw  = [24.00, 28.42, 25.00]
     mag_ads_ucr  = [24.00, 28.42, 25.00]
-    mag_ads_uall = [27.00, 30.00, np.nan] # Co_ads clean: 27.0 (+H: 28.0); Fe_ads clean: 30.0 (+H: 29.0)
+    mag_ads_uall = [27.00, 30.00, 24.00] # Co_ads clean: 27.0; Fe_ads clean: 30.0; Ni_ads clean: 24.0 converged!
 
     mag_emb_vdw  = [24.00, 27.37, 25.00]
     mag_emb_ucr  = [24.00, 27.37, 25.00]
@@ -426,14 +425,14 @@ def generate_multitier_comparison_plot():
 
     # Inset badge for Methodology & Convergence Milestones
     status_text = (
-        "Scientific Provenance & HPC Calculation Status:\n"
+        "Scientific Provenance & HPC Benchmark Status:\n"
         r"$\bullet$ Tier 1 (vdW): PBE+D3(BJ) [100% Converged, 12/12 Systems]" + "\n"
-        r"$\bullet$ Tier 2 (+$U_{\mathrm{Cr}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV}$ [100% Converged, Caique Dataset]" + "\n"
-        r"$\bullet$ Tier 3 (+$U_{\mathrm{all}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV},\ U_{\mathrm{TM}}=3.29\,\mathrm{eV}$ [5/6 Pairs Converged!]" + "\n"
-        r"  - Converged Pairs: Co(ads) [$+0.07\,\mathrm{eV}$], Co(emb) [$+1.39\,\mathrm{eV}$], Fe(ads) [$+1.84\,\mathrm{eV}$], Fe(emb) [$+1.82\,\mathrm{eV}$], Ni(emb) [$+1.02\,\mathrm{eV}$]" + "\n"
-        r"  - In-flight: Ni(ads) clean computing on Huk (Job 8073) / Carbono (Job 169656)" + "\n"
-        r"  - Milestone: Ni(ads)+H is fully converged ($-152.74\,\mathrm{eV}$)" + "\n"
-        r"$\bullet$ Hatched box denotes single in-progress calculation (zero invented data)."
+        r"$\bullet$ Tier 2 (+$U_{\mathrm{Cr}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV}$ [100% Converged, 12/12 Systems]" + "\n"
+        r"$\bullet$ Tier 3 (+$U_{\mathrm{all}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV},\ U_{\mathrm{TM}}=3.29\,\mathrm{eV}$ [100% Converged, 12/12 Systems!]" + "\n"
+        r"  - Co(ads) [$+0.07\,\mathrm{eV}$], Co(emb) [$+1.39\,\mathrm{eV}$]" + "\n"
+        r"  - Fe(ads) [$+1.84\,\mathrm{eV}$], Fe(emb) [$+1.82\,\mathrm{eV}$]" + "\n"
+        r"  - Ni(ads) [$+1.18\,\mathrm{eV}$], Ni(emb) [$+1.02\,\mathrm{eV}$]" + "\n"
+        r"$\bullet$ 100% Complete Systematic Multi-Tier Comparison (18/18 Configurations)"
     )
     ax_d.text(0.03, 0.95, status_text, transform=ax_d.transAxes,
               fontsize=7.0, va='top', ha='left',
