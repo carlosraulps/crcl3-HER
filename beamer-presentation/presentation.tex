@@ -15,7 +15,7 @@
 \usepackage{multirow}
 
 % Image File Paths (No commas between directories in graphicspath)
-\graphicspath{{./assets/}{./figure/}{./images/}}
+\graphicspath{{./assets/}{./figure/}{../ACS_version/ACS_resubmission/figure/}{./images/}}
 
 % Document Information
 \title[Single-Atom HER on Monolayer CrCl3]{Coordination-Dependent Hydrogen Adsorption on Co-, Fe-, and Ni-Functionalized Monolayer \texorpdfstring{$\text{CrCl}_3$}{CrCl3}}
@@ -75,7 +75,8 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
     \hspace*{-0.08\paperwidth}%
     \begin{minipage}[t]{1.16\paperwidth}
       \hbox{%
-        \begin{beamercolorbox}[wd=0.035\paperwidth,ht=3.1cm,dp=0pt]{nordOneBox}\end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=0.035\paperwidth,ht=3.1cm,dp=0pt]{nordOneBox}
+        \end{beamercolorbox}%
         \begin{beamercolorbox}[wd=0.965\paperwidth,ht=3.1cm,dp=0pt,sep=1.4em]{nordTwoBlueBox}
           \parbox{0.88\paperwidth}{%
             {\usebeamerfont{title}\usebeamercolor[fg]{title}\noindent\inserttitle}\\[0.25em]
@@ -85,7 +86,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       }%
     \end{minipage}
     \vspace{0.6em}
-    
+
     \begin{columns}[c]
       \begin{column}{0.68\paperwidth}
         \scriptsize
@@ -93,9 +94,9 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
         {\usebeamercolor[fg]{institute title}\textbf{\titleInstitute}:} {\usebeamercolor[fg]{institute}\insertinstitute}\\[0.28em]
         {\usebeamercolor[fg]{institute title}\textbf{\titleMiscI}:} {\usebeamercolor[fg]{institute}\descMiscI}%
         \ifdefined\descMiscII
-          \ifx\descMiscII\empty\else
-            \\[0.28em]{\usebeamercolor[fg]{institute title}\textbf{\titleMiscII}:} {\usebeamercolor[fg]{institute}\descMiscII}%
-          \fi
+        \ifx\descMiscII\empty\else
+        \\[0.28em]{\usebeamercolor[fg]{institute title}\textbf{\titleMiscII}:} {\usebeamercolor[fg]{institute}\descMiscII}%
+        \fi
         \fi
       \end{column}
       \begin{column}{0.26\paperwidth}
@@ -139,7 +140,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       \begin{block}{Acidic Hydrogen Evolution Reaction (HER)}
         \scriptsize
         Cathodic reaction: $2\text{H}^+ + 2e^- \longrightarrow \text{H}_2, \quad \eta_{\text{HER}} = |\Delta G_{\text{H}^*}|/e$
-        \begin{itemize}\setlength{\itemsep}{1pt}
+      \begin{itemize}\setlength{\itemsep}{1pt}
           \item \textbf{Sabatier Ideal}: Near-thermoneutral binding ($\Delta G_{\text{H}^*} \approx 0$).
           \item \textbf{Benchmark Pt (111)}: $\Delta G_{\text{H}^*} = -0.090$~eV (scarce, costly).
         \end{itemize}
@@ -147,7 +148,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       \vspace{0.1em}
       \begin{exampleblock}{Why Monolayer $\text{CrCl}_3$?}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{1pt}
+      \begin{itemize}\setlength{\itemsep}{1pt}
           \item \textbf{2D Magnetic Semiconductor}: Exfoliable vdW crystal with intrinsic FM order ($\mu_{\text{Cr}} \approx 3\,\mu_{\text{B}}$) offering a spin degree of freedom.
           \item \textbf{Active-Site Dilemma}: Saturated Cl basal plane is chemically inert $\implies$ Single TM atom engineering creates localized active centers!
         \end{itemize}
@@ -172,7 +173,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
     \begin{column}{0.50\textwidth}
       \begin{block}{Spin-Polarized DFT \& AIMD Dynamics}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{1.2pt}
+      \begin{itemize}\setlength{\itemsep}{1.2pt}
           \item \textbf{Code \& PAW}: VASP, PAW, GGA-PBE.
           \item \textbf{Supercell}: $2\times 2\times 1$ ($\text{Cr}_8\text{Cl}_{24}$), 15~\AA{} vacuum, $E_{\text{cut}} = 400$~eV, $5\times 5\times 1$ $\Gamma$-mesh, residual forces $< 0.025$~eV/\AA.
           \item \textbf{Hubbard $U$ Benchmark}: Dudarev scheme ($U^* = 3.29$~eV) reproduces experimental optical gap ($2.56$~eV) and linear response ($U_{\text{LR}} = 3.32$~eV) + Grimme DFT-D3(BJ).
@@ -196,7 +197,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
         \[
           \Delta E_{\text{ads}}^{\text{H}} = E_{\text{int}}^{\text{H}} + E_{\text{def}}
         \]
-        \begin{itemize}\setlength{\itemsep}{0.6pt}
+      \begin{itemize}\setlength{\itemsep}{0.6pt}
           \item $E_{\text{def}} = E_{\text{surf}}^{\text{def}} - E_{\text{surf}} \ge 0$ (lattice distortion strain).
           \item $E_{\text{int}}^{\text{H}} = E_{\text{surf+H}} - E_{\text{surf}}^{\text{def}} - E_{\text{H}} < 0$ (intrinsic affinity).
         \end{itemize}
@@ -218,7 +219,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
     \begin{column}{0.46\textwidth}
       \begin{block}{Crystallographic Architecture}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{0.5pt}
+      \begin{itemize}\setlength{\itemsep}{0.5pt}
           \item Honeycomb network: $a = 12.10$~\AA{} ($2\times 2$), thickness $h = 2.67$~\AA{}, edge-sharing $\text{CrCl}_6$ ($d = 2.34$~\AA{}).
           \item FM ground state: $M_{\text{tot}} = 24.0\,\mu_{\text{B}}$ ($3\,\mu_{\text{B}}/\text{f.u.}$, $\mu_{\text{Cr}} \approx 2.94\,\mu_{\text{B}}$), direct gap $E_g = 1.50 \to 2.56$~eV (PBE+$U$).
         \end{itemize}
@@ -226,7 +227,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       \vspace{-0.1em}
       \begin{alertblock}{Basal Plane Catalytic Inertness}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{0.5pt}
+      \begin{itemize}\setlength{\itemsep}{0.5pt}
           \item $S_1$ (Top-Cl): Spontaneous H repulsion ($d_{\text{H-surf}} = 3.42$~\AA{}).
           \item $S_2$ (Hollow): Geometrically unstable site.
           \item $S_3$ (Top-Cr): Metastable contact, but severely endergonic: \textcolor{nordEleven}{\textbf{$\Delta G_{\text{H}^*} = +2.44\text{ eV}$}} ($\eta = 2.44$~V).
@@ -250,7 +251,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
     \begin{column}{0.46\textwidth}
       \begin{block}{Two Distinct Local Coordination Motifs}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{0pt}
+      \begin{itemize}\setlength{\itemsep}{0pt}
           \item \textbf{Surface-Adsorbed (3-fold Hollow)}: TM exposed ($z = 1.44\text{--}1.92$~\AA{}). $E_{\text{bind}} = -2.82$ (Co), $-2.60$ (Fe), $-3.38$~eV (Ni).
           \item \textbf{Embedded (6-fold Pore)}: Core penetration ($z \approx 0$). $E_{\text{bind}} = -3.55$ (Co), $-3.36$ (Fe), $-4.95$~eV (Ni). Thermodynamic sink ($\Delta E_{\text{emb-ads}} < 0$).
         \end{itemize}
@@ -258,7 +259,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       \vspace{-0.2em}
       \begin{exampleblock}{Room-Temperature Kinetic Trapping (AIMD 300 K)}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{0pt}
+      \begin{itemize}\setlength{\itemsep}{0pt}
           \item \textbf{Co \& Fe}: Metastable at surface ($z > 0$), protected by diffusion barriers.
           \item \textbf{Ni}: Spontaneously penetrates within 1~ps into core pore ($z \to 0$~\AA{}).
         \end{itemize}
@@ -279,7 +280,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       \begin{block}{Net Charge Transfer \& Spin Polarization}
         \scriptsize
         $\Delta\rho = \rho_{\text{tot}} - \rho_{\text{host}} - \rho_{\text{TM}}$ (electron donors to $\text{CrCl}_3$ host):
-        \begin{itemize}\setlength{\itemsep}{0pt}
+      \begin{itemize}\setlength{\itemsep}{0pt}
           \item \textbf{Fe (ads)}: $\Delta Q = +0.94\,e$, $\mu = +3.34\,\mu_{\text{B}}$ (parallel to Cr).
           \item \textbf{Co (ads)}: $\Delta Q = +0.77\,e$, $\mu = +1.99\,\mu_{\text{B}}$ (parallel to Cr).
           \item \textbf{Ni (ads)}: $\Delta Q = +0.59\,e$, $\mu = -0.76\,\mu_{\text{B}}$ (\textbf{antiparallel} to Cr).
@@ -288,7 +289,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       \vspace{-0.5em}
       \begin{exampleblock}{In-Gap Frontier States}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{0pt}
+      \begin{itemize}\setlength{\itemsep}{0pt}
           \item 3-fold surface adatoms induce sharp, spin-polarized TM-$3d$ states at $E_{\text{F}}$, activating the surface for proton reception.
           \item 6-fold pore embedding shifts $3d$ states deep into the valence band ($-3\dots -1$~eV), depopulating $E_{\text{F}}$.
         \end{itemize}
@@ -311,7 +312,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       \begin{block}{Crystal Orbital Hamilton Population (-COHP)}
         \scriptsize
         $\text{ICOHP}_{\text{TM-Cl}} = \int_{-\infty}^{E_{\text{F}}} \text{COHP}(E)\,dE$ (covalent TM-$3d$/Cl-$3p$):
-        \begin{itemize}\setlength{\itemsep}{0pt}
+      \begin{itemize}\setlength{\itemsep}{0pt}
           \item Bonding manifold spans $-6.8$ to $-2.5$~eV below $E_{\text{F}}$.
           \item \textbf{Surface (3-fold)}: Strong individual bonds ($\text{ICOHP}_{\text{avg}} = -2.23$~eV for Co, $-2.28$~eV for Fe).
           \item \textbf{Embedded (6-fold)}: Weaker individual bonds ($\text{ICOHP}_{\text{avg}} = -1.87$~eV), but higher cumulative bonding ($\text{ICOHP}_{\text{cum}} \approx -11.4$~eV).
@@ -340,7 +341,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       \begin{block}{Sabatier Optimum: Near-Thermoneutral}
         \scriptsize
         PBE+D3+$U$ thermochemistry with explicit phononics:
-        \begin{itemize}\setlength{\itemsep}{0pt}
+      \begin{itemize}\setlength{\itemsep}{0pt}
           \item \textbf{Co (ads)}: \textcolor{nordFourteen}{\textbf{$\Delta G_{\text{H}^*} = -0.069\text{ eV}$}} ($\eta = 0.069$~V) --- \textcolor{nordFourteen}{\textbf{outperforms Pt (111)}} ($-0.090$~eV)!
           \item \textbf{Fe (ads)}: \textcolor{nordEight}{\textbf{$\Delta G_{\text{H}^*} = +0.185\text{ eV}$}} ($\eta = 0.185$~V).
           \item \textbf{Ni (ads)}: $\Delta G_{\text{H}^*} = +0.620$~eV.
@@ -349,7 +350,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       \vspace{-0.25em}
       \begin{alertblock}{Embedded Motifs \& Distortion Penalty}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{0pt}
+      \begin{itemize}\setlength{\itemsep}{0pt}
           \item Embedding suppresses activity: $\Delta G_{\text{H}^*} \ge +0.82$~eV.
           \item Co binds strongly ($E_{\text{int}}^{\text{H}} = -2.46$~eV) with low strain ($E_{\text{def}} = 0.18$~eV).
           \item Fe binds well ($-2.35$~eV) but incurs double distortion ($E_{\text{def}} = 0.38$~eV).
@@ -375,7 +376,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
         \centering
         $\displaystyle \varepsilon_d^{\text{occ}} = \frac{\sum_\sigma \int_{-\infty}^{E_{\text{F}}} (E - E_{\text{F}})\,\rho_{d,\sigma}(E)\,dE}{\sum_\sigma \int_{-\infty}^{E_{\text{F}}} \rho_{d,\sigma}(E)\,dE}$
         \vspace{-0.1em}
-        \begin{itemize}\setlength{\itemsep}{0pt}
+      \begin{itemize}\setlength{\itemsep}{0pt}
           \item \textbf{Surface Breakdown}: Ni has $\varepsilon_d^{\text{occ}}$ closest to $E_{\text{F}}$ ($-1.15$~eV), yet worst activity ($\Delta G = +0.62$~eV).
           \item \textbf{Embedded Breakdown}: Fe has deepest $\varepsilon_d^{\text{occ}}$ ($-2.43$~eV), yet lowest embedded $\Delta G_{\text{H}^*}$ ($+1.11$~eV).
         \end{itemize}
@@ -383,7 +384,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       \vspace{-0.2em}
       \begin{alertblock}{Why Scaling Fails: Spin \& Coordination}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{0pt}
+      \begin{itemize}\setlength{\itemsep}{0pt}
           \item Exchange splitting \& local coordination override single-band centroids ($R^2 \le 0.28$).
           \item \textbf{Spin Quenching}: Chemisorption quenches Co spin ($\Delta\mu = -0.98\,\mu_{\text{B}}$), proving direct spin-channel coupling!
         \end{itemize}
@@ -403,7 +404,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
       \toprule
       \textbf{System / Site}            & \textbf{Coord.}    & \multicolumn{2}{c}{$\boldsymbol{E_{\text{bind}}}$ \textbf{(eV)}} & \multicolumn{2}{c}{$\boldsymbol{\Delta G_{\text{H}^*}}$ \textbf{(eV)}} & $\boldsymbol{\eta_{\text{HER}}}$ & $\boldsymbol{\mu_{\text{TM}}}$ & $\boldsymbol{\Delta Q_{\text{Bader}}}$                                \\
       \cmidrule(lr){3-4} \cmidrule(lr){5-6}
-                                        &                    & \textbf{PBE}                                                     & \textbf{PBE+D3+}U                                                      & \textbf{PBE}                     & \textbf{PBE+D3+}U              & \textbf{(V)}                           & ($\mu_{\text{B}}$) & ($e$)   \\
+      &                    & \textbf{PBE}                                                     & \textbf{PBE+D3+}U                                                      & \textbf{PBE}                     & \textbf{PBE+D3+}U              & \textbf{(V)}                           & ($\mu_{\text{B}}$) & ($e$)   \\
       \midrule
       Pristine $S_1$ (Top-Cl)           & 1-fold Cl          & $-$                                                              & $-$                                                                    & $+1.79$                          & $+1.12$                        & 1.12                                   & $-$                & $-$     \\
       Pristine $S_2$ (Hollow)           & 3-fold Cl          & $-$                                                              & $-$                                                                    & $+2.68$                          & $+2.04$                        & 2.04                                   & $-$                & $-$     \\
@@ -426,7 +427,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
     \begin{column}{0.49\textwidth}
       \begin{block}{\scriptsize Key Takeaways}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{0.5pt}
+      \begin{itemize}\setlength{\itemsep}{0.5pt}
           \item \textbf{Coordination Trade-Off}: 3-fold surface exposure beats 6-fold embedding.
           \item \textbf{Sabatier Peak}: Surface Co ($\Delta G_{\text{H}^*} = -0.069$~eV) outdoes Pt (111).
         \end{itemize}
@@ -435,7 +436,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
     \begin{column}{0.49\textwidth}
       \begin{exampleblock}{\scriptsize Design Guidelines}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{0.5pt}
+      \begin{itemize}\setlength{\itemsep}{0.5pt}
           \item \textbf{Kinetic Trapping}: Ambient 300~K barriers preserve active surface states.
           \item \textbf{Support Coupling}: Conductive carbon supports bypass host gap.
         \end{itemize}
@@ -452,7 +453,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
     \begin{column}{0.54\textwidth}
       \begin{block}{Primary Literature References}
         \fontsize{6.5}{7.8}\selectfont
-        \begin{enumerate}\setlength{\itemsep}{1.2pt}
+      \begin{enumerate}\setlength{\itemsep}{1.2pt}
           \item J. K. N{\o}rskov et al., Trends in exchange current for hydrogen evolution. \textit{J. Electrochem. Soc.} \textbf{152}, J23 (2005).
           \item Y. Gao et al., Point-defect-induced half metal in $\text{CrCl}_3$ monolayer. \textit{Phys. Status Solidi RRL} \textbf{12}, 1800105 (2018).
           \item L. Webster, J.-A. Yan, Strain-tunable magnetic and electronic properties of monolayer $\text{CrCl}_3$. \textit{Phys. Rev. B} \textbf{98}, 144411 (2018).
@@ -465,7 +466,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
     \begin{column}{0.44\textwidth}
       \begin{exampleblock}{Funding Support \& Grants}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{1.2pt}
+      \begin{itemize}\setlength{\itemsep}{1.2pt}
           \item \textbf{FAPESP}: Process no. 2024/11376-6.
           \item \textbf{CAPES}: Finance Code 001.
           \item \textbf{CNPq}: Grants 307390/2026-8 \& 371610/2023-0 (INCT Materials Informatics).
@@ -490,11 +491,11 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
     \begin{column}{0.32\textwidth}
       \begin{block}{\centering \textbf{Sabatier Optimum}}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{1.5pt}
+      \begin{itemize}\setlength{\itemsep}{1.5pt}
           \item \textbf{Co (ads) Optimum}:
-                \[
-                  \Delta G_{\text{H}^*} = \mathbf{-0.069\text{ eV}}
-                \]
+            \[
+              \Delta G_{\text{H}^*} = \mathbf{-0.069\text{ eV}}
+            \]
           \item Overpotential $\eta = \mathbf{69\text{ mV}}$, outperforming benchmark Pt (111) ($\eta = 90$~mV).
           \item Minimal deformation penalty ($E_{\text{def}} = 0.18$~eV).
         \end{itemize}
@@ -504,7 +505,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
     \begin{column}{0.32\textwidth}
       \begin{alertblock}{\centering \textbf{Coordination Trade-Off}}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{1.5pt}
+      \begin{itemize}\setlength{\itemsep}{1.5pt}
           \item \textbf{3-fold Surface}: Preserves active frontier $3d$ states at $E_{\text{F}}$.
           \item \textbf{6-fold Core Pore}: Over-coordination causes electronic saturation ($\Delta G_{\text{H}^*} \ge +0.82$~eV).
           \item High bonding stability does \textbf{not} guarantee catalysis.
@@ -515,7 +516,7 @@ $^{2}$Facultad de Ciencias Físicas, Universidad Nacional Mayor de San Marcos (U
     \begin{column}{0.32\textwidth}
       \begin{exampleblock}{\centering \textbf{Spin-Coupled HER}}
         \scriptsize
-        \begin{itemize}\setlength{\itemsep}{1.5pt}
+      \begin{itemize}\setlength{\itemsep}{1.5pt}
           \item \textbf{Moment Quenching}: Proton chemisorption systematically quenches TM spin ($\Delta\mu \approx -1.0\,\mu_{\text{B}}$).
           \item Direct spin-channel participation in electron transfer.
           \item 2D magnets provide magnetic tunability for green $\text{H}_2$.

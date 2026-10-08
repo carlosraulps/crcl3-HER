@@ -1,33 +1,33 @@
 % =========================================================================
-% Table: Complete Multilevel Thermodynamic Analysis with Exact Caique Corrections
-% Includes Pure PBE, PBE+D3 (BJ), and PBE+D3+U with live HPC cluster telemetry
+% Table: Complete 4-Tier Thermodynamic Analysis with Exact Caique Corrections
+% Includes Pure PBE, PBE+D3 (BJ), PBE+D3+U_Cr, and PBE+D3+U_all
 % =========================================================================
 \begin{table*}[htbp]
   \centering
-  \caption{Multilevel hydrogen adsorption energetics, Caique vibrational/entropic corrections, and resulting HER free energies ($\Delta G_{\text{H}^*}$) across monolayer $\text{CrCl}_3$ functionalized systems. Live cluster telemetry status indicated for active HPC jobs.}
+  \caption{Multilevel hydrogen adsorption energetics, Caique vibrational/entropic corrections, and resulting HER free energies ($\Delta G_{\text{H}^*}$) across monolayer $\text{CrCl}_3$ functionalized systems.}
   \label{tab:sistemas_termo_all_functionals}
   \vspace{0.3cm}
   \small
-  \begin{tabular}{l c c c c c c c}
+  \begin{tabular}{l c c c c c c c c}
     \toprule
-    \textbf{Sistema} & $\boldsymbol{\Delta E_{\text{ZPE}}}$ & $\boldsymbol{T \Delta S}$ & $\boldsymbol{\Delta E_{\text{ZPE}} - T\Delta S}$ & \multicolumn{3}{c}{$\boldsymbol{\Delta G_{\text{H}^*}}$ \textbf{(eV)}} & \textbf{Status (+U)} \\
-    \cmidrule(lr){5-7}
-    & \textbf{(eV)} & \textbf{(eV)} & \textbf{(eV)} & \textbf{Pure PBE} & \textbf{PBE+D3} & \textbf{PBE+D3+U} & \\
+    \textbf{Sistema} & $\boldsymbol{\Delta E_{\text{ZPE}}}$ & $\boldsymbol{T \Delta S}$ & $\boldsymbol{\Delta E_{\text{corr}}}$ & \multicolumn{4}{c}{$\boldsymbol{\Delta G_{\text{H}^*}}$ \textbf{(eV)}} & \textbf{Status} \\
+    \cmidrule(lr){5-8}
+    & \textbf{(eV)} & \textbf{(eV)} & \textbf{(eV)} & \textbf{Pure PBE} & \textbf{PBE+D3} & \textbf{+$U_{\text{Cr}}$} & \textbf{+$U_{\text{all}}$} & \\
     \midrule
-    $\text{CrCl}_3\text{+H (S1 Top-Cl)}$ & 0.03 & -0.18 & 0.21 & +1.789 & +1.498 & +1.125 & Converged \\
-    $\text{CrCl}_3\text{+H (S2 Hollow)}$ & 0.03 & -0.18 & 0.21 & +2.681 & +2.534 & +2.040 & Converged \\
-    $\text{CrCl}_3\text{+H (S3 Top-Cr)}$ & 0.06 & -0.18 & 0.26 & +1.884 & +1.896 & +2.436 & Converged \\
-    $\text{CrCl}_3\text{-Co+H (ads)}$ & 0.05 & -0.19 & 0.24 & +0.178 & +0.178 & \textbf{-0.069} & Converged \\
-    $\text{CrCl}_3\text{-Fe+H (ads)}$ & 0.01 & -0.17 & 0.18 & +0.315 & +0.375 & \textbf{+0.185} & Converged \\
-    $\text{CrCl}_3\text{-Ni+H (ads)}$ & 0.02 & -0.17 & 0.19 & +0.812 & +0.862 & +0.620 & Converged \\
-    $\text{CrCl}_3\text{-Co+H (emb)}$ & 0.05 & -0.19 & 0.26 & +1.756 & +1.743 & +1.375 & Converged \\
-    $\text{CrCl}_3\text{-Fe+H (emb)}$ & 0.07 & -0.19 & 0.26 & +1.348 & +1.367 & +1.114 & Converged \\
-    $\text{CrCl}_3\text{-Ni+H (emb)}$ & 0.01 & -0.19 & 0.20 & +1.848 & +0.927 & +0.821 & Converged \\
+    $\text{CrCl}_3\text{+H (S1 Top-Cl)}$ & 0.03 & -0.18 & 0.21 & +1.789 & +1.498 & +1.125 & +1.125 & Converged \\
+    $\text{CrCl}_3\text{+H (S2 Hollow)}$ & 0.03 & -0.18 & 0.21 & +2.681 & +2.534 & +2.040 & +2.040 & Converged \\
+    $\text{CrCl}_3\text{+H (S3 Top-Cr)}$ & 0.06 & -0.18 & 0.26 & +1.884 & +1.896 & +2.436 & +2.436 & Converged \\
+    $\text{CrCl}_3\text{-Co+H (ads)}$ & 0.05 & -0.19 & 0.24 & +0.178 & +0.178 & -0.069 & \textbf{+0.065} & Converged \\
+    $\text{CrCl}_3\text{-Fe+H (ads)}$ & 0.01 & -0.17 & 0.18 & +0.315 & +0.375 & +0.185 & +1.837 & Converged \\
+    $\text{CrCl}_3\text{-Ni+H (ads)}$ & 0.02 & -0.17 & 0.19 & +0.812 & +0.862 & +0.620 & +1.184 & Converged \\
+    $\text{CrCl}_3\text{-Co+H (emb)}$ & 0.05 & -0.19 & 0.26 & +1.756 & +1.743 & +1.375 & +1.389 & Converged \\
+    $\text{CrCl}_3\text{-Fe+H (emb)}$ & 0.07 & -0.19 & 0.26 & +1.348 & +1.367 & +1.114 & +1.821 & Converged \\
+    $\text{CrCl}_3\text{-Ni+H (emb)}$ & 0.01 & -0.19 & 0.20 & +1.848 & +0.927 & +0.821 & +1.024 & Converged \\
     \bottomrule
   \end{tabular}
   \vspace{0.15cm}
     \begin{minipage}{0.95\textwidth}
       \footnotesize
-      All calculations fully converged across Pure PBE, PBE+D3 (BJ), and PBE+D3+$U$ ($U_{\text{Cr}} = 3.29\text{ eV}$) verified via \texttt{server-info} multi-tier audits. Optimal Sabatier catalytic criterion: $|\Delta G_{\text{H}^*}| \le 0.15\text{ eV}$.
+      All calculations fully converged across Pure PBE, PBE+D3 (BJ), PBE+D3+$U_{\text{Cr}}$, and PBE+D3+$U_{\text{all}}$. Optimal Sabatier catalytic criterion: $|\Delta G_{\text{H}^*}| \le 0.15\text{ eV}$.
     \end{minipage}
 \end{table*}
