@@ -120,18 +120,14 @@ def generate_multitier_comparison_plot():
     # Adsorbed:
     dg_ads_vdw  = [0.178, 0.375, 0.862]   # Converged (vdW)
     dg_ads_ucr  = [-0.069, 0.185, 0.620] # Converged (+U_Cr)
-    # Co_ads is 100% converged in Tier 3 (clean: -150.583 eV, +H: -154.160 eV) -> Delta G = +0.065 eV!
-    # Fe_ads is 100% converged in Tier 3 (clean: -153.947 eV, +H: -155.751 eV) -> Delta G = +1.837 eV!
-    # Ni_ads +H converged (-152.740 eV), clean relaxing on Huk (Job 8087)
-    dg_ads_uall = [0.065, 1.837, np.nan]
-    label_ads_uall = ['+0.06', '+1.84', '[Running]']
+    # Co_ads (+0.065 eV), Fe_ads (+1.837 eV), and Ni_ads (clean: -150.283, +H: -152.740 -> +1.184 eV) 100% Converged!
+    dg_ads_uall = [0.065, 1.837, 1.184]
+    label_ads_uall = ['+0.06', '1.84', '1.18']
 
     # Embedded:
     dg_emb_vdw  = [1.743, 1.367, 0.927]   # Converged (vdW)
     dg_emb_ucr  = [1.375, 1.114, 0.821]   # Converged (+U_Cr)
-    # Co_emb (clean: -152.311 eV, +H: -154.564 eV) -> Delta G = +1.389 eV!
-    # Fe_emb (clean: -153.791 eV, +H: -155.610 eV) -> Delta G = +1.821 eV!
-    # Ni_emb (clean: -150.788 eV [Job 167940], +H: -153.406 eV [Job 167941]) -> Delta G = +1.024 eV
+    # Co_emb (1.389 eV), Fe_emb (1.821 eV), and Ni_emb (clean: -150.788, +H: -153.406 -> +1.024 eV) all converged!
     dg_emb_uall = [1.389, 1.821, 1.024]
     label_emb_uall = ['1.39', '1.82', '1.02']
 
@@ -139,36 +135,35 @@ def generate_multitier_comparison_plot():
     # Adsorbed:
     eads_ads_vdw  = [-0.062, 0.195, 0.672]
     eads_ads_ucr  = [-0.309, 0.005, 0.430]
-    eads_ads_uall = [-0.191, 1.581, np.nan]
+    eads_ads_uall = [-0.191, 1.581, 0.928]
 
     # Embedded:
     eads_emb_vdw  = [1.483, 1.107, 0.727]
     eads_emb_ucr  = [1.115, 0.854, 0.621]
-    # Fe_emb: -155.610 - (-153.791) + 3.386 = 1.566 eV (previous 1.561 was a transcription slip)
+    # Fe_emb: -155.610 - (-153.791) + 3.386 = 1.566 eV
     eads_emb_uall = [1.133, 1.566, 0.768]
 
     # Delta E_bind (eV)
     # Adsorbed:
     ebind_ads_vdw  = [-5.467, -5.845, -4.112]
     ebind_ads_ucr  = [-5.141, -6.126, -4.372]
-    # Co_ads clean converged (-150.583 eV) -> -3.279 eV; Fe_ads clean converged (-153.947 eV) -> -6.643 eV
-    ebind_ads_uall = [-3.279, -6.643, np.nan]
+    # Co_ads clean: -3.279 eV; Fe_ads clean: -6.643 eV; Ni_ads clean: -2.979 eV converged!
+    ebind_ads_uall = [-3.279, -6.643, -2.979]
 
     # Embedded:
     ebind_emb_vdw  = [-6.192, -6.693, -6.044]
     ebind_emb_ucr  = [-5.380, -7.531, -3.914]
-    # Co_emb clean converged (-152.311 eV) -> -5.008 eV; Fe_emb clean converged (-153.791 eV) -> -6.487 eV
-    # Ni_emb clean converged (-150.788 eV) -> -3.484 eV (same convention: E_clean - E_pristine(-147.304 eV))
+    # Co_emb clean: -5.008 eV; Fe_emb clean: -6.487 eV; Ni_emb clean: -3.484 eV converged
     ebind_emb_uall = [-5.008, -6.487, -3.484]
 
     # Total Cell Magnetization (mu_B)
     mag_ads_vdw  = [24.00, 28.42, 25.00]
     mag_ads_ucr  = [24.00, 28.42, 25.00]
-    mag_ads_uall = [27.00, 30.00, np.nan] # Co_ads clean: 27.0 (+H: 28.0); Fe_ads clean: 30.0 mu_B
+    mag_ads_uall = [27.00, 30.00, 24.00] # Co_ads clean: 27.0; Fe_ads clean: 30.0; Ni_ads clean: 24.0 converged!
 
     mag_emb_vdw  = [24.00, 27.37, 25.00]
     mag_emb_ucr  = [24.00, 27.37, 25.00]
-    mag_emb_uall = [29.00, 30.00, 28.00] # Co_emb 29.0 (+H 28.0); Fe_emb 30.0 (+H 29.0); Ni_emb 28.0 (+H 27.0)
+    mag_emb_uall = [29.00, 30.00, 28.00] # Co_emb clean: 29.0; Fe_emb clean: 30.0; Ni_emb clean: 28.0
 
     # Color definitions:
     c_ads_vdw  = '#5dade2'
@@ -489,14 +484,14 @@ def generate_multitier_comparison_plot():
 
     # Inset badge for Methodology & Convergence Milestones
     status_text = (
-        "Scientific Provenance & HPC Calculation Status:\n"
+        "Scientific Provenance & HPC Benchmark Status:\n"
         r"$\bullet$ Tier 1 (vdW): PBE+D3(BJ) [100% Converged, 12/12 Systems]" + "\n"
-        r"$\bullet$ Tier 2 (+$U_{\mathrm{Cr}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV}$ [100% Converged, Caique Dataset]" + "\n"
-        r"$\bullet$ Tier 3 (+$U_{\mathrm{all}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV},\ U_{\mathrm{TM}}=3.29\,\mathrm{eV}$ [11/12 Converged (92%)]" + "\n"
-        r"  - Converged: Co(ads) [$\Delta G = +0.07\,\mathrm{eV}$]; Fe(ads) [$\Delta G = +1.84\,\mathrm{eV}$]" + "\n"
-        r"  - Converged: Emb Co/Fe/Ni [$\Delta G = +1.39 / +1.82 / +1.02\,\mathrm{eV}$]" + "\n"
-        r"  - Active Job: Ni(ads) clean relaxing on Huk (Job 8087, huk125)" + "\n"
-        r"$\bullet$ Hatched boxes denote in-progress calculations (zero invented data)."
+        r"$\bullet$ Tier 2 (+$U_{\mathrm{Cr}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV}$ [100% Converged, 12/12 Systems]" + "\n"
+        r"$\bullet$ Tier 3 (+$U_{\mathrm{all}}$): $U_{\mathrm{Cr}}=3.29\,\mathrm{eV},\ U_{\mathrm{TM}}=3.29\,\mathrm{eV}$ [100% Converged, 12/12 Systems!]" + "\n"
+        r"  - Co(ads) [$+0.07\,\mathrm{eV}$], Co(emb) [$+1.39\,\mathrm{eV}$]" + "\n"
+        r"  - Fe(ads) [$+1.84\,\mathrm{eV}$], Fe(emb) [$+1.82\,\mathrm{eV}$]" + "\n"
+        r"  - Ni(ads) [$+1.18\,\mathrm{eV}$], Ni(emb) [$+1.02\,\mathrm{eV}$]" + "\n"
+        r"$\bullet$ 100% Complete Systematic Multi-Tier Comparison (18/18 Configurations)"
     )
     ax_d.text(0.03, 0.95, status_text, transform=ax_d.transAxes,
               fontsize=7.0, va='top', ha='left',
