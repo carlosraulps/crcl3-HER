@@ -35,11 +35,16 @@ rcParams['ytick.major.size'] = 4.5
 rcParams['xtick.top'] = True
 rcParams['ytick.right'] = True
 
-TM_COLORS = {
-    'Co': '#d95f02', # orange-brown
-    'Fe': '#7570b3', # purple
-    'Ni': '#17becf'  # cyan
+# Exact elemental color definitions from reference image:
+# Cr: Deep Navy Blue, Cl: Electric Green, Co: Cyan, Fe: Ochre Brown, Ni: Magenta
+ELEMENT_COLORS = {
+    'Cr': '#2a2a98', # deep navy blue
+    'Cl': '#49df27', # bright electric green
+    'Co': '#22c3c3', # cyan / teal
+    'Fe': '#a67523', # warm ochre / golden brown
+    'Ni': '#f229f2'  # vibrant magenta / pink
 }
+TM_COLORS = ELEMENT_COLORS
 
 def parse_efermi(workdir):
     """Extract Fermi energy from OUTCAR or DOSCAR in workdir."""
@@ -211,28 +216,152 @@ def parse_doscar(workdir, tm):
         'efermi': efermi
     }
 
-def plot_fig5_suite(base_dir, out_prefix="Fig5_updated"):
+def plot_fig5_suite(base_dir, out_dir="crcl3-newcals"):
     """
-    Generate Fig 5 for a chosen tier or combined comparison.
+    Generate Fig 5 for a chosen tier: 12 sub-panels (6 systems x (bands + PDOS)).
+    Panels (a,b), (c,d), (e,f) correspond to surface-adsorbed Co, Fe, Ni.
+    Panels (g,h), (i,j), (k,l) correspond to embedded Co, Fe, Ni.
     """
-    print(f"Checking calculation data in {base_dir}...")
+    print(f"Loading calculation data from {base_dir}...")
     tms = ['Co', 'Fe', 'Ni']
     modes = ['adsorbed', 'embedded']
-    
-    # Check availability
-    ready_count = 0
-    for mode in modes:
-        for tm in tms:
-            wdir = os.path.join(base_dir, mode, tm)
-            eig_ok = os.path.exists(os.path.join(wdir, "EIGENVAL")) and os.path.getsize(os.path.join(wdir, "EIGENVAL")) > 100
-            if eig_ok:
-                ready_count += 1
-                print(f"  [READY] {mode} {tm}")
-            else:
-                print(f"  [PENDING] {mode} {tm}")
+    panel_letters = [
+        [('a', 'b'), ('c', 'd'), ('e', 'f')],
+        [('g', 'h'), ('i', 'j'), ('k', 'l')]
+    ]
 
-    print(f"Total ready calculations: {ready_count}/6 in {base_dir}")
-    return ready_count
+    from matplotlib.gridspec import GridSpec
+    # Space-efficient layout eliminating dead vacuum margins
+    fig = plt.figure(figsize=(15.8, 9.8))
+    gs_outer = GridSpec(2, 3, figure=fig, hspace=0.22, wspace=0.18,
+                        left=0.055, right=0.985, top=0.93, bottom=0.065)
+
+    k_labels = [r'$\Gamma$', r'$M$', r'$K$', r'$\Gamma$']
+
+    for row_idx, mode in enumerate(modes):
+        for col_idx, tm in enumerate(tms):
+            wdir = os.path.join(base_dir, mode, tm)
+            eig = parse_eigenval(wdir)
+            dos = parse_doscar(wdir, tm)
+            ef = parse_efermi(wdir)
+
+            if eig is None or dos is None:
+                print(f"Skipping {mode} {tm}: data not available")
+                continue
+
+            # Band width compressed to 0.65 of standard width (ratio 1.4:1.0)
+            gs_inner = gs_outer[row_idx, col_idx].subgridspec(1, 2, width_ratios=[1.42, 1.0], wspace=0.04)
+            ax_band = fig.add_subplot(gs_inner[0, 0])
+            ax_dos  = fig.add_subplot(gs_inner[0, 1], sharey=ax_band)
+
+            let_band, let_dos = panel_letters[row_idx][col_idx]
+            tm_label = f"{tm} ({'ads' if mode == 'adsorbed' else 'emb'})"
+
+            # 1. Band Structure
+            k_dist = eig['k_dist']
+            bands_up = eig['bands_up'] - ef
+            bands_dn = eig['bands_dn'] - ef if eig['bands_dn'] is not None else None
+
+            nk = len(k_dist)
+            tick_indices = [0, nk // 3, 2 * nk // 3, nk - 1]
+            tick_locs = [k_dist[i] for i in tick_indices]
+
+            # High-intensity, non-opaque band traces
+            for ib in range(eig['nbands']):
+                ax_band.plot(k_dist, bands_up[:, ib], color='#0544d6', lw=1.15, alpha=1.0,
+                             label='Spin-up' if ib == 0 else "")
+                if bands_dn is not None:
+                    ax_band.plot(k_dist, bands_dn[:, ib], color='#d60000', lw=1.1, ls='--', alpha=0.95,
+                                 label='Spin-down' if ib == 0 else "")
+
+            for loc in tick_locs:
+                ax_band.axvline(loc, color='#777777', lw=0.7, ls=':')
+            # Prominent Fermi level
+            ax_band.axhline(0.0, color='#111111', lw=1.1, ls='--')
+
+            ax_band.set_xlim(k_dist[0], k_dist[-1])
+            ax_band.set_ylim(-3.0, 3.0)
+            ax_band.set_xticks(tick_locs)
+            ax_band.set_xticklabels(k_labels, fontsize=13.0, fontweight='bold')
+            ax_band.tick_params(axis='y', labelsize=11.5)
+            ax_band.tick_params(axis='x', labelsize=13.0)
+
+            if col_idx == 0:
+                ax_band.set_ylabel(r'$E - E_{\mathrm{F}}\ \ (\mathrm{eV})$', fontsize=13.0, fontweight='bold')
+
+            ax_band.set_title(f"({let_band}) {tm_label}", fontsize=13.0, fontweight='bold', loc='left', pad=6)
+
+            if row_idx == 0 and col_idx == 0:
+                ax_band.legend(loc='lower left', frameon=True, facecolor='white', framealpha=0.95,
+                               edgecolor='#cccccc', fontsize=8.5, borderpad=0.3, handlelength=1.4)
+
+            # 2. PDOS
+            dos_e = dos['energies'] - ef
+            mask = (dos_e >= -3.0) & (dos_e <= 3.0)
+            e_sub = dos_e[mask]
+
+            cr_up = dos['cr_d_up'][mask]
+            cr_dn = dos['cr_d_dn'][mask]
+            cl_up = dos['cl_p_up'][mask]
+            cl_dn = dos['cl_p_dn'][mask]
+            tm_up = dos['tm_d_up'][mask]
+            tm_dn = dos['tm_d_dn'][mask]
+
+            c_cr = ELEMENT_COLORS['Cr']
+            c_cl = ELEMENT_COLORS['Cl']
+            c_tm = ELEMENT_COLORS.get(tm, '#ff7f0e')
+
+            ax_dos.plot(cr_up, e_sub, color=c_cr, lw=1.35, alpha=1.0, label=r'$\mathrm{Cr}\text{-}3d$')
+            ax_dos.plot(-cr_dn, e_sub, color=c_cr, lw=1.35, alpha=1.0)
+
+            ax_dos.plot(cl_up, e_sub, color=c_cl, lw=1.35, alpha=1.0, label=r'$\mathrm{Cl}\text{-}3p$')
+            ax_dos.plot(-cl_dn, e_sub, color=c_cl, lw=1.35, alpha=1.0)
+
+            ax_dos.plot(tm_up, e_sub, color=c_tm, lw=1.85, alpha=1.0, label=f"{tm}" + r'$\text{-}3d$')
+            ax_dos.plot(-tm_dn, e_sub, color=c_tm, lw=1.85, alpha=1.0)
+
+            # Fill under TM curve for vivid emphasis
+            ax_dos.fill_betweenx(e_sub, 0, tm_up, color=c_tm, alpha=0.25)
+            ax_dos.fill_betweenx(e_sub, 0, -tm_dn, color=c_tm, alpha=0.25)
+
+            ax_dos.axhline(0.0, color='#111111', lw=1.1, ls='--')
+            ax_dos.axvline(0.0, color='#666666', lw=0.6, ls=':')
+
+            # Headroom on PDOS x-limits to ensure legend does not collide with peaks
+            max_dos = max(np.max(cr_up), np.max(cr_dn), np.max(tm_up), np.max(tm_dn)) * 1.38
+            ax_dos.set_xlim(-max_dos, max_dos)
+            ax_dos.set_xticks([])
+            ax_dos.set_xlabel('PDOS', fontsize=11.5, fontweight='bold')
+            ax_dos.set_title(f"({let_dos})", fontsize=13.0, fontweight='bold', loc='left', pad=6)
+            plt.setp(ax_dos.get_yticklabels(), visible=False)
+
+            # Prominent E_F annotation in the PDOS margin
+            if col_idx == 2:
+                ax_dos.text(max_dos * 0.96, 0.12, r'$E_{\mathrm{F}}$', fontsize=11.0,
+                            fontweight='bold', color='#111111', ha='right', va='bottom')
+
+            # Dedicated legend for EVERY PDOS panel
+            ax_dos.legend(loc='upper right', frameon=True, facecolor='white',
+                          framealpha=0.94, edgecolor='#cccccc', fontsize=8.0,
+                          handlelength=1.3, handletextpad=0.35, borderpad=0.25)
+
+    fig.suptitle(r'Spin-Resolved Band Structures and Projected DOS of Functionalized Monolayer $\mathrm{CrCl}_3$ ($+U_{\mathrm{all}} = 3.29\,\mathrm{eV}$)',
+                 fontsize=14.5, fontweight='bold', y=0.985)
+
+    os.makedirs(out_dir, exist_ok=True)
+    out_png = os.path.join(out_dir, "Fig5_Uall_bands_pdos.png")
+    out_pdf = os.path.join(out_dir, "Fig5_Uall_bands_pdos.pdf")
+    plt.savefig(out_png, dpi=300)
+    plt.savefig(out_pdf)
+    plt.close()
+    print(f"Generated: {out_png}")
+    print(f"Generated: {out_pdf}")
+
+    acs_fig5 = "ACS_version/figure/Fig5.png"
+    if os.path.exists(os.path.dirname(acs_fig5)):
+        import shutil
+        shutil.copy2(out_png, acs_fig5)
+        print(f"Updated manuscript figure: {acs_fig5}")
 
 if __name__ == '__main__':
     base_dir = sys.argv[1] if len(sys.argv) > 1 else "crcl3-newcals/bands_U_all"
