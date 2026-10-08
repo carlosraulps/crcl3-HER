@@ -271,7 +271,7 @@ def plot_fig5_suite(base_dir, out_dir="crcl3-newcals"):
                 ax_band.plot(k_dist, bands_up[:, ib], color='#0544d6', lw=1.15, alpha=1.0,
                              label='Spin-up' if ib == 0 else "")
                 if bands_dn is not None:
-                    ax_band.plot(k_dist, bands_dn[:, ib], color='#d60000', lw=1.1, ls='--', alpha=0.95,
+                    ax_band.plot(k_dist, bands_dn[:, ib], color='#d60000', lw=1.1, ls='-', alpha=0.95,
                                  label='Spin-down' if ib == 0 else "")
 
             for loc in tick_locs:
@@ -283,17 +283,17 @@ def plot_fig5_suite(base_dir, out_dir="crcl3-newcals"):
             ax_band.set_ylim(-3.0, 3.0)
             ax_band.set_xticks(tick_locs)
             ax_band.set_xticklabels(k_labels, fontsize=13.0, fontweight='bold')
-            ax_band.tick_params(axis='y', labelsize=11.5)
+            ax_band.tick_params(axis='y', labelsize=12.0)
             ax_band.tick_params(axis='x', labelsize=13.0)
 
             if col_idx == 0:
-                ax_band.set_ylabel(r'$E - E_{\mathrm{F}}\ \ (\mathrm{eV})$', fontsize=13.0, fontweight='bold')
+                ax_band.set_ylabel(r'$E - E_{\mathrm{F}}\ \ (\mathrm{eV})$', fontsize=17.0, fontweight='bold')
 
             ax_band.set_title(f"({let_band}) {tm_label}", fontsize=13.0, fontweight='bold', loc='left', pad=6)
 
             if row_idx == 0 and col_idx == 0:
                 ax_band.legend(loc='lower left', frameon=True, facecolor='white', framealpha=0.95,
-                               edgecolor='#cccccc', fontsize=8.5, borderpad=0.3, handlelength=1.4)
+                               edgecolor='#cccccc', fontsize=10.5, borderpad=0.35, handlelength=1.4)
 
             # 2. PDOS
             dos_e = dos['energies'] - ef
@@ -302,8 +302,8 @@ def plot_fig5_suite(base_dir, out_dir="crcl3-newcals"):
 
             cr_up = dos['cr_d_up'][mask]
             cr_dn = dos['cr_d_dn'][mask]
-            cl_up = dos['cl_p_up'][mask]
-            cl_dn = dos['cl_p_dn'][mask]
+            cl_p_up = dos['cl_p_up'][mask]
+            cl_p_dn = dos['cl_p_dn'][mask]
             tm_up = dos['tm_d_up'][mask]
             tm_dn = dos['tm_d_dn'][mask]
 
@@ -314,8 +314,8 @@ def plot_fig5_suite(base_dir, out_dir="crcl3-newcals"):
             ax_dos.plot(cr_up, e_sub, color=c_cr, lw=1.35, alpha=1.0, label=r'$\mathrm{Cr}\text{-}3d$')
             ax_dos.plot(-cr_dn, e_sub, color=c_cr, lw=1.35, alpha=1.0)
 
-            ax_dos.plot(cl_up, e_sub, color=c_cl, lw=1.35, alpha=1.0, label=r'$\mathrm{Cl}\text{-}3p$')
-            ax_dos.plot(-cl_dn, e_sub, color=c_cl, lw=1.35, alpha=1.0)
+            ax_dos.plot(cl_p_up, e_sub, color=c_cl, lw=1.35, alpha=1.0, label=r'$\mathrm{Cl}\text{-}3p$')
+            ax_dos.plot(-cl_p_dn, e_sub, color=c_cl, lw=1.35, alpha=1.0)
 
             ax_dos.plot(tm_up, e_sub, color=c_tm, lw=1.85, alpha=1.0, label=f"{tm}" + r'$\text{-}3d$')
             ax_dos.plot(-tm_dn, e_sub, color=c_tm, lw=1.85, alpha=1.0)
@@ -328,22 +328,22 @@ def plot_fig5_suite(base_dir, out_dir="crcl3-newcals"):
             ax_dos.axvline(0.0, color='#666666', lw=0.6, ls=':')
 
             # Headroom on PDOS x-limits to ensure legend does not collide with peaks
-            max_dos = max(np.max(cr_up), np.max(cr_dn), np.max(tm_up), np.max(tm_dn)) * 1.38
+            max_dos = max(np.max(cr_up), np.max(cr_dn), np.max(tm_up), np.max(tm_dn)) * 1.48
             ax_dos.set_xlim(-max_dos, max_dos)
             ax_dos.set_xticks([])
-            ax_dos.set_xlabel('PDOS', fontsize=11.5, fontweight='bold')
+            ax_dos.set_xlabel('PDOS', fontsize=12.5, fontweight='bold')
             ax_dos.set_title(f"({let_dos})", fontsize=13.0, fontweight='bold', loc='left', pad=6)
             plt.setp(ax_dos.get_yticklabels(), visible=False)
 
             # Prominent E_F annotation in the PDOS margin
             if col_idx == 2:
-                ax_dos.text(max_dos * 0.96, 0.12, r'$E_{\mathrm{F}}$', fontsize=11.0,
+                ax_dos.text(max_dos * 0.96, 0.15, r'$E_{\mathrm{F}}$', fontsize=14.5,
                             fontweight='bold', color='#111111', ha='right', va='bottom')
 
             # Dedicated legend for EVERY PDOS panel
             ax_dos.legend(loc='upper right', frameon=True, facecolor='white',
-                          framealpha=0.94, edgecolor='#cccccc', fontsize=8.0,
-                          handlelength=1.3, handletextpad=0.35, borderpad=0.25)
+                          framealpha=0.94, edgecolor='#cccccc', fontsize=11.0,
+                          handlelength=1.3, handletextpad=0.35, borderpad=0.3)
 
     fig.suptitle(r'Spin-Resolved Band Structures and Projected DOS of Functionalized Monolayer $\mathrm{CrCl}_3$ ($+U_{\mathrm{all}} = 3.29\,\mathrm{eV}$)',
                  fontsize=14.5, fontweight='bold', y=0.985)
