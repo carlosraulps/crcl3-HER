@@ -1,0 +1,30 @@
+basisSet pbeVASPfit2015
+COHPstartEnergy -15.0
+COHPendEnergy 5.0
+saveProjectionToFile
+
+# TM (atom 33) to neighboring Cl atoms
+cohpBetweenAtom 33 and 9
+cohpBetweenAtom 33 and 10
+cohpBetweenAtom 33 and 11
+cohpBetweenAtom 33 and 12
+cohpBetweenAtom 33 and 13
+cohpBetweenAtom 33 and 14
+cohpBetweenAtom 33 and 15
+cohpBetweenAtom 33 and 16
+cohpBetweenAtom 33 and 17
+cohpBetweenAtom 33 and 18
+cohpBetweenAtom 33 and 19
+cohpBetweenAtom 33 and 20
+cohpBetweenAtom 33 and 21
+cohpBetweenAtom 33 and 22
+cohpBetweenAtom 33 and 23
+cohpBetweenAtom 33 and 24
+cohpBetweenAtom 33 and 25
+cohpBetweenAtom 33 and 26
+cohpBetweenAtom 33 and 27
+cohpBetweenAtom 33 and 28
+cohpBetweenAtom 33 and 29
+cohpBetweenAtom 33 and 30
+cohpBetweenAtom 33 and 31
+cohpBetweenAtom 33 and 32

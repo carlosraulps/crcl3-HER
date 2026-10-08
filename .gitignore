@@ -10,6 +10,8 @@ LOCPOT*
 ELFCAR*
 PARCHG*
 TMPCAR*
+POTCAR*
+AECCAR*
 
 # --- VASP Intermediate & Heavy Outputs ---
 DOSCAR*
