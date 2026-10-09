@@ -20,6 +20,3 @@ BMIX     = 0.0001
 NELM     = 80
 LCHARG   = .TRUE.
 LWAVE    = .FALSE.
-NGX      = 180
-NGY      = 180
-NGZ      = 300

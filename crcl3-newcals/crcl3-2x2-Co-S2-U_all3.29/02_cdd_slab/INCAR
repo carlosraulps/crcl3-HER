@@ -22,6 +22,3 @@ LAECHG   = .TRUE.
 LDIPOL   = .TRUE.
 IDIPOL   = 3
 DIPOL    = 0.5 0.5 0.5
-NGX      = 180
-NGY      = 180
-NGZ      = 300

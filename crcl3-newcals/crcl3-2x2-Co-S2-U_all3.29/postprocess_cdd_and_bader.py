@@ -148,7 +148,7 @@ def process_cdd():
     plt.xlabel(r"$z$ coordinate (Å)", fontsize=13)
     plt.ylabel(r"Planar Average $\Delta \rho(z)$ ($e$/Å)", fontsize=13)
     plt.title(r"Charge Density Difference Profile: $\mathrm{Co@CrCl_3}$ ($S_2$ Hollow, $+U_{\mathrm{all}}$)", fontsize=13)
-    plt.legend(frameon=True, facecolor="white", alpha=0.92, edgecolor="#cccccc")
+    plt.legend(frameon=True, facecolor="white", framealpha=0.92, edgecolor="#cccccc")
     plt.tight_layout()
     plot_path = os.path.join(DIR_OUT, "cdd_planar_average.png")
     plt.savefig(plot_path)
