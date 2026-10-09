@@ -27,9 +27,10 @@ from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-ACS_FIG_DIR = os.path.join(SCRIPT_DIR, "../../ACS_version/figure")
-if not os.path.exists(ACS_FIG_DIR):
-    ACS_FIG_DIR = os.path.join(SCRIPT_DIR, "../../ACS_version/ACS_resubmission/figure")
+ACS_FIG_DIRS = [
+    os.path.abspath(os.path.join(SCRIPT_DIR, "../../ACS_version/figure")),
+    os.path.abspath(os.path.join(SCRIPT_DIR, "../../ACS_version/ACS_resubmission/figure")),
+]
 
 # Typography
 plt.rcParams['font.family'] = 'serif'
@@ -198,15 +199,16 @@ def main():
     print(f"[OK] Saved {out_png}")
     print(f"[OK] Saved {out_pdf}")
 
-    # Copy to manuscript figure folder
-    if os.path.exists(ACS_FIG_DIR):
-        dest_png = os.path.join(ACS_FIG_DIR, "Fig8.png")
-        dest_pdf = os.path.join(ACS_FIG_DIR, "Fig8.pdf")
-        import shutil
-        shutil.copy2(out_png, dest_png)
-        shutil.copy2(out_pdf, dest_pdf)
-        print(f"[OK] Updated manuscript Fig 8: {dest_png}")
-        print(f"[OK] Updated manuscript Fig 8: {dest_pdf}")
+    # Copy to manuscript figure folders
+    import shutil
+    for fig_dir in ACS_FIG_DIRS:
+        if os.path.exists(fig_dir):
+            dest_png = os.path.join(fig_dir, "Fig8.png")
+            dest_pdf = os.path.join(fig_dir, "Fig8.pdf")
+            shutil.copy2(out_png, dest_png)
+            shutil.copy2(out_pdf, dest_pdf)
+            print(f"[OK] Updated manuscript Fig 8: {dest_png}")
+            print(f"[OK] Updated manuscript Fig 8: {dest_pdf}")
 
 if __name__ == "__main__":
     main()

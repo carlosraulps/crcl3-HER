@@ -357,11 +357,16 @@ def plot_fig5_suite(base_dir, out_dir="crcl3-newcals"):
     print(f"Generated: {out_png}")
     print(f"Generated: {out_pdf}")
 
-    acs_fig5 = "ACS_version/figure/Fig5.png"
-    if os.path.exists(os.path.dirname(acs_fig5)):
-        import shutil
-        shutil.copy2(out_png, acs_fig5)
-        print(f"Updated manuscript figure: {acs_fig5}")
+    # Copy to manuscript figure folders
+    import shutil
+    for fig_dir in ["ACS_version/figure", "ACS_version/ACS_resubmission/figure"]:
+        if os.path.exists(fig_dir):
+            dest_png = os.path.join(fig_dir, "Fig5.png")
+            dest_pdf = os.path.join(fig_dir, "Fig5.pdf")
+            shutil.copy2(out_png, dest_png)
+            shutil.copy2(out_pdf, dest_pdf)
+            print(f"Updated manuscript figure: {dest_png}")
+            print(f"Updated manuscript figure: {dest_pdf}")
 
 if __name__ == '__main__':
     base_dir = sys.argv[1] if len(sys.argv) > 1 else "crcl3-newcals/bands_U_all"

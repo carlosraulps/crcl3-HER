@@ -1,1 +1,112 @@
-bash: line 1: mpirun: command not found
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+ running   16 mpi-ranks, with    1 threads/rank, on    1 nodes
+ distrk:  each k-point on   16 cores,    1 groups
+ distr:  one band on    8 cores,    2 groups
+ vasp.6.6.1 17Jul2026 (build Sep  1 2026 13:17:54) complex                       
+ POSCAR found type information on POSCAR Co
+ POSCAR found :  1 types and       1 ions
+ Reading from existing POTCAR
+ scaLAPACK will be used
+ Reading from existing POTCAR
+ -----------------------------------------------------------------------------
+|                                                                             |
+|               ----> ADVICE to this user running VASP <----                  |
+|                                                                             |
+|     You have a (more or less) 'small supercell' and for smaller cells       |
+|     it is recommended to use the reciprocal-space projection scheme!        |
+|     The real-space optimization is not efficient for small cells and it     |
+|     is also less accurate ...                                               |
+|     Therefore, set LREAL=.FALSE. in the INCAR file.                         |
+|                                                                             |
+ -----------------------------------------------------------------------------
+
+ LDA part: xc-table for (Slater+PW92), standard interpolation
+ POSCAR, INCAR and KPOINTS ok, starting setup
+ FFT: planning ... GRIDC
+ FFT: planning ... GRID_SOFT
+ FFT: planning ... GRID
+ WAVECAR not read
+ entering main loop
+       N       E                     dE             d eps       ncg     rms          rms(c)
+DAV:   1     0.472400207408E+02    0.47240E+02   -0.11271E+03   200   0.394E+02
+DAV:   2     0.138967288959E+02   -0.33343E+02   -0.28867E+02   348   0.349E+01
+DAV:   3     0.109864449711E+01   -0.12798E+02   -0.96395E+01   306   0.642E+01
+DAV:   4     0.475457207558E+00   -0.62319E+00   -0.61581E+00   236   0.209E+01
+DAV:   5     0.463086096613E+00   -0.12371E-01   -0.90337E-02   236   0.157E+00    0.668E+00
+DAV:   6     0.917119731578E+00    0.45403E+00   -0.53488E+00   208   0.190E+01    0.930E+00
+DAV:   7     0.334809942392E+00   -0.58231E+00   -0.92768E-01   210   0.693E+00    0.667E+00
+DAV:   8     0.291724196211E-01   -0.30564E+00   -0.27620E+00   242   0.114E+00    0.627E+00
+DAV:   9    -0.440853475438E+00   -0.47003E+00   -0.19722E-01   210   0.442E+00    0.675E+00
+DAV:  10    -0.431282220169E+00    0.95713E-02   -0.20907E-02   244   0.157E+00    0.706E+00
+DAV:  11    -0.494803254601E+00   -0.63521E-01   -0.11892E+00   200   0.113E+01    0.402E+00
+DAV:  12    -0.662820018051E+00   -0.16802E+00   -0.90337E-01   210   0.101E+01    0.540E+00
+DAV:  13    -0.593161084242E+00    0.69659E-01   -0.21145E+00   200   0.158E+01    0.491E+00
+DAV:  14    -0.644121170983E+00   -0.50960E-01   -0.10940E-01   210   0.312E+00    0.398E+00
+DAV:  15    -0.685907747422E+00   -0.41787E-01   -0.43085E-01   200   0.705E+00    0.196E+00
+DAV:  16    -0.705619205532E+00   -0.19711E-01   -0.65947E-03   280   0.625E-01    0.178E+00
+DAV:  17    -0.704909583615E+00    0.70962E-03   -0.72454E-02   210   0.296E+00    0.101E+00
+DAV:  18    -0.707207895822E+00   -0.22983E-02   -0.53639E-02   200   0.239E+00    0.479E-01
+DAV:  19    -0.712402513226E+00   -0.51946E-02   -0.84982E-03   202   0.937E-01    0.426E-01
+DAV:  20    -0.713445345196E+00   -0.10428E-02   -0.53664E-03   210   0.787E-01    0.197E-01
+DAV:  21    -0.713737224799E+00   -0.29188E-03   -0.89538E-04   294   0.277E-01    0.135E-01
+DAV:  22    -0.713904578611E+00   -0.16735E-03   -0.17940E-04   202   0.133E-01    0.103E-01
+DAV:  23    -0.714023491362E+00   -0.11891E-03   -0.27697E-04   200   0.166E-01    0.941E-02
+DAV:  24    -0.714064480937E+00   -0.40990E-04   -0.23340E-05   294   0.418E-02    0.944E-02
+DAV:  25    -0.714142973253E+00   -0.78492E-04   -0.51233E-05   200   0.707E-02    0.978E-02
+DAV:  26    -0.714200098286E+00   -0.57125E-04   -0.36232E-05   200   0.612E-02    0.105E-01
+DAV:  27    -0.714190112277E+00    0.99860E-05   -0.58717E-06   200   0.257E-02    0.111E-01
+DAV:  28    -0.714197825909E+00   -0.77136E-05   -0.11104E-06   168   0.101E-02    0.112E-01
+DAV:  29    -0.714203263764E+00   -0.54379E-05   -0.26758E-07   100   0.479E-03    0.113E-01
+DAV:  30    -0.714209694144E+00   -0.64304E-05   -0.36229E-07   100   0.593E-03    0.113E-01
+DAV:  31    -0.714216916869E+00   -0.72227E-05   -0.57826E-07   100   0.746E-03    0.115E-01
+DAV:  32    -0.714214106598E+00    0.28103E-05   -0.63608E-07   110   0.995E-03    0.113E-01
+DAV:  33    -0.714209908157E+00    0.41984E-05   -0.14673E-06   168   0.135E-02    0.110E-01
+DAV:  34    -0.714200137806E+00    0.97704E-05   -0.75162E-06   200   0.300E-02    0.103E-01
+DAV:  35    -0.714192047562E+00    0.80902E-05   -0.26620E-05   200   0.581E-02    0.891E-02
+DAV:  36    -0.714187651326E+00    0.43962E-05   -0.14528E-05   200   0.424E-02    0.787E-02
+DAV:  37    -0.714211568496E+00   -0.23917E-04   -0.84056E-05   200   0.103E-01    0.513E-02
+DAV:  38    -0.714211549289E+00    0.19206E-07   -0.27521E-05   200   0.572E-02    0.350E-02
+DAV:  39    -0.714216280031E+00   -0.47307E-05   -0.20682E-05   200   0.498E-02    0.207E-02
+DAV:  40    -0.714216056047E+00    0.22398E-06   -0.13230E-06   200   0.910E-03
+   1 F= -.71421606E+00 E0= -.71421606E+00  d E =-.404985E-09  mag=     3.0000
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
+error    libmamba Could not set lock (Resource temporarily unavailable)
+warning  libmamba Cannot lock '/home/cr/.cache/mamba/proc'
+    Waiting for other mamba process to finish
