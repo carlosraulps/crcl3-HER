@@ -471,7 +471,7 @@ These binding energies quantify local TM--CrCl$_3$ bond formation relative to is
 } These binding energies do not, by themselves, establish stability against metal clustering or bulk-metal formation and should not be interpreted as a complete thermodynamic assessment of isolated-site dispersion.
 
 The charge-density-difference isosurfaces in Figure~\ref{fig:Fig4}(a--c) show localized charge redistribution around the transition-metal centers and neighboring Cl atoms. {\color{revcolor}%<*BaderChargeTransfer>
-  The TM atoms act as electron donors: Co, Fe, and Ni each transfer electrons to the CrCl$_3$ substrate, with Bader-integrated charge transfers of $\Delta Q = 0.77$, $0.94$, and $0.59~e$, respectively [Figure~\ref{fig:Fig4}(d--f)]. The positive Bader charge variation ($\Delta Q > 0$) on the TM center and the corresponding electron accumulation on adjacent Cl atoms (visible as red regions in the charge-difference maps) confirm this donor character.
+  The TM atoms act as electron donors: Co, Fe, and Ni each transfer electrons to the CrCl$_3$ substrate, with Bader-integrated charge transfers of $\Delta Q = 0.77$, $0.94$, and $0.59~e$ under PBE+D3+$U_{\text{Cr}}$ (and $+0.70$, $+0.88$, and $+0.54~e$ under $+U_{\text{all}}$, respectively) [Figure~\ref{fig:Fig4}(d--f)]. The positive Bader charge variation ($\Delta Q > 0$) on the TM center and the corresponding electron accumulation on adjacent Cl atoms (visible as red regions in the charge-difference maps) confirm this donor character, with Hubbard $U$ on TM($3d$) slightly enhancing $d$-electron localization and modestly attenuating charge donation to the substrate.
   %</BaderChargeTransfer>
 \par} Although Fe exhibits the largest charge transfer, Ni has the most negative binding energy, indicating that metal--substrate stabilization depends not only on charge redistribution but also on the spatial and energetic hybridization of TM-$3d$, Cr-$3d$, and Cl-$3p$ states. This interpretation is consistent with previous studies emphasizing adsorption-induced changes in Cl-$3p$/Cr-$3d$ hybridization and the broader role of ligand-$p$ states in the electronic and magnetic coupling of chromium trihalides~\cite{Luo2020,Besbes2019}.
 
@@ -479,7 +479,7 @@ The charge-density-difference isosurfaces in Figure~\ref{fig:Fig4}(a--c) show lo
   \centering
   \includegraphics[width=1.0\textwidth]{figure/Fig4.pdf}
   \caption{{\color{revcolor}%<*FigureFourCaption>
-      Charge redistribution induced by transition-metal adsorption on monolayer CrCl$_3$. (a--c) Charge-density-difference isosurfaces for surface-adsorbed Co, Fe, and Ni at the threefold surface hollow site ($S_2$), plotted at an isovalue of $\delta = \pm 5\times10^{-3}$~$e$/\AA$^{3}$ (red regions denote electron accumulation; blue regions denote electron depletion). (d--f) Corresponding Bader charge-transfer maps, where $\Delta Q > 0$ defines net electron donation from the transition metal to the substrate ($\Delta Q = +0.77$, $+0.94$, and $+0.59~e$ for Co, Fe, and Ni, respectively), with numerical labels indicating the transferred charge in $e$.
+      Charge redistribution induced by transition-metal adsorption on monolayer CrCl$_3$. (a--c) Charge-density-difference isosurfaces for surface-adsorbed Co, Fe, and Ni at the threefold surface hollow site ($S_2$), plotted at an isovalue of $\delta = \pm 5\times10^{-3}$~$e$/\AA$^{3}$ (red regions denote electron accumulation; blue regions denote electron depletion). (d--f) Corresponding Bader charge-transfer maps, where $\Delta Q > 0$ defines net electron donation from the transition metal to the substrate ($\Delta Q = +0.77$, $+0.94$, and $+0.59~e$ under $+U_{\text{Cr}}$, and $+0.70$, $+0.88$, and $+0.54~e$ under $+U_{\text{all}}$ for Co, Fe, and Ni, respectively), with numerical labels indicating the transferred charge in $e$.
       %</FigureFourCaption>
   }}
   \label{fig:Fig4}
@@ -517,30 +517,30 @@ Ni behaves differently: its vertical coordinate decreases continuously during th
     \label{tab:consolidated_properties}
     \vspace{0.2cm}
     \begin{adjustbox}{max width=\textwidth}
-      \begin{tabular}{lccccccccccc}
+      \begin{tabular}{lcccccccccccc}
         \toprule
-        \textbf{System / Site} & \textbf{Coord.} & \multicolumn{3}{c}{$\boldsymbol{E_{\text{bind}}}$ \textbf{(eV)}} & \multicolumn{4}{c}{$\boldsymbol{\Delta G_{\text{H}^*}}$ \textbf{(eV)}} & $\boldsymbol{\mu_{\text{TM}}}$ & $\boldsymbol{M_{\text{tot}}}$ & $\boldsymbol{\Delta Q_{\text{Bader}}}$ \\
-        \cmidrule(lr){3-5} \cmidrule(lr){6-9}
-        & & \textbf{PBE} & \textbf{PBE+D3} & \textbf{+$U_{\text{Cr}}$} & \textbf{PBE} & \textbf{PBE+D3} & \textbf{+$U_{\text{Cr}}$} & \textbf{+$U_{\text{all}}$} & ($\mu_{\text{B}}$) & ($\mu_{\text{B}}$) & ($e$) \\
+        \textbf{System / Site} & \textbf{Coord.} & \multicolumn{3}{c}{$\boldsymbol{E_{\text{bind}}}$ \textbf{(eV)}} & \multicolumn{4}{c}{$\boldsymbol{\Delta G_{\text{H}^*}}$ \textbf{(eV)}} & $\boldsymbol{\mu_{\text{TM}}}$ & $\boldsymbol{M_{\text{tot}}}$ & \multicolumn{2}{c}{$\boldsymbol{\Delta Q_{\text{Bader}}}$ \textbf{($e$)}} \\
+        \cmidrule(lr){3-5} \cmidrule(lr){6-9} \cmidrule(lr){12-13}
+        & & \textbf{PBE} & \textbf{PBE+D3} & \textbf{+$U_{\text{Cr}}$} & \textbf{PBE} & \textbf{PBE+D3} & \textbf{+$U_{\text{Cr}}$} & \textbf{+$U_{\text{all}}$} & ($\mu_{\text{B}}$) & ($\mu_{\text{B}}$) & \textbf{+$U_{\text{Cr}}$} & \textbf{+$U_{\text{all}}$} \\
         \midrule
-        Pristine $S_1$ (Top-Cl)    & 1-fold Cl & -- & -- & -- & $+1.79$ & $+1.50$ & $+1.12$ & $+1.12$ & -- & 24.0 (25.0) & -- \\
-        Pristine $S_2$ (Hollow)    & 3-fold Cl & -- & -- & -- & $+2.68$ & $+2.53$ & $+2.04$ & $+2.04$ & -- & 24.0 (25.0) & -- \\
-        Pristine $S_3$ (Top-Cr)    & 1-fold Cr & -- & -- & -- & $+1.88$ & $+1.90$ & $+2.44$ & $+2.44$ & -- & 24.0 (25.0) & -- \\
+        Pristine $S_1$ (Top-Cl)    & 1-fold Cl & -- & -- & -- & $+1.79$ & $+1.50$ & $+1.12$ & $+1.12$ & -- & 24.0 (25.0) & -- & -- \\
+        Pristine $S_2$ (Hollow)    & 3-fold Cl & -- & -- & -- & $+2.68$ & $+2.53$ & $+2.04$ & $+2.04$ & -- & 24.0 (25.0) & -- & -- \\
+        Pristine $S_3$ (Top-Cr)    & 1-fold Cr & -- & -- & -- & $+1.88$ & $+1.90$ & $+2.44$ & $+2.44$ & -- & 24.0 (25.0) & -- & -- \\
         \midrule
-        $\text{CrCl}_3\text{--Co (ads)}$ & 3-fold Cl & $-2.82$ & $-5.06$ & $-5.14$ & $+0.18$ & $+0.18$ & $\mathbf{-0.069}$ & $\mathbf{+0.065}$ & $+1.99$ & 26.0 (25.0) & $+0.77$ \\
-        $\text{CrCl}_3\text{--Fe (ads)}$ & 3-fold Cl & $-2.60$ & $-6.13$ & $-6.13$ & $\mathbf{+0.32}$ & $+0.38$ & $\mathbf{+0.185}$ & $+1.837^*$ & $+3.34$ & 27.0 (26.0) & $+0.94$ \\
-        $\text{CrCl}_3\text{--Ni (ads)}$ & 3-fold Cl & $-3.38$ & $-4.37$ & $-4.37$ & $+0.81$ & $+0.86$ & $+0.620$ & $+1.184^*$ & $-0.76$ & 23.0 (24.0) & $+0.59$ \\
+        $\text{CrCl}_3\text{--Co (ads)}$ & 3-fold Cl & $-2.82$ & $-5.06$ & $-5.14$ & $+0.18$ & $+0.18$ & $\mathbf{-0.069}$ & $\mathbf{+0.065}$ & $+1.99$ & 26.0 (25.0) & $+0.77$ & $+0.70$ \\
+        $\text{CrCl}_3\text{--Fe (ads)}$ & 3-fold Cl & $-2.60$ & $-6.13$ & $-6.13$ & $\mathbf{+0.32}$ & $+0.38$ & $\mathbf{+0.185}$ & $+1.837^*$ & $+3.34$ & 27.0 (26.0) & $+0.94$ & $+0.88$ \\
+        $\text{CrCl}_3\text{--Ni (ads)}$ & 3-fold Cl & $-3.38$ & $-4.37$ & $-4.37$ & $+0.81$ & $+0.86$ & $+0.620$ & $+1.184^*$ & $-0.76$ & 23.0 (24.0) & $+0.59$ & $+0.54$ \\
         \midrule
-        $\text{CrCl}_3\text{--Co (emb)}$ & 6-fold Cl & $-3.55$ & $-5.38$ & $-5.38$ & $+1.76$ & $+1.74$ & $+1.375$ & $+1.389$ & $+2.09$ & 28.1 (24.0) & $+0.82$ \\
-        $\text{CrCl}_3\text{--Fe (emb)}$ & 6-fold Cl & $-3.36$ & $-7.53$ & $-7.53$ & $+1.35$ & $+1.37$ & $+1.114$ & $+1.821$ & $+3.34$ & 29.8 (23.0) & $+1.02$ \\
-        $\text{CrCl}_3\text{--Ni (emb)}$ & 6-fold Cl & $-4.95$ & $-3.91$ & $-3.91$ & $+1.85$ & $+0.93$ & $+0.821$ & $+1.024$ & $-1.02$ & 24.0 (25.0) & $+0.68$ \\
+        $\text{CrCl}_3\text{--Co (emb)}$ & 6-fold Cl & $-3.55$ & $-5.38$ & $-5.38$ & $+1.76$ & $+1.74$ & $+1.375$ & $+1.389$ & $+2.09$ & 28.1 (24.0) & $+0.82$ & $+0.75$ \\
+        $\text{CrCl}_3\text{--Fe (emb)}$ & 6-fold Cl & $-3.36$ & $-7.53$ & $-7.53$ & $+1.35$ & $+1.37$ & $+1.114$ & $+1.821$ & $+3.34$ & 29.8 (23.0) & $+1.02$ & $+0.95$ \\
+        $\text{CrCl}_3\text{--Ni (emb)}$ & 6-fold Cl & $-4.95$ & $-3.91$ & $-3.91$ & $+1.85$ & $+0.93$ & $+0.821$ & $+1.024$ & $-1.02$ & 24.0 (25.0) & $+0.68$ & $+0.62$ \\
         \bottomrule
       \end{tabular}
     \end{adjustbox}
     \vspace{1ex}
     \begin{minipage}{0.98\textwidth}
       \footnotesize\color{revcolor}
-      $E_{\text{bind}}$ for Pure PBE is referenced to isolated spin-polarized gas-phase transition metal atoms ($E_{\text{tot}} - E_{\text{host}} - E_{\text{TM}}$); for PBE+D3 and PBE+D3+$U_{\text{Cr}}$, values denote substrate interaction energy ($E_{\text{int}} = E_{\text{tot}} - E_{\text{host}}$). $\Delta G_{\text{H}^*}$ includes explicit zero-point energy and entropic corrections ($T = 298.15$~K) evaluated from vibrational calculations (Table~S3). Bold values indicate systems lying within the optimal Sabatier catalytic window ($|\Delta G_{\text{H}^*}| \le 0.15$~eV) or near Pt(111) ($-0.09$~eV). Asterisks ($^*$) on adsorbed Fe and Ni under $+U_{\text{all}}$ indicate energetics referenced against the deep pore-penetrated ground states ($\Delta z_{\text{TM-Cr}} \approx 0.18$~\AA); when evaluated for the metastable threefold surface hollow configuration ($S_2$), $\Delta G_{\text{H}^*}$ remains at $+0.185$~eV (Fe) and $+0.620$~eV (Ni). $M_{\text{tot}}$ is listed for the clean functionalized substrate with the value after hydrogen adsorption given in parentheses. Positive $\Delta Q_{\text{Bader}}$ denotes net electron donation from the transition metal to the $\text{CrCl}_3$ substrate.
+      $E_{\text{bind}}$ for Pure PBE is referenced to isolated spin-polarized gas-phase transition metal atoms ($E_{\text{tot}} - E_{\text{host}} - E_{\text{TM}}$); for PBE+D3 and PBE+D3+$U_{\text{Cr}}$, values denote substrate interaction energy ($E_{\text{int}} = E_{\text{tot}} - E_{\text{host}}$). $\Delta G_{\text{H}^*}$ includes explicit zero-point energy and entropic corrections ($T = 298.15$~K) evaluated from vibrational calculations (Table~S3). Bold values indicate systems lying within the optimal Sabatier catalytic window ($|\Delta G_{\text{H}^*}| \le 0.15$~eV) or near Pt(111) ($-0.09$~eV). Asterisks ($^*$) on adsorbed Fe and Ni under $+U_{\text{all}}$ indicate energetics referenced against the deep pore-penetrated ground states ($\Delta z_{\text{TM-Cr}} \approx 0.18$~\AA); when evaluated for the metastable threefold surface hollow configuration ($S_2$), $\Delta G_{\text{H}^*}$ remains at $+0.185$~eV (Fe) and $+0.620$~eV (Ni). $M_{\text{tot}}$ is listed for the clean functionalized substrate with the value after hydrogen adsorption given in parentheses. Positive $\Delta Q_{\text{Bader}}$ denotes net electron donation from the transition metal to the $\text{CrCl}_3$ substrate, benchmarked across both $+U_{\text{Cr}}$ and $+U_{\text{all}}$ functional tiers.
     \end{minipage}
   \end{table*}
 \par}

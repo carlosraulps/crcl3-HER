@@ -17,3 +17,6 @@ LREAL    = Auto
 NCORE    = 8
 LCHARG   = .TRUE.
 LWAVE    = .FALSE.
+NGX      = 180
+NGY      = 180
+NGZ      = 300
