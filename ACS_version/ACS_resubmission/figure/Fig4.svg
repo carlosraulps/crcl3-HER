@@ -77,49 +77,26 @@
          id="tspan2-6"
          x="327.61337"
          y="361.45865"
-         style="fill:#1a1a1a;stroke-width:1.85357" /></text><image
-       width="61.929832"
-       height="25.558344"
-       preserveAspectRatio="none"
-       style="image-rendering:optimizeQuality"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH4AAAA0CAIAAADDghvVAAAAg0lEQVR4nO3QQQ0AMAgAMbLMv2WQ&#10;cZ9WQv/uDoU3RNRn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfU&#10;Z9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GcO7JwD&#10;aDC2YPcAAAAASUVORK5CYII=&#10;"
-       id="image1-9"
-       x="351.29019"
-       y="344.34637" /><image
-       width="61.929832"
-       height="25.558344"
-       preserveAspectRatio="none"
-       style="image-rendering:optimizeQuality"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH4AAAA0CAIAAADDghvVAAAAg0lEQVR4nO3QQQ0AMAgAMbLMv2WQ&#10;cZ9WQv/uDoU3RNRn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfU&#10;Z9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GcO7JwD&#10;aDC2YPcAAAAASUVORK5CYII=&#10;"
-       id="image1-9-7"
-       x="134.6989"
-       y="345.61639" /><image
-       width="61.929832"
-       height="25.558344"
-       preserveAspectRatio="none"
-       style="image-rendering:optimizeQuality"
-       xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH4AAAA0CAIAAADDghvVAAAAg0lEQVR4nO3QQQ0AMAgAMbLMv2WQ&#10;cZ9WQv/uDoU3RNRn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfU&#10;Z9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GfUZ9Rn1GcO7JwD&#10;aDC2YPcAAAAASUVORK5CYII=&#10;"
-       id="image1-9-77"
-       x="558.14349"
-       y="344.44226" /><text
-       xml:space="preserve"
-       id="text3"
-       style="font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3);fill:#1a1a1a"
-       transform="matrix(1.8087779,0,0,1.8087779,-124.48042,-287.93886)"><tspan
-         x="146.63086"
-         y="360.90158"
-         id="tspan1">∆Q (e)</tspan></text><text
-       xml:space="preserve"
-       id="text3-2"
-       style="font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3-4);fill:#1a1a1a"
-       transform="matrix(1.8087779,0,0,1.8087779,89.761069,-287.3945)"><tspan
-         x="146.63086"
-         y="360.90158"
-         id="tspan2">∆Q (e)</tspan></text><text
-       xml:space="preserve"
-       id="text3-2-5"
-       style="font-size:10.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect3-4-0);fill:#1a1a1a"
-       transform="matrix(1.8087779,0,0,1.8087779,294.38144,-286.372)"><tspan
-         x="146.63086"
-         y="360.90158"
-         id="tspan3">∆Q (e)</tspan></text></g></svg>
+         style="fill:#1a1a1a;stroke-width:1.85357" /></text>
+    <!-- Smart Cards and Dual-Tier Bader Charge Transfer Labels -->
+    <!-- Panel (d): Co -->
+    <g id="bader_card_co">
+      <rect x="110" y="338" width="112" height="36" rx="3" ry="3" fill="#ffffff" fill-opacity="0.95" stroke="#b0b0b0" stroke-width="0.8" />
+      <text x="166" y="352" font-family="Times New Roman" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#1a1a1a">ΔQ = +0.77 e <tspan font-size="9" fill="#555555">(+U<tspan font-size="7.5" dy="1.5">Cr</tspan><tspan font-size="9" dy="-1.5">)</tspan></tspan></text>
+      <text x="166" y="367" font-family="Times New Roman" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#004499">ΔQ = +0.70 e <tspan font-size="9" fill="#0066cc">(+U<tspan font-size="7.5" dy="1.5">all</tspan><tspan font-size="9" dy="-1.5">)</tspan></tspan></text>
+    </g>
+
+    <!-- Panel (e): Fe -->
+    <g id="bader_card_fe">
+      <rect x="326" y="338" width="112" height="36" rx="3" ry="3" fill="#ffffff" fill-opacity="0.95" stroke="#b0b0b0" stroke-width="0.8" />
+      <text x="382" y="352" font-family="Times New Roman" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#1a1a1a">ΔQ = +0.94 e <tspan font-size="9" fill="#555555">(+U<tspan font-size="7.5" dy="1.5">Cr</tspan><tspan font-size="9" dy="-1.5">)</tspan></tspan></text>
+      <text x="382" y="367" font-family="Times New Roman" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#004499">ΔQ = +0.88 e <tspan font-size="9" fill="#0066cc">(+U<tspan font-size="7.5" dy="1.5">all</tspan><tspan font-size="9" dy="-1.5">)</tspan></tspan></text>
+    </g>
+
+    <!-- Panel (f): Ni -->
+    <g id="bader_card_ni">
+      <rect x="533" y="338" width="112" height="36" rx="3" ry="3" fill="#ffffff" fill-opacity="0.95" stroke="#b0b0b0" stroke-width="0.8" />
+      <text x="589" y="352" font-family="Times New Roman" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#1a1a1a">ΔQ = +0.59 e <tspan font-size="9" fill="#555555">(+U<tspan font-size="7.5" dy="1.5">Cr</tspan><tspan font-size="9" dy="-1.5">)</tspan></tspan></text>
+      <text x="589" y="367" font-family="Times New Roman" font-size="10.5" font-weight="bold" text-anchor="middle" fill="#004499">ΔQ = +0.54 e <tspan font-size="9" fill="#0066cc">(+U<tspan font-size="7.5" dy="1.5">all</tspan><tspan font-size="9" dy="-1.5">)</tspan></tspan></text>
+    </g>
+</g></svg>
