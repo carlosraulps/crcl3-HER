@@ -34,17 +34,29 @@ from matplotlib.ticker import MultipleLocator, AutoMinorLocator
 from PIL import Image
 
 # Register authentic Times New Roman system fonts
-for font_path in [
+possible_times_reg = [
+    "/System/Library/Fonts/Supplemental/Times New Roman.ttf",
     "/usr/share/fonts/TTF/Times.TTF",
+    "/usr/share/fonts/truetype/msttcorefonts/Times_New_Roman.ttf"
+]
+possible_times_bold = [
+    "/System/Library/Fonts/Supplemental/Times New Roman Bold.ttf",
     "/usr/share/fonts/TTF/Timesbd.TTF",
-    "/usr/share/fonts/TTF/Timesi.TTF",
-    "/usr/share/fonts/TTF/Timesbi.TTF",
-]:
-    if os.path.exists(font_path):
-        fm.fontManager.addfont(font_path)
+    "/usr/share/fonts/truetype/msttcorefonts/Times_New_Roman_Bold.ttf"
+]
 
-FONT_TNR_REG = fm.FontProperties(fname="/usr/share/fonts/TTF/Times.TTF")
-FONT_TNR_BOLD = fm.FontProperties(fname="/usr/share/fonts/TTF/Timesbd.TTF")
+font_reg_path = next((p for p in possible_times_reg if os.path.exists(p)), None)
+font_bold_path = next((p for p in possible_times_bold if os.path.exists(p)), None)
+
+if font_reg_path:
+    FONT_TNR_REG = fm.FontProperties(fname=font_reg_path)
+else:
+    FONT_TNR_REG = fm.FontProperties(family="serif")
+
+if font_bold_path:
+    FONT_TNR_BOLD = fm.FontProperties(fname=font_bold_path)
+else:
+    FONT_TNR_BOLD = fm.FontProperties(family="serif", weight="bold")
 
 # Output directories
 POST_DIR = os.path.dirname(os.path.abspath(__file__))

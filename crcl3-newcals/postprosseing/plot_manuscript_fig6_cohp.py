@@ -16,8 +16,8 @@ post_dir = os.path.join(base_dir, "postprosseing")
 acs_fig_dir = os.path.abspath(os.path.join(base_dir, "..", "ACS_version", "ACS_resubmission", "figure"))
 
 systems = [
-    "adsorbed/co", "adsorbed/fe", "adsorbed/ni",
-    "embedded/co", "embedded/fe", "embedded/ni"
+    "cohp_lobster_Uall/adsorbed/Co", "cohp_lobster_Uall/adsorbed/Fe", "cohp_lobster_Uall/adsorbed/Ni",
+    "cohp_lobster_Uall/embedded/Co", "cohp_lobster_Uall/embedded/Fe", "cohp_lobster_Uall/embedded/Ni"
 ]
 
 results = {}
@@ -122,13 +122,13 @@ fig, axes = plt.subplots(2, 3, figsize=(14, 9.8), sharex=True, sharey=True)
 
 panels_info = [
     # Row 1: Adsorbed
-    (0, 0, "adsorbed/co", "Co System (adsorbed)", "(a)"),
-    (0, 1, "adsorbed/fe", "Fe System (adsorbed)", "(b)"),
-    (0, 2, "adsorbed/ni", "Ni System (adsorbed)", "(c)"),
+    (0, 0, "cohp_lobster_Uall/adsorbed/Co", r"$\mathrm{CrCl}_3\text{--Co}$ (adsorbed)", "(a)"),
+    (0, 1, "cohp_lobster_Uall/adsorbed/Fe", r"$\mathrm{CrCl}_3\text{--Fe}$ (adsorbed)", "(b)"),
+    (0, 2, "cohp_lobster_Uall/adsorbed/Ni", r"$\mathrm{CrCl}_3\text{--Ni}$ (adsorbed)", "(c)"),
     # Row 2: Embedded
-    (1, 0, "embedded/co", "Co System (embedded)", "(d)"),
-    (1, 1, "embedded/fe", "Fe System (embedded)", "(e)"),
-    (1, 2, "embedded/ni", "Ni System (embedded)", "(f)"),
+    (1, 0, "cohp_lobster_Uall/embedded/Co", r"$\mathrm{CrCl}_3\text{--Co}$ (embedded)", "(d)"),
+    (1, 1, "cohp_lobster_Uall/embedded/Fe", r"$\mathrm{CrCl}_3\text{--Fe}$ (embedded)", "(e)"),
+    (1, 2, "cohp_lobster_Uall/embedded/Ni", r"$\mathrm{CrCl}_3\text{--Ni}$ (embedded)", "(f)"),
 ]
 
 for row, col, sys_key, title_text, label_tag in panels_info:
