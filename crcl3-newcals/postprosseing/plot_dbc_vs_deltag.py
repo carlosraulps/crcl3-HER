@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 """
 plot_dbc_vs_deltag.py
-Publication-quality plot of d-band center (epsilon_d^occ) vs. hydrogen adsorption
-free energy (Delta G_H*) for monolayer CrCl3 functionalized with TM (Co, Fe, Ni)
-across three systematic methodological tiers:
+================================================================================
+Publication-quality 2-panel figure for Manuscript Figure 8:
+Occupied d-band center (epsilon_d^occ) vs. hydrogen adsorption free energy
+(Delta G_H*) for monolayer CrCl3 functionalized with TM (Co, Fe, Ni) across
+two systematic Hubbard U methodological tiers:
 
 Panels:
-  (a) Pure PBE Baseline (U = 0, No vdW)
-  (b) Single-Site Hubbard U (PBE+D3+U_Cr, U_Cr = 3.29 eV)
-  (c) Multi-Site Hubbard U (PBE+D3+U_all, U_Cr = 3.29 eV & U_TM = 3.29 eV)
+  (a) Single-Site Hubbard U (PBE+D3+U_Cr, U_Cr = 3.29 eV)
+  (b) Multi-Site Hubbard U (PBE+D3+U_all, U_Cr = 3.29 eV & U_TM = 3.29 eV)
 
 Adheres strictly to GEMINI.md Publication Anti-Collision Policy:
-  - Zero text overlap via smart bounded cards
+  - Zero text overlap via smart bounded cards (alpha=0.92, edgecolor=#cccccc)
   - Dynamic adaptive headroom
   - STIX math & Times New Roman typography
   - Pt(111) benchmark reference line (-0.09 eV)
   - Optimal Sabatier catalytic window (|Delta G_H*| <= 0.15 eV)
+================================================================================
 """
 
 import os
@@ -23,13 +25,14 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import MultipleLocator, AutoMinorLocator
-from matplotlib.lines import Line2D
-from matplotlib.patches import Patch
+import shutil
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ACS_FIG_DIRS = [
     os.path.abspath(os.path.join(SCRIPT_DIR, "../../ACS_version/figure")),
     os.path.abspath(os.path.join(SCRIPT_DIR, "../../ACS_version/ACS_resubmission/figure")),
+    os.path.abspath(os.path.join(SCRIPT_DIR, "../../CMS_Final_Submission/figure")),
+    os.path.abspath(os.path.join(SCRIPT_DIR, "../../temp/CMS_Final_Submission/figure")),
 ]
 
 # Typography
@@ -50,31 +53,22 @@ def main():
     # -------------------------------------------------------------
     # Descriptors & Free Energies across Tiers
     # -------------------------------------------------------------
-    # 1. Tier 1 & 2: Occupied d-band centers (up to E_F, eV)
-    ads_dbc_u_cr = np.array([-1.6643, -2.4319, -1.1599])
-    emb_dbc_u_cr = np.array([-1.4597, -2.4376, -1.6972])
+    # 1. Single-Site Hubbard U (+U_Cr, U_Cr = 3.29 eV)
+    ads_dbc_ucr = np.array([-1.6643, -2.4319, -1.1599])
+    emb_dbc_ucr = np.array([-1.4597, -2.4376, -1.6972])
     
-    # Panel (a): Pure PBE Baseline (eV)
-    ads_dg_pbe = np.array([0.1784, 0.3750, 0.8622])
-    emb_dg_pbe = np.array([1.7363, 1.3284, 1.8477])
-    
-    # Panel (b): PBE + D3 + U_Cr (U_Cr = 3.29 eV) (eV)
     ads_dg_ucr = np.array([-0.0690, 0.1850, 0.6200])
     emb_dg_ucr = np.array([1.3750, 1.1140, 0.8210])
 
-    # Panel (c): PBE + D3 + U_all (Multi-site U_Cr=3.29, U_TM=3.29 eV)
-    # Converged occupied d-band centers [-3, 0] eV window:
-    # Adsorbed: Co = -1.494 eV, Fe = -2.169 eV, Ni = -0.993 eV
-    # Embedded: Co = -2.664 eV, Fe = -2.012 eV, Ni = -2.611 eV
+    # 2. Multi-Site Hubbard U (+U_all, U_Cr = 3.29 eV & U_TM = 3.29 eV)
     ads_dbc_uall = np.array([-1.4940, -2.1685, -0.9928])
     emb_dbc_uall = np.array([-2.6640, -2.0122, -2.6109])
 
-    # Delta G_H* (eV)
     ads_dg_uall = np.array([0.0650, 1.8370, 1.1840])
     emb_dg_uall = np.array([1.3890, 1.8210, 1.0240])
 
-    fig, axs = plt.subplots(1, 3, figsize=(19.5, 6.2), dpi=300)
-    fig.subplots_adjust(wspace=0.24)
+    fig, axs = plt.subplots(1, 2, figsize=(14.2, 6.2), dpi=300)
+    fig.subplots_adjust(wspace=0.22)
 
     # Color palette
     color_ads = "#1f77b4"  # Steel Blue
@@ -82,16 +76,19 @@ def main():
     pt_color  = "#17202a"  # Dark Slate
 
     panels_data = [
-        (axs[0], '(a) Pure PBE Baseline ($U = 0$)', ads_dbc_u_cr, emb_dbc_u_cr, ads_dg_pbe, emb_dg_pbe, 'pbe'),
-        (axs[1], r'(b) Single-Site $+U_{\mathrm{Cr}}$ ($3.29\,\mathrm{eV}$)', ads_dbc_u_cr, emb_dbc_u_cr, ads_dg_ucr, emb_dg_ucr, 'ucr'),
-        (axs[2], r'(c) Multi-Site $+U_{\mathrm{all}}$ ($U_{\mathrm{Cr}}, U_{\mathrm{TM}} = 3.29\,\mathrm{eV}$)', ads_dbc_uall, emb_dbc_uall, ads_dg_uall, emb_dg_uall, 'uall')
+        (axs[0], r'(a) Single-Site $+U_{\mathrm{Cr}}$ ($3.29\,\mathrm{eV}$)',
+         ads_dbc_ucr, emb_dbc_ucr, ads_dg_ucr, emb_dg_ucr, 'ucr'),
+        (axs[1], r'(b) Multi-Site $+U_{\mathrm{all}}$ ($U_{\mathrm{Cr}}, U_{\mathrm{TM}} = 3.29\,\mathrm{eV}$)',
+         ads_dbc_uall, emb_dbc_uall, ads_dg_uall, emb_dg_uall, 'uall')
     ]
 
     for ax, title, ads_dbc, emb_dbc, ads_dg, emb_dg, tier in panels_data:
         # 1. Sabatier Optimal Catalytic Window
-        ax.axhspan(-0.15, 0.20, color="#2ecc71", alpha=0.18, label=r"Optimal Sabatier Window ($|\Delta G| \leq 0.15\,\mathrm{eV}$)", zorder=1)
+        ax.axhspan(-0.15, 0.20, color="#2ecc71", alpha=0.18,
+                   label=r"Optimal Sabatier Window ($|\Delta G_{\mathrm{H}^*}| \leq 0.15\,\mathrm{eV}$)", zorder=1)
         ax.axhline(0.00, color="#27ae60", linestyle="--", linewidth=1.1, zorder=2)
-        ax.axhline(-0.09, color=pt_color, linestyle=":", linewidth=1.3, label=r"$\mathrm{Pt(111)}\ (-0.09\,\mathrm{eV})$", zorder=2)
+        ax.axhline(-0.09, color=pt_color, linestyle=":", linewidth=1.3,
+                   label=r"$\mathrm{Pt(111)}\ (-0.09\,\mathrm{eV})$", zorder=2)
 
         # 2. Linear fits (visual guides)
         slope_ads, intercept_ads = np.polyfit(ads_dbc, ads_dg, 1)
@@ -119,25 +116,17 @@ def main():
                    linewidth=1.2, label="Embedded TM", zorder=5)
 
         # 4. Offsets and annotations
-        if tier == 'pbe':
-            for i, tm in enumerate(metals):
-                ax.annotate(f"{tm} ({ads_dg[i]:+.2f})", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
-                            xytext=(0, 10), ha='center', fontsize=8.8, fontweight="bold",
-                            bbox=CARD_STYLE, zorder=6)
-                ax.annotate(f"{tm} ({emb_dg[i]:+.2f})", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
-                            xytext=(0, 10), ha='center', fontsize=8.8, fontweight="bold",
-                            bbox=CARD_STYLE, zorder=6)
-        elif tier == 'ucr':
+        if tier == 'ucr':
             for i, tm in enumerate(metals):
                 if tm != "Co":
-                    ax.annotate(f"{tm} ({ads_dg[i]:+.2f})", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
-                                xytext=(0, 10), ha='center', fontsize=8.8, fontweight="bold",
+                    ax.annotate(f"{tm} ({ads_dg[i]:+.2f} eV)", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
+                                xytext=(0, 12), ha='center', fontsize=8.8, fontweight="bold",
                                 bbox=CARD_STYLE, zorder=6)
-                ax.annotate(f"{tm} ({emb_dg[i]:+.2f})", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
-                            xytext=(0, 10), ha='center', fontsize=8.8, fontweight="bold",
+                ax.annotate(f"{tm} ({emb_dg[i]:+.2f} eV)", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
+                            xytext=(0, 12), ha='center', fontsize=8.8, fontweight="bold",
                             bbox=CARD_STYLE, zorder=6)
 
-            # High-visibility callout for Co(ads) Sabatier optimum in panel (b)
+            # High-visibility callout for Co(ads) Sabatier optimum in panel (a)
             ax.annotate(r"$\mathbf{Co\ (ads):}\ \Delta G = -0.069\,\mathrm{eV}$",
                         xy=(ads_dbc[0], ads_dg[0]), xytext=(-1.66, -0.38),
                         arrowprops=dict(arrowstyle="->", color="#1e8449", lw=1.3),
@@ -148,21 +137,21 @@ def main():
                     continue
                 elif tm == "Fe":
                     # Stagger Fe(ads) left and Fe(emb) right to prevent horizontal overlap
-                    ax.annotate(f"{tm} ({ads_dg[i]:+.2f})", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
-                                xytext=(-26, 11), ha='center', fontsize=8.8, fontweight="bold",
+                    ax.annotate(f"{tm} (ads)\n({ads_dg[i]:+.2f} eV)", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
+                                xytext=(-28, 12), ha='center', fontsize=8.8, fontweight="bold",
                                 bbox=CARD_STYLE, zorder=6)
-                    ax.annotate(f"{tm} ({emb_dg[i]:+.2f})", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
-                                xytext=(26, 11), ha='center', fontsize=8.8, fontweight="bold",
+                    ax.annotate(f"{tm} (emb)\n({emb_dg[i]:+.2f} eV)", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
+                                xytext=(28, 12), ha='center', fontsize=8.8, fontweight="bold",
                                 bbox=CARD_STYLE, zorder=6)
                 else: # Ni
-                    ax.annotate(f"{tm} ({ads_dg[i]:+.2f})", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
-                                xytext=(0, 10), ha='center', fontsize=8.8, fontweight="bold",
+                    ax.annotate(f"{tm} ({ads_dg[i]:+.2f} eV)", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
+                                xytext=(0, 12), ha='center', fontsize=8.8, fontweight="bold",
                                 bbox=CARD_STYLE, zorder=6)
-                    ax.annotate(f"{tm} ({emb_dg[i]:+.2f})", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
-                                xytext=(0, 10), ha='center', fontsize=8.8, fontweight="bold",
+                    ax.annotate(f"{tm} ({emb_dg[i]:+.2f} eV)", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
+                                xytext=(0, 12), ha='center', fontsize=8.8, fontweight="bold",
                                 bbox=CARD_STYLE, zorder=6)
 
-            # High-visibility callout for Co(ads) Sabatier summit in panel (c)
+            # High-visibility callout for Co(ads) Sabatier summit in panel (b)
             ax.annotate(r"$\mathbf{Co\ (ads):}\ \Delta G = \mathbf{+0.065\,\mathrm{eV}}$" + "\n" + r"(Sabatier Summit)",
                         xy=(ads_dbc[0], ads_dg[0]), xytext=(-1.49, -0.38),
                         arrowprops=dict(arrowstyle="->", color="#1e8449", lw=1.4),
@@ -181,13 +170,8 @@ def main():
         ax.yaxis.set_minor_locator(MultipleLocator(0.1))
         ax.grid(True, linestyle=":", alpha=0.55, zorder=0)
 
-        if tier == 'pbe':
-            leg_loc = "lower right"
-        elif tier == 'ucr':
-            leg_loc = "upper left"
-        else: # uall
-            leg_loc = "upper right"
-        ax.legend(loc=leg_loc, frameon=True, facecolor="white", edgecolor="#cccccc", framealpha=0.92, fontsize=8.2)
+        leg_loc = "upper left" if tier == 'ucr' else "upper right"
+        ax.legend(loc=leg_loc, frameon=True, facecolor="white", edgecolor="#cccccc", framealpha=0.92, fontsize=8.5)
 
     plt.tight_layout()
 
@@ -200,7 +184,6 @@ def main():
     print(f"[OK] Saved {out_pdf}")
 
     # Copy to manuscript figure folders
-    import shutil
     for fig_dir in ACS_FIG_DIRS:
         if os.path.exists(fig_dir):
             dest_png = os.path.join(fig_dir, "Fig8.png")
