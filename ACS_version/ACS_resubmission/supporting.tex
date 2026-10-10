@@ -132,9 +132,9 @@ Time evolution of the total energy (blue curves, left axes) and instantaneous te
 
   \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth]{figure/new_sup_fig_4.png}
-    \caption*{Fig. S4. TM--Cl chemical-bonding analysis and relative stability of surface-adsorbed and embedded transition-metal configurations in monolayer CrCl$_3$. (a--c) Individual integrated crystal orbital Hamilton population (ICOHP) values for the Co--Cl, Fe--Cl, and Ni--Cl interactions, respectively. Dark bars correspond to the threefold coordinated surface-adsorbed configurations, whereas red bars correspond to the sixfold coordinated embedded configurations. More negative ICOHP values indicate stronger net bonding interactions. (d) Average ICOHP per TM--Cl bond for the adsorbed and embedded configurations. (e) Cumulative TM-Cl ICOHP obtained by summing the individual ICOHP contributions over the corresponding coordination shell.}
-    \label{fig:Fig7}
+    \includegraphics[width=0.98\textwidth]{figure/new_sup_fig_4.png}
+    \caption*{Fig. S4. TM--Cl chemical-bonding analysis and relative stability of surface-adsorbed and embedded transition-metal configurations in monolayer CrCl$_3$ under the multi-site $+U_{\mathrm{all}}$ tier ($U_{\mathrm{Cr}} = U_{\mathrm{TM}} = 3.29$~eV; consistent with Figure~6, with full Pure PBE and $+U_{\mathrm{all}}$ comparisons consolidated in Table~S4). (a--c) Individual integrated crystal orbital Hamilton population (ICOHP) values for the Co--Cl, Fe--Cl, and Ni--Cl interactions, respectively. Dark navy bars correspond to the threefold coordinated surface-adsorbed configurations at the $S_2$ hollow site, whereas red bars correspond to the sixfold coordinated embedded configurations. More negative ICOHP values indicate stronger net bonding interactions. (d) Average ICOHP per TM--Cl bond for the adsorbed and embedded configurations. (e) Cumulative TM--Cl ICOHP obtained by summing the individual ICOHP contributions over the corresponding coordination shell.}
+    \label{fig:FigS4}
   \end{figure}
 
   \begin{figure}[H]
@@ -307,6 +307,33 @@ Time evolution of the total energy (blue curves, left axes) and instantaneous te
     \end{adjustbox}
     \vspace{1ex}
     {\footnotesize $^*$Vibrational frequencies and thermodynamic entropy were computed via density functional perturbation theory / finite differences (\texttt{IBRION = 5}) by co-author Caique Campos de Oliveira. $U_{\text{eff}} = 3.29$~eV was applied to Cr-$3d$ via the Dudarev formulation with Grimme D3(BJ) dispersion.}
+  \end{table}
+
+  \clearpage
+  \subsection*{Table S4: Quantitative Crystal Orbital Hamilton Population (ICOHP) Bonding Analysis Across Functional Tiers}
+
+  \begin{table}[htbp]
+    \centering
+    \small
+    \caption*{Table S4. Quantitative Crystal Orbital Hamilton Population (COHP) and integrated ICOHP bonding parameters for surface-adsorbed ($S_2$ hollow) and embedded transition-metal centers (Co, Fe, Ni) in monolayer $\text{CrCl}_3$, comparing the Pure PBE baseline against the multi-site $+U_{\mathrm{all}}$ tier ($U_{\mathrm{Cr}} = U_{\mathrm{TM}} = 3.29$~eV; corresponding to Figure~\ref{fig:FigS4}). Values are evaluated at $E_{\mathrm{F}}$ using LOBSTER 4.1.0 with Bunge localized atomic basis projections. Individual bond pairs, equilibrium bond lengths ($d_{\mathrm{TM-Cl}}$ in \AA), average ICOHP per bond ($\langle\mathrm{ICOHP}\rangle$ in eV/bond), and cumulative ICOHP ($\sum\mathrm{ICOHP}$ in eV) are listed.}
+    \label{tab:icohp_master_comparison}
+    \begin{adjustbox}{max width=\linewidth}
+      \begin{tabular}{llccccccc}
+        \toprule
+        \textbf{System / Site} & \textbf{Coord.} & \textbf{Bond Pairs} & \multicolumn{2}{c}{$\boldsymbol{d_{\mathrm{TM-Cl}}}$ \textbf{(\AA)}} & \multicolumn{2}{c}{$\boldsymbol{\langle\mathrm{ICOHP}\rangle}$ \textbf{(eV/bond)}} & \multicolumn{2}{c}{$\boldsymbol{\sum\mathrm{ICOHP}}$ \textbf{(eV)}} \\
+        \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+        & & & \textbf{Pure PBE} & $\boldsymbol{+U_{\mathrm{all}}}$ & \textbf{Pure PBE} & $\boldsymbol{+U_{\mathrm{all}}}$ & \textbf{Pure PBE} & $\boldsymbol{+U_{\mathrm{all}}}$ \\
+        \midrule
+        $\text{CrCl}_3\text{--Co (ads)}$ & 3-fold Cl ($S_2$) & $\text{Cl}_{12}, \text{Cl}_{19}, \text{Cl}_{32}$ & $2.22$ & $2.21$ & $-2.23$ & $\mathbf{-2.16}$ & $-6.70$ & $\mathbf{-6.47}$ \\
+        $\text{CrCl}_3\text{--Fe (ads)}$ & 3-fold Cl ($S_2$) & $\text{Cl}_{12}, \text{Cl}_{19}, \text{Cl}_{32}$ & $2.26$ & $2.25$ & $-2.28$ & $\mathbf{-2.20}$ & $-6.84$ & $\mathbf{-6.60}$ \\
+        $\text{CrCl}_3\text{--Ni (ads)}$ & 3-fold Cl ($S_2$) & $\text{Cl}_{12}, \text{Cl}_{19}, \text{Cl}_{32}$ & $2.16$ & $2.16$ & $-2.06$ & $\mathbf{-1.98}$ & $-6.18$ & $\mathbf{-5.94}$ \\
+        \midrule
+        $\text{CrCl}_3\text{--Co (emb)}$ & 6-fold Cl (Pore) & $\text{Cl}_{11}, \text{Cl}_{13}, \text{Cl}_{20}, \text{Cl}_{23}, \text{Cl}_{25}, \text{Cl}_{32}$ & $2.47$--$2.48$ & $2.40$--$2.49$ & $-1.87$ & $\mathbf{-1.95}$ & $-11.22$ & $\mathbf{-11.70}$ \\
+        $\text{CrCl}_3\text{--Fe (emb)}$ & 6-fold Cl (Pore) & $\text{Cl}_{11}, \text{Cl}_{13}, \text{Cl}_{20}, \text{Cl}_{23}, \text{Cl}_{25}, \text{Cl}_{32}$ & $2.50$--$2.51$ & $2.44$--$2.50$ & $-1.90$ & $\mathbf{-1.98}$ & $-11.40$ & $\mathbf{-11.90}$ \\
+        $\text{CrCl}_3\text{--Ni (emb)}$ & 6-fold Cl (Pore) & $\text{Cl}_{11}, \text{Cl}_{13}, \text{Cl}_{20}, \text{Cl}_{23}, \text{Cl}_{25}, \text{Cl}_{32}$ & $2.34$--$2.95$ & $2.36$--$2.48$ & $-1.67$ & $\mathbf{-1.69}$ & $-10.01$ & $\mathbf{-10.13}$ \\
+        \bottomrule
+      \end{tabular}
+    \end{adjustbox}
   \end{table}
 
   \clearpage

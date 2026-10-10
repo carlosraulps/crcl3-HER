@@ -16,8 +16,8 @@ plt.rcParams['font.serif'] = ['Times New Roman'] + plt.rcParams['font.serif']
 plt.rcParams['mathtext.fontset'] = 'stix'
 
 systems = [
-    "adsorbed/co", "adsorbed/fe", "adsorbed/ni",
-    "embedded/co", "embedded/fe", "embedded/ni"
+    "cohp_lobster_Uall/adsorbed/Co", "cohp_lobster_Uall/adsorbed/Fe", "cohp_lobster_Uall/adsorbed/Ni",
+    "cohp_lobster_Uall/embedded/Co", "cohp_lobster_Uall/embedded/Fe", "cohp_lobster_Uall/embedded/Ni"
 ]
 
 results = {}
@@ -113,11 +113,11 @@ for name in systems:
 # 2. Plot Overview (Average vs Cumulative)
 # ----------------------------------------------------
 tms = ['Co', 'Fe', 'Ni']
-avg_ads = [results['adsorbed/co']['avg_icohp'], results['adsorbed/fe']['avg_icohp'], results['adsorbed/ni']['avg_icohp']]
-avg_emb = [results['embedded/co']['avg_icohp'], results['embedded/fe']['avg_icohp'], results['embedded/ni']['avg_icohp']]
+avg_ads = [results[f'cohp_lobster_Uall/adsorbed/{tm}']['avg_icohp'] for tm in tms]
+avg_emb = [results[f'cohp_lobster_Uall/embedded/{tm}']['avg_icohp'] for tm in tms]
 
-cum_ads = [results['adsorbed/co']['cumulative_icohp'], results['adsorbed/fe']['cumulative_icohp'], results['adsorbed/ni']['cumulative_icohp']]
-cum_emb = [results['embedded/co']['cumulative_icohp'], results['embedded/fe']['cumulative_icohp'], results['embedded/ni']['cumulative_icohp']]
+cum_ads = [results[f'cohp_lobster_Uall/adsorbed/{tm}']['cumulative_icohp'] for tm in tms]
+cum_emb = [results[f'cohp_lobster_Uall/embedded/{tm}']['cumulative_icohp'] for tm in tms]
 
 x = np.arange(len(tms))
 width = 0.35
@@ -191,8 +191,8 @@ for idx, tm in enumerate(tms_names):
     ax = axes[idx]
     
     # Collect bonds for this metal
-    ads_bonds = results[f'adsorbed/{tm.lower()}']['bonds']
-    emb_bonds = results[f'embedded/{tm.lower()}']['bonds']
+    ads_bonds = results[f'cohp_lobster_Uall/adsorbed/{tm}']['bonds']
+    emb_bonds = results[f'cohp_lobster_Uall/embedded/{tm}']['bonds']
     
     all_bonds = []
     for b in ads_bonds:
