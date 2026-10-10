@@ -134,7 +134,10 @@ def main():
         else: # tier == 'uall'
             for i, tm in enumerate(metals):
                 if tm == "Co":
-                    continue
+                    # Co(emb) annotation; Co(ads) is handled by the dedicated green callout
+                    ax.annotate(f"{tm} (emb)\n({emb_dg[i]:+.2f} eV)", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
+                                xytext=(0, 12), ha='center', fontsize=8.8, fontweight="bold",
+                                bbox=CARD_STYLE, zorder=6)
                 elif tm == "Fe":
                     # Stagger Fe(ads) left and Fe(emb) right to prevent horizontal overlap
                     ax.annotate(f"{tm} (ads)\n({ads_dg[i]:+.2f} eV)", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
@@ -144,10 +147,10 @@ def main():
                                 xytext=(28, 12), ha='center', fontsize=8.8, fontweight="bold",
                                 bbox=CARD_STYLE, zorder=6)
                 else: # Ni
-                    ax.annotate(f"{tm} ({ads_dg[i]:+.2f} eV)", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
+                    ax.annotate(f"{tm} (ads)\n({ads_dg[i]:+.2f} eV)", (ads_dbc[i], ads_dg[i]), textcoords="offset points",
                                 xytext=(0, 12), ha='center', fontsize=8.8, fontweight="bold",
                                 bbox=CARD_STYLE, zorder=6)
-                    ax.annotate(f"{tm} ({emb_dg[i]:+.2f} eV)", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
+                    ax.annotate(f"{tm} (emb)\n({emb_dg[i]:+.2f} eV)", (emb_dbc[i], emb_dg[i]), textcoords="offset points",
                                 xytext=(0, 12), ha='center', fontsize=8.8, fontweight="bold",
                                 bbox=CARD_STYLE, zorder=6)
 
