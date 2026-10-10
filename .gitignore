@@ -13,7 +13,15 @@ TMPCAR*
 POTCAR*
 AECCAR*
 
+# --- LOBSTER Intermediate & Auxiliary Outputs ---
+*.lobster
+!**/COHPCAR.lobster
+!**/ICOHPLIST.lobster
+*.lobster.vasp
+projectionData.lobster
+
 # --- VASP Intermediate & Heavy Outputs ---
+projectionData.lobster
 DOSCAR*
 EIGENVAL*
 PROCAR*

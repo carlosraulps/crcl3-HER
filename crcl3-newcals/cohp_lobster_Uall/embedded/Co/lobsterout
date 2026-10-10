@@ -1,0 +1,107 @@
+LOBSTER v5.1.1 (g++ 9.3.0)
+Copyright (C) 2024 by Chair of Solid-State and Quantum Chemistry, RWTH Aachen.
+All rights reserved. Contributions by S. Maintz, V. L. Deringer, M. Esser, R. Nelson, C. Ertural, P. C. Mueller, M. Pauls, L. Sann, D. Schnieders, A. L. Tchougreeff, and R. Dronskowski
+starting on host huk128 on 2026-10-09 at 13:41:25 UTC using 1 thread
+detecting used PAW program... VASP
+initializing PW system...
+initializing Augmentations...
+recommended basis functions:
+Cl 3p 3s 
+Co 3d 4s 
+Cr 3d 4s 
+initializing LCAO system...
+setting up local basis functions...
+WARNING: You did not specify any basis functions in the lobsterin file.
+WARNING: Thus I will default to userecommendedbasisfunctions
+Cl (pbevaspfit2015) 3s 3p_y 3p_z 3p_x 
+Co (pbevaspfit2015) 4s 3d_xy 3d_yz 3d_z^2 3d_xz 3d_x^2-y^2 
+Cr (pbevaspfit2015) 4s 3d_xy 3d_yz 3d_z^2 3d_xz 3d_x^2-y^2 
+INFO: There are more PAW bands than local basis functions available.
+INFO: To prevent trouble in orthonormalization and Hamiltonian reconstruction
+INFO: the PAW bands from 151 and upwards will be ignored.
+setting up CO interactions...
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 9"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 10"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 11"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 12"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 13"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 14"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 15"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 16"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 17"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 18"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 19"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 20"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 21"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 22"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 23"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 24"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 25"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 26"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 27"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 28"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 29"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 30"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 31"
+WARNING: There is a syntax error in a cohpbetween line in the lobsterin file.
+WARNING: ignoring line "cohpBetweenAtom 33 and 32"
+WARNING: You did not specify any COHP pairs in the lobsterin file. As default
+WARNING: I will try to find any pairs between 1.0 and 3.0 A distance,
+WARNING: but that might be wrong. If you want pCOHPs or pCOOPs, change the lobsterin!
+ found 46 interactions.
+projecting...
+WARNING: Cannot use the tetrahedron method for k-space integration and must fall
+WARNING: back to Gaussian smearing which can take significantly longer. Make
+WARNING: sure to use the tetrahedron method whenever applicable.
+
+calculating overlaps...
+post-processing projection...
+saving projection to projectionData.lobster...
+spillings for spin channel 1
+abs. charge spilling:   0.76%
+
+spillings for spin channel 2
+abs. charge spilling:   0.76%
+
+NOTE: The spilling is a measure for the relocation, *not* the absence of electrons.
+number of electrons recovered by projection: 225.0000 of 225
+
+calculating pDOS... using Gaussian smearing integration (sigma=0.2eV)
+writing DOSCAR.lobster...
+writing COOPCAR.lobster...
+Writing ICOOPLIST.lobster
+calculating pCOHPs... using Gaussian smearing integration (sigma=0.2eV)
+writing COHPCAR.lobster...
+Writing ICOHPLIST.lobster
+writing COBICAR.lobster...
+Writing ICOBILIST.lobster
+writing CHARGE.lobster and GROSSPOP.lobster...
+writing polarization to POLARIZATION.lobster...
+calculating Madelung energies...
+writing SitePotentials.lobster and MadelungEnergies.lobster...
+finished in 1 h  9 min 19 s 743 ms of wall time
+            1 h  9 min  6 s 300 ms of user time
+            0 h  0 min  1 s 290 ms of sys  time
