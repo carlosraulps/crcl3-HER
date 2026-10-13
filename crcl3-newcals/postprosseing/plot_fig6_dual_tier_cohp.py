@@ -5,15 +5,19 @@ plot_fig6_dual_tier_cohp.py
 Generates publication-quality COHP plots (-COHP vs E - E_F) for:
   1. Pure PBE baseline (crcl3-newcals/past-calculations) -> Fig6_PBE_baseline.png/.pdf
   2. Multi-site +U_all = 3.29 eV (crcl3-newcals/cohp_lobster_Uall) -> Fig6_Uall.png/.pdf and Fig6.png/.pdf
+  3. Single-site +U_Cr = 3.29 eV (crcl3-newcals/cohp_lobster_Ucr) -> Fig6_Ucr.png/.pdf
 
 Adheres strictly to GEMINI.md Publication Anti-Collision Policy:
   - STIX math & Times New Roman typography
-  - Zero-overlap legends and annotations with smart bounded cards
+  - Legends placed at lower-right (away from -COHP antibonding features)
+  - Subpanel titles (letter, element, mode) placed at top-right
+  - Zero-overlap smart cards with semi-transparent background
   - Standardized axis ranges: [-1.8, 3.8] for -COHP, [-9.0, 3.5] eV for E - E_F
 """
 
 import os
 import re
+import shutil
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
@@ -119,6 +123,11 @@ def plot_cohp_suite(mode_dir, out_prefix, title_suffix):
             'energies': energies, 'curves': cohp_curves, 'icohps': icohps
         }
 
+    # If no data found at all, skip generation
+    if not results:
+        print(f"No COHP datasets found for {out_prefix}. Skipping plot.")
+        return
+
     fig, axes = plt.subplots(2, 3, figsize=(13.2, 8.4), sharex=True, sharey=True)
     color_cycles = {
         'Co': ['#1f77b4', '#41b6c4', '#225ea8', '#081d58', '#006d2c', '#74c476'],
@@ -150,13 +159,17 @@ def plot_cohp_suite(mode_dir, out_prefix, title_suffix):
                         
             p_lbl = panel_labels[row_idx][col_idx]
             m_txt = 'Surface Adsorbed' if mode == 'adsorbed' else 'Embedded Pore'
-            ax.text(0.04, 0.94, f'{p_lbl} {tm} ({m_txt})',
-                    transform=ax.transAxes, fontsize=12, fontweight='bold',
+            
+            # Subpanel title moved to top-right with anti-collision card
+            ax.text(0.96, 0.94, f'{p_lbl} {tm} ({m_txt})',
+                    transform=ax.transAxes, fontsize=11.5, fontweight='bold',
+                    ha='right', va='top',
                     bbox=dict(boxstyle='round,pad=0.25', facecolor='white',
                              edgecolor='#cccccc', alpha=0.92, linewidth=0.7))
                              
-            ax.legend(loc='lower left', frameon=True, facecolor='white',
-                      framealpha=0.92, fontsize=9.5, borderpad=0.35,
+            # Legends moved to lower-right (away from left-hand antibonding features)
+            ax.legend(loc='lower right', frameon=True, facecolor='white',
+                      framealpha=0.92, fontsize=9.0, borderpad=0.35,
                       handlelength=1.2, labelspacing=0.25)
             ax.set_ylim(-9.0, 3.5)
             ax.set_xlim(-1.8, 3.8)
@@ -178,10 +191,19 @@ def plot_cohp_suite(mode_dir, out_prefix, title_suffix):
     plt.close()
     print(f'Generated: {post_png} and {post_pdf}')
     
-    # Sync to ACS resubmission figure directory
+    # 1. Sync to images-juan directory
+    juan_dir = os.path.abspath(os.path.join(script_dir, 'images-juan/06_Fig6_COHP_Bonding_Analysis'))
+    if os.path.exists(juan_dir):
+        shutil.copy2(post_png, os.path.join(juan_dir, f'{out_prefix}.png'))
+        shutil.copy2(post_pdf, os.path.join(juan_dir, f'{out_prefix}.pdf'))
+        if out_prefix == 'Fig6_Uall':
+            shutil.copy2(post_png, os.path.join(juan_dir, 'Fig6.png'))
+            shutil.copy2(post_pdf, os.path.join(juan_dir, 'Fig6.pdf'))
+        print(f'Synced to images-juan: {juan_dir}')
+
+    # 2. Sync to ACS resubmission figure directory
     acs_fig_dir = os.path.abspath(os.path.join(script_dir, '../../ACS_version/ACS_resubmission/figure'))
     if os.path.exists(acs_fig_dir):
-        import shutil
         shutil.copy2(post_png, os.path.join(acs_fig_dir, f'{out_prefix}.png'))
         shutil.copy2(post_pdf, os.path.join(acs_fig_dir, f'{out_prefix}.pdf'))
         if out_prefix == 'Fig6_Uall':
@@ -193,10 +215,15 @@ if __name__ == '__main__':
     script_dir = os.path.dirname(os.path.abspath(__file__))
     base_dir = os.path.abspath(os.path.join(script_dir, '..'))
     
-    # 1. PBE Baseline
-    past_dir = os.path.join(base_dir, 'past-calculations')
-    plot_cohp_suite(past_dir, 'Fig6_PBE_baseline', r'Pure PBE Baseline')
-
-    # 2. U_all
+    # 1. Multi-site +U_all
     uall_dir = os.path.join(base_dir, 'cohp_lobster_Uall')
     plot_cohp_suite(uall_dir, 'Fig6_Uall', r'$+U_{\mathrm{all}} = 3.29\,\mathrm{eV}$')
+
+    # 2. Single-site +U_Cr
+    ucr_dir = os.path.join(base_dir, 'cohp_lobster_Ucr')
+    plot_cohp_suite(ucr_dir, 'Fig6_Ucr', r'$+U_{\mathrm{Cr}} = 3.29\,\mathrm{eV}$')
+
+    # 3. Pure PBE Baseline (if past-calculations exists)
+    past_dir = os.path.join(base_dir, 'past-calculations')
+    if os.path.exists(past_dir):
+        plot_cohp_suite(past_dir, 'Fig6_PBE_baseline', r'Pure PBE Baseline')
