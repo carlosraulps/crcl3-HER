@@ -65,6 +65,7 @@ REPORT*
 *.lot
 *.run.xml
 *.bcf
+*.xdv
 
 # --- Python Build, Packaging & Binary Artifacts ---
 build/
