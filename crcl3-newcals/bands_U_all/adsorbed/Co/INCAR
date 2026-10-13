@@ -1,0 +1,23 @@
+PREC     = Accurate
+ENCUT    = 400.0
+EDIFF    = 1.0E-06
+
+ISPIN    = 2
+ICHARG   = 11
+
+ISMEAR   = 0
+SIGMA    = 0.05
+NCORE    = 4
+
+IVDW     = 12
+
+LDAU     = .TRUE.
+LDAUL    = 2 -1 2
+LDAUU    = 3.29 0.00 3.29
+LMAXMIX  = 4
+LASPH    = .TRUE.
+
+LORBIT   = 11
+
+LWAVE    = .FALSE.
+LCHARG   = .FALSE.

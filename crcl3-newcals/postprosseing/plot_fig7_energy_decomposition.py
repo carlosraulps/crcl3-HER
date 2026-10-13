@@ -165,6 +165,25 @@ def render_panels(tier="pbe_d3_u", dpi=300):
         yticks_g = [-2.5, -2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0]
         yticks_h = [-2.0, -1.0, 0.0, 1.0, 2.0]
 
+    elif tier == "u_all":
+        # Surface-adsorbed (g) under Multi-Site +U_all (3.29 eV)
+        g_eint = np.array([-2.40, -1.35, -1.55])
+        g_edef = np.array([0.23, 0.98, 0.52])
+        g_dg   = np.array([0.07, 1.84, 1.18])
+        g_dg_labels = ["0.07", "1.84", "1.18"]
+
+        # Embedded (h) under Multi-Site +U_all (3.29 eV)
+        h_eint = np.array([-0.92, -1.32, -0.78])
+        h_edef = np.array([0.20, 0.91, 0.81])
+        h_dg   = np.array([1.39, 1.82, 1.02])
+        h_dg_labels = ["1.39", "1.82", "1.02"]
+
+        # Y-limits with adaptive headroom (+25%)
+        ylim_g = (-2.85, 2.45)
+        ylim_h = (-2.10, 2.45)
+        yticks_g = [-2.5, -2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0, 1.5, 2.0]
+        yticks_h = [-2.0, -1.0, 0.0, 1.0, 2.0]
+
     elif tier == "pbe_baseline":
         # Surface-adsorbed (g)
         g_eint = np.array([-2.46, -2.35, -1.69])
@@ -499,29 +518,51 @@ def generate_composite_fig7_replacement(tier="pbe_d3_u"):
     composite.save(out_comp)
     print(f"[✓] Saved full composite: {out_comp}")
 
-    # Also update Fig7_updated_newcals_preview.png if tier is pbe_d3_u
-    if tier == "pbe_d3_u":
+    if tier == "u_all":
+        out_uall_png = os.path.join(POST_DIR, "Fig7_Uall.png")
+        out_uall_pdf = os.path.join(POST_DIR, "Fig7_Uall.pdf")
+        composite.save(out_uall_png)
+        composite.save(out_uall_pdf, "PDF", resolution=300.0)
+        print(f"[✓] Saved Fig7_Uall deliverables: {out_uall_png} and {out_uall_pdf}")
+
+    elif tier == "pbe_d3_u":
+        out_ucr_png = os.path.join(POST_DIR, "Fig7_Ucr.png")
+        out_ucr_pdf = os.path.join(POST_DIR, "Fig7_Ucr.pdf")
+        composite.save(out_ucr_png)
+        composite.save(out_ucr_pdf, "PDF", resolution=300.0)
         preview_path = os.path.join(POST_DIR, "Fig7_updated_newcals_preview.png")
         composite.save(preview_path)
-        print(f"[✓] Updated preview: {preview_path}")
+        print(f"[✓] Saved Fig7_Ucr deliverables: {out_ucr_png} and {out_ucr_pdf}")
 
         # Also update resubmission manuscript figure so LaTeX uses the full-res figure
         resub_fig7 = os.path.join(FIG_DIR, "Fig7.png")
         composite.save(resub_fig7)
+        composite.save(os.path.join(FIG_DIR, "Fig7.pdf"), "PDF", resolution=300.0)
         print(f"[✓] Updated resubmission manuscript figure: {resub_fig7}")
+
+    elif tier == "pbe_baseline":
+        out_pbe_png = os.path.join(POST_DIR, "Fig7_PBE_baseline.png")
+        out_pbe_pdf = os.path.join(POST_DIR, "Fig7_PBE_baseline.pdf")
+        composite.save(out_pbe_png)
+        composite.save(out_pbe_pdf, "PDF", resolution=300.0)
+        print(f"[✓] Saved Fig7_PBE_baseline deliverables: {out_pbe_png} and {out_pbe_pdf}")
 
 
 if __name__ == "__main__":
     print("Generating Figure 7 panels (g) and (h) with new calculation results...")
-    # 1. PBE+D3+U (Tier 3)
+    # 1. PBE+D3+U_Cr (Single-site Dudarev U_Cr = 3.29 eV)
     render_panels(tier="pbe_d3_u", dpi=300)
     generate_composite_fig7_replacement(tier="pbe_d3_u")
 
-    # 2. Pure PBE baseline (converged)
+    # 2. Multi-site +U_all (U_Cr = U_TM = 3.29 eV)
+    render_panels(tier="u_all", dpi=300)
+    generate_composite_fig7_replacement(tier="u_all")
+
+    # 3. Pure PBE baseline (converged)
     render_panels(tier="pbe_baseline", dpi=300)
     generate_composite_fig7_replacement(tier="pbe_baseline")
 
-    # 3. Multitier comparison
+    # 4. Multitier comparison
     render_multitier_comparison(dpi=300)
 
     print("All tasks completed successfully!")

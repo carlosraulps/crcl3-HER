@@ -345,12 +345,15 @@ def plot_fig5_suite(base_dir, out_dir="crcl3-newcals"):
                           framealpha=0.94, edgecolor='#cccccc', fontsize=11.0,
                           handlelength=1.3, handletextpad=0.35, borderpad=0.3)
 
-    fig.suptitle(r'Spin-Resolved Band Structures and Projected DOS of Functionalized Monolayer $\mathrm{CrCl}_3$ ($+U_{\mathrm{all}} = 3.29\,\mathrm{eV}$)',
+    is_ucr = "U_Cr" in base_dir or "Ucr" in base_dir
+    u_label = r'$+U_{\mathrm{Cr}} = 3.29\,\mathrm{eV}$' if is_ucr else r'$+U_{\mathrm{all}} = 3.29\,\mathrm{eV}$'
+    fig.suptitle(rf'Spin-Resolved Band Structures and Projected DOS of Functionalized Monolayer $\mathrm{{CrCl}}_3$ ({u_label})',
                  fontsize=14.5, fontweight='bold', y=0.985)
 
     os.makedirs(out_dir, exist_ok=True)
-    out_png = os.path.join(out_dir, "Fig5_Uall_bands_pdos.png")
-    out_pdf = os.path.join(out_dir, "Fig5_Uall_bands_pdos.pdf")
+    prefix = "Fig5_Ucr" if is_ucr else "Fig5_Uall"
+    out_png = os.path.join(out_dir, f"{prefix}_bands_pdos.png")
+    out_pdf = os.path.join(out_dir, f"{prefix}_bands_pdos.pdf")
     plt.savefig(out_png, dpi=300)
     plt.savefig(out_pdf)
     plt.close()
@@ -361,12 +364,19 @@ def plot_fig5_suite(base_dir, out_dir="crcl3-newcals"):
     import shutil
     for fig_dir in ["ACS_version/figure", "ACS_version/ACS_resubmission/figure"]:
         if os.path.exists(fig_dir):
-            dest_png = os.path.join(fig_dir, "Fig5.png")
-            dest_pdf = os.path.join(fig_dir, "Fig5.pdf")
-            shutil.copy2(out_png, dest_png)
-            shutil.copy2(out_pdf, dest_pdf)
-            print(f"Updated manuscript figure: {dest_png}")
-            print(f"Updated manuscript figure: {dest_pdf}")
+            if is_ucr:
+                shutil.copy2(out_png, os.path.join(fig_dir, "Fig5_Ucr.png"))
+                shutil.copy2(out_pdf, os.path.join(fig_dir, "Fig5_Ucr.pdf"))
+                print(f"Updated companion figure: {os.path.join(fig_dir, 'Fig5_Ucr.pdf')}")
+            else:
+                dest_png = os.path.join(fig_dir, "Fig5.png")
+                dest_pdf = os.path.join(fig_dir, "Fig5.pdf")
+                shutil.copy2(out_png, dest_png)
+                shutil.copy2(out_pdf, dest_pdf)
+                shutil.copy2(out_png, os.path.join(fig_dir, "Fig5_Uall.png"))
+                shutil.copy2(out_pdf, os.path.join(fig_dir, "Fig5_Uall.pdf"))
+                print(f"Updated manuscript figure: {dest_png}")
+                print(f"Updated manuscript figure: {dest_pdf}")
 
 if __name__ == '__main__':
     base_dir = sys.argv[1] if len(sys.argv) > 1 else "crcl3-newcals/bands_U_all"
