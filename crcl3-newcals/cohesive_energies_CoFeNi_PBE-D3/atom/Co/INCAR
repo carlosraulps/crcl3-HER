@@ -1,0 +1,22 @@
+# VASP INCAR: atom/Co Isolated Atom PBE-D3(BJ)
+PREC     = Accurate
+ENCUT    = 400.0
+EDIFF    = 1.0E-06
+NELM     = 120
+
+ISPIN    = 2
+MAGMOM   = 3.0
+
+ISMEAR   = 0
+SIGMA    = 0.01
+
+IVDW     = 12
+
+IBRION   = -1
+NSW      = 0
+
+LREAL    = .FALSE.
+NCORE    = 1
+LASPH    = .TRUE.
+LWAVE    = .FALSE.
+LCHARG   = .FALSE.
