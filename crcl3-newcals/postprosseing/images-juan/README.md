@@ -63,7 +63,8 @@ images-juan/
 │   ├── Fig6.pdf                      [Manuscript marked submission version]
 │   ├── Fig6.png                      [Manuscript marked submission version]
 │   ├── new_sup_fig_4.pdf             [SI Fig. S4: Integrated ICOHP bar charts for all TM-Cl bonds]
-│   └── new_sup_fig_4.png
+│   ├── new_sup_fig_4.png
+│   └── COHP_Ucr_Calculation_Package/ [Self-contained VASP+LOBSTER package (+U_Cr) for private Slurm cluster]
 │
 ├── 07_Fig7_HER_Thermodynamics/
 │   ├── Fig7_Uall.pdf                 [Vector-wrapped high-res PDF (+U_all tier: U_Cr = U_TM = 3.29 eV)]
@@ -177,6 +178,7 @@ images-juan/
 - **Tiers Provided:**
   - Multi-site $+U_{\mathrm{all}} = 3.29\text{ eV}$ (from `cohp_lobster_Uall`).
   - Pure PBE Baseline (from `past-calculations`).
+  - Single-site $+U_{\mathrm{Cr}} = 3.29\text{ eV}$ Package: Provided under `COHP_Ucr_Calculation_Package/` with complete inputs (INCAR, POSCAR, POTCAR, KPOINTS, lobsterin) and Slurm scripts for high-throughput execution on private clusters.
   - Supplementary Fig. S4: Quantitative Integrated ICOHP bar chart comparing average and cumulative bond strengths.
 
 ---
