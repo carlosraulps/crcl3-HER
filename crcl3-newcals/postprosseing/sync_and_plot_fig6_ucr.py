@@ -33,7 +33,7 @@ def check_remote_status():
 
 def check_remote_completed_cohps():
     cmd = ["ssh", "-o", "BatchMode=yes", "-o", "ConnectTimeout=8", REMOTE_HOST, 
-           f"for m in adsorbed embedded; do for tm in Co Fe Ni; do f={REMOTE_UCR_DIR}/$m/$tm/COHPCAR.lobster; [ -s $f ] && echo $m/$tm; done; done"]
+           f"for m in adsorbed embedded; do for tm in Co Fe Ni; do f={REMOTE_UCR_DIR}/$m/$tm/COHPCAR.lobster; [ -s $f ] && echo $m/$tm; done; done; true"]
     try:
         res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
         lines = [line.strip() for line in res.stdout.strip().splitlines() if line.strip()]
@@ -88,10 +88,11 @@ if __name__ == "__main__":
     
     if len(completed) > 0:
         sync_completed_cohps()
+        run_plot_pipeline()
         
     missing = verify_local_completion()
     if not missing:
-        run_plot_pipeline()
+        print("[✔] All 6 systems converged and fully plotted!")
     else:
-        print(f"Waiting on {len(missing)} system(s): {', '.join(missing)}")
+        print(f"Waiting on {len(missing)} remaining system(s): {', '.join(missing)}")
     print("=" * 70)
