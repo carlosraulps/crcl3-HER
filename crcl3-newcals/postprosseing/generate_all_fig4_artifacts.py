@@ -95,7 +95,8 @@ def main():
         
         # 2. Assemble figure canvas
         canvas = base_img.copy()
-        canvas[20:980, 360:4450] = 255
+        # Clear from x = 230 to 4450 to eliminate leftover old panel corners near the legend
+        canvas[20:980, 230:4450] = 255
         
         rh_list = [rh_co_s, rh_fe_s, rh_ni_s]
         for cx, rh in zip(centers_x, rh_list):
