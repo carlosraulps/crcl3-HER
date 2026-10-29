@@ -1,0 +1,17 @@
+PREC     = Accurate
+ENCUT    = 500
+EDIFF    = 1E-06
+NSW      = 0
+IBRION   = -1
+ISMEAR   = 0
+SIGMA    = 0.01
+ISPIN    = 2
+MAGMOM   = 3.0
+LDAU     = .FALSE.
+LREAL    = Auto
+NCORE    = 8
+AMIX     = 0.2
+BMIX     = 0.0001
+NELM     = 80
+LCHARG   = .TRUE.
+LWAVE    = .FALSE.

@@ -1,7 +1,11 @@
 LOBSTER v5.1.1 (g++ 9.3.0)
 Copyright (C) 2024 by Chair of Solid-State and Quantum Chemistry, RWTH Aachen.
 All rights reserved. Contributions by S. Maintz, V. L. Deringer, M. Esser, R. Nelson, C. Ertural, P. C. Mueller, M. Pauls, L. Sann, D. Schnieders, A. L. Tchougreeff, and R. Dronskowski
+<<<<<<< HEAD
 starting on host huk122 on 2026-10-14 at 20:39:14 UTC using 1 thread
+=======
+starting on host huk128 on 2026-10-14 at 20:40:29 UTC using 1 thread
+>>>>>>> origin/master
 detecting used PAW program... VASP
 initializing PW system...
 initializing Augmentations...
@@ -81,10 +85,17 @@ calculating overlaps...
 post-processing projection...
 saving projection to projectionData.lobster...
 spillings for spin channel 1
+<<<<<<< HEAD
 abs. charge spilling:   0.81%
 
 spillings for spin channel 2
 abs. charge spilling:   0.74%
+=======
+abs. charge spilling:   0.82%
+
+spillings for spin channel 2
+abs. charge spilling:   0.80%
+>>>>>>> origin/master
 
 NOTE: The spilling is a measure for the relocation, *not* the absence of electrons.
 number of electrons recovered by projection: 226.0000 of 226
@@ -102,6 +113,12 @@ writing CHARGE.lobster and GROSSPOP.lobster...
 writing polarization to POLARIZATION.lobster...
 calculating Madelung energies...
 writing SitePotentials.lobster and MadelungEnergies.lobster...
+<<<<<<< HEAD
 finished in 1 h  2 min  4 s 237 ms of wall time
             1 h  1 min 52 s 620 ms of user time
             0 h  0 min  1 s 160 ms of sys  time
+=======
+finished in 1 h  9 min 43 s 516 ms of wall time
+            1 h  9 min 29 s 800 ms of user time
+            0 h  0 min  1 s 260 ms of sys  time
+>>>>>>> origin/master
