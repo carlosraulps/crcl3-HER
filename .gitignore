@@ -17,8 +17,8 @@ AECCAR*
 *.lobster
 !**/COHPCAR.lobster
 !**/ICOHPLIST.lobster
-*.lobster.vasp
-projectionData.lobster
+# --- Temporary Parallel scratch directories ---
+*_parallel/
 
 # --- VASP Intermediate & Heavy Outputs ---
 projectionData.lobster
