@@ -1,0 +1,8 @@
+{
+  "isovalue_e_per_A3": 0.02,
+  "opacity": 0.4,
+  "pdf_lossless": true,
+  "lower_panels_preserved": true,
+  "atom_legend_preserved": true,
+  "tests_passed": 3
+}

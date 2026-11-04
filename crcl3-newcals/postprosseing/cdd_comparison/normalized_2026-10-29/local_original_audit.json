@@ -1,0 +1,139 @@
+[
+  {
+    "metal": "co",
+    "tier": "ucr",
+    "grid": [
+      180,
+      180,
+      300
+    ],
+    "points": 9720000,
+    "volume": 2532.773504755897,
+    "integral_e": 6.355972703806903e-08,
+    "min_raw": -1565.14720881,
+    "max_raw": 1541.47325562,
+    "rho_abs_p99": 0.018327568616592033,
+    "z_tm": 11.830400000000001,
+    "z_cr_mean": 9.979765,
+    "source": "crcl3-newcals/postprosseing/cdd_comparison/CHGCAR_diff_Ucr",
+    "sha256": "a7b7042dc2487cf734089515a6ad12f5ac37fff806098b0ae87fec344979ee07",
+    "matching_structures": [
+      "crcl3-newcals/crcl3-2x2-CoFeNi-sites-vdw12-U_all3.29/Co/S2/CONTCAR",
+      "crcl3-newcals/crcl3-2x2-Co-S2-U_all3.29/01_relax/CONTCAR"
+    ]
+  },
+  {
+    "metal": "co",
+    "tier": "uall",
+    "grid": [
+      180,
+      180,
+      300
+    ],
+    "points": 9720000,
+    "volume": 2532.773504755897,
+    "integral_e": 1.9863235183086997e-07,
+    "min_raw": -1839.49470256,
+    "max_raw": 1977.18967022,
+    "rho_abs_p99": 0.015984895535576898,
+    "z_tm": 11.830400000000001,
+    "z_cr_mean": 9.979765,
+    "source": "crcl3-newcals/postprosseing/cdd_comparison/CHGCAR_diff_Uall",
+    "sha256": "5ca863881e211fdf5762a3d2ec063bcb33f449d7fd8dc1b2fb1dd857274f5c74",
+    "matching_structures": [
+      "crcl3-newcals/crcl3-2x2-CoFeNi-sites-vdw12-U_all3.29/Co/S2/CONTCAR",
+      "crcl3-newcals/crcl3-2x2-Co-S2-U_all3.29/01_relax/CONTCAR"
+    ]
+  },
+  {
+    "metal": "fe",
+    "tier": "ucr",
+    "grid": [
+      160,
+      160,
+      280
+    ],
+    "points": 7168000,
+    "volume": 2532.773504755897,
+    "integral_e": 2.1430342972702677e-06,
+    "min_raw": -3419.39717369,
+    "max_raw": 3438.11749749,
+    "rho_abs_p99": 0.3900775440580736,
+    "z_tm": 10.269060000000001,
+    "z_cr_mean": 10.093085000000002,
+    "source": "crcl3-newcals/postprosseing/cdd_comparison/fe_ucr/CHGCAR_diff",
+    "sha256": "da60f17c20f7c8f0cccb28f1234cd334f5b1414f6526f3bed6798d32401274e4",
+    "matching_structures": [
+      "crcl3-newcals/crcl3-2x2-fe_ads-with-U/yes_vdw/S1/CONTCAR"
+    ]
+  },
+  {
+    "metal": "fe",
+    "tier": "uall",
+    "grid": [
+      160,
+      160,
+      280
+    ],
+    "points": 7168000,
+    "volume": 2532.773504755897,
+    "integral_e": 2.668676349588038e-06,
+    "min_raw": -3487.31476184,
+    "max_raw": 3471.02625514,
+    "rho_abs_p99": 0.3890528439179623,
+    "z_tm": 10.263359999999999,
+    "z_cr_mean": 10.093795,
+    "source": "crcl3-newcals/postprosseing/cdd_comparison/fe_uall/CHGCAR_diff",
+    "sha256": "083d87350d3812a959e7cf232b5c84da48553250ead023fa9c5cfb5c9d7f1aa2",
+    "matching_structures": [
+      "crcl3-newcals/bands_U_all/adsorbed/Fe/CONTCAR",
+      "crcl3-newcals/crcl3-2x2-CoFeNi-vdw12-U_all3.29/adsorbed/Fe/clean/CONTCAR"
+    ]
+  },
+  {
+    "metal": "ni",
+    "tier": "ucr",
+    "grid": [
+      160,
+      160,
+      280
+    ],
+    "points": 7168000,
+    "volume": 2532.773504755897,
+    "integral_e": 1.171511969216356e-06,
+    "min_raw": -1729.52940262,
+    "max_raw": 1626.36806464,
+    "rho_abs_p99": 0.10959748474262132,
+    "z_tm": 11.422159999999998,
+    "z_cr_mean": 9.996095,
+    "source": "crcl3-newcals/postprosseing/cdd_comparison/ni_ucr/CHGCAR_diff",
+    "sha256": "9070a0ca71dd52b3ca0dc2459ba7b044f9395e67eb5af85d1b92c050bc428a93",
+    "matching_structures": [
+      "crcl3-newcals/crcl3-2x2-ni_ads-with-U/yes_vdw/S2/CONTCAR",
+      "crcl3-newcals/cohp_lobster_Uall/adsorbed/Ni/CONTCAR"
+    ]
+  },
+  {
+    "metal": "ni",
+    "tier": "uall",
+    "grid": [
+      160,
+      160,
+      280
+    ],
+    "points": 7168000,
+    "volume": 2532.773504755897,
+    "integral_e": 1.142629537623309e-06,
+    "min_raw": -2165.06644379,
+    "max_raw": 2128.36823042,
+    "rho_abs_p99": 0.1836794669639663,
+    "z_tm": 10.326740000000001,
+    "z_cr_mean": 10.042475,
+    "source": "crcl3-newcals/postprosseing/cdd_comparison/ni_uall/CHGCAR_diff",
+    "sha256": "142e4dd277d584dc875904b00ac3abf3dcc31c22a6a903c04b7295c65cf635e8",
+    "matching_structures": [
+      "crcl3-newcals/bands_U_all/adsorbed/Ni/CONTCAR",
+      "crcl3-newcals/crcl3-2x2-CoFeNi-vdw12-U_all3.29/adsorbed/Ni/clean/CONTCAR"
+    ]
+  }
+]
