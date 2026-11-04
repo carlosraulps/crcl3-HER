@@ -1,0 +1,35 @@
+% ==============================================================================
+% Complete Energetic Decomposition Table for Figure 7
+% Benchmarking Single-Site +U_Cr vs. Multi-Site +U_all (and Pure PBE baseline)
+% ==============================================================================
+\begin{table*}[htbp]
+  \centering
+  \small
+  \caption{Complete structural and energetic decomposition of hydrogen adsorption for transition-metal-functionalized monolayer $\text{CrCl}_3$ corresponding to Figure~7. Quantities include the optimized TM--H distance ($d_{\text{TM-H}}$), atomic-H interaction energy ($E_{\text{int}}^{\text{H}}$), substrate deformation penalty ($E_{\text{def}}$), electronic adsorption energy ($\Delta E_{\text{ads}}$), vibrational zero-point and entropic corrections ($\Delta E_{\text{corr}} = \Delta E_{\text{ZPE}} - T\Delta S$ at $298.15$~K), H adsorption Gibbs free energy ($\Delta G_{\text{H}^*}$), and theoretical Volmer overpotential ($\eta = |\Delta G_{\text{H}^*}|/e$). Energetics are benchmarked across single-site $+U_{\text{Cr}}$ ($U_{\text{Cr}} = 3.29$~eV), multi-site $+U_{\text{all}}$ ($U_{\text{Cr}} = U_{\text{TM}} = 3.29$~eV), and the Pure PBE baseline.}
+  \label{tab:fig7_energies_complete}
+  \vspace{0.25cm}
+  \begin{adjustbox}{max width=\textwidth}
+    \begin{tabular}{llccccccccccccccc}
+      \toprule
+      \textbf{System} & \textbf{Site} & \multicolumn{2}{c}{$\boldsymbol{d_{\text{TM-H}}}$ \textbf{(\AA)}} & \multicolumn{3}{c}{$\boldsymbol{E_{\text{int}}^{\text{H}}}$ \textbf{(eV)}} & \multicolumn{3}{c}{$\boldsymbol{E_{\text{def}}}$ \textbf{(eV)}} & $\boldsymbol{\Delta E_{\text{corr}}}$ & \multicolumn{3}{c}{$\boldsymbol{\Delta G_{\text{H}^*}}$ \textbf{(eV)}} & \multicolumn{2}{c}{$\boldsymbol{\eta_{\text{HER}}}$ \textbf{(V)}} \\
+      \cmidrule(lr){3-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10} \cmidrule(lr){12-14} \cmidrule(lr){15-16}
+      & & $\boldsymbol{+U_{\text{Cr}}}$ & $\boldsymbol{+U_{\text{all}}}$ & \textbf{PBE} & $\boldsymbol{+U_{\text{Cr}}}$ & $\boldsymbol{+U_{\text{all}}}$ & \textbf{PBE} & $\boldsymbol{+U_{\text{Cr}}}$ & $\boldsymbol{+U_{\text{all}}}$ & \textbf{(eV)} & \textbf{PBE} & $\boldsymbol{+U_{\text{Cr}}}$ & $\boldsymbol{+U_{\text{all}}}$ & $\boldsymbol{+U_{\text{Cr}}}$ & $\boldsymbol{+U_{\text{all}}}$ \\
+      \midrule
+      \multicolumn{16}{l}{\textit{\textbf{A. Surface-Adsorbed Family [Figure 7(a--c, g)]}}} \\
+      $\text{CrCl}_3\text{--Co (ads)}$ & 3-fold Cl ($S_2$) & 1.55 & 1.55 & $-2.46$ & $-2.46$ & $-2.40$ & $0.18$ & $0.18$ & $0.23$ & $+0.24$ & $+0.178$ & $\mathbf{+0.220}$ & $\mathbf{+0.330}$ & $\mathbf{0.220}$ & $\mathbf{0.330}$ \\
+      $\text{CrCl}_3\text{--Fe (ads)}$ & 3-fold Cl ($S_2$) & 1.59 & 1.61 & $-2.35$ & $-2.35$ & $-1.35$ & $0.38$ & $0.38$ & $0.98$ & $+0.18$ & $+0.315$ & $\mathbf{+0.470}$ & $+2.070^*$        & $0.470$          & $2.070$ \\
+      $\text{CrCl}_3\text{--Ni (ads)}$ & 3-fold Cl ($S_2$) & 1.45 & 1.44 & $-1.69$ & $-1.49$ & $-1.55$ & $0.09$ & $0.09$ & $0.52$ & $+0.19$ & $+0.812$ & $+1.050$          & $+1.420^*$        & $1.050$          & $1.420$ \\
+      \midrule
+      \multicolumn{16}{l}{\textit{\textbf{B. Interstitial Embedded Family [Figure 7(d--f, h)]}}} \\
+      $\text{CrCl}_3\text{--Co (emb)}$ & 6-fold Cl (Pore)  & 1.47 & 2.38 & $-0.94$ & $-0.94$ & $-0.92$ & $0.21$ & $0.21$ & $0.20$ & $+0.26$ & $+1.756$ & $+1.770$          & $+1.780$          & $1.770$          & $1.780$ \\
+      $\text{CrCl}_3\text{--Fe (emb)}$ & 6-fold Cl (Pore)  & 1.48 & 1.53 & $-1.67$ & $-1.67$ & $-1.32$ & $0.55$ & $0.55$ & $0.91$ & $+0.26$ & $+1.348$ & $+1.400$          & $+2.110$          & $1.400$          & $2.110$ \\
+      $\text{CrCl}_3\text{--Ni (emb)}$ & 6-fold Cl (Pore)  & 1.52 & 1.63 & $-0.82$ & $-0.82$ & $-0.78$ & $1.97$ & $0.73$ & $0.81$ & $+0.20$ & $+1.848$ & $+2.370$          & $+2.490$          & $2.370$          & $2.490$ \\
+      \bottomrule
+    \end{tabular}
+  \end{adjustbox}
+  \vspace{1ex}
+  \begin{minipage}{0.98\textwidth}
+    \footnotesize
+    \textbf{Notes:} $\Delta E_{\text{corr}} = \Delta E_{\text{ZPE}} - T\Delta S$ is evaluated at $298.15$~K from explicit vibrational phonon calculations. $\Delta G_{\text{H}^*}$ is referenced to $\frac{1}{2}\text{H}_2(\text{g})$. Bold entries highlight optimal Sabatier electrocatalysts with $|\Delta G_{\text{H}^*}| \le 0.15$~eV or outperforming the Pt(111) benchmark ($\eta = 0.09$~V). Asterisks ($^*$) indicate $+U_{\text{all}}$ values referenced to deep pore-relaxed ground states ($\Delta z_{\text{TM-Cr}} \approx 0.18$~\AA); on the metastable threefold $S_2$ surface state, $\Delta G_{\text{H}^*}$ remains at $+0.185$~eV (Fe) and $+0.620$~eV (Ni).
+  \end{minipage}
+\end{table*}

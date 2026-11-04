@@ -147,42 +147,42 @@ def render_panels(tier="pbe_d3_u", dpi=300):
     # Energetics Data
     # -------------------------------------------------------------
     if tier == "pbe_d3_u":
-        # Surface-adsorbed (g)
-        g_eint = np.array([-2.46, -2.35, -1.69])
+        # Surface-adsorbed (g) under Single-Site +U_Cr (3.29 eV)
+        g_eint = np.array([-2.46, -2.35, -1.49])
         g_edef = np.array([0.18, 0.38, 0.09])
-        g_dg   = np.array([-0.07, 0.19, 0.62])
-        g_dg_labels = ["-0.07", "0.19", "0.62"]
+        g_dg   = np.array([0.22, 0.47, 1.05])
+        g_dg_labels = ["0.22", "0.47", "1.05"]
 
-        # Embedded (h)
+        # Embedded (h) under Single-Site +U_Cr (3.29 eV)
         h_eint = np.array([-0.94, -1.67, -0.82])
         h_edef = np.array([0.21, 0.55, 0.73])
-        h_dg   = np.array([1.38, 1.11, 0.82])
-        h_dg_labels = ["1.38", "1.11", "0.82"]
+        h_dg   = np.array([1.77, 1.40, 2.37])
+        h_dg_labels = ["1.77", "1.40", "2.37"]
 
         # Y-limits with adaptive headroom (+25%)
-        ylim_g = (-2.85, 1.25)
-        ylim_h = (-2.10, 2.30)
+        ylim_g = (-2.85, 1.40)
+        ylim_h = (-2.10, 2.90)
         yticks_g = [-2.5, -2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0]
-        yticks_h = [-2.0, -1.0, 0.0, 1.0, 2.0]
+        yticks_h = [-2.0, -1.0, 0.0, 1.0, 2.0, 2.5]
 
     elif tier == "u_all":
         # Surface-adsorbed (g) under Multi-Site +U_all (3.29 eV)
         g_eint = np.array([-2.40, -1.35, -1.55])
         g_edef = np.array([0.23, 0.98, 0.52])
-        g_dg   = np.array([0.07, 1.84, 1.18])
-        g_dg_labels = ["0.07", "1.84", "1.18"]
+        g_dg   = np.array([0.33, 2.07, 1.42])
+        g_dg_labels = ["0.33", "2.07", "1.42"]
 
         # Embedded (h) under Multi-Site +U_all (3.29 eV)
         h_eint = np.array([-0.92, -1.32, -0.78])
         h_edef = np.array([0.20, 0.91, 0.81])
-        h_dg   = np.array([1.39, 1.82, 1.02])
-        h_dg_labels = ["1.39", "1.82", "1.02"]
+        h_dg   = np.array([1.78, 2.11, 2.49])
+        h_dg_labels = ["1.78", "2.11", "2.49"]
 
         # Y-limits with adaptive headroom (+25%)
-        ylim_g = (-2.85, 2.45)
-        ylim_h = (-2.10, 2.45)
+        ylim_g = (-2.85, 2.60)
+        ylim_h = (-2.10, 3.10)
         yticks_g = [-2.5, -2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0, 1.5, 2.0]
-        yticks_h = [-2.0, -1.0, 0.0, 1.0, 2.0]
+        yticks_h = [-2.0, -1.0, 0.0, 1.0, 2.0, 2.5, 3.0]
 
     elif tier == "pbe_baseline":
         # Surface-adsorbed (g)
@@ -371,16 +371,16 @@ def render_multitier_comparison(dpi=300):
 
     # Data
     # Surface
-    g_eint = np.array([-2.46, -2.35, -1.69])
+    g_eint = np.array([-2.46, -2.35, -1.49])
     g_edef = np.array([0.18, 0.38, 0.09])
     g_dgpbe = np.array([0.18, 0.38, 0.86])
-    g_dgu   = np.array([-0.07, 0.19, 0.62])
+    g_dgu   = np.array([0.22, 0.47, 1.05])
 
     # Embedded
     h_eint = np.array([-0.94, -1.67, -0.82])
     h_edef = np.array([0.21, 0.55, 0.73])
     h_dgpbe = np.array([1.74, 1.33, 1.85])
-    h_dgu   = np.array([1.38, 1.11, 0.82])
+    h_dgu   = np.array([1.77, 1.40, 2.37])
 
     fig, (ax_g, ax_h) = plt.subplots(1, 2, figsize=(16.0, 6.0), dpi=dpi)
     fig.subplots_adjust(left=0.08, right=0.96, bottom=0.18, top=0.90, wspace=0.28)
@@ -449,12 +449,12 @@ def render_multitier_comparison(dpi=300):
         ax.set_xlim(xlim_multi)
         if not is_emb:
             ax.set_ylabel(r"$\mathrm{Energy\ (eV)}$", fontsize=16)
-            ax.set_ylim(-2.85, 1.35)
+            ax.set_ylim(-2.85, 1.45)
             ax.set_yticks([-2.5, -2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0])
         else:
             ax.set_ylabel(r"$\mathrm{Free\ Energy,\ }\Delta G_{\mathrm{H}^*}\ \mathrm{(eV)}$", fontsize=16)
-            ax.set_ylim(-2.10, 2.55)
-            ax.set_yticks([-2.0, -1.0, 0.0, 1.0, 2.0])
+            ax.set_ylim(-2.10, 2.90)
+            ax.set_yticks([-2.0, -1.0, 0.0, 1.0, 2.0, 2.5])
 
         ax.tick_params(direction='in', which='both', top=True, right=True, labelsize=14)
         ax.legend(loc='lower right', frameon=True, facecolor='white', edgecolor='#e0e0e0', framealpha=0.95,
