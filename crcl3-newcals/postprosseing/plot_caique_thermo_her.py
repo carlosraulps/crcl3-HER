@@ -105,9 +105,9 @@ systems_data = [
         'thermo_corr': 0.24,
         'dE_ads_pbe': -0.0616,
         'dE_ads_d3': -0.0616,
-        'dE_ads_u': -0.3090,
-        'dE_ads_uall': -0.1910,
-        'dG_uall': 0.0650, # E_ads (-0.191) + 0.256 = +0.065 eV
+        'dE_ads_u': -0.0200,
+        'dE_ads_uall': 0.0900,
+        'dG_uall': 0.3300,
     },
     {
         'key': 'fe_ads',
@@ -119,9 +119,9 @@ systems_data = [
         'thermo_corr': 0.18,
         'dE_ads_pbe': 0.1350,
         'dE_ads_d3': 0.1950,
-        'dE_ads_u': 0.0050,
-        'dE_ads_uall': 1.5810, # Extrusion penalty from pore ground state
-        'dG_uall': 1.8370,
+        'dE_ads_u': 0.2900,
+        'dE_ads_uall': 1.8900,
+        'dG_uall': 2.0700,
     },
     {
         'key': 'ni_ads',
@@ -133,9 +133,9 @@ systems_data = [
         'thermo_corr': 0.19,
         'dE_ads_pbe': 0.6222,
         'dE_ads_d3': 0.6720,
-        'dE_ads_u': 0.4300,
-        'dE_ads_uall': 0.9280, # Extrusion penalty from pore ground state
-        'dG_uall': 1.1840,
+        'dE_ads_u': 0.8600,
+        'dE_ads_uall': 1.2300,
+        'dG_uall': 1.4200,
     },
     {
         'key': 'co_emb',
@@ -147,9 +147,9 @@ systems_data = [
         'thermo_corr': 0.26,
         'dE_ads_pbe': 1.4963,
         'dE_ads_d3': 1.4834,
-        'dE_ads_u': 1.1150,
-        'dE_ads_uall': 1.1330,
-        'dG_uall': 1.3890,
+        'dE_ads_u': 1.5100,
+        'dE_ads_uall': 1.5200,
+        'dG_uall': 1.7800,
     },
     {
         'key': 'fe_emb',
@@ -161,9 +161,9 @@ systems_data = [
         'thermo_corr': 0.26,
         'dE_ads_pbe': 1.0884,
         'dE_ads_d3': 1.1065,
-        'dE_ads_u': 0.8535,
-        'dE_ads_uall': 1.5660,
-        'dG_uall': 1.8210,
+        'dE_ads_u': 1.1400,
+        'dE_ads_uall': 1.8500,
+        'dG_uall': 2.1100,
     },
     {
         'key': 'ni_emb',
@@ -175,9 +175,9 @@ systems_data = [
         'thermo_corr': 0.20,
         'dE_ads_pbe': 1.6477,
         'dE_ads_d3': 0.7270,
-        'dE_ads_u': 0.6208,
-        'dE_ads_uall': 0.7680,
-        'dG_uall': 1.0240,
+        'dE_ads_u': 2.1700,
+        'dE_ads_uall': 2.2900,
+        'dG_uall': 2.4900,
     }
 ]
 
@@ -223,18 +223,18 @@ def plot_multipanel():
         ax_a.plot([1.22, 1.78], [dg, 0.0], color=col, linestyle=ls, linewidth=lw, alpha=0.9, zorder=3)
 
     # Callouts
-    ax_a.annotate(r'$\mathbf{Co\ (ads)\ +U_{\mathrm{all}}:}$' + '\n' + r'$\Delta G_{\mathrm{H}^*} = \mathbf{+0.065\,\mathrm{eV}}$ (Sabatier Summit)',
-                  xy=(1.0, 0.065), xytext=(1.45, -0.32),
+    ax_a.annotate(r'$\mathbf{Co\ (ads)\ +U_{\mathrm{all}}:}$' + '\n' + r'$\Delta G_{\mathrm{H}^*} = \mathbf{+0.330\,\mathrm{eV}}$',
+                  xy=(1.0, 0.330), xytext=(1.45, 0.25),
                   arrowprops=dict(arrowstyle='->', color='#1e8449', lw=1.5),
                   fontsize=9.2, fontweight='bold', color='#1e8449', bbox=CARD_STYLE, zorder=6)
 
-    ax_a.annotate(r'$\mathbf{Co\ (ads)\ +U_{\mathrm{Cr}}:}\ \Delta G = -0.069\,\mathrm{eV}$',
-                  xy=(1.0, -0.069), xytext=(0.40, -0.38),
+    ax_a.annotate(r'$\mathbf{Co\ (ads)\ +U_{\mathrm{Cr}}:}\ \Delta G = \mathbf{+0.220\,\mathrm{eV}}$',
+                  xy=(1.0, 0.220), xytext=(0.40, 0.25),
                   arrowprops=dict(arrowstyle='->', color='#27ae60', lw=1.2),
                   fontsize=8.8, fontweight='bold', color='#196f3d', bbox=CARD_STYLE, zorder=6)
 
-    ax_a.annotate(r'$\mathbf{Fe\ (ads)\ +U_{\mathrm{all}}:}\ \Delta G = +1.837\,\mathrm{eV}$' + '\n' + r'($+1.58\,\mathrm{eV}$ pore-extrusion penalty)',
-                  xy=(1.0, 1.837), xytext=(1.45, 1.95),
+    ax_a.annotate(r'$\mathbf{Fe\ (ads)\ +U_{\mathrm{all}}:}\ \Delta G = +2.070\,\mathrm{eV}$',
+                  xy=(1.0, 2.070), xytext=(1.45, 2.15),
                   arrowprops=dict(arrowstyle='->', color='#c0392b', lw=1.3),
                   fontsize=8.6, fontweight='bold', color='#922b21', bbox=CARD_STYLE, zorder=6)
 
@@ -247,16 +247,16 @@ def plot_multipanel():
     ax_a.set_xticklabels(rxn_labels, fontsize=12, fontweight='bold')
     ax_a.set_ylabel(r'Gibbs Free Energy $\Delta G\ (\mathrm{eV})$', fontsize=12, fontweight='bold')
     ax_a.set_title(r'(a) HER Free Energy Reaction Diagram ($T = 298.15\,\mathrm{K}$)', fontsize=12.5, fontweight='bold', pad=10)
-    ax_a.set_ylim(-0.55, 2.70)
+    ax_a.set_ylim(-0.45, 2.80)
     ax_a.yaxis.set_major_locator(MultipleLocator(0.5))
     ax_a.yaxis.set_minor_locator(MultipleLocator(0.1))
     ax_a.grid(axis='y', linestyle='--', alpha=0.4, zorder=0)
 
     lines_a = [
-        Line2D([0], [0], color='#1e8449', lw=3.4, linestyle='-', label=r'Co (ads) $+U_{\mathrm{all}}$ (Summit, $+0.065\,\mathrm{eV}$)'),
-        Line2D([0], [0], color='#27ae60', lw=2.2, linestyle='--', label=r'Co (ads) $+U_{\mathrm{Cr}}$ ($-0.069\,\mathrm{eV}$)'),
-        Line2D([0], [0], color='#c0392b', lw=2.4, linestyle='-', label=r'Fe (ads) $+U_{\mathrm{all}}$ ($+1.837\,\mathrm{eV}$)'),
-        Line2D([0], [0], color='#8e44ad', lw=2.4, linestyle='-', label=r'Ni (ads) $+U_{\mathrm{all}}$ ($+1.184\,\mathrm{eV}$)'),
+        Line2D([0], [0], color='#1e8449', lw=3.4, linestyle='-', label=r'Co (ads) $+U_{\mathrm{all}}$ ($+0.330\,\mathrm{eV}$)'),
+        Line2D([0], [0], color='#27ae60', lw=2.2, linestyle='--', label=r'Co (ads) $+U_{\mathrm{Cr}}$ ($+0.220\,\mathrm{eV}$)'),
+        Line2D([0], [0], color='#c0392b', lw=2.4, linestyle='-', label=r'Fe (ads) $+U_{\mathrm{all}}$ ($+2.070\,\mathrm{eV}$)'),
+        Line2D([0], [0], color='#8e44ad', lw=2.4, linestyle='-', label=r'Ni (ads) $+U_{\mathrm{all}}$ ($+1.420\,\mathrm{eV}$)'),
         Line2D([0], [0], color='#e67e22', lw=2.0, linestyle='-.', label=r'Pristine $S_1$ (Top-Cl)'),
         Line2D([0], [0], color='#2ecc71', lw=6.0, alpha=0.35, label=r'Sabatier Window ($|\Delta G| \leq 0.15\,\mathrm{eV}$)')
     ]

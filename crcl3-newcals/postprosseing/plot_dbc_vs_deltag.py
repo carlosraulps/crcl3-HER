@@ -57,15 +57,15 @@ def main():
     ads_dbc_ucr = np.array([-1.6643, -2.4319, -1.1599])
     emb_dbc_ucr = np.array([-1.4597, -2.4376, -1.6972])
     
-    ads_dg_ucr = np.array([-0.0690, 0.1850, 0.6200])
-    emb_dg_ucr = np.array([1.3750, 1.1140, 0.8210])
+    ads_dg_ucr = np.array([0.220, 0.470, 1.050])
+    emb_dg_ucr = np.array([1.770, 1.400, 2.370])
 
     # 2. Multi-Site Hubbard U (+U_all, U_Cr = 3.29 eV & U_TM = 3.29 eV)
     ads_dbc_uall = np.array([-1.4940, -2.1685, -0.9928])
     emb_dbc_uall = np.array([-2.6640, -2.0122, -2.6109])
 
-    ads_dg_uall = np.array([0.0650, 1.8370, 1.1840])
-    emb_dg_uall = np.array([1.3890, 1.8210, 1.0240])
+    ads_dg_uall = np.array([0.330, 2.070, 1.420])
+    emb_dg_uall = np.array([1.780, 2.110, 2.490])
 
     fig, axs = plt.subplots(1, 2, figsize=(14.2, 6.2), dpi=300)
     fig.subplots_adjust(wspace=0.22)
@@ -126,9 +126,9 @@ def main():
                             xytext=(0, 12), ha='center', fontsize=8.8, fontweight="bold",
                             bbox=CARD_STYLE, zorder=6)
 
-            # High-visibility callout for Co(ads) Sabatier optimum in panel (a)
-            ax.annotate(r"$\mathbf{Co\ (ads):}\ \Delta G = -0.069\,\mathrm{eV}$",
-                        xy=(ads_dbc[0], ads_dg[0]), xytext=(-1.66, -0.38),
+            # High-visibility callout for Co(ads) in panel (a)
+            ax.annotate(r"$\mathbf{Co\ (ads):}\ \Delta G = \mathbf{+0.22\,\mathrm{eV}}$" + "\n" + r"(Optimal Active Site)",
+                        xy=(ads_dbc[0], ads_dg[0]), xytext=(-1.66, -0.22),
                         arrowprops=dict(arrowstyle="->", color="#1e8449", lw=1.3),
                         fontsize=8.8, fontweight="bold", color="#1e8449", bbox=CARD_STYLE, zorder=7, ha='center')
         else: # tier == 'uall'
@@ -154,9 +154,9 @@ def main():
                                 xytext=(0, 12), ha='center', fontsize=8.8, fontweight="bold",
                                 bbox=CARD_STYLE, zorder=6)
 
-            # High-visibility callout for Co(ads) Sabatier summit in panel (b)
-            ax.annotate(r"$\mathbf{Co\ (ads):}\ \Delta G = \mathbf{+0.065\,\mathrm{eV}}$" + "\n" + r"(Sabatier Summit)",
-                        xy=(ads_dbc[0], ads_dg[0]), xytext=(-1.49, -0.38),
+            # High-visibility callout for Co(ads) in panel (b)
+            ax.annotate(r"$\mathbf{Co\ (ads):}\ \Delta G = \mathbf{+0.33\,\mathrm{eV}}$" + "\n" + r"(Lowest Overpotential)",
+                        xy=(ads_dbc[0], ads_dg[0]), xytext=(-1.49, -0.22),
                         arrowprops=dict(arrowstyle="->", color="#1e8449", lw=1.4),
                         fontsize=8.8, fontweight="bold", color="#1e8449", bbox=CARD_STYLE, zorder=7, ha='center')
 
@@ -166,7 +166,7 @@ def main():
         ax.set_title(title, fontsize=12.0, fontweight="bold", pad=12)
 
         ax.set_xlim(-2.85, -0.75)
-        ax.set_ylim(-0.60, 2.30)
+        ax.set_ylim(-0.45, 2.90)
         ax.xaxis.set_major_locator(MultipleLocator(0.4))
         ax.xaxis.set_minor_locator(MultipleLocator(0.1))
         ax.yaxis.set_major_locator(MultipleLocator(0.5))

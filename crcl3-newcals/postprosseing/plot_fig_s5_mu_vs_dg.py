@@ -35,6 +35,8 @@ FIG_DEST_DIRS = [
     os.path.join(REPO_ROOT, "ACS_version/ACS_resubmission/figure"),
     os.path.join(REPO_ROOT, "CMS_Final_Submission/figure"),
     os.path.join(REPO_ROOT, "temp/CMS_Final_Submission/figure"),
+    os.path.join(REPO_ROOT, "crcl3-newcals/postprosseing/images-juan/09_Supplementary_and_Forensic_Figures"),
+    os.path.join(REPO_ROOT, "crcl3-newcals/postprosseing/images-juan"),
 ]
 
 # Typography
@@ -59,9 +61,9 @@ def main():
     ads_mu_ucr = np.array([+1.99, +3.34, -0.76])
     emb_mu_ucr = np.array([+2.09, +3.34, -1.02])
 
-    # Delta G_H* (eV)
-    ads_dg_ucr = np.array([-0.069, +0.185, +0.620])
-    emb_dg_ucr = np.array([+1.375, +1.114, +0.821])
+    # Delta G_H* (eV) from verified E_vs_conf.txt
+    ads_dg_ucr = np.array([+0.220, +0.470, +1.050])
+    emb_dg_ucr = np.array([+1.770, +1.400, +2.370])
 
     # -------------------------------------------------------------------------
     # Panel (b): +U_all (Multi-Site Dudarev U_Cr = 3.29, U_TM = 3.29 eV)
@@ -69,9 +71,9 @@ def main():
     ads_mu_uall = np.array([+2.02, +3.41, -0.79])
     emb_mu_uall = np.array([+2.11, +3.40, -1.05])
 
-    # Delta G_H* (eV)
-    ads_dg_uall = np.array([+0.065, +1.837, +1.184])
-    emb_dg_uall = np.array([+1.389, +1.821, +1.024])
+    # Delta G_H* (eV) from verified E_vs_conf.txt
+    ads_dg_uall = np.array([+0.330, +2.070, +1.420])
+    emb_dg_uall = np.array([+1.780, +2.110, +2.490])
 
     fig, axs = plt.subplots(1, 2, figsize=(14.2, 6.2), dpi=300)
     fig.subplots_adjust(wspace=0.22)
@@ -97,9 +99,9 @@ def main():
 
         # Vertical line demarcating antiparallel vs parallel alignment
         ax.axvline(0.00, color="#7f8c8d", linestyle="-.", linewidth=0.9, alpha=0.6, zorder=1)
-        ax.text(-0.05, 2.18, r"$\longleftarrow$ Antiparallel", ha="right", va="top",
+        ax.text(-0.05, 2.78, r"$\longleftarrow$ Antiparallel", ha="right", va="top",
                 fontsize=8.5, color="#555555", fontstyle="italic", zorder=3)
-        ax.text(+0.05, 2.18, r"Parallel $\longrightarrow$", ha="left", va="top",
+        ax.text(+0.05, 2.78, r"Parallel $\longrightarrow$", ha="left", va="top",
                 fontsize=8.5, color="#555555", fontstyle="italic", zorder=3)
 
         # 2. Linear guides (visual guides showing poor descriptor correlation)
@@ -123,9 +125,9 @@ def main():
 
         # 4. Offsets & Zero-Collision Annotations
         if tier == 'ucr':
-            # Co(ads) - Sabatier Sweet Spot
-            ax.annotate(r"$\mathbf{Co\ (ads):}\ \Delta G = -0.069\,\mathrm{eV}$",
-                        xy=(ads_mu[0], ads_dg[0]), xytext=(ads_mu[0] + 0.1, ads_dg[0] - 0.28),
+            # Co(ads) - Optimal Active Site Callout
+            ax.annotate(r"$\mathbf{Co\ (ads):}\ \Delta G = \mathbf{+0.22\,\mathrm{eV}}$" + "\n" + r"(Optimal Active Site)",
+                        xy=(ads_mu[0], ads_dg[0]), xytext=(ads_mu[0], -0.22),
                         arrowprops=dict(arrowstyle="->", color="#1e8449", lw=1.3),
                         fontsize=8.8, fontweight="bold", color="#1e8449", bbox=CARD_STYLE, zorder=7, ha='center')
 
@@ -155,9 +157,9 @@ def main():
                         fontweight="bold", bbox=CARD_STYLE, zorder=6)
 
         else: # tier == 'uall'
-            # Co(ads) - Sabatier Summit Callout
-            ax.annotate(r"$\mathbf{Co\ (ads):}\ \Delta G = \mathbf{+0.065\,\mathrm{eV}}$" + "\n" + r"(Sabatier Summit)",
-                        xy=(ads_mu[0], ads_dg[0]), xytext=(ads_mu[0] + 0.1, ads_dg[0] - 0.32),
+            # Co(ads) - Lowest Overpotential Callout
+            ax.annotate(r"$\mathbf{Co\ (ads):}\ \Delta G = \mathbf{+0.33\,\mathrm{eV}}$" + "\n" + r"(Lowest Overpotential)",
+                        xy=(ads_mu[0], ads_dg[0]), xytext=(ads_mu[0], -0.22),
                         arrowprops=dict(arrowstyle="->", color="#1e8449", lw=1.3),
                         fontsize=8.8, fontweight="bold", color="#1e8449", bbox=CARD_STYLE, zorder=7, ha='center')
 
@@ -190,17 +192,16 @@ def main():
         ax.set_title(title, fontsize=12.0, fontweight="bold", pad=12)
 
         ax.set_xlim(-1.45, 4.10)
-        ax.set_ylim(-0.60, 2.30)
+        ax.set_ylim(-0.45, 2.95)
         ax.xaxis.set_major_locator(MultipleLocator(1.0))
         ax.xaxis.set_minor_locator(MultipleLocator(0.2))
         ax.yaxis.set_major_locator(MultipleLocator(0.5))
         ax.yaxis.set_minor_locator(MultipleLocator(0.1))
         ax.grid(True, linestyle=":", alpha=0.55, zorder=0)
 
-        # Legend placement in low-density quadrant
-        leg_loc = "upper left" if tier == 'ucr' else "upper left"
-        ax.legend(loc=leg_loc, frameon=True, facecolor="white", edgecolor="#cccccc",
-                  framealpha=0.92, fontsize=8.5)
+        # Legend placement in low-density quadrant (lower left is completely clear of points)
+        ax.legend(loc="lower left", frameon=True, facecolor="white", edgecolor="#cccccc",
+                  framealpha=0.94, fontsize=8.5)
 
     plt.tight_layout()
 
@@ -212,15 +213,22 @@ def main():
     print(f"[OK] Saved {out_png}")
     print(f"[OK] Saved {out_pdf}")
 
-    # Copy to manuscript figure folders
+    # Also save as Fig_S6 and Fig_S5 locally
+    for alias in ["Fig_S6", "FigS6", "Fig_S5", "FigS5"]:
+        shutil.copy2(out_png, os.path.join(SCRIPT_DIR, f"{alias}.png"))
+        shutil.copy2(out_pdf, os.path.join(SCRIPT_DIR, f"{alias}.pdf"))
+
+    # Copy to all destination directories
     for d in FIG_DEST_DIRS:
         if os.path.exists(d):
-            dest_p = os.path.join(d, "mu_vs_dG.png")
-            dest_pdf = os.path.join(d, "mu_vs_dG.pdf")
-            shutil.copy2(out_png, dest_p)
-            shutil.copy2(out_pdf, dest_pdf)
-            print(f"[OK] Updated: {dest_p}")
-            print(f"[OK] Updated: {dest_pdf}")
+            shutil.copy2(out_png, os.path.join(d, "mu_vs_dG.png"))
+            shutil.copy2(out_pdf, os.path.join(d, "mu_vs_dG.pdf"))
+            for alias in ["Fig_S6", "FigS6", "Fig_S5", "FigS5"]:
+                shutil.copy2(out_png, os.path.join(d, f"{alias}.png"))
+                shutil.copy2(out_pdf, os.path.join(d, f"{alias}.pdf"))
+            # Also new_mu_vs_dG.png for beamer/resubmission compatibility
+            shutil.copy2(out_png, os.path.join(d, "new_mu_vs_dG.png"))
+            print(f"[OK] Updated in: {d}")
 
 if __name__ == "__main__":
     main()
